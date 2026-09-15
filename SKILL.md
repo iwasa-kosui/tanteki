@@ -1,5 +1,5 @@
 ---
-name: nihongo-de-ok
+name: tanteki
 description: 日本語の業務・技術文書を、読者と目的に合わせて短く執筆・改稿する。PRD、Design Doc、ADR、仕様、手順、調査、計画、報告などで、構成を検査してから各節を執筆し、意味と textlint を検査する。文書作成や推敲の依頼で使い、通常の質問への回答には適用しない。
 ---
 

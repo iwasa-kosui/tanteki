@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 // gh skills discovers published skills in skills/<name>/SKILL.md.
 // Keep the existing root files canonical and ship only runtime resources.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const destination = join(root, "skills/nihongo-de-ok");
+const destination = join(root, "skills/tanteki");
 const sources = [
   "SKILL.md", "LICENSE", ".textlintrc.json", "package-lock.json",
   "agents", "references", "rules", "scripts/lint.mjs"
@@ -49,7 +49,7 @@ function main(args) {
     mkdirSync(dirname(output), { recursive: true });
     writeFileSync(output, content);
   }
-  console.log(`skills/nihongo-de-ok に ${files.size} ファイルを出力しました。`);
+  console.log(`skills/tanteki に ${files.size} ファイルを出力しました。`);
 }
 
 try {

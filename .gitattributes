@@ -4,4 +4,4 @@ benchmarks/results/*/comparisons/*.md whitespace=-blank-at-eol
 benchmarks/results/*/document-review/artifacts/*.md whitespace=-blank-at-eol
 benchmarks/results/*/document-review/comparisons/*.md whitespace=-blank-at-eol
 # Published skill bundle is generated from the canonical root files.
-skills/nihongo-de-ok/** linguist-generated=true
+skills/tanteki/** linguist-generated=true
