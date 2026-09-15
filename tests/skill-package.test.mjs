@@ -20,7 +20,7 @@ test("skill packaging detects stale, missing and obsolete resources without rewr
     write("package.json", JSON.stringify({ name: "test-skill", scripts: { test: "repo-only" }, dependencies: { example: "1.0.0" } }));
     cpSync(fileURLToPath(new URL("../scripts/package-skill.mjs", import.meta.url)), join(root, "scripts/package-skill.mjs"));
     const run = (...args) => spawnSync(process.execPath, [join(root, "scripts/package-skill.mjs"), ...args], { cwd: tmpdir(), encoding: "utf8" });
-    const output = "skills/nihongo-de-ok/";
+    const output = "skills/tanteki/";
 
     assert.equal(run("--check").status, 1);
     assert.equal(run().status, 0);

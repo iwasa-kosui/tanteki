@@ -7,7 +7,7 @@
 [GitHub CLI](https://cli.github.com/) 2.90以降とNode.js 22以降が必要です。
 
 ```sh
-gh skills install iwasa-kosui/nihongo-de-ok nihongo-de-ok --scope user
+gh skills install iwasa-kosui/nihongo-de-ok tanteki --scope user
 ```
 
 対話画面で利用するエージェントを選ぶと、個人用の配置先にインストールされます。`--agent claude-code`、`--agent codex`、`--agent cursor` などで指定することもできます。詳細は[インストールの公式手順](https://cli.github.com/manual/gh_skill_install)を参照してください。
@@ -19,7 +19,7 @@ gh skills install iwasa-kosui/nihongo-de-ok nihongo-de-ok --scope user
 インストール後にエージェントの新しいセッションを開き、読者と目的を添えて依頼します。
 
 ```text
-nihongo-de-ok を使って、この設計書を開発者向けに短く推敲して。
+tanteki を使って、この設計書を開発者向けに短く推敲して。
 実現方式と不採用案の理由、制約、例外は残して。
 
 （ここに草稿を貼る）
