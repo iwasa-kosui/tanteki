@@ -7,7 +7,7 @@
 [GitHub CLI](https://cli.github.com/) 2.90以降とNode.js 22以降が必要です。
 
 ```sh
-gh skills install iwasa-kosui/nihongo-de-ok tanteki --scope user
+gh skills install iwasa-kosui/tanteki tanteki --scope user
 ```
 
 対話画面で利用するエージェントを選ぶと、個人用の配置先にインストールされます。`--agent claude-code`、`--agent codex`、`--agent cursor` などで指定することもできます。詳細は[インストールの公式手順](https://cli.github.com/manual/gh_skill_install)を参照してください。
