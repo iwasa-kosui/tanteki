@@ -7,7 +7,7 @@ import { execFileSync } from "node:child_process";
 import { root, dimensions, arms, validateCases, makePlan, skillContext, authorPrompt, validateAuthor, validateJudge, parseEvents, codexArgs, measure, aggregate, hash, verifySourceSnapshot } from "../benchmarks/benchmark.mjs";
 
 const cases = JSON.parse(await readFile(join(root, "benchmarks/cases.json"), "utf8"));
-const files = Object.fromEntries(await Promise.all(["SKILL.md", "references/document-types.md", "references/document-shapes.md", "references/japanese.md", "references/structure.md", "references/delegation.md"].map(async (name) => [name, await readFile(join(root, name), "utf8")])));
+const files = Object.fromEntries(await Promise.all(["SKILL.md", "references/document-types.md", "references/types/strategy.md", "references/types/research.md", "references/types/requirements.md", "references/types/design.md", "references/types/qa-release.md", "references/types/operations.md", "references/types/knowledge.md", "references/japanese.md", "references/structure.md", "references/delegation.md"].map(async (name) => [name, await readFile(join(root, name), "utf8")])));
 
 test("pinned source validation rejects stale skill or lint code before a model call", () => {
   const source = { "SKILL.md": "skill", "rules/table-cell-length.mjs": "rule" };
