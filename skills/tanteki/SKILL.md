@@ -23,7 +23,7 @@ description: 日本語の業務・技術文書を、読者と目的に合わせ�
 
 ステップに関係なく、本文を書く前に次を決める。決めた内容は成果物の外に一行で添える。
 
-- 型と読者。references/document-types.md の区分で決める
+- 型と読者。references/document-types.md で区分とカテゴリを決め、該当する references/types/ の1ファイルだけを読む
 - 主題。1文で書く。各節はこの1文への従属関係を言えること
 - 出典。節ごとに一次情報の所在を宣言する
 - 用語。置換表があれば当てる。なければ初出で定義する
@@ -64,9 +64,9 @@ node <スキルルート>/scripts/lint.mjs --type design-doc <成果物の絶対
 
 | 知りたいこと | 参照先 |
 |---|---|
-| 種別・読者・目的・区分の決め方 | [文書分類](references/document-types.md) |
+| 区分とカテゴリの判定 | [文書分類](references/document-types.md) |
+| 種別ごとの書き分けと最小内容 | [種別別の参照先](references/document-types.md#カテゴリから参照先を引く) |
 | 節の組み方と本文の形 | [文書の構成](references/structure.md) |
 | 文と語の日本語の判断 | [日本語の基準](references/japanese.md) |
-| PRD・設計・ADR の書き分け | [書き分け](references/document-shapes.md) |
 | 委譲、予算、合格判定の手順 | [委譲と検査](references/delegation.md) |
 | lint の設定と `allow` | [CLIと静的検査](references/lint.md) |
