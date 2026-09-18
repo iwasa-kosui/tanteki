@@ -12,15 +12,6 @@ const repo = 'https://github.com/iwasa-kosui/tanteki/blob/main/';
 const read = (path) => readFile(join(root, path), 'utf8');
 const escape = (text) => text.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
-export function excerpt(body, heading) {
-  if (!heading) return body.trim();
-  const lines = body.split('\n');
-  const start = lines.indexOf(heading);
-  if (start === -1) throw new Error(`Missing excerpt heading: ${heading}`);
-  const next = lines.findIndex((line, index) => index > start && /^## /.test(line));
-  return lines.slice(start + 1, next === -1 ? undefined : next).join('\n').trim();
-}
-
 async function build() {
   const examples = JSON.parse(await read('docs/examples.json'));
   const cases = JSON.parse(await read(`${run}/cases.json`));
@@ -28,26 +19,26 @@ async function build() {
   const panels = [];
   // Keep an inspectable Markdown version of the exact page prose for textlint.
   const exampleCopy = [];
-  for (const [index, example] of examples.entries()) {
+  for (const example of examples) {
     const task = cases.find(({ id }) => id === example.id);
     if (!task) throw new Error(`Missing source case: ${example.id}`);
     const documents = [];
     for (const [arm, name, label] of [['without_skill', 'before', 'スキルなし'], ['with_skill', 'after', 'tanteki あり']]) {
       const path = `${review}/artifacts/${example.id}.1.${arm}.md`;
-      const body = excerpt(await read(path), example[name].section);
+      const body = await read(path);
       let html = renderMarkdown(body);
       for (const term of example[name].highlight) {
         const needle = escape(term);
         if (!html.includes(needle)) throw new Error(`Missing highlight in ${path}: ${term}`);
         html = html.replaceAll(needle, `<mark>${needle}</mark>`);
       }
-      documents.push(`<div class="document ${name}"><p class="document-label"><b>${name.toUpperCase()}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span></p><blockquote cite="${repo}${path}">${html}</blockquote></div>`);
+      documents.push(`<div class="document ${name}"><p class="document-label" id="label-${example.id}-${name}"><b>${name.toUpperCase()}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span><span class="full-text-label">全文</span></p><div class="document-scroll" role="region" aria-labelledby="label-${example.id}-${name}" tabindex="0"><blockquote cite="${repo}${path}">${html}</blockquote></div></div>`);
     }
     panels.push(`<section class="example-panel" id="example-${example.id}" aria-label="${escape(example.tab)}の比較">
       <div class="example-title"><h3>${escape(example.title)}</h3><span>${escape(example.scope)}</span></div>
       <div class="comparison">${documents.join('\n')}</div>
       <p class="comparison-insight"><strong>読み比べるポイント</strong><span>${escape(example.insight)}</span></p>
-      <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="${repo}${review}/comparisons/${example.id}.1.md">全文と評価 ↗</a></div>
+      <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="./evaluation.html#${example.id}.1">評価の詳細 ↗</a></div>
     </section>`);
     exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n`);
   }

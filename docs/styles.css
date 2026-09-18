@@ -327,6 +327,21 @@ h3 {
   border-radius:2px;
   letter-spacing:.03em;
 }
+.full-text-label {
+  margin-left:auto;
+  font-size:10px;
+  color:var(--muted);
+}
+.document-scroll {
+  max-height:560px;
+  overflow-y:auto;
+  scrollbar-gutter:stable;
+  scrollbar-width:thin;
+  padding-right:12px;
+}
+.document-scroll:focus-visible {
+  outline-offset:-3px;
+}
 .document blockquote {
   margin:0;
   font-family:var(--serif);
@@ -340,14 +355,35 @@ h3 {
 .document blockquote p:last-child {
   margin-bottom:0;
 }
-.document blockquote h4 {
+.document blockquote :is(h3,h4,h5,h6) {
   font-family:var(--sans);
-  font-size:12px;
+  font-size:14px;
   margin:20px 0 10px;
-  color:var(--muted);
+  color:var(--ink);
 }
-.document blockquote h4:first-child {
+.document blockquote h3 {
+  font-size:18px;
+}
+.document blockquote :is(h3,h4,h5,h6):first-child {
   margin-top:0;
+}
+.document blockquote :is(ul,ol) {
+  padding-left:1.4em;
+  margin:12px 0 18px;
+}
+.document blockquote li p {
+  margin-bottom:8px;
+}
+.document blockquote pre {
+  padding:14px;
+  background:var(--paper);
+  font-size:12px;
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+.document blockquote code {
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:.85em;
 }
 .document mark {
   background:#dde8d5;
@@ -953,5 +989,10 @@ summary {
   }
   .document {
     padding:15px;
+  }
+  .document-scroll {
+    max-height:none;
+    overflow:visible;
+    padding-right:0;
   }
 }
