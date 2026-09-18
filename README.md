@@ -2,6 +2,8 @@
 
 日本語の業務・技術文書を執筆・推敲するエージェントスキルです。設計の理由、制約、例外を残して、短く分かりやすく整えます。
 
+[使用前後の比較と使い方](https://iwasa-kosui.github.io/tanteki/)を GitHub Pages で紹介しています。サイトの編集・公開方法は[保守手順](docs/README.md)を参照してください。
+
 ## インストール
 
 [GitHub CLI](https://cli.github.com/) 2.90以降とNode.js 22以降が必要です。
