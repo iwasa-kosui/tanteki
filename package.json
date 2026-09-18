@@ -6,6 +6,8 @@
     "node": ">=22"
   },
   "scripts": {
+    "build:site": "node scripts/build-site.mjs",
+    "lint:site": "node scripts/lint.mjs --type stock .cache/site-copy.md docs/README.md",
     "package:skill": "node scripts/package-skill.mjs",
     "check:skill-package": "node scripts/package-skill.mjs --check",
     "test": "node --test tests/*.test.mjs",
