@@ -27,10 +27,15 @@ async function build() {
       const path = `${review}/artifacts/${example.id}.1.${arm}.md`;
       const body = await read(path);
       let html = renderMarkdown(body);
-      for (const term of example[name].highlight) {
-        const needle = escape(term);
-        if (!html.includes(needle)) throw new Error(`Missing highlight in ${path}: ${term}`);
-        html = html.replaceAll(needle, `<mark>${needle}</mark>`);
+      for (const [index, item] of example[name].highlight.entries()) {
+        if (typeof item.text !== 'string' || !item.text) throw new Error(`Missing highlight text in ${example.id}.${name}[${index}]`);
+        if (typeof item.note !== 'string' || !item.note) throw new Error(`Missing highlight note in ${example.id}.${name}[${index}]`);
+        const needle = escape(item.text);
+        const occurrences = html.split(needle).length - 1;
+        if (occurrences === 0) throw new Error(`Missing highlight in ${path}: ${item.text}`);
+        if (occurrences >= 2) throw new Error(`Ambiguous highlight in ${path}: "${item.text}" occurs ${occurrences} times, use a longer, unique string`);
+        const label = name === 'before' ? '問題点' : '変更点';
+        html = html.replace(needle, `<mark>${needle}</mark><span class="change-note" role="note"><span class="change-note-label">${label}</span>${escape(item.note)}</span>`);
       }
       documents.push(`<div class="document ${name}"><p class="document-label" id="label-${example.id}-${name}"><b>${name.toUpperCase()}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span><span class="full-text-label">全文</span></p><div class="document-scroll" role="region" aria-labelledby="label-${example.id}-${name}" tabindex="0"><blockquote cite="${repo}${path}">${html}</blockquote></div></div>`);
     }
@@ -40,7 +45,8 @@ async function build() {
       <p class="comparison-insight"><strong>読み比べるポイント</strong><span>${escape(example.insight)}</span></p>
       <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="./evaluation.html#${example.id}.1">評価の詳細 ↗</a></div>
     </section>`);
-    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n`);
+    const notes = [...example.before.highlight, ...example.after.highlight].map(({ note }) => note);
+    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n\n${notes.join('\n\n')}\n`);
   }
   const tabs = `<div class="example-tabs" aria-label="比較する文書" hidden>${examples.map((example, index) => `<button type="button" id="tab-${example.id}" data-example-tab aria-controls="example-${example.id}"><span>0${index + 1}</span>${escape(example.tab)}</button>`).join('')}</div>`;
   const rows = [['usable', '用途を満たす'], ['revision_needed', '文書の修正が必要'], ['source_limited', '原資料の不足で利用に制限']].map(([status, name]) => `<tr><th scope="row">${name}</th><td>${summary.counts.without_skill[status]}</td><td>${summary.counts.with_skill[status]}</td></tr>`).join('');

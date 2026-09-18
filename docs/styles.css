@@ -336,6 +336,7 @@ h3 {
   overflow-y:auto;
   scrollbar-gutter:stable;
   scrollbar-width:thin;
+  padding-top:8px;
   padding-right:12px;
 }
 .document-scroll:focus-visible {
@@ -393,6 +394,57 @@ h3 {
 .document.before mark {
   background:#f8e5dc;
   border-color:#d5a592;
+}
+.change-note {
+  display:block;
+  width:fit-content;
+  max-width:100%;
+  margin:14px 0 18px;
+  padding:10px 14px;
+  background:#fff;
+  border:1px solid #a1b593;
+  border-radius:6px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+  font-size:.9rem;
+  line-height:1.75;
+  color:var(--ink);
+  position:relative;
+}
+.change-note::before {
+  content:'';
+  position:absolute;
+  top:-8px;
+  left:18px;
+  width:0;
+  height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-bottom:8px solid #a1b593;
+}
+.change-note::after {
+  content:'';
+  position:absolute;
+  top:-7px;
+  left:19px;
+  width:0;
+  height:0;
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-bottom:7px solid #fff;
+}
+.document.before .change-note {
+  border-color:#d5a592;
+}
+.document.before .change-note::before {
+  border-bottom-color:#d5a592;
+}
+.change-note-label {
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
 }
 .comparison-insight {
   display:flex;
@@ -850,6 +902,10 @@ summary {
   .document blockquote {
     font-size:15px;
     line-height:2;
+  }
+  .change-note {
+    padding:8px 12px;
+    font-size:.85rem;
   }
   .comparison-insight {
     display:block;
