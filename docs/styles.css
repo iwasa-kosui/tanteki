@@ -7,7 +7,6 @@
   --tint:#f1f4ed;
   --dark:#25332e;
   --sans:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
-  --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
 }
 * {
   box-sizing:border-box;
@@ -113,7 +112,7 @@ nav a {
   margin:0 9px 1px 0;
 }
 h1 {
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:clamp(37px,4.7vw,60px);
   font-weight:600;
   line-height:1.65;
@@ -182,7 +181,7 @@ h1 {
   padding:18px 0;
 }
 .margin-note dt {
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:24px;
   letter-spacing:.08em;
 }
@@ -220,7 +219,7 @@ h1 {
   margin-bottom:15px;
 }
 h2 {
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:30px;
   letter-spacing:.045em;
   font-weight:600;
@@ -344,7 +343,7 @@ h3 {
 }
 .document blockquote {
   margin:0;
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:17px;
   line-height:2.05;
   overflow-wrap:anywhere;
