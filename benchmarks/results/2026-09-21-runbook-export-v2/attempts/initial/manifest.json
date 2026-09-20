@@ -1,0 +1,35 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "createdAt": "2026-09-20T15:48:16.173Z",
+  "runtimeLockHash": "9757284d5fb8af6a91da32d7f1ae20a4554de590e7dd9b435f69814a4b9b3820",
+  "casesHash": "e773d43ce876f114ca62f09f66a124f6c24276fffb5538559215cc338f3539e5",
+  "settings": {
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "repeats": 1,
+    "seed": "isolated-v1",
+    "timeout": 600,
+    "maxCalls": 24
+  },
+  "plan": [
+    {
+      "id": "runbook-export.1.without_skill",
+      "caseId": "runbook-export",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "runbook-export.1.with_skill",
+      "caseId": "runbook-export",
+      "repeat": 1,
+      "arm": "with_skill"
+    }
+  ],
+  "sealed": true,
+  "evidence": {
+    "records": "94eedbca960932d66a2825febc8c1af5b6b4cb5efb67b7b01154f520286892cb",
+    "calls": "b4f6d043246ecfe69016fbc95a570521fd7ef3607fac9b67e8ca7afcffd39d2c"
+  },
+  "completedAt": "2026-09-20T15:49:37.325Z",
+  "fingerprint": "c115b5f80a1134035b513c26a093e65c10f0bb5fb29e33a31fd41eedc5f60e7d"
+}
