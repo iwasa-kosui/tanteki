@@ -1,0 +1,29 @@
+{
+  "reviewId": "r-8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e",
+  "inputHash": "8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "CS担当が、請求画面への移動時の通常動作と例外条件を利用者に説明するための仕様説明。",
+        "status": "usable",
+        "summary": "再ログイン不要の通常動作と、有効期限切れの場合だけログイン画面を表示する例外を、確定事項どおりに説明できる本文です。",
+        "strengths": [
+          "既存の認証で請求画面へ移動でき、再ログインは不要であることを明示しています。",
+          "ログイン画面の表示条件を認証の有効期限切れに限定し、通常動作と区別しています。",
+          "正式名称ではない造語や抽象的な表現を除き、利用者に伝えられる具体的な動作に絞っています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5927,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 272,
+        "reasoning_output_tokens": 50
+      },
+      "elapsedMs": 12949,
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "adr-boundary.1.without_skill",
+  "caseId": "adr-boundary",
+  "repeat": 1,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# ADR: 請求書PDF生成を非同期キュー処理にする\n\n- **日付:** 2026-08-20\n- **ステータス:** 採用\n- **関連:** BILL-218、PR #106\n\n## 背景\n\n請求書PDFの同期生成には最大45秒かかる場合があり、処理中にAPI接続が切れる可能性がある。そのため、同期処理では安定した応答を保証できない。\n\n## 決定\n\n請求書PDFの生成をキューで非同期処理する。APIは生成完了を待たず、受付IDを返す。利用者は受付IDを使って処理状況や生成結果を確認する。\n\n## 却下した選択肢\n\n同期生成は、最大45秒の処理時間によって接続が切れるため採用しない。\n\n## 影響\n\n- APIは短時間で受付を完了でき、長時間接続を維持する必要がなくなる。\n- 利用者はPDFが完成するまで待つ必要がある。\n- 完了通知または状況確認方法など、受付IDに対応する利用者向けの取得手段が必要になる。\n- 再試行回数の上限は未決定であり、別途決定する必要がある。\n\n## 実装状況\n\n作業メモ上の進捗は70%。詳細はBILL-218およびPR #106を参照する。",
+        "notes": "再試行の上限は原資料で未決定のため、判断済み事項として補完していません。"
+      },
+      "usage": {
+        "input_tokens": 2545,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 428,
+        "reasoning_output_tokens": 28
+      },
+      "elapsedMs": 11821,
+      "metrics": {
+        "characters": 497,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "stock-boundary",
+            "line": 5,
+            "column": 11,
+            "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          },
+          {
+            "ruleId": "stock-boundary",
+            "line": 5,
+            "column": 20,
+            "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          },
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 9,
+            "column": 44,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          },
+          {
+            "ruleId": "stock-boundary",
+            "line": 28,
+            "column": 17,
+            "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          },
+          {
+            "ruleId": "stock-boundary",
+            "line": 28,
+            "column": 28,
+            "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "6bb6f1039d7fa2c8857ef860ba137ce38bd2012fa1af6d1194029eca7de871da"
+    },
+    {
+      "response": {
+        "body": "# ADR: 請求書PDF生成を非同期キュー処理にする\n\n- **日付:** 2026-08-20\n- **ステータス:** 採用\n\n## 背景\n\n請求書PDFの同期生成は最大45秒かかる場合があり、処理中にAPI接続が切れる可能性がある。そのため、同期処理では安定した応答を保証できない。\n\n## 決定\n\n請求書PDFの生成をキューで非同期処理する。APIは生成完了を待たず、受付IDを返す。利用者は受付IDを使って処理状況や生成結果を確認する。\n\n## 却下した選択肢\n\n同期生成は、最大45秒の処理時間によって接続が切れるため採用しない。\n\n## 影響\n\n- APIは短時間で受付を完了でき、長時間接続を維持する必要がなくなる。\n- 利用者はPDFが完成するまで待つ必要がある。\n- 完了通知または状況確認方法など、受付IDに対応する利用者向けの取得手段が必要になる。\n- 再試行回数の上限は未決定であり、別途決定する必要がある。\n\n## 実装状況\n\n作業メモ上の進捗は70%。詳細は作業追跡資料を参照する。",
+        "notes": "作業追跡用の課題IDとPR番号は、ADR本文から除外しました。再試行回数の上限は未決定のまま記載しています。"
+      },
+      "usage": {
+        "input_tokens": 3297,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 509,
+        "reasoning_output_tokens": 111
+      },
+      "elapsedMs": 12792,
+      "metrics": {
+        "characters": 457,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 8,
+            "column": 43,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "486a92158c2d650e8447e4ab0c6710e3bc9499d2fb4761ed975dae505967c20d"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "runbook-missing.2.with_skill",
+  "caseId": "runbook-missing",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 本番キャッシュ再起動手順\n\n## 前提\n監視でキャッシュのエラーを確認した場合に使用する。本番環境の対象、再起動コマンド、実行権限は未決定である。\n\n## 検知\n監視でキャッシュのエラーを確認する。\n\n## 手順\n1. エラーの発生を監視で確認する。\n2. キャッシュを再起動する。\n\n## 復旧確認\n復旧確認の方法は未決定である。再起動後に確認する監視項目と正常の判定基準を定める必要がある。\n\n## 停止条件\n再起動を停止してよい条件は未決定である。再起動前に、実行を中止する条件を定める必要がある。\n\n## 連絡先\n連絡先は未決定である。実施前に、障害対応の担当者または窓口を定める必要がある。",
+        "notes": "文書種別は運用Runbook、読者は本番対応の当番、主題は「監視でキャッシュのエラーを確認したときの再起動手順を定める」。構成は前提・検知・手順・確認・停止条件・連絡先。提供資料だけでは安全に実行できるRunbookの必須情報が不足しているため、草稿として提示した。再起動コマンド、停止条件、復旧確認方法、連絡先が決まるまで本番作業には使用できない。構成・意味・textlintの外部検査は未実施。"
+      },
+      "usage": {
+        "input_tokens": 12582,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 466,
+        "reasoning_output_tokens": 60
+      },
+      "elapsedMs": 24718,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/runbook-missing.2.with_skill.0.json",
+        "sha256": "06522cd5d67bc0b170b81d30cd392682620685c2f4ff28c9f96162b339285052",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308",
+        "sessionId": "01a0beb1-93c3-7310-9ec5-0e5f70b4b62e"
+      },
+      "metrics": {
+        "characters": 302,
+        "headings": 7,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308"
+    }
+  ]
+}

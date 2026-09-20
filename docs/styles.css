@@ -89,10 +89,7 @@ nav a {
   padding-left:32px;
 }
 .hero {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 250px;
-  gap:70px;
-  align-items:center;
+  display:block;
   padding-top:90px;
   padding-bottom:92px;
 }
@@ -127,6 +124,7 @@ h1 {
   text-underline-offset:12px;
 }
 .hero-description {
+  max-width:900px;
   font-size:15px;
   line-height:2.05;
   color:var(--muted);
@@ -163,48 +161,6 @@ h1 {
   text-decoration:none;
   border-bottom:1px solid currentColor;
   padding-bottom:4px;
-}
-.margin-note {
-  border-top:2px solid var(--ink);
-  align-self:center;
-  padding-top:16px;
-  transform:translateY(18px);
-}
-.note-label {
-  font-size:12px;
-  font-weight:600;
-  margin:0 0 10px;
-}
-.margin-note dl {
-  margin:0;
-}
-.margin-note dl>div {
-  border-bottom:1px solid var(--line);
-  padding:18px 0;
-}
-.margin-note dt {
-  font-family:var(--sans);
-  font-size:24px;
-  letter-spacing:.08em;
-}
-.margin-note dt span {
-  font-family:var(--sans);
-  font-size:10px;
-  color:var(--accent);
-  margin-right:18px;
-  vertical-align:middle;
-  letter-spacing:0;
-}
-.margin-note dd {
-  font-size:11px;
-  color:var(--muted);
-  margin:3px 0 0 34px;
-}
-.note-footer {
-  font-size:10px;
-  margin:12px 0 0;
-  color:var(--muted);
-  letter-spacing:.04em;
 }
 .section {
   padding-block:64px;
@@ -737,8 +693,6 @@ summary {
     width:calc(100% - 64px);
   }
   .hero {
-    gap:40px;
-    grid-template-columns:minmax(0,1fr) 200px;
     padding-block:65px;
   }
   h1 {
@@ -815,38 +769,6 @@ summary {
   }
   .text-link {
     font-size:12px;
-  }
-  .margin-note {
-    transform:none;
-    border-top:1px solid var(--line);
-    margin-top:40px;
-    padding-top:20px;
-  }
-  .note-label {
-    font-size:10px;
-  }
-  .margin-note dl {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-  }
-  .margin-note dl>div {
-    padding:8px 0 12px;
-  }
-  .margin-note dt {
-    font-size:20px;
-  }
-  .margin-note dt span {
-    font-size:9px;
-    margin-right:9px;
-  }
-  .margin-note dd {
-    font-size:9px;
-    line-height:1.7;
-    margin:5px 0 0;
-  }
-  .note-footer {
-    display:none;
   }
   .section {
     padding-block:42px;

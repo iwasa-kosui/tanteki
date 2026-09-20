@@ -1,0 +1,73 @@
+{
+  "caseId": "design-tradeoff",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "処理フロー、保存失敗時の503・キュー未登録、キュー登録失敗時の回復未決定、10MB対1MB、不同期化による結果提示遅延をすべて本文に記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "取込ID、状態取得API、再実行・冪等性、ログ・監視、孤児ファイル対応など、資料にない仕様・回復関連の設計を本文で定めている。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文の「実装範囲と進行状況」にDATA-64、PR #203、今週のAPI実装、担当佐藤を記載している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "ストレージ保存失敗とキュー登録失敗を別節で区別し、ファイル本体をキューに載せない理由も1MB制限と10MBファイルで明示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "依頼資料にない詳細なAPI、DB状態、再試行、運用、実装範囲を広く追加しており、必要な設計論点を超える実装計画を含む。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "要求された処理連鎖、保存失敗時の503と未登録、キュー登録失敗時の未決定、10MB対1MB、不同期化による提示遅延を記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料は10MBのファイルを例示するのみだが、「対象ファイルの上限10MB」として仕様を確定している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文にはDATA-64、PR #203、今週の作業、担当佐藤の追跡情報を含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "保存失敗時とキュー登録失敗時を明確に分離し、ファイル本体をキューに載せない不採用理由を10MBと1MBの比較で示している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "各節は設計対象、未解決点、不採用理由の整理に使われており、空の節や依頼外の具体的実装計画はない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 6985,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 956,
+      "reasoning_output_tokens": 383
+    },
+    "elapsedMs": 38125,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/design-tradeoff.2.judge.json",
+      "sha256": "9bb931e2d5dcd387a59d82a6d6e5e482a6f66fdf6f8f31505fdb0d5ef0cdd69d",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "7675ede5309a5e981cd8dcd0a826c67dda524f99add1a59574f53b4ee036335d",
+      "sessionId": "01a0beb3-8254-77d3-bef6-a153a36fef88"
+    }
+  },
+  "promptHash": "7675ede5309a5e981cd8dcd0a826c67dda524f99add1a59574f53b4ee036335d"
+}

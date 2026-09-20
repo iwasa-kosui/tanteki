@@ -1,0 +1,65 @@
+{
+  "caseId": "no-document",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "本文は、開催前に中止され、議論・決定・宿題がなく、中止連絡も送信済みであることを不要判断の理由としている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "開催された会議、参加者、次回予定、規程を創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "新規議事録は不要と判断しており、議事録のひな型や議事録本文を作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "「新たな議事録を残す必要はありません」と結論を直接示し、理由も明記している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "本文が結論と理由の二文であり、notesでも証跡保持という追加の管理手順を加えている。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "本文は、開催前の中止、議論・決定・宿題がないこと、中止連絡が送信済みであることを不要判断の理由としている。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "資料にない社内規程・監査要件や出席実績・中止履歴の保存を持ち出している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "新規議事録は不要と判断しており、議事録のひな型や議事録本文を新規作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "新たに議事録を残す必要がないという結論と、その理由が直接分かる。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論・理由に加え、規程等を条件とする保存手順と文書種別の説明を追加しており、一文にも収まっていない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4650,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 668,
+      "reasoning_output_tokens": 217
+    },
+    "elapsedMs": 28813
+  },
+  "promptHash": "234d72c1cbde8e842232b68c0bdde05cdf5f7a1706600f91fd8aa9fb45da480d"
+}

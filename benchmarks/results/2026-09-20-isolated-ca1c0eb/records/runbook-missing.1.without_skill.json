@@ -1,0 +1,37 @@
+{
+  "id": "runbook-missing.1.without_skill",
+  "caseId": "runbook-missing",
+  "repeat": 1,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 本番キャッシュ再起動手順（未確定事項あり）\n\n## 重要\n現時点で確定しているのは「監視でエラーを見たらキャッシュを再起動する」という方針のみです。再起動コマンド、停止してよい条件、復旧確認方法、連絡先が未確定のため、この手順はそのまま本番で実行しないでください。\n\n## 手順\n1. 監視でエラーを検知する。\n2. 影響範囲とエラー内容を確認する。\n3. 以下の条件を確認する。\n   - 停止してよい条件：未確定\n   - 停止してはいけない条件：未確定\n4. 必要な承認・連絡を行う。\n   - 連絡先：未確定\n   - 承認者：未確定\n5. キャッシュを再起動する。\n   - 再起動コマンド：未確定\n   - 実行対象・環境：未確定\n6. 再起動後の復旧を確認する。\n   - 確認方法：未確定\n   - 確認すべき監視項目・ログ：未確定\n7. 復旧しない場合は、追加操作をせず、定められた連絡先へエスカレーションする。\n   - 連絡先：未確定\n\n## 事前に決める事項\n- 正式な再起動コマンド\n- 再起動対象と実行権限\n- 停止してよい条件・禁止条件\n- 承認および連絡先\n- 復旧確認の具体的な手順と成功基準\n- 復旧しない場合のエスカレーション手順",
+        "notes": "原資料にないコマンド、判断条件、連絡先、確認方法は補完せず、未確定として明示しました。"
+      },
+      "usage": {
+        "input_tokens": 2497,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 514,
+        "reasoning_output_tokens": 30
+      },
+      "elapsedMs": 13159,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/runbook-missing.1.without_skill.0.json",
+        "sha256": "f108ad9b26a9a27a04bb3409200920ca2c4a38de8eaf0d4869609e540d717a18",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "e5436f85ebc0e25fb407ef25ecda6927a26b44ec99140c96e3da482793308545",
+        "sessionId": "01a0beaf-e9ea-7b62-979f-fab24ad6035e"
+      },
+      "metrics": {
+        "characters": 536,
+        "headings": 4,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "e5436f85ebc0e25fb407ef25ecda6927a26b44ec99140c96e3da482793308545"
+    }
+  ]
+}

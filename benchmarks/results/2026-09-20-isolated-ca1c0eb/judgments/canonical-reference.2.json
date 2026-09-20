@@ -1,0 +1,73 @@
+{
+  "caseId": "canonical-reference",
+  "repeat": 2,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": false,
+          "evidence": "本文に正本URLおよび「領収書の提出」節への参照がない。notesの記載は本文に欠ける事実を補えない。PDF添付と、経理から個別に求められた場合の原本提出は記載されている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "提出期限、ファイルサイズ、システム名などの創作はない。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文が既存の正本への参照を中心とした案内になっておらず、正本への案内はnotesにのみある。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "通常はPDF添付、経理から個別に原本提出を求められた場合はその指示に従う、という区別が読める。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い案内であり、章立て、FAQ一覧、依頼外の操作手順はない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "正本URL、正本の「領収書の提出」節、経費システムへのPDF添付、経理が個別に求めた場合に限る原本提出を本文に記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "提出期限、ファイルサイズ、システム名などを創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "新規FAQや別の正本を作らず、既存の正本URLと該当節を参照させている。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "通常のPDF提出と、個別要請時だけの原本提出が明確に区別されている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "簡潔な案内で、不要な章立て、FAQ一覧、操作手順がない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4698,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 521,
+      "reasoning_output_tokens": 58
+    },
+    "elapsedMs": 22445,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/canonical-reference.2.judge.json",
+      "sha256": "5257c8fb16650451830963ea9c96c1e03cb6626b4b37a96aa3dada6d872d7e1e",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "278cabcbf07691420ecaab3c7da374cb175174fc99a560d481bfcd1e53d15b7e",
+      "sessionId": "01a0beb4-13f1-7340-bf51-f770580ac1fe"
+    }
+  },
+  "promptHash": "278cabcbf07691420ecaab3c7da374cb175174fc99a560d481bfcd1e53d15b7e"
+}

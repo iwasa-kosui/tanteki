@@ -1,0 +1,80 @@
+{
+  "reviewId": "r-ad3b5aaec62a7f3502185301f8b313d939cf597648bd8c70d60c6fb20a060074",
+  "inputHash": "ad3b5aaec62a7f3502185301f8b313d939cf597648bd8c70d60c6fb20a060074",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "実装者がファイル取込の構成、処理・データの流れ、失敗条件、制約、不採用理由、未決定事項を理解するためのDesign Doc。",
+        "status": "revision_needed",
+        "summary": "基本フローと未決定事項の把握には使えるが、図のキュー登録主体と、10MBをファイルサイズ上限とする記述は実装前に修正が必要。キュー登録失敗時の回復方法は別途設計判断が必要である。",
+        "strengths": [
+          "本文ではAPI、ストレージ、キュー、ワーカー、DBの役割と処理順序を説明している。",
+          "保存失敗時の503応答とキューへ登録しない条件を明記している。",
+          "キュー登録失敗時の回復方法を未決定と明示し、保存済みファイルを解析へ渡せないリスクを説明している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "structure",
+            "basis": "source",
+            "excerpt": "B -->|保存先| C[キュー]",
+            "source_excerpt": "APIはファイルをオブジェクトストレージへ保存し、その保存先をキューへ登録する。",
+            "finding": "データフロー図ではストレージからキューへ保存先を渡しており、APIが登録するという確定仕様および本文と一致していない。",
+            "impact": "実装者がストレージ側のイベント通知などによるキュー登録を想定し、APIの責務や登録失敗を扱う箇所を誤る可能性がある。",
+            "suggested_change": "保存先をキューへ登録する矢印の起点をAPIに変更し、ファイル保存成功後に登録する関係を図でも示す。"
+          },
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "対象ファイルの最大10MB",
+            "source_excerpt": "ファイル本体をキューに載せる案は、10MBのファイルがキューの1MB制限を超えるため不採用。",
+            "finding": "原資料にある10MBのファイルを、対象ファイルの最大サイズへと意味を変えている。受入サイズの上限は資料では確定していない。",
+            "impact": "実装者が10MBを入力検証や容量設計の確定上限として採用し、それを超えるファイルを誤って拒否する可能性がある。",
+            "suggested_change": "最大サイズという断定を除き、10MBのファイルがキューの1MB制限を超えることを不採用理由として記載する。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "キューへの登録失敗時の回復方法。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "キューへの登録に失敗した場合の回復方法は未決定である。",
+            "consequence": "正常系の理解は可能だが、保存済みファイルを解析へ確実に引き渡すための失敗時処理は、この資料だけでは実装を確定できない。"
+          },
+          {
+            "missing_information": "非同期処理後の解析結果を利用者へ提示する方法。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "- 非同期処理後の解析結果を利用者へ提示する方法",
+            "consequence": "取込からDB保存までの設計理解は妨げないが、利用者が結果を取得する機能の実装には追加の設計判断が必要である。"
+          },
+          {
+            "missing_information": "受け入れるファイルサイズの上限。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "対象ファイルの最大10MB",
+            "consequence": "10MBを確定上限として扱う根拠はなく、サイズ制限を実装する場合は別途確認が必要である。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6716,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1518,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 50491,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-ad3b5aaec62a7f3502185301f8b313d939cf597648bd8c70d60c6fb20a060074.1.json",
+        "sha256": "bfd2096b8dd668ef6abaa87ad3a4a50c7ff24c45ecd8672ee6e694ee4fac9779",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "ad3b5aaec62a7f3502185301f8b313d939cf597648bd8c70d60c6fb20a060074",
+        "sessionId": "01a0beb5-2787-78d3-9475-b94523b223a2"
+      },
+      "validationErrors": null
+    }
+  ]
+}

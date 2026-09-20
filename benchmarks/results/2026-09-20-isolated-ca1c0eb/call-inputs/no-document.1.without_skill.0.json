@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "sessionId": "01a0beaf-cc8b-7ee3-a549-1db87b05d877",
+  "model": "gpt-5.6-luna",
+  "effort": "low",
+  "baseInstructions": "You are a writing assistant. Fulfil the user's document request using the provided material. Return the requested JSON object. Put the deliverable in body and any message outside the deliverable in notes. Do not call tools, access external information, delegate, or modify files. This environment only supports producing the response; an external harness runs any validation. Never claim to have run a check yourself.",
+  "context": [
+    {
+      "role": "developer",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+        },
+        {
+          "type": "input_text",
+          "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+        }
+      ]
+    }
+  ],
+  "prompt": "以下の依頼に応じて日本語で回答してください。bodyは成果物本文、notesは本文外の注記です。\n\n依頼と原資料:\n文書を増やす必要があるか判断して。今日の定例は開催前に中止した。議論・決定・宿題は一切ない。中止連絡は参加者へ送信済み。この定例の議事録を新たに残すべき？\n",
+  "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+  "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e",
+  "normalization": "Workspace/date are normalized before checking shared context, whose content is represented by SHA-256 digests. Prompt and custom base instructions are exact."
+}

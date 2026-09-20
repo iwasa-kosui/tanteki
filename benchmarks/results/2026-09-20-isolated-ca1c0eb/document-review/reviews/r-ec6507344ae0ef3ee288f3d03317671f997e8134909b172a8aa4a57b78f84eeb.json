@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-ec6507344ae0ef3ee288f3d03317671f997e8134909b172a8aa4a57b78f84eeb",
+  "inputHash": "ec6507344ae0ef3ee288f3d03317671f997e8134909b172a8aa4a57b78f84eeb",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チーム向けに、完了事項、未完了事項、次の作業、判断依頼先と期限を共有する進捗報告。",
+        "status": "usable",
+        "summary": "原資料に忠実で、実装済み・レビュー待ちの状態、作業停止の理由、PdMに求める判断と期限を簡潔に把握できます。",
+        "strengths": [
+          "対象期間と担当者が明記され、BILL-218とPR #106で追跡できます。",
+          "受付APIの実装完了とレビュー待ちが区別されています。",
+          "次の作業と阻害要因が対応し、判断事項・依頼先・期限が明確です。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5993,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 275,
+        "reasoning_output_tokens": 71
+      },
+      "elapsedMs": 12392,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-ec6507344ae0ef3ee288f3d03317671f997e8134909b172a8aa4a57b78f84eeb.1.json",
+        "sha256": "8509156ea5fcde9a94582f217db0a2e872e606c6c98e29252a5054fef9a7b8e0",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "ec6507344ae0ef3ee288f3d03317671f997e8134909b172a8aa4a57b78f84eeb",
+        "sessionId": "01a0beb6-b238-75e1-8a6e-5269206f03b2"
+      },
+      "validationErrors": null
+    }
+  ]
+}

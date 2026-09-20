@@ -1,0 +1,29 @@
+{
+  "id": "adr-boundary.2.with_skill",
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求書PDF生成をキューで処理する\n\n- 状態: 採用\n- 採用日: 2026-08-20\n\n## 背景\n\n請求書のPDF生成は同期処理では最大45秒かかり、その間にAPI接続が切れる。接続切断を避けるため、生成処理をキューで非同期に実行する。\n\n## 決定\n\n請求書のPDF生成をキューで処理し、APIは受付IDを返す。利用者は受付IDを使って、生成結果を確認する。\n\n## 代替案と理由\n\n同期生成は採用しない。処理に最大45秒かかり、API接続が切れるためである。\n\n## 結果\n\n生成処理中もAPI接続を維持する必要がなくなる。一方、利用者はPDFの完成まで待つ必要がある。再試行の上限は未決定である。",
+        "notes": "型: ADR（stock）。読者: 将来の保守者。主題: 請求書PDF生成をキューで非同期処理する判断を記録する。根拠: 依頼文。作業メモのBILL-218、PR #106、進捗70%はADRの正本ではないため除外。構成と本文は執筆者が代替して作成し、外部検査は未実施。"
+      },
+      "usage": {
+        "input_tokens": 18535,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 459,
+        "reasoning_output_tokens": 100
+      },
+      "elapsedMs": 11876,
+      "metrics": {
+        "characters": 307,
+        "headings": 5,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "feaff817156b01896762cbbad8bf580c12aecf0879e270844e9f25275fa4ec11"
+    }
+  ]
+}

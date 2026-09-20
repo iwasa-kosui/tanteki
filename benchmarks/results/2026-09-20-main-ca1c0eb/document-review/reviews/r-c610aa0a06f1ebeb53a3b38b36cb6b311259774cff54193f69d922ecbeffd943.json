@@ -1,0 +1,107 @@
+{
+  "reviewId": "r-c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943",
+  "inputHash": "c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "実装者がファイル取込の構成、処理・データの流れ、失敗条件、制約、不採用理由、未決定事項を理解するためのDesign Doc。",
+        "status": "source_limited",
+        "summary": "構成、正常系、保存失敗時の動作、不採用理由は理解できる。キュー登録失敗時の回復やAPI契約などは資料上未決定であり、実装の確定には追加確認が必要。",
+        "strengths": [
+          "API、オブジェクトストレージ、キュー、ワーカー、DBの責務とデータの流れが明確。",
+          "保存失敗時の503応答とキュー未登録、ファイル本体をキューに載せない理由を正確に保持している。",
+          "キュー登録失敗時の回復を未決定と明示し、検討候補を採用済みの仕様と混同していない。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "キュー登録失敗時の回復方針と、保存済みファイルの扱い。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "回復方法は未決定である。",
+            "consequence": "保存には成功したが処理を開始できない場合の復旧動作を確定できない。"
+          },
+          {
+            "missing_information": "保存先情報の形式、APIの成功応答、利用者による結果取得方法。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- キューへ登録する保存先情報の形式を定義する。\n- APIの受付成功レスポンスと結果取得方法を定義する。",
+            "consequence": "API・ワーカー間および利用者向けのインターフェースを確定するには追加合意が必要。"
+          },
+          {
+            "missing_information": "ワーカーによるファイル取得、解析、DB保存が失敗した場合の扱い。",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "",
+            "consequence": "原資料に方針がなく、本文の確認事項にも明示されていないため、ワーカーの異常系を実装する前に確認が必要。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6595,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2065,
+        "reasoning_output_tokens": 1489
+      },
+      "elapsedMs": 65533,
+      "validationErrors": "status: inadequately handled blocking gaps require an explicit major/critical finding"
+    },
+    {
+      "response": {
+        "intended_use": "実装者がファイル取込の構成、処理・データの流れ、失敗条件、制約、不採用理由、未決定事項を理解するためのDesign Doc。",
+        "status": "revision_needed",
+        "summary": "構成、正常系、保存失敗時の動作、不採用理由は理解できる。ワーカーの失敗時の扱いも確認事項として明示する必要がある。キュー登録失敗時の回復やAPI契約などの確定には追加確認が必要。",
+        "strengths": [
+          "API、オブジェクトストレージ、キュー、ワーカー、DBの責務とデータの流れが明確。",
+          "保存失敗時の503応答とキュー未登録、ファイル本体をキューに載せない理由を正確に保持している。",
+          "キュー登録失敗時の回復を未決定と明示し、検討候補を採用済みの仕様と混同していない。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "omission",
+            "basis": "document_purpose",
+            "excerpt": "",
+            "source_excerpt": "",
+            "finding": "ワーカーによるファイル取得、解析、DB保存が失敗した場合の扱いは原資料にないが、本文でも確認事項として示されていない。",
+            "impact": "実装者がワーカーの重要な異常系に追加合意が必要だと把握できず、処理の失敗や結果の未保存への対応を独自に決めてしまうおそれがある。",
+            "suggested_change": "ワーカーのファイル取得・解析・DB保存の失敗時の扱いを、実装前の確認事項に追加する。具体的な回復仕様は創作せず、要確認と明示する。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "キュー登録失敗時の回復方針と、保存済みファイルの扱い。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "回復方法は未決定である。",
+            "consequence": "保存には成功したが処理を開始できない場合の復旧動作を確定できない。"
+          },
+          {
+            "missing_information": "保存先情報の形式、APIの成功応答、利用者による結果取得方法。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- キューへ登録する保存先情報の形式を定義する。\n- APIの受付成功レスポンスと結果取得方法を定義する。",
+            "consequence": "API・ワーカー間および利用者向けのインターフェースを確定するには追加合意が必要。"
+          },
+          {
+            "missing_information": "ワーカーによるファイル取得、解析、DB保存が失敗した場合の扱い。",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "",
+            "consequence": "原資料に方針がなく、本文の確認事項にも明示されていないため、ワーカーの異常系を実装する前に確認が必要。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 7179,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1078,
+        "reasoning_output_tokens": 297
+      },
+      "elapsedMs": 36239,
+      "validationErrors": null
+    }
+  ]
+}

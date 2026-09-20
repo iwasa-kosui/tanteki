@@ -1,0 +1,48 @@
+{
+  "reviewId": "r-c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304",
+  "inputHash": "c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテム",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認、影響、原因の未確定性、改善担当と期限を把握できます。検知主体だけは原資料にない補足です。",
+        "strengths": [
+          "検知、変更の差し戻し、復旧確認を時刻順に区別しています。",
+          "検索失敗340件と決済への影響なしを正確に示しています。",
+          "原因を仮説として扱い、改善課題・担当・期限を明記しています。"
+        ],
+        "findings": [
+          {
+            "severity": "minor",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "運用チームが請求検索のエラー増加を検知した。",
+            "source_excerpt": "8月19日09:10に請求検索のエラー増加を検知。",
+            "finding": "原資料は検知主体を示していません。文書の対象読者が運用チームであることから、検知主体まで確定することはできません。",
+            "impact": "検知を行った主体について、裏付けのない対応履歴が残ります。",
+            "suggested_change": "「運用チームが」を削除し、検知時刻と事象だけを記載してください。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の結果と、DB接続枯渇という原因仮説の検証結果",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "原因は未確定である。",
+            "consequence": "原因の確定には追加確認が必要ですが、未確定であることを共有する短いポストモーテムとしては利用できます。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6073,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 976,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 33721,
+      "validationErrors": null
+    }
+  ]
+}

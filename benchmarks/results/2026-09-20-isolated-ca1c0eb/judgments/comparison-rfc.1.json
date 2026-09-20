@@ -1,0 +1,73 @@
+{
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "問題、Aの「運用対象を増やさない」と部分一致の制限、Bの部分一致高速化・別サービス運用・反映遅延、Bの提案を本文に記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "「方式Bを採用する」と断定しており、原資料上は提案段階である採用決定を補っている。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文の「関連」にSEARCH-88、PR #71、レビュー期限8月28日を記載しており、本文に入れない条件に反する。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "A・Bを長所／短所の対応する箇条書きで比較し、Bの提案と60秒許容の業務側未承認を区別している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "比較・合意論点に加え、採用前の計測・確認手順を記載しており、実装・検証計画を付している。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "商品検索の遅さ、Aの運用利点と部分一致制限、Bの部分一致高速化と別サービス運用・反映遅延、Bを提案する内容を記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "「方式Bを採用する」と記載し、採否は合意後に決めるという後段とも矛盾する。原資料にない採用決定を補っている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "別サービス運用と60秒許容を合意事項として明記し、SEARCH-88、PR #71、レビュー期限は本文に含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "Bの提案・影響とAの代替案を明確な節と箇条書きで対応させ、60秒許容は未決定としている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "比較、提案、合意事項に必要な範囲に収まり、比較内容の反復や実装計画はない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5519,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 835,
+      "reasoning_output_tokens": 300
+    },
+    "elapsedMs": 34327,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/comparison-rfc.1.judge.json",
+      "sha256": "85e4eaae1a2110b76f75ce7f7fa2d45a820c068872cf373044c83f4113794617",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "7edb3e47469984e4cf17bdebf08deb61bd715e26ab3062b57d7174c38780b6ae",
+      "sessionId": "01a0beb3-2217-7e20-9fd5-dd861893a2a8"
+    }
+  },
+  "promptHash": "7edb3e47469984e4cf17bdebf08deb61bd715e26ab3062b57d7174c38780b6ae"
+}

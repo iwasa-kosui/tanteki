@@ -1,0 +1,57 @@
+{
+  "id": "incident-record.2.with_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：運用チームがエラー増加を検知した。\n- 09:17：当番の加藤が直前の変更を戻した。\n- 09:22：復旧を確認した。\n\n## 原因\nDB接続枯渇が原因である可能性がある。ただし、ログの確認が未完了のため、原因は確定していない。\n\n## 改善策\n- OPS-315で改善課題を追跡する。\n- 加藤が8月26日までにDB接続数の記録を追加する。",
+        "notes": "ポストモーテム（record）として、運用チーム向けに構成した。主張は「請求検索の障害影響と対応、未確定の原因、改善策を記録する」。構成・本文の検査とtextlintは未実施。"
+      },
+      "usage": {
+        "input_tokens": 12663,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 336,
+        "reasoning_output_tokens": 57
+      },
+      "elapsedMs": 9896,
+      "metrics": {
+        "characters": 250,
+        "headings": 5,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 12,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006"
+    },
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：運用チームがエラー増加を検知した。\n- 09:17：当番の加藤が直前の変更を戻した。\n- 09:22：復旧を確認した。\n\n## 原因\nDB接続枯渇を原因とする仮説を立てている。ただし、ログ確認は未完了で、原因は確定していない。\n\n## 改善策\n- OPS-315で改善課題を追跡する。\n- 加藤が8月26日までにDB接続数の記録を追加する。",
+        "notes": "ポストモーテム（record）として、運用チーム向けに構成した。指摘箇所は、助詞「が」の重複を避けつつ、原因が未確定であることを保って改稿した。検査は実行系が行う。"
+      },
+      "usage": {
+        "input_tokens": 13098,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 481,
+        "reasoning_output_tokens": 197
+      },
+      "elapsedMs": 16155,
+      "metrics": {
+        "characters": 249,
+        "headings": 5,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "743f78be8cecea2d5d50f79927d20ee84a11fd9e523638f43fe78c9fdb08f740"
+    }
+  ]
+}

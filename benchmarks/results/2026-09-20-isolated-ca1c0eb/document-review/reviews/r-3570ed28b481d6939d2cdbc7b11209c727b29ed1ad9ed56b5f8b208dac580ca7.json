@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-3570ed28b481d6939d2cdbc7b11209c727b29ed1ad9ed56b5f8b208dac580ca7",
+  "inputHash": "3570ed28b481d6939d2cdbc7b11209c727b29ed1ad9ed56b5f8b208dac580ca7",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式について、開発チームが合意を判断するための短いRFC",
+        "status": "usable",
+        "summary": "方式の利点・制約、Bの提案、未承認の条件、合意事項が明確で、方式選定の議論に使える。定量的な効果や費用対効果は判断できないが、その資料不足も明示されている。",
+        "strengths": [
+          "部分一致の高速化と運用負担・反映遅延の対応関係が分かり、Bを選ぶ理由と代償を理解できる。",
+          "最大60秒の許容を提案として示し、業務側の承認未了と不承認時の再検討を明記している。",
+          "別サービスの運用と60秒の許容を合意事項として切り出しており、チームが判断すべき論点が明確である。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "検索性能の計測値と費用情報",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "現時点では計測値・費用の情報はない。",
+            "consequence": "改善幅や費用対効果の定量評価はできないが、運用負担と結果の古さを許容するかという合意の議論は可能である。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6278,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 590,
+        "reasoning_output_tokens": 221
+      },
+      "elapsedMs": 23626,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-3570ed28b481d6939d2cdbc7b11209c727b29ed1ad9ed56b5f8b208dac580ca7.1.json",
+        "sha256": "bdbb64376ec76f92b01643d82def315f540dfb607d51adad6d1ce65c52d77f56",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "3570ed28b481d6939d2cdbc7b11209c727b29ed1ad9ed56b5f8b208dac580ca7",
+        "sessionId": "01a0beb3-6e85-7922-b1f2-2a3c790d91e6"
+      },
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-4ab7876883783a75b15a5a22cf72e22fcea15b3d26273a150b6883f66f856bb0",
+  "inputHash": "4ab7876883783a75b15a5a22cf72e22fcea15b3d26273a150b6883f66f856bb0",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "将来の保守者が、請求書PDF生成の非同期化という採用判断と、その背景・比較対象・影響を理解するためのADR。",
+        "status": "usable",
+        "summary": "採用日、決定内容、同期生成を採らない理由、利用者への影響を再構成できる。再試行上限は未決定だが、採用判断の理解を妨げない。",
+        "strengths": [
+          "キューによる非同期処理と受付IDの返却を、一つの採用判断として明確に記録している。",
+          "比較対象の同期生成について、最大45秒の処理時間と接続切断という不採用理由を示している。",
+          "利用者の待ち時間と再試行上限の未決定を明示し、実装進捗と採用判断を混同していない。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "再試行の上限。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "再試行の上限は未決定であり、このADRでは定めない。",
+            "consequence": "再試行の実装・運用には別途決定が必要だが、このADRの採用判断は理解できる。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6072,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 455,
+        "reasoning_output_tokens": 115
+      },
+      "elapsedMs": 17624,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-4ab7876883783a75b15a5a22cf72e22fcea15b3d26273a150b6883f66f856bb0.1.json",
+        "sha256": "fb3660675e453cd646824f497c8876c9152f5204bdf98a6890b5c25d4957406a",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "4ab7876883783a75b15a5a22cf72e22fcea15b3d26273a150b6883f66f856bb0",
+        "sessionId": "01a0beb3-8e53-7713-9b95-0c33d44d2925"
+      },
+      "validationErrors": null
+    }
+  ]
+}

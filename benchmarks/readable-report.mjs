@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import MarkdownPlugin from "@textlint/textlint-plugin-markdown";
+import { validityMarkdown, validityHtml } from "./comparison-validity.mjs";
 
 const plugin = MarkdownPlugin.default ?? MarkdownPlugin;
 const parse = new plugin.Processor().processor(".md").preProcess;
@@ -74,20 +75,20 @@ function candidateHtml(record, stage, verdict) {
   </article>`;
 }
 
-function judgmentHtml(c, records, verdicts) {
-  return `<details class="judgments"><summary>採点基準と理由を読み比べる（最終稿のみ）</summary><p class="caveat">単一LLMによる判定です。本文外の注記による減点など、採点の誤りを含みます。元の判定をそのまま表示しています。<a href="../../findings.md">採点の照合メモ</a></p>${Object.entries(criteriaNames).map(([d, title]) => `<section class="criterion"><h3>${title} <small>${d}</small></h3><p class="criterion-source">${escape(c.criteria[d])}</p><div class="columns">${records.map((r) => {
+function judgmentHtml(c, records, verdicts, notesPath) {
+  return `<details class="judgments"><summary>採点基準と理由を読み比べる（最終稿のみ）</summary><p class="caveat">単一LLMによる判定です。本文外の注記による減点など、採点の誤りを含みます。元の判定をそのまま表示しています。<a href="${notesPath}">採点の照合メモ</a></p>${Object.entries(criteriaNames).map(([d, title]) => `<section class="criterion"><h3>${title} <small>${d}</small></h3><p class="criterion-source">${escape(c.criteria[d])}</p><div class="columns">${records.map((r) => {
     const v = verdicts[r.id][d];
     return `<div class="judgment"><strong>${armNames[r.arm]} <span class="${v.pass ? "pass" : "fail"}">${v.pass ? "合格" : "不合格"}</span></strong><p>${escape(v.evidence)}</p></div>`;
   }).join("")}</div></section>`).join("")}</details>`;
 }
 
-function comparisonMarkdown(c, repeat, records, verdicts) {
+function comparisonMarkdown(c, repeat, records, verdicts, notesPath) {
   const lines = [`# ${c.title} — ${repeat}回目`, "", `[一覧へ](../report.md) · [ブラウザで左右比較](../comparison.html#${c.id}.${repeat}.final)`, "", "[原依頼](#prompt) · [スキルなし](#without-skill) · [スキルあり](#with-skill) · [採点理由](#judgments) · [初稿とlint指摘](#initial)", "", '<a id="prompt"></a>', "", "## 原依頼", "", c.prompt, "", "## 最終稿", "", "以下は保存された本文の全文。本文外の注記と採点は本文の後に分けて表示する。", ""];
   for (const r of records) {
     const a = r.attempts.at(-1);
     lines.push(`<a id="${r.arm.replaceAll("_", "-")}"></a>`, "", `### ${armNames[r.arm]}`, "", `${score(verdicts[r.id])}/5基準合格 · ${a.metrics.characters}字 · lint指摘${a.metrics.lint.length}件 · ${r.attempts.length === 1 ? "初稿＝最終稿（修正なし）" : "lintによる修正1回"}`, "", `[本文だけのMarkdown](../${documentPath(r, r.attempts.length - 1)})`, "", "---", "", a.response.body, "", "---", "", "**本文外の注記**", "", a.response.notes || "なし。", "");
   }
-  lines.push('<a id="judgments"></a>', "", "## 採点基準と理由（最終稿のみ）", "", "単一LLMの元判定で、採点の誤りを含む。[採点の照合メモ](../../../findings.md)も参照。", "");
+  lines.push('<a id="judgments"></a>', "", "## 採点基準と理由（最終稿のみ）", "", `単一LLMの元判定で、採点の誤りを含む。[採点の照合メモ](../${notesPath})も参照。`, "");
   for (const [d, title] of Object.entries(criteriaNames)) {
     lines.push(`### ${title}（${d}）`, "", `基準: ${c.criteria[d]}`, "");
     for (const r of records) {
@@ -108,6 +109,8 @@ function comparisonMarkdown(c, repeat, records, verdicts) {
 }
 
 export async function writeReadableReports({ out, manifest, cases, records, verdicts }) {
+  const hasNotes = await access(join(out, "run-notes.md")).then(() => true, (error) => { if (error.code === "ENOENT") return false; throw error; });
+  const notesPath = hasNotes ? "run-notes.md" : "../../findings.md";
   const byId = new Map(records.map((r) => [r.id, r]));
   await mkdir(join(out, "documents"), { recursive: true });
   await mkdir(join(out, "comparisons"), { recursive: true });
@@ -122,15 +125,15 @@ export async function writeReadableReports({ out, manifest, cases, records, verd
       if (!r || !verdicts[r.id]) throw new Error(`Missing comparison: ${c.id}.${repeat}.${arm}`);
       return r;
     });
-    await writeFile(join(out, "comparisons", `${c.id}.${repeat}.md`), comparisonMarkdown(c, repeat, pair, verdicts));
-    sections.push(`<section class="pair" id="${c.id}.${repeat}" data-case="${c.id}" data-repeat="${repeat}"><div class="pair-heading"><h2>${escape(c.title)} <small>${repeat}回目</small></h2><a href="comparisons/${c.id}.${repeat}.md">GitHub用の比較Markdown</a></div><details class="prompt"><summary>原依頼・資料を読む</summary><div>${renderMarkdown(c.prompt)}</div></details>${["final", "initial"].map((stage) => `<div class="draft" data-stage="${stage}"><p class="stage-label">${stage === "final" ? "最終稿" : "初稿（意味の採点対象外）"}</p><div class="columns">${pair.map((r) => candidateHtml(r, stage, verdicts[r.id])).join("")}</div></div>`).join("")}${judgmentHtml(c, pair, verdicts)}</section>`);
+    await writeFile(join(out, "comparisons", `${c.id}.${repeat}.md`), validityMarkdown(manifest.fingerprint) + comparisonMarkdown(c, repeat, pair, verdicts, notesPath));
+    sections.push(`<section class="pair" id="${c.id}.${repeat}" data-case="${c.id}" data-repeat="${repeat}"><div class="pair-heading"><h2>${escape(c.title)} <small>${repeat}回目</small></h2><a href="comparisons/${c.id}.${repeat}.md">GitHub用の比較Markdown</a></div><details class="prompt"><summary>原依頼・資料を読む</summary><div>${renderMarkdown(c.prompt)}</div></details>${["final", "initial"].map((stage) => `<div class="draft" data-stage="${stage}"><p class="stage-label">${stage === "final" ? "最終稿" : "初稿（意味の採点対象外）"}</p><div class="columns">${pair.map((r) => candidateHtml(r, stage, verdicts[r.id])).join("")}</div></div>`).join("")}${judgmentHtml(c, pair, verdicts, notesPath)}</section>`);
   }
   const css = await readFile(new URL("./comparison.css", import.meta.url), "utf8");
   const script = await readFile(new URL("./comparison.js", import.meta.url), "utf8");
   const digest = (s) => createHash("sha256").update(s).digest("base64");
   const html = `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-${digest(script)}'; style-src 'sha256-${digest(css)}'; base-uri 'none'; form-action 'none'"><title>スキルあり／なしを読み比べる</title><style>${css}</style></head>
-<body><div class="shell"><header class="page-header"><p class="eyebrow">NIHONGO-DE-OK / BENCHMARK</p><h1>スキルあり／なしを読み比べる</h1><p>左がスキルなし、右がスキルあり。同じ依頼から生成された本文を、全文表示します。</p><p class="provenance">評価対象 ${escape(manifest.sourceRef ?? "skill")} @ ${escape(manifest.skillRevision.slice(0, 7))} · ${escape(manifest.settings.model)} · ${cases.length}課題 × ${manifest.settings.repeats}回</p><nav><a href="report.md">集計</a><a href="../../findings.md">評価の要点・採点の照合メモ</a></nav></header>
+<body><div class="shell">${validityHtml(manifest.fingerprint)}<header class="page-header"><p class="eyebrow">NIHONGO-DE-OK / BENCHMARK</p><h1>スキルあり／なしを読み比べる</h1><p>左がスキルなし、右がスキルあり。同じ依頼から生成された本文を、全文表示します。</p><p class="provenance">評価対象 ${escape(manifest.sourceRef ?? "skill")} @ ${escape(manifest.skillRevision.slice(0, 7))} · ${escape(manifest.settings.model)} · ${cases.length}課題 × ${manifest.settings.repeats}回</p><nav><a href="report.md">集計</a><a href="${notesPath}">評価の要点・採点の照合メモ</a></nav></header>
 <div class="controls" hidden><label class="case-control">課題<select id="case-select">${cases.map((c, i) => `<option value="${c.id}">${String(i + 1).padStart(2, "0")} · ${escape(c.title)}</option>`).join("")}</select></label><label>反復<select id="repeat-select">${Array.from({ length: manifest.settings.repeats }, (_, i) => `<option value="${i + 1}">${i + 1}回目</option>`).join("")}</select></label><div class="stage-control"><span>表示する稿</span><div class="segmented" role="group" aria-label="表示する稿"><button data-stage="final" aria-pressed="true">最終稿</button><button data-stage="initial" aria-pressed="false">初稿</button></div></div></div>
 <div class="pagination" hidden><div><button id="previous">← 前の比較</button><button id="next">次の比較 →</button></div><span id="position" aria-live="polite"></span><a id="permalink" href="#">この比較へのリンク</a></div>
 <main>${sections.join("\n")}</main><footer class="page-footer">保存済みの本文・注記・判定から生成。JSONを開かずに内容を確認できます。意味の採点は最終稿のみです。</footer></div><script>${script}</script></body></html>\n`;

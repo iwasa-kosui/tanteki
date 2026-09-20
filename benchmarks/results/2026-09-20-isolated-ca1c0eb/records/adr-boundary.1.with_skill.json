@@ -1,0 +1,37 @@
+{
+  "id": "adr-boundary.1.with_skill",
+  "caseId": "adr-boundary",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求書PDF生成をキューで非同期処理する\n\n- **状態**: 採用\n- **判断日**: 2026-08-20\n\n## 背景\n\n請求書のPDF生成には最大45秒かかり、同期処理ではAPI接続が切れるため、同期生成は採用できない。\n\n## 決定\n\n請求書のPDF生成をキューで非同期処理する。APIは生成要求を受け付けた時点で受付IDを返す。\n\n## 結果\n\n同期処理による接続切断を避けられる。一方、非同期処理のため、利用者はPDFの完成まで待つ必要がある。再試行の上限は未決定であり、このADRでは定めない。",
+        "notes": "文書種別はADR、構成は「背景・決定・結果」の並列構成です。原資料の作業追跡情報（BILL-218、PR #106、進捗70%）は本文に含めていません。外部検査は未実施です。"
+      },
+      "usage": {
+        "input_tokens": 18537,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 452,
+        "reasoning_output_tokens": 175
+      },
+      "elapsedMs": 11498,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/adr-boundary.1.with_skill.0.json",
+        "sha256": "b42bb233cb9c6e852b40e27795c672e98ed8eb2668d51979e50cc658e3a06910",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "feaff817156b01896762cbbad8bf580c12aecf0879e270844e9f25275fa4ec11",
+        "sessionId": "01a0beaf-cc78-73a0-8a82-67303df9339f"
+      },
+      "metrics": {
+        "characters": 258,
+        "headings": 4,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "feaff817156b01896762cbbad8bf580c12aecf0879e270844e9f25275fa4ec11"
+    }
+  ]
+}

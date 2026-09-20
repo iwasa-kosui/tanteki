@@ -1,0 +1,40 @@
+{
+  "reviewId": "r-1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8",
+  "inputHash": "1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チームが完了事項、未完了事項、阻害要因、判断者と期限を把握するための進捗報告。",
+        "status": "usable",
+        "summary": "実装済みの範囲、レビュー待ち、次の作業、PdMへの判断依頼と期限を把握できる。再試行処理の着手状況についてのみ、原資料より断定が強い。",
+        "strengths": [
+          "BILL-218とPR #106が記載され、実装とレビュー状況を追跡できる。",
+          "再試行の最大回数が作業の阻害要因であることが明確。",
+          "報告担当者、判断を求める相手、判断事項、期限が揃っている。"
+        ],
+        "findings": [
+          {
+            "severity": "minor",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "再試行の最大回数が未決定のため、作業を開始できない。",
+            "source_excerpt": "次は再試行処理。最大回数が未決定で作業が止まっている。",
+            "finding": "原資料は作業が止まっていると述べているが、未着手か着手後の停止かまでは明示していない。「開始できない」は未着手と断定している。",
+            "impact": "担当チームが、判断後に新規着手するのか、途中から再開するのかを取り違える可能性がある。",
+            "suggested_change": "着手状況を補わず、原資料どおり作業が止まっていることを示す表現に留める。"
+          }
+        ],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5993,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1151,
+        "reasoning_output_tokens": 718
+      },
+      "elapsedMs": 38394,
+      "validationErrors": null
+    }
+  ]
+}

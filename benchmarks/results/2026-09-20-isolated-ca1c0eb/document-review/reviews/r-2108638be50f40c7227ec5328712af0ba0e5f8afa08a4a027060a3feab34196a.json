@@ -1,0 +1,36 @@
+{
+  "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+  "inputHash": "2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "既存Runbookの指定された末尾だけの修正",
+        "status": "usable",
+        "summary": "指定された末尾だけが確定事項に置き換わり、タイトル・他の本文・改行は保持されています。依頼どおりの成果物です。",
+        "strengths": [
+          "停止条件「失敗率が7%を超えたら」、実施主体「当番」、操作「配信を停止する」が指定どおりです。",
+          "修正対象以外を変更せず、改稿後の全文を返しています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5934,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 202,
+        "reasoning_output_tokens": 36
+      },
+      "elapsedMs": 10229,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a.1.json",
+        "sha256": "663648fe3f9b0c47250c442c81f369890159e2d10c7ed6dd6d744c5b75a5d62c",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+        "sessionId": "01a0beb3-2836-76c1-bf90-7252cb957821"
+      },
+      "validationErrors": null
+    }
+  ]
+}

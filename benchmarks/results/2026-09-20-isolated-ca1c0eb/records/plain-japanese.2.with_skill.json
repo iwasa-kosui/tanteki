@@ -1,0 +1,37 @@
+{
+  "id": "plain-japanese.2.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "利用者は、既存の認証状態のまま、再ログインせずに請求画面へ移れます。認証の有効期限が切れている場合に限り、ログイン画面を表示します。",
+        "notes": "短い仕様説明の推敲として、確定事項だけを残し、造語と抽象表現を削除しました。"
+      },
+      "usage": {
+        "input_tokens": 12630,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 329,
+        "reasoning_output_tokens": 228
+      },
+      "elapsedMs": 15111,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/plain-japanese.2.with_skill.0.json",
+        "sha256": "0efb76453531f29c52103087268c4f86e9f082b97cf77b75e61c014a8d9010e3",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "3055aeb262f59f11a8b1d1175269b89a8c0037749ff31822c42ad42e1b5a496a",
+        "sessionId": "01a0beb0-b2a9-7e12-935d-c6b452485776"
+      },
+      "metrics": {
+        "characters": 66,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "3055aeb262f59f11a8b1d1175269b89a8c0037749ff31822c42ad42e1b5a496a"
+    }
+  ]
+}

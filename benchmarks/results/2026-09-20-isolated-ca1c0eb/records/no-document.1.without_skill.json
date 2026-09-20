@@ -1,0 +1,37 @@
+{
+  "id": "no-document.1.without_skill",
+  "caseId": "no-document",
+  "repeat": 1,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たな議事録を残す必要はありません。議論・決定・宿題がなく、開催前に中止し、参加者への連絡も済んでいるためです。\n\n必要であれば、既存の予定や管理欄に「本日は開催前に中止（参加者へ連絡済み）」と一行だけ記録してください。",
+        "notes": ""
+      },
+      "usage": {
+        "input_tokens": 2494,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 103,
+        "reasoning_output_tokens": 0
+      },
+      "elapsedMs": 7302,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/no-document.1.without_skill.0.json",
+        "sha256": "f9e66f709d0f1fb1e73287f9f86abfdfce3740e06078cf2ef5eb81c5cf0deca7",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e",
+        "sessionId": "01a0beaf-cc8b-7ee3-a549-1db87b05d877"
+      },
+      "metrics": {
+        "characters": 110,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e"
+    }
+  ]
+}

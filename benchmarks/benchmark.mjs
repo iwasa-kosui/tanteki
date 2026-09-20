@@ -6,6 +6,8 @@ import { join, resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { lintFiles } from "../scripts/lint.mjs";
 import { writeReadableReports } from "./readable-report.mjs";
+import { validityMarkdown } from "./comparison-validity.mjs";
+import { auditInput, readSessionRollout } from "./input-audit.mjs";
 
 export const root = fileURLToPath(new URL("..", import.meta.url));
 export const dimensions = ["facts", "grounding", "role", "clarity", "economy"];
@@ -88,6 +90,7 @@ export function skillContext(c, files) {
 
 export function authorPrompt(c, arm, context, previous, feedback) {
   if (!arms.includes(arm)) throw new Error("Unknown arm");
+  if (arm === "without_skill" && (previous !== undefined || feedback !== undefined)) throw new Error("Baseline must not receive skill lint feedback");
   let prompt = "以下の依頼に応じて日本語で回答してください。bodyは成果物本文、notesは本文外の注記です。\n\n";
   if (arm === "with_skill") prompt += `以下の執筆スキルを適用してください。委譲・ファイル操作はこの実行環境では使えません。執筆者自身が代替し、検査は外部の実行系が担当します。\n\n${context}\n\n`;
   prompt += `依頼と原資料:\n${c.prompt}\n`;
@@ -147,7 +150,7 @@ export async function disabledSkills() {
 
 const disabledFeatures = ["shell_tool", "unified_exec", "multi_agent", "multi_agent_v2", "apps", "plugins", "hooks", "memories", "skill_search", "shell_snapshot", "browser_use", "computer_use", "image_generation", "view_image", "goals"];
 export function codexArgs({ model, effort, workspace, instructions, schema, output, skills = [] }) {
-  return ["exec", "--ignore-user-config", "--ephemeral", "--skip-git-repo-check", "-C", workspace, "-s", "read-only", "-m", model,
+  return ["exec", "--ignore-user-config", "--skip-git-repo-check", "-C", workspace, "-s", "read-only", "-m", model,
     "-c", `model_reasoning_effort=${JSON.stringify(effort)}`, "-c", `model_instructions_file=${JSON.stringify(instructions)}`,
     "-c", "project_doc_max_bytes=0", "-c", 'web_search="disabled"', "-c", 'personality="none"',
     "-c", `skills.config=[${skills.map((path) => `{path=${JSON.stringify(path)},enabled=false}`).join(",")}]`,
@@ -156,7 +159,7 @@ export function codexArgs({ model, effort, workspace, instructions, schema, outp
 }
 
 export async function callModel({ model, effort, prompt, schema, instructionFile, prefix, timeout, skills }) {
-  // The candidate has an empty working directory and receives only this prompt.
+  // Request a fresh workspace; CLI flags are not proof of the effective model input.
   const workspace = await mkdtemp(join(tmpdir(), "nihongo-benchmark-"));
   const output = join(workspace, "response.json");
   const schemaFile = join(workspace, "schema.json");
@@ -180,7 +183,14 @@ export async function callModel({ model, effort, prompt, schema, instructionFile
     await writeFile(`${prefix}.stderr.txt`, result.stderr);
     if (result.code !== 0 || result.timedOut) throw new Error(`Codex failed (${result.timedOut ? "timeout" : result.code}); see ${prefix}.stderr.txt`);
     const usage = parseEvents(result.stdout);
-    return { response: await json(output), usage, elapsedMs: Math.round(performance.now() - started) };
+    const sessionId = result.stdout.split("\n").filter(Boolean).map(JSON.parse).find((event) => event.type === "thread.started")?.thread_id;
+    const rollout = await readSessionRollout(sessionId);
+    await writeFile(`${prefix}.rollout.jsonl`, rollout);
+    const input = auditInput(rollout, { prompt, instructions: await text(instructionFile), model, effort, workspace });
+    const inputPath = join(dirname(prefix), "..", "call-inputs", `${prefix.split(/[\\/]/).at(-1)}.json`);
+    await mkdir(dirname(inputPath), { recursive: true });
+    await save(inputPath, input);
+    return { response: await json(output), usage, elapsedMs: Math.round(performance.now() - started), inputAudit: { verified: true, file: `call-inputs/${prefix.split(/[\\/]/).at(-1)}.json`, sha256: hash(await text(inputPath)), contextHash: input.contextHash, promptHash: input.promptHash, sessionId } };
   } finally { await rm(workspace, { recursive: true, force: true }); }
 }
 
@@ -275,8 +285,8 @@ export async function report(out) {
     `| 平均生成時間・秒（修正含む） | ${(a.elapsedMs/a.n/1000).toFixed(1)} | ${(b.elapsedMs/b.n/1000).toFixed(1)} |`, "", "## 課題別", "", "各セルは反復ごとの合格基準数（5点満点）。", "", "| 課題 | なし | あり |", "|---|---|---|",
     ...perCase.map((c) => `| ${c.title} | ${c.without_skill.map((r) => r.score).join(", ")} | ${c.with_skill.map((r) => r.score).join(", ")} |`),
     "", "## 本文・初稿・採点理由を読む", "", "各比較には、原依頼、両条件の最終稿全文、注記、5基準の判定理由、修正前の初稿とlint指摘を収めている。本文だけのMarkdownにも移動できる。", "", ...perCase.map((c) => `- ${c.title}: ${Array.from({length: manifest.settings.repeats}, (_, i) => `[${i + 1}回目](comparisons/${c.id}.${i + 1}.md)`).join("、")}。`),
-    "", "## 解釈の範囲", "", "これはSKILL.mdと関連資料を明示的に付与する比較であり、スキルの自動発火、親子エージェントの委譲、意味確認からの修正、モデル昇格は測っていない。両条件に同じlintフィードバックを最大1回返すため、スキル一式と通常運用の比較でもない。意味基準は最終稿だけを採点する。", "", "判定は条件名を伏せ、A/Bの位置を均衡化した単一LLMによるもの。人間の盲検評価ではなく、採点の誤りと同系モデルの傾向が残る。課題は作成者がPRの狙いから選んだ10種で、うちADR・進捗・不足手順・部分修正は既存の動作確認を別の題材にした。独立したホールドアウトや40種全体の代表標本ではない。反復数は課題ごとの揺れを観測するもので、基準数を独立標本として扱わない。有意差・一般的な優位・金額の削減率は主張しない。", "", "文字数だけでは品質を判定しない。トークンはCLI報告の実測値で、入力はcacheを含む。時間は並列実行・接続・cacheの影響を含む。評価モデルの利用量はsummary.jsonのjudgeUsageに別計上する。", ""];
-  await writeFile(join(out, "report.md"), lines.join("\n"));
+    "", "## 解釈の範囲", "", "これはSKILL.mdと関連資料を明示的に付与する比較であり、スキルの自動発火、親子エージェントの委譲、意味確認からの修正、モデル昇格は測っていない。lint修正の条件は実行時のmanifest.jsonを参照する。旧実行は両条件に指摘を返したため、スキルの有無による比較として扱わない。新しい実行系はスキルなし側に指摘を返さないが、モデル入力の分離は別途検証が必要である。意味基準は最終稿だけを採点する。", "", "判定は条件名を伏せ、A/Bの位置を均衡化した単一LLMによるもの。人間の盲検評価ではなく、採点の誤りと同系モデルの傾向が残る。課題は作成者がPRの狙いから選んだ10種で、うちADR・進捗・不足手順・部分修正は既存の動作確認を別の題材にした。独立したホールドアウトや40種全体の代表標本ではない。反復数は課題ごとの揺れを観測するもので、基準数を独立標本として扱わない。有意差・一般的な優位・金額の削減率は主張しない。", "", "文字数だけでは品質を判定しない。トークンはCLI報告の実測値で、入力はcacheを含む。時間は並列実行・接続・cacheの影響を含む。評価モデルの利用量はsummary.jsonのjudgeUsageに別計上する。", ""];
+  await writeFile(join(out, "report.md"), validityMarkdown(manifest.fingerprint) + lines.join("\n"));
   await writeReadableReports({ out, manifest, cases, records, verdicts });
   return summary;
 }
@@ -309,8 +319,8 @@ async function run(o) {
   const files = {};
   for (const name of ["SKILL.md", "references/delegation.md", "references/japanese.md", "references/structure.md", "references/document-types.md", ...await typeFiles()]) files[name] = await text(join(root, name));
   const sourceHashes = {};
-  for (const name of [...Object.keys(files), "package-lock.json", ".textlintrc.json", "scripts/lint.mjs", "benchmarks/benchmark.mjs", "benchmarks/readable-report.mjs", "benchmarks/comparison.css", "benchmarks/comparison.js", "benchmarks/cases.json", "benchmarks/author-instructions.txt", "benchmarks/judge-instructions.txt", "benchmarks/author.schema.json", ...await ruleFiles()]) sourceHashes[name] = hash(await text(join(root, name)));
-  const settings = { model: o.model, judgeModel: o.judgeModel, effort: o.effort, repeats: o.repeats, seed: o.seed, jobs: o.jobs, timeout: o.timeout, maxLintRevisions: 1 };
+  for (const name of [...Object.keys(files), "package-lock.json", ".textlintrc.json", "scripts/lint.mjs", "benchmarks/benchmark.mjs", "benchmarks/input-audit.mjs", "benchmarks/runtime-context.json", "benchmarks/readable-report.mjs", "benchmarks/comparison.css", "benchmarks/comparison.js", "benchmarks/cases.json", "benchmarks/author-instructions.txt", "benchmarks/judge-instructions.txt", "benchmarks/author.schema.json", ...await ruleFiles()]) sourceHashes[name] = hash(await text(join(root, name)));
+  const settings = { model: o.model, judgeModel: o.judgeModel, effort: o.effort, repeats: o.repeats, seed: o.seed, jobs: o.jobs, timeout: o.timeout, maxLintRevisions: { without_skill: 0, with_skill: 1 } };
   const plan = makePlan(cases, o.repeats, o.seed);
   const contexts = Object.fromEntries(cases.map((c) => [c.id, skillContext(c, files)]));
   let sourceRevision = null;
@@ -336,7 +346,7 @@ async function run(o) {
       skillWorktreeDirty: Boolean(execFileSync("git", ["-C", root, "status", "--porcelain", "--", "SKILL.md", "references", "rules", "scripts/lint.mjs", ".textlintrc.json", "package-lock.json"], { encoding: "utf8" }).trim()),
       codexVersion: execFileSync(process.env.CODEX_BIN || "codex", ["--version"], { encoding: "utf8" }).trim(),
       nodeVersion: process.version, disabledSkillPaths: skills.length,
-      isolation: { userConfig: false, projectInstructions: false, nativeSkills: false, plugins: false, tools: false, history: "new ephemeral session per call", builtInInstructions: "replaced by checked-in instruction file" }
+      isolation: { verification: "per-response saved-session input audit", requested: { userConfig: false, projectInstructions: "fixed shared AGENTS instructions pinned in runtime-context.json", nativeSkills: false, plugins: false, tools: false, history: "new saved session per call; never resume model conversations", builtInInstructions: "replaced by checked-in instruction file" }, evidence: "Every accepted response has a saved-session input audit in call-inputs; unexpected context or prompt fails the run" }
     });
     await save(join(o.out, "cases.json"), cases);
     await save(join(o.out, "skill-snapshot.json"), files);
@@ -348,7 +358,7 @@ async function run(o) {
     if (await exists(recordPath)) return;
     const c = cases.find((c) => c.id === p.caseId);
     const attempts = [];
-    for (let attempt = 0; attempt <= 1; attempt++) {
+    for (let attempt = 0; attempt <= settings.maxLintRevisions[p.arm]; attempt++) {
       const previous = attempts.at(-1);
       const prompt = authorPrompt(c, p.arm, contexts[c.id], previous?.response, previous?.metrics.lint);
       const prefix = join(o.out, "calls", `${p.id}.${attempt}`);

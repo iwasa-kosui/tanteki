@@ -1,0 +1,37 @@
+{
+  "id": "runbook-missing.1.with_skill",
+  "caseId": "runbook-missing",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 本番キャッシュ再起動手順（草稿）\n\n## 前提\n本番環境の監視でエラーを検知した場合に、当番がキャッシュを再起動する。\n\n## 検知\n監視でエラーを確認したら、キャッシュ再起動を検討する。\n\n## 手順\n1. 再起動してよい条件を確認する。\n2. 再起動コマンドを実行する。\n3. 復旧を確認する。\n\n## 確認\n復旧確認方法は未決定。\n\n## 停止条件\n再起動してよい条件は未決定。条件を確認できない場合は、再起動を実施しない。\n\n## 連絡先\n連絡先は未決定。",
+        "notes": "種別は運用Runbook、読者は本番対応の当番、主題は「監視でエラーを検知したときに、決められた条件と確認方法に従ってキャッシュを再起動する」。資料不足のため、コマンド、停止条件、復旧確認方法、連絡先を補わず草稿とした。構成と本文は執筆者自身が検査したが、外部lintは未実施。"
+      },
+      "usage": {
+        "input_tokens": 12582,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 371,
+        "reasoning_output_tokens": 51
+      },
+      "elapsedMs": 10660,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/runbook-missing.1.with_skill.0.json",
+        "sha256": "cfe6817b151de6dbdd6bfe9e05f31a293e403de7eb2b4699734964a25a4198e1",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308",
+        "sessionId": "01a0beaf-eb33-77b2-b3ef-4b1dfc80ac50"
+      },
+      "metrics": {
+        "characters": 234,
+        "headings": 7,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308"
+    }
+  ]
+}

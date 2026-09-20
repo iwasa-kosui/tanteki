@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="tanteki は、文書の種類ごとに書くべき情報を決めて、揃うまで構成と本文を検査するエージェント用の執筆・推敲スキルです。使用前後を実際の出力で見比べられます。">
-    <meta property="og:title" content="tanteki — 文書の種類ごとに必要な情報を検査する Skill">
-    <meta property="og:description" content="tanteki は、文書の種類ごとに書くべき情報を決めて、揃うまで構成と本文を検査するエージェント用の執筆・推敲スキルです。使用前後を実際の出力で見比べられます。">
+    <meta name="description" content="tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。使用前後を実際の出力で見比べられます。">
+    <meta property="og:title" content="tanteki — 業務のための文書をもっと端的に">
+    <meta property="og:description" content="tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。使用前後を実際の出力で見比べられます。">
     <meta property="og:type" content="website">
-    <title>tanteki — 文書の種類ごとに必要な情報を検査する Skill</title>
+    <title>tanteki — 業務のための文書をもっと端的に</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./styles.css">
     <script src="./site.js" defer></script>
@@ -28,32 +28,23 @@
       <section class="hero wrap" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow"><span class="accent-dot" aria-hidden="true"></span> 日本語の業務・技術文書のための Skill</p>
-          <h1 id="hero-title">文書の種類ごとに、必要な情報を検査する Skill</h1>
-          <p class="hero-description">PRD、ADR、Design Doc、Runbook。<br>文書の種類ごとに、書くべき情報と書くべきではない情報が違います。<br class="desktop-break">tanteki はその規定に沿って構成を検査し、揃うまで直します。</p>
+          <h1 id="hero-title">業務のための文書を<br>もっと端的に</h1>
+          <p class="hero-description">PRD、ADR、Design Doc、Runbook。<br>文書の種類ごとに、書くべき情報と書くべきではない情報が違います。<br class="desktop-break">tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。</p>
           <div class="hero-actions">
             <a class="button primary" href="#examples">使用前後を見比べる <span aria-hidden="true">↓</span></a>
             <a class="text-link" href="#start">使ってみる <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <aside class="margin-note" aria-label="削ってはいけない情報">
-          <p class="note-label">削ってはいけない情報</p>
-          <dl>
-            <div><dt><span aria-hidden="true">01</span> 理由</dt><dd>なぜその案にしたか。</dd></div>
-            <div><dt><span aria-hidden="true">02</span> 条件</dt><dd>どの条件で、どう動くか。</dd></div>
-            <div><dt><span aria-hidden="true">03</span> 例外</dt><dd>どこまで当てはまるか。</dd></div>
-          </dl>
-          <p class="note-footer">短くしても、これらは残します。</p>
-        </aside>
       </section>
 
       <section id="examples" class="examples wrap section" aria-labelledby="examples-title">
         <div class="section-heading">
-          <div><p class="eyebrow">01 / BEFORE &amp; AFTER</p><h2 id="examples-title">スキルなしと、スキルありの出力を比べる</h2></div>
+          <div><p class="eyebrow">01 / COMPARISON</p><h2 id="examples-title">スキルなしと、スキルありの出力を比べる</h2></div>
           <p>同じ依頼から別々に生成した2つの文書を、全文で並べています。</p>
         </div>
-        <p class="comparison-context">「なし／あり」は同じ依頼から別々に生成した結果です。同じ文章を順に編集した履歴ではありません。2026年9月6日の保存記録から紹介します。</p>
+        <p class="comparison-context">「なし／あり」は同じ依頼から別々に生成した結果です。同じ文章を順に編集した履歴ではありません。2026年9月20日の実測から、同じ3課題の反復1を紹介します。</p>
         <!-- EXAMPLES -->
-        <p class="source-note">各欄をスクロールして全文を読めます。本文は原文のまま掲載し、比較する箇所に色を付けて、変わった点をその下に書き添えています。</p>
+        <p class="source-note">各欄をスクロールして全文を読めます。本文は原文のまま掲載し、比較する箇所に色を付けて、違いや共通点をその下に書き添えています。</p>
       </section>
 
       <section id="doc-types" class="doc-types wrap section" aria-labelledby="doc-types-title">
@@ -119,8 +110,15 @@
       </section>
 
       <section id="evidence" class="evidence wrap section" aria-labelledby="evidence-title">
-        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">評価の結果と、生成した文書の全文</h2><p>10課題を各2回、スキルなし／ありで生成。<br>文書として用途を満たすかを、後から評価した記録です。</p><a class="text-link" href="./evaluation.html">全20組の本文と評価を読む <span aria-hidden="true">↗</span></a></div>
-        <div class="evaluation"><table><caption>保存された20組の判定</caption><thead><tr><th scope="col">判定</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- EVALUATION_ROWS --></tbody></table><p>旧版 <a href="https://github.com/iwasa-kosui/tanteki/tree/fb6fd0b085bcd2b03ea8381709ae36d5f95d437e"><code>fb6fd0b</code></a> の記録です。単一モデルによる事後評価で、現行版の性能を保証するものではありません。PRD は評価に含みません。</p><a class="text-link small" href="https://github.com/iwasa-kosui/tanteki/blob/main/benchmarks/results/2026-09-06-main-fb6fd0b/document-review/report.md">評価方法と限界を確認する ↗</a></div>
+        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">評価の結果と、生成した文書の全文</h2><p>2026年9月20日、10課題を各2回、スキルなし／ありで生成しました。スキルなしは初稿、スキルありは tanteki の指示を読み、文章検査の指摘に応じて最大1回修正した最終稿です。</p><p>対象は実行時の main <a href="https://github.com/iwasa-kosui/tanteki/tree/ca1c0eb"><code>ca1c0eb</code></a>。生成は gpt-5.6-luna / low、5基準の採点は gpt-5.6-terra / low、用途のレビューは gpt-6-astra / high です。</p><p>比較するのは、tanteki の執筆指示と文章検査による修正を加えた効果です。構成検査や委譲を含む通常の工程全体は測っていません。作成者が選んだ10課題と単一モデルの判定による小規模な比較であり、PRD は含みません。</p><a class="text-link" href="./evaluation.html">全20組の本文と評価を読む <span aria-hidden="true">↗</span></a></div>
+        <div class="evaluation">
+          <table><caption>文書として用途を満たすか（各20出力）</caption><thead><tr><th scope="col">判定</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- EVALUATION_ROWS --></tbody></table>
+          <p>生成後に、原資料と本文だけでレビューしました。「原資料の不足で利用に制限」は、不足を本文で適切に示した状態です。執筆の失敗には数えません。</p>
+          <table><caption>固定した5基準の採点と生成量</caption><thead><tr><th scope="col">指標</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- BENCHMARK_ROWS --></tbody></table>
+          <p>5基準は事実・根拠・役割・明確さ・簡潔さです。LLM の生の採点には誤判定があり、短さや文章検査の合格だけでは品質を判断できません。</p>
+          <p>トークンは生成と修正の合計で、入力はキャッシュを含みます。採点・レビューの利用量は含みません。</p>
+          <a class="text-link small" href="./results/run-notes.md">実測の解釈と判定の照合を読む ↗</a>
+        </div>
       </section>
     </main>
     <footer class="site-footer wrap"><a class="wordmark" href="./">tanteki<span aria-hidden="true">.</span></a><p>文書の種類ごとに、必要な情報が揃うまで直します。</p><div><a href="https://github.com/iwasa-kosui/tanteki">GitHub ↗</a><a href="https://github.com/iwasa-kosui/tanteki/blob/main/LICENSE">MIT License</a></div></footer>

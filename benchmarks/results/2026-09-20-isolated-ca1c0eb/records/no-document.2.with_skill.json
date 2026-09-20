@@ -1,0 +1,73 @@
+{
+  "id": "no-document.2.with_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たな議事録は残さなくてよいです。\n\n議論・決定・宿題がなく、参加者への中止連絡も送信済みのため、議事録の目的である論点や決定の記録がありません。中止連絡を既存の記録として扱ってください。\n\nただし、開催実績や中止理由の記録を必須とする社内規程がある場合は、次の最小記録を残します。\n\n- 定例会：中止\n- 日付：開催予定日\n- 理由：必要に応じて記載\n- 連絡：参加者へ通知済み",
+        "notes": "文書種別は会議メモ／決定ログ（record）として判断しました。主題は「記録すべき情報がなければ新規の議事録を作らず、既存の中止連絡を記録として扱う」です。"
+      },
+      "usage": {
+        "input_tokens": 12579,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 323,
+        "reasoning_output_tokens": 88
+      },
+      "elapsedMs": 9667,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/no-document.2.with_skill.0.json",
+        "sha256": "8ba499e983705a13a278406267aabc80871485cdc70aa3c326e4ddf2d93f0822",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "83833a31a55e0ed29118100d896d7bdea7d286382675e5ec882eb8c60d8b1ee9",
+        "sessionId": "01a0beb2-1578-7122-860e-f146677d7e05"
+      },
+      "metrics": {
+        "characters": 190,
+        "headings": 0,
+        "lint": [
+          {
+            "ruleId": "no-vague-action",
+            "line": 9,
+            "column": 6,
+            "message": "曖昧な動作の候補です。実施する条件・しない条件が前後の文から分かるか確認してください。否定・条件を保って見直してください。"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "83833a31a55e0ed29118100d896d7bdea7d286382675e5ec882eb8c60d8b1ee9"
+    },
+    {
+      "response": {
+        "body": "新たな議事録は残さなくてよいです。\n\n議論・決定・宿題がなく、参加者への中止連絡も送信済みのため、議事録の目的である論点や決定の記録がありません。中止連絡を既存の記録として扱ってください。\n\nただし、開催実績や中止理由の記録を社内規程で必須としている場合は、次の最小記録を残します。\n\n- 定例会：中止\n- 日付：開催予定日\n- 理由：社内規程が記載を求める場合は、中止理由を記載\n- 連絡：参加者へ通知済み",
+        "notes": "文書種別は会議メモ／決定ログ（record）です。曖昧だった「必要に応じて記載」を、社内規程が記載を求める場合に中止理由を記載する条件へ修正しました。"
+      },
+      "usage": {
+        "input_tokens": 12921,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 330,
+        "reasoning_output_tokens": 85
+      },
+      "elapsedMs": 12112,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/no-document.2.with_skill.1.json",
+        "sha256": "83b024066fafddaa9fa3a76823125db17ece09b60c47fb6429014dce08b5baf2",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "5cd07e263eae00f84cf4450b3ab3aef9af4846309f7396b6953e701e0c287aff",
+        "sessionId": "01a0beb2-3b47-70a2-8f8b-412c350a0018"
+      },
+      "metrics": {
+        "characters": 204,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "5cd07e263eae00f84cf4450b3ab3aef9af4846309f7396b6953e701e0c287aff"
+    }
+  ]
+}

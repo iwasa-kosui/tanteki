@@ -1,0 +1,64 @@
+{
+  "id": "incident-record.1.with_skill",
+  "caseId": "incident-record",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：運用チームが請求検索のエラー増加を検知した。\n- 8月19日09:17：当番の加藤が直前の変更を戻した。\n- 8月19日09:22：復旧を確認した。\n\n## 原因\nDB接続枯渇が原因である可能性がある。ただし、ログの確認が未完了のため、原因は未確定である。\n\n## 改善策\n- OPS-315で改善を追跡する。\n- 加藤が8月26日までにDB接続数の記録を追加する。",
+        "notes": "種別: ポストモーテム（record）。主題: 請求検索エラーの影響、復旧、未確定の原因、改善策を記録する。構成は並列の節で整理し、原資料にない寄与要因は補っていない。検査は外部の実行系に委ねる。"
+      },
+      "usage": {
+        "input_tokens": 12663,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 375,
+        "reasoning_output_tokens": 70
+      },
+      "elapsedMs": 14434,
+      "metrics": {
+        "characters": 262,
+        "headings": 5,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 12,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006"
+    },
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：運用チームが請求検索のエラー増加を検知した。\n- 8月19日09:17：当番の加藤が直前の変更を戻した。\n- 8月19日09:22：復旧を確認した。\n\n## 原因\nDB接続枯渇が原因である可能性がある。ただし、ログを確認できておらず、原因は未確定である。\n\n## 改善策\n- OPS-315で改善を追跡する。\n- 加藤が8月26日までにDB接続数の記録を追加する。",
+        "notes": "種別: ポストモーテム（record）。主題と構成は前稿を維持し、textlint指摘箇所のみ修正した。検査は外部の実行系が行う。"
+      },
+      "usage": {
+        "input_tokens": 13124,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 390,
+        "reasoning_output_tokens": 117
+      },
+      "elapsedMs": 11298,
+      "metrics": {
+        "characters": 261,
+        "headings": 5,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 12,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "34f22d6b0944b61f5048db1bf01d26d2d3be1730253d96f638e2f6addcef68f8"
+    }
+  ]
+}

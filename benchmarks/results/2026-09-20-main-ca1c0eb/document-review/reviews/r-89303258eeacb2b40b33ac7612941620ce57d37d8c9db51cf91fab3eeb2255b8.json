@@ -1,0 +1,55 @@
+{
+  "reviewId": "r-89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8",
+  "inputHash": "89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "将来の保守者が、請求書PDF生成の非同期化について採用判断・背景・比較対象・影響を再構成するためのADR。",
+        "status": "revision_needed",
+        "summary": "非同期化の採用理由と不利益は把握できます。ただし、原資料にない結果確認方法が決定事項に加わっており、採用範囲を正確に残すため修正が必要です。",
+        "strengths": [
+          "採用状態と採用日が明示されている。",
+          "同期生成を退けた理由が、最大45秒の処理時間と接続切断に結び付けられている。",
+          "利用者の待ち時間という不利益と、再試行上限が未決定であることを保持している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "利用者は受付IDを使って、生成結果を確認する。",
+            "source_excerpt": "請求書のPDF生成はキューで処理し、APIは受付IDを返す。",
+            "finding": "原資料が定めているのは受付IDを返すことまでです。受付IDによる結果確認方法は記載されておらず、「決定」節に置くことで採用済みの仕様を追加しています。",
+            "impact": "将来の保守者が、受付IDを使った結果確認まで今回の採用判断に含まれると誤認し、実装や変更判断の前提にする可能性があります。",
+            "suggested_change": "この一文を削除し、決定事項を原資料で確認できる範囲に限定してください。結果確認方法の確定は、このADRの成立には不要です。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "生成結果の確認・受け取り方法と受付IDの用途。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "利用者は受付IDを使って、生成結果を確認する。",
+            "consequence": "具体的な結果確認仕様は判断できませんが、非同期化の採用理由を記録するADRとしては確定不要です。"
+          },
+          {
+            "missing_information": "再試行回数の上限。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "再試行の上限は未決定である。",
+            "consequence": "再試行の実装条件は別途決定が必要ですが、今回の採用判断の理解は妨げません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6111,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 955,
+        "reasoning_output_tokens": 310
+      },
+      "elapsedMs": 33455,
+      "validationErrors": null
+    }
+  ]
+}

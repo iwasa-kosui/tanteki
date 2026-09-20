@@ -1,0 +1,65 @@
+{
+  "caseId": "adr-boundary",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "採用日、キュー処理、受付ID、同期時の最大45秒と接続切断、利用者の完成待ち、再試行上限未決定を本文にすべて記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない「受付IDを使った処理状況や生成結果の確認」および「完了通知または状況確認方法」が必要との記載を創作している。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文の「実装状況」に進捗70%を含めている。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "キューによる非同期処理を採用し、同期処理は45秒による接続切断のため不採用、代償は利用者の完成待ちと明確に対応している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "背景・決定・却下した選択肢・影響・実装状況など章見出しが多数あり、同期不採用理由も重複している。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "採用日、キュー処理、受付ID、同期時の最大45秒と接続切断、利用者の完成待ち、再試行上限未決定を本文にすべて記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "結果確認APIや通知方法、具体的な再試行回数を創作しておらず、再試行上限も未決定のまま記載している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文にBILL-218、PR #106、進捗70%は含まれず、notesでの除外説明のみである。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "採用判断、同期方式を採らない理由、非同期化による利用者の完成待ちという代償が明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "背景・決定・理由・結果の章見出しを並べ、同期方式を採らない理由を背景と理由で繰り返している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5240,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 643,
+      "reasoning_output_tokens": 116
+    },
+    "elapsedMs": 27699
+  },
+  "promptHash": "c3955599ced17fa653ce4ed48429a2d7800c1cce0f07be1fa68215413b1d9dfe"
+}

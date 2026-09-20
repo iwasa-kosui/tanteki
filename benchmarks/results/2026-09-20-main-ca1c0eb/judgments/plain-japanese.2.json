@@ -1,0 +1,65 @@
+{
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "既存の認証情報を引き継いで請求画面へ移動でき、再ログイン不要であり、「有効期限が切れている場合に限り」ログイン画面を表示すると明記している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "自動更新、認証方式名、追加のエラー動作など、資料にない仕様を加えていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "CS担当者が利用者へそのまま説明できる仕様本文であり、書き換え手順は本文に含まれない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "抽象表現を、遷移・再ログイン不要・期限切れ時の画面表示という具体的動作に置き換えている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い二文で完結しており、見出しの羅列や重複がない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": false,
+          "evidence": "期限切れ時にログイン画面を表示することはあるが、ログイン画面を表示するのが「有効期限切れの場合だけ」であることを明記していない。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "資料にない認証方式、自動更新、追加のエラー動作は補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "CS担当者が利用者へ案内するための仕様本文になっており、手順解説を本文に混ぜていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "抽象語を、認証が有効な場合の遷移、再ログイン不要、期限切れ時のログイン画面表示へ具体化している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "二文の簡潔な本文で、重複や見出しの羅列がない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4726,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 643,
+      "reasoning_output_tokens": 181
+    },
+    "elapsedMs": 26879
+  },
+  "promptHash": "65f396ad8b8fdea2b2be0c1473e0f658792475baa488aed84c2f7b6ee85b62fc"
+}

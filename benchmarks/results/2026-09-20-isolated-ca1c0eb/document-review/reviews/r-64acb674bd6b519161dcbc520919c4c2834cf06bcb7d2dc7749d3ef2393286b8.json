@@ -1,0 +1,48 @@
+{
+  "reviewId": "r-64acb674bd6b519161dcbc520919c4c2834cf06bcb7d2dc7749d3ef2393286b8",
+  "inputHash": "64acb674bd6b519161dcbc520919c4c2834cf06bcb7d2dc7749d3ef2393286b8",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "既存の正本への案内",
+        "status": "usable",
+        "summary": "正本の参照先、通常の提出方法、例外条件が明確で、案内として使えます。ただし、添付する画面の指定には資料上の根拠がありません。",
+        "strengths": [
+          "正本のURLと参照する節が明示されています。",
+          "通常のPDF添付と、経理から個別に求められた場合の原本提出を区別しています。",
+          "新しいFAQを増やさず、簡潔な案内に収めています。"
+        ],
+        "findings": [
+          {
+            "severity": "minor",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "経費システムの申請画面にPDFで添付してください。",
+            "source_excerpt": "確定ルールは経費システムへPDFを添付すること。",
+            "finding": "原資料は添付先の画面まで指定しておらず、「申請画面」という操作場所を確定事項として補っています。",
+            "impact": "実際の添付場所が異なる場合、社員が該当画面を探して迷うおそれがあります。",
+            "suggested_change": "「申請画面」の指定だけを外し、経費システムへPDFを添付する案内にとどめてください。"
+          }
+        ],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5944,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 757,
+        "reasoning_output_tokens": 399
+      },
+      "elapsedMs": 27164,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-64acb674bd6b519161dcbc520919c4c2834cf06bcb7d2dc7749d3ef2393286b8.1.json",
+        "sha256": "065dbcedd003bd848a03f129ed2b39e4d24d2ea70b324c7bc72a6a7230be916e",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "64acb674bd6b519161dcbc520919c4c2834cf06bcb7d2dc7749d3ef2393286b8",
+        "sessionId": "01a0beb3-ff88-76f1-a2ed-e7321491091b"
+      },
+      "validationErrors": null
+    }
+  ]
+}

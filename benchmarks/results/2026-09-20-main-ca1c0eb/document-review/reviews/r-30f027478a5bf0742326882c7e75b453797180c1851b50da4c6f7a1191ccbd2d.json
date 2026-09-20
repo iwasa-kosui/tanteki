@@ -1,0 +1,29 @@
+{
+  "reviewId": "r-30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d",
+  "inputHash": "30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チームが完了事項、未完了事項、次の作業、判断依頼の相手と期限を把握するための進捗報告。",
+        "status": "usable",
+        "summary": "原資料の内容を簡潔に整理できており、進捗共有とPdMへの判断依頼に使えます。再試行処理の阻害要因と判断期限も明確です。",
+        "strengths": [
+          "受付APIの実装完了とPRのレビュー待ちを区別している。",
+          "対象期間、担当者、BILL-218、PR #106が記載され、追跡できる。",
+          "次の作業と阻害要因、PdMが決定すべき事項と期限が対応している。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5973,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 447,
+        "reasoning_output_tokens": 230
+      },
+      "elapsedMs": 17523,
+      "validationErrors": null
+    }
+  ]
+}

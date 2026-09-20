@@ -1,0 +1,73 @@
+{
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": false,
+          "evidence": "採用日、キュー、受付ID、同期時の最大45秒と接続切断、再試行上限未決定はあるが、利用者が完成まで待つという代償を本文で明記していない。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない、受付IDで完成を確認する方法を本文で補っている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文にBILL-218、PR #106、進捗70%は含まれない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "キュー処理を採用し、同期生成は45秒で接続が切れるため不採用である関係は明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "背景・決定・理由と代替案・結果という複数の章見出しを並べている。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "採用、2026-08-20、キュー、受付ID、同期時の最大45秒による切断、利用者の完成待ち、再試行上限未決定をすべて本文に記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない、受付IDによる処理状況・完成結果の確認や、その仕組みの必要性を本文で創作している。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文にBILL-218、PR #106および進捗70%を含めている。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "採用判断、同期方式を採らない理由、非同期化に伴う利用者の完成待ちという代償が明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "コンテキスト、決定、理由、影響、参考情報と複数の章見出しを並べ、短い箇条書きの範囲を超える。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5329,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 822,
+      "reasoning_output_tokens": 344
+    },
+    "elapsedMs": 33915,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/adr-boundary.2.judge.json",
+      "sha256": "6e93c83ab66330d54eb1d02d6e062cfecd4417c8e1a6a3a1e88508aeee854de2",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "501a3b186a272a6b382f819fd47e508ae78865b358949f2801c7d72c10c35356",
+      "sessionId": "01a0beb3-6709-7e91-b773-b00ddc589f28"
+    }
+  },
+  "promptHash": "501a3b186a272a6b382f819fd47e508ae78865b358949f2801c7d72c10c35356"
+}

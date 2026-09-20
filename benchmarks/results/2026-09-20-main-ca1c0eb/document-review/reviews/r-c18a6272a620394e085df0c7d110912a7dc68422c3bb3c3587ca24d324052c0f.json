@@ -1,0 +1,29 @@
+{
+  "reviewId": "r-c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f",
+  "inputHash": "c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チーム向けの進捗報告",
+        "status": "usable",
+        "summary": "実装済みの内容、レビュー待ちの状態、次の作業と停止理由が明確です。判断を求めたい相手・内容・期限も把握でき、進捗共有に使えます。",
+        "strengths": [
+          "対象期間、担当者、チケット番号、PR番号が明記され、追跡できます。",
+          "受付APIの実装完了とPRのレビュー待ちを区別しています。",
+          "再試行処理の停止理由と、PdMへの判断依頼内容・期限が対応し、依頼済みとも誤記していません。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5992,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 239,
+        "reasoning_output_tokens": 41
+      },
+      "elapsedMs": 11647,
+      "validationErrors": null
+    }
+  ]
+}

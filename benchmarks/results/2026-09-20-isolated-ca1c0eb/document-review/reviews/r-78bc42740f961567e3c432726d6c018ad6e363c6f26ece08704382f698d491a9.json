@@ -1,0 +1,66 @@
+{
+  "reviewId": "r-78bc42740f961567e3c432726d6c018ad6e363c6f26ece08704382f698d491a9",
+  "inputHash": "78bc42740f961567e3c432726d6c018ad6e363c6f26ece08704382f698d491a9",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番向けの本番キャッシュ再起動Runbookの草稿",
+        "status": "source_limited",
+        "summary": "未確定事項の洗い出しと手順整備に使える草稿です。本番で実行しないよう明示しており、資料不足を適切に扱っています。実施可否の判断、再起動、復旧判定、連絡はまだ実行できません。",
+        "strengths": [
+          "確定している方針と未確定事項を分け、冒頭で本番実行を禁止しています。",
+          "実施条件、操作、復旧確認、未復旧時の対応を順に配置し、各段階の不足を確認できます。",
+          "事前に決める事項をまとめ、正式なRunbookにするための確認作業につなげています。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "正式な再起動コマンド、実行対象、実行権限",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動コマンド：未確定",
+            "consequence": "対象を特定した安全な再起動操作を実施できません。"
+          },
+          {
+            "missing_information": "停止してよい条件と禁止条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "停止してよい条件：未確定",
+            "consequence": "監視エラーを検知しても、本番キャッシュを停止してよいか判断できません。"
+          },
+          {
+            "missing_information": "復旧確認方法、確認項目、成功基準",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "確認方法：未確定",
+            "consequence": "再起動後に復旧したか、未復旧として対応を継続すべきか判定できません。"
+          },
+          {
+            "missing_information": "連絡先、承認の要否、未復旧時のエスカレーション手順",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先：未確定",
+            "consequence": "実施前の連絡や必要な承認、復旧しない場合の引き継ぎを行えません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6264,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 846,
+        "reasoning_output_tokens": 263
+      },
+      "elapsedMs": 30419,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-78bc42740f961567e3c432726d6c018ad6e363c6f26ece08704382f698d491a9.1.json",
+        "sha256": "44103f410658a0074c4adad754dbcfd4c653389cee37bb0c35438a0198d3da4a",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "78bc42740f961567e3c432726d6c018ad6e363c6f26ece08704382f698d491a9",
+        "sessionId": "01a0beb4-5e0d-7773-b6da-d7131d9b5f33"
+      },
+      "validationErrors": null
+    }
+  ]
+}
