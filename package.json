@@ -6,13 +6,14 @@
     "node": ">=22"
   },
   "scripts": {
-    "build:site": "node scripts/build-site.mjs",
+    "build:site": "node --import tsx scripts/build-site.mjs",
     "lint:site": "node scripts/lint.mjs --type stock .cache/site-copy.md docs/README.md",
     "package:skill": "node scripts/package-skill.mjs",
     "check:skill-package": "node scripts/package-skill.mjs --check",
     "test": "node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "lint:docs": "node scripts/lint.mjs --type stock README.md references/lint.md",
     "benchmark": "tsx benchmarks/isolated/cli.ts",
+    "benchmark:publish": "tsx scripts/publish-benchmark.ts",
     "benchmark:legacy": "node benchmarks/benchmark.mjs",
     "benchmark:review": "node benchmarks/document-review.mjs",
     "typecheck:benchmark": "tsc -p benchmarks/isolated/tsconfig.json"
