@@ -10,10 +10,12 @@
     "lint:site": "node scripts/lint.mjs --type stock .cache/site-copy.md docs/README.md",
     "package:skill": "node scripts/package-skill.mjs",
     "check:skill-package": "node scripts/package-skill.mjs --check",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "lint:docs": "node scripts/lint.mjs --type stock README.md references/lint.md",
-    "benchmark": "node benchmarks/benchmark.mjs",
-    "benchmark:review": "node benchmarks/document-review.mjs"
+    "benchmark": "tsx benchmarks/isolated/cli.ts",
+    "benchmark:legacy": "node benchmarks/benchmark.mjs",
+    "benchmark:review": "node benchmarks/document-review.mjs",
+    "typecheck:benchmark": "tsc -p benchmarks/isolated/tsconfig.json"
   },
   "dependencies": {
     "@textlint/kernel": "^15.8.0",
@@ -25,5 +27,12 @@
     "textlint": "^15.3.0",
     "textlint-rule-preset-japanese": "^10.0.4",
     "textlint-util-to-string": "^3.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.2",
+    "neverthrow": "8.2.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "zod": "4.5.4"
   }
 }

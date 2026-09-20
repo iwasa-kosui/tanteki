@@ -1,5 +1,7 @@
 # スキルあり／なしの執筆ベンチマーク
 
+新しい比較は[分離環境でのスキル比較](isolated/README.md)を使う。`npm run benchmark`は新方式を起動する。以下は既存方式の説明と保存結果であり、既存コマンドは`npm run benchmark:legacy`で実行する。
+
 同じ依頼と生成モデルで、tanteki の執筆指示と lint 修正を加えた場合の違いを測る。スキルなし側は初稿1回だけを生成し、スキルの資料や lint の修正指示を渡さない。スキルあり側は資料を付与し、lint の指摘に応じて最大1回修正する。
 
 最新の保存先は [2026年9月20日の比較](results/2026-09-20-isolated-ca1c0eb/report.md) で、対象は `origin/main` の `ca1c0eb501cd5885dde28c6a84a1438dd42232a6`。[原文と用途のレビュー](results/2026-09-20-isolated-ca1c0eb/document-review/report.md)、[実測の要点](results/2026-09-20-isolated-ca1c0eb/run-notes.md)も参照できる。
@@ -71,21 +73,21 @@ npm ci
 npm test
 
 # 入力、参照資料、実行順の検証だけ
-npm run benchmark -- run --out /tmp/nihongo-bench-new \
+npm run benchmark:legacy -- run --out /tmp/nihongo-bench-new \
   --source-ref origin/main --model gpt-5.6-luna --judge-model gpt-5.6-terra --dry-run
 
 # 10課題 × 2反復 × 2条件。生成40〜60回、採点20回
-npm run benchmark -- run --out /tmp/nihongo-bench-new \
+npm run benchmark:legacy -- run --out /tmp/nihongo-bench-new \
   --source-ref origin/main --model gpt-5.6-luna --judge-model gpt-5.6-terra \
   --repeats 2 --seed 20260906 --jobs 2
 
 # 同じ引数に--resumeを付けて再開する
-npm run benchmark -- run --out /tmp/nihongo-bench-new \
+npm run benchmark:legacy -- run --out /tmp/nihongo-bench-new \
   --source-ref origin/main --model gpt-5.6-luna --judge-model gpt-5.6-terra \
   --repeats 2 --seed 20260906 --jobs 2 --resume
 
 # 保存済みの結果から集計・HTML・比較Markdown・本文Markdownを再生成。モデル呼び出しなし
-npm run benchmark -- report --out benchmarks/results/2026-09-20-isolated-ca1c0eb
+npm run benchmark:legacy -- report --out benchmarks/results/2026-09-20-isolated-ca1c0eb
 ```
 
 `--source-ref`は対象refをコミットへ解決し、生成に使うスキル・lintコード・設定・lockfileがそのコミットと一致するか検証する。不一致ならモデルを呼ばずに失敗する。再実行対象を同じ版に固定するには、`origin/main`の代わりに保存済みのコミットIDを指定する。
