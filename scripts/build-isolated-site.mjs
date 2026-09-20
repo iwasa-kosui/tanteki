@@ -55,37 +55,18 @@ export async function build(projectRoot = root) {
     exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n\n${notes.join('\n\n')}\n`);
   }
   const tabs = `<div class="example-tabs" aria-label="比較する文書" hidden>${examples.map((example, index) => `<button type="button" id="tab-${example.id}" data-example-tab aria-controls="example-${example.id}"><span>0${index + 1}</span>${escape(example.tab)}</button>`).join('')}</div>`;
-  const rowsFor = (metrics) => metrics.map(([label, value]) => `<tr><th scope="row">${label}</th><td>${value(summary.arms.without_skill)}</td><td>${value(summary.arms.with_skill)}</td></tr>`).join('');
-  const rows = rowsFor([
-    ['計画した実行', (arm) => arm.planned],
-    ['環境検証済み', (arm) => arm.valid],
-    ['環境無効', (arm) => arm.invalid_environment],
-    ['実行失敗', (arm) => arm.execution_failed],
-    ['スキル本文取得の観測', (arm) => `${arm.skillTextSeen}/${arm.planned}`],
-    ['lintの直接呼び出しの観測', (arm) => `${arm.lintCommandSeen}/${arm.planned}`],
-  ]);
-  const metrics = rowsFor([
-    ['採点した出力', (arm) => arm.assessed],
-    ['意味基準の合格数', (arm) => `${arm.rubricPasses}/${arm.rubricTotal}`],
-    ['採点用lintの合格数', (arm) => `${arm.lintPasses}/${arm.assessed}`],
-    ['生成のモデル呼び出し数', (arm) => arm.modelCalls.toLocaleString('ja-JP')],
-    ['入力トークン', (arm) => arm.inputTokens.toLocaleString('ja-JP')],
-    ['出力トークン', (arm) => arm.outputTokens.toLocaleString('ja-JP')],
-  ]);
   const started = new Date(manifest.createdAt).toLocaleDateString('ja-JP', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' });
   const comparisonContext = `「なし／あり」は同じ依頼から別々に生成した結果です。${started}（UTC）に開始したDocker分離方式の実測から、${examples.length}課題を紹介します。`;
-  const context = `<p>${escape(started)}（UTC）に生成を開始し、${cases.length}課題を各${manifest.settings.repeats}回、スキルなし／ありで実行しました。条件ごとに新しいコンテナを用意し、tanteki一式の導入だけを変えています。</p><p>対象は <a href="https://github.com/iwasa-kosui/tanteki/tree/${escape(lock.sourceRevision)}"><code>${escape(lock.sourceRevision.slice(0, 7))}</code></a>。生成は ${escape(manifest.settings.model)} / ${escape(manifest.settings.effort)}、採点は ${escape(evaluation.model)} / ${escape(evaluation.effort)} です。</p><p>有効ペアは${summary.validPairs}/${summary.plannedPairs}組、採点済みは${summary.gradedPairs}組です。生成後の採点結果は書き手に返しません。スキルを使わなかった試行も残し、品質は両条件が有効なペアで比較します。</p><p>作成者が選んだ${cases.length}課題と単一モデルの判定による小規模な比較です。${cases.some((c) => c.type === "prd") ? "" : "PRDは含みません。"}旧方式の結果とは分けて読みます。</p><a class="text-link" href="./evaluation.html">全${summary.plannedPairs}組の本文と評価を読む <span aria-hidden="true">↗</span></a>`;
+  const context = `<p>同じ依頼を同じモデルに渡し、tanteki一式の導入だけを変えて文書を生成しました。${cases.length}課題を各${manifest.settings.repeats}回比較し、両条件で生成が成功した文書のうち、${summary.gradedPairs}組を採点しました。</p><p>作成者が選んだ課題による小規模な比較です。${cases.some((c) => c.type === "prd") ? "" : "PRDは含みません。"}ほかの課題やモデルでも同じ結果になるとは限りません。</p>`;
+  const notesLink = (await readdir(join(root, run))).includes('run-notes.md')
+    ? '<p><a class="text-link" href="./results/run-notes.md">本文と採点を照合した所見を読む ↗</a></p>' : '';
+  const sources = `<p><a class="text-link" href="./evaluation.html">全${summary.plannedPairs}組の本文と評価を読む ↗</a></p>${notesLink}<details><summary>実行条件の詳細</summary><p>${escape(started)}（UTC）に生成を開始しました。各試行を新しいコンテナで実行し、生成後の採点結果は書き手に返していません。</p><p>生成は ${escape(manifest.settings.model)} / ${escape(manifest.settings.effort)}、採点は ${escape(evaluation.model)} / ${escape(evaluation.effort)} です。対象は <a href="https://github.com/iwasa-kosui/tanteki/tree/${escape(lock.sourceRevision)}">tanteki ${escape(lock.sourceRevision.slice(0, 7))}</a> です。</p><p><a href="./results/report.md">実行結果の集計を読む ↗</a></p></details>`;
   const rawTemplate = await read('docs/isolated.html');
-  for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- COMPARISON_CONTEXT -->']) {
+  for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- RUN_SOURCES -->', '<!-- COMPARISON_CONTEXT -->', '<!-- EXAMPLES -->']) {
     if (rawTemplate.split(marker).length !== 2) throw new Error(`Expected one ${marker}`);
   }
-  const notesLink = (await readdir(join(root, run))).includes('run-notes.md')
-    ? '<p><a class="text-link small" href="./results/run-notes.md">本文と判定を照合した所見を読む ↗</a></p>' : '';
-  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context + notesLink).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
-  for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->', '<!-- BENCHMARK_ROWS -->']) {
-    if (template.split(placeholder).length !== 2) throw new Error(`Expected one ${placeholder}`);
-  }
-  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n')).replace('<!-- EVALUATION_ROWS -->', rows).replace('<!-- BENCHMARK_ROWS -->', metrics);
+  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context).replace('<!-- RUN_SOURCES -->', sources).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
+  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n'));
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);

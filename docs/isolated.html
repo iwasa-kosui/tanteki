@@ -110,15 +110,8 @@
       </section>
 
       <section id="evidence" class="evidence wrap section" aria-labelledby="evidence-title">
-        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">評価の結果と、生成した文書の全文</h2><!-- RUN_CONTEXT --></div>
-        <div class="evaluation">
-          <table><caption>実行状態と、ログで確認した操作</caption><thead><tr><th scope="col">指標</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- EVALUATION_ROWS --></tbody></table>
-          <p>スキル本文の取得とlintの直接呼び出しは、ログから確認した件数です。条件分岐やラッパー経由の実行は集計されない場合があります。集計が0件でも、未実行とは限りません。手順全体の遵守を示すものでもありません。</p>
-          <table><caption>生成後の採点と、生成時の利用量</caption><thead><tr><th scope="col">指標</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- BENCHMARK_ROWS --></tbody></table>
-          <p>5基準は事実・根拠・役割・明確さ・簡潔さです。合格数は各出力の5判定の合計です。LLMの判定には誤りがあり、文章検査の合格だけでも品質を判断できません。</p>
-          <p>トークンは生成中に報告された利用量の合計で、入力はキャッシュを含みます。失敗した試行も含めますが、応答が利用量を返さなかった分は不明です。採点の利用量は含みません。</p>
-          <a class="text-link small" href="./results/report.md">実行結果の集計を読む ↗</a>
-        </div>
+        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">使用例の比較条件</h2><!-- RUN_CONTEXT --></div>
+        <div class="evidence-sources"><!-- RUN_SOURCES --></div>
       </section>
     </main>
     <footer class="site-footer wrap"><a class="wordmark" href="./">tanteki<span aria-hidden="true">.</span></a><p>文書の種類ごとに、必要な情報が揃うまで直します。</p><div><a href="https://github.com/iwasa-kosui/tanteki">GitHub ↗</a><a href="https://github.com/iwasa-kosui/tanteki/blob/main/LICENSE">MIT License</a></div></footer>

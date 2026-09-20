@@ -79,7 +79,7 @@ test("publication verifies archived evidence without local Docker or today's har
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("site renders isolated outputs and paired metrics, preserving links and rejecting missing quotations", async () => {
+test("site renders isolated outputs and comparison context, preserving links and rejecting missing quotations", async () => {
   const root = await mkdtemp(join(tmpdir(), "tanteki-isolated-site-"));
   try {
     const out = await fixture(root);
@@ -92,8 +92,7 @@ test("site renders isolated outputs and paired metrics, preserving links and rej
     await build(root);
     const html = await readFile(join(root, "dist/index.html"), "utf8");
     assert.match(html, /test-model/);
-    assert.match(html, /有効ペアは1\/1組/);
-    assert.match(html, /5\/5/);
+    assert.match(html, /両条件で生成が成功した文書のうち、1組を採点/);
     assert.match(html, /results\/documents\/example\.1\.with_skill\.md/);
     assert.match(html, /href="\.\/results\/run-notes\.md"/);
     assert.doesNotMatch(html, /用途を満たすか|最大1回修正|<!-- (EXAMPLES|RUN_CONTEXT)/);

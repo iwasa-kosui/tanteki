@@ -613,6 +613,13 @@ summary {
   color:var(--muted);
   margin:20px 0;
 }
+.evidence-sources details {
+  font-size:12px;
+  color:var(--muted);
+}
+.evidence-sources summary {
+  cursor:pointer;
+}
 .evaluation table,.doc-types table {
   border-collapse:collapse;
   width:100%;
