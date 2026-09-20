@@ -81,14 +81,19 @@ export function apiTransport(apiKey: string | undefined): Transport {
 // One queue covers both arms and child agents. Pace before the first attempt;
 // never retry a failed request or alter the measured candidate.
 export function paceTransport(transport: Transport, intervalMs = 7000): Transport {
-  let availableAt = 0;
+  let lastStartedAt = -Infinity;
+  let queue = Promise.resolve();
   return async (body, signal) => {
-    signal.throwIfAborted();
-    const now = Date.now();
-    const startAt = Math.max(now, availableAt);
-    availableAt = startAt + intervalMs;
-    if (startAt > now) await delay(startAt - now, undefined, { signal });
-    signal.throwIfAborted();
+    const turn = queue.then(async () => {
+      signal.throwIfAborted();
+      const remaining = lastStartedAt + intervalMs - Date.now();
+      if (remaining > 0) await delay(remaining, undefined, { signal });
+      signal.throwIfAborted();
+      lastStartedAt = Date.now();
+    });
+    // A cancelled turn must not reject the following request's queue.
+    queue = turn.catch(() => {});
+    await turn;
     return transport(body, signal);
   };
 }
