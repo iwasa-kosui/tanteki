@@ -1,10 +1,12 @@
 # スキルあり／なしの執筆ベンチマーク
 
-新しい比較は[分離環境でのスキル比較](isolated/README.md)を使う。`npm run benchmark`は新方式を起動する。以下は既存方式の説明と保存結果であり、既存コマンドは`npm run benchmark:legacy`で実行する。
+新しい比較は[分離環境でのスキル比較](isolated/README.md)を使う。`npm run benchmark`は新方式を起動する。[2026年9月21日の実測](results/2026-09-21-docker-13f60c3/run-notes.md)に、結果・失敗件数・本文を照合した所見をまとめた。
+
+以下は旧方式の説明と保存結果であり、既存コマンドは`npm run benchmark:legacy`で実行する。
 
 同じ依頼と生成モデルで、tanteki の執筆指示と lint 修正を加えた場合の違いを測る。スキルなし側は初稿1回だけを生成し、スキルの資料や lint の修正指示を渡さない。スキルあり側は資料を付与し、lint の指摘に応じて最大1回修正する。
 
-最新の保存先は [2026年9月20日の比較](results/2026-09-20-isolated-ca1c0eb/report.md) で、対象は `origin/main` の `ca1c0eb501cd5885dde28c6a84a1438dd42232a6`。[原文と用途のレビュー](results/2026-09-20-isolated-ca1c0eb/document-review/report.md)、[実測の要点](results/2026-09-20-isolated-ca1c0eb/run-notes.md)も参照できる。
+旧方式の保存先は [2026年9月20日の比較](results/2026-09-20-isolated-ca1c0eb/report.md) で、対象は `origin/main` の `ca1c0eb501cd5885dde28c6a84a1438dd42232a6`。[原文と用途のレビュー](results/2026-09-20-isolated-ca1c0eb/document-review/report.md)、[実測の要点](results/2026-09-20-isolated-ca1c0eb/run-notes.md)も参照できる。
 
 旧方式はスキルなし側にも独自の lint 指摘を返していたため、9月6日と9月20日の旧結果を無効化した。[修正と入力検証の記録](baseline-audit.md)に経緯を残す。旧結果を新しい比較として流用しない。
 

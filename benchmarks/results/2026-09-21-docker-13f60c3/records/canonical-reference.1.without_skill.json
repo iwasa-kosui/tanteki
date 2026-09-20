@@ -1,0 +1,28 @@
+{
+  "promptHash": "b2d18a668799402aa1c1a1cf34bde0f5885ad0443011e78d6f9f8a8d7ce174be",
+  "jobHash": "0c89e10e2058187cffae937c98ab6b58373a037633fe878f5d32da1fc2b0deb9",
+  "environmentHash": "0aad8039710d00464bd069f4924d361dab2605a9a6ba934d7899dc5168267380",
+  "containerId": "abf69ad3aa422f75c1d12dd0c92178c02b81c706c35e2b7a0dcab420cb427d52",
+  "usage": {
+    "input_tokens": 5887,
+    "cached_input_tokens": 0,
+    "output_tokens": 112
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 7078,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "canonical-reference.1.without_skill",
+  "caseId": "canonical-reference",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "経費の領収書は、経費システムにPDFで添付して提出してください。経理から個別に原本の提出を求められた場合を除き、紙の原本を提出する必要はありません。",
+    "notes": ""
+  },
+  "responseHash": "2511011e9b2aa05dcf6bd3d1f4fd6cdc89de96fbd84440533fe123f26073039a"
+}

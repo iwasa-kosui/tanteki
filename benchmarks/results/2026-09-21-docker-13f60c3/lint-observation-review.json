@@ -1,0 +1,90 @@
+{
+  "runFingerprint": "65df0cfb40bdf03fea5fbfe167f2ac765d7241384b521d334bbcf7d434434f4b",
+  "description": "直接呼び出しの観測に含まれなかった、条件分岐に続くlint実行の抜粋。元の観測値や集計値は変更しない。source.pathはevidence-inventory.json内のcallsファイル一覧に対応する。",
+  "entries": [
+    {
+      "id": "design-tradeoff.1.with_skill",
+      "recordObservation": false,
+      "source": {
+        "path": "design-tradeoff.1.with_skill/events.jsonl",
+        "sha256": "e7bfb9fe5bdcaef8c055b37c84ad67f8b8f1d0c30804d4dc6598b7a9d9fc10c7"
+      },
+      "commandEvents": [
+        {
+          "type": "event",
+          "event": {
+            "method": "item/completed",
+            "params": {
+              "item": {
+                "type": "commandExecution",
+                "id": "exec-660ff1d8-39a1-46a0-a927-8f58c1eb178e",
+                "pluginId": null,
+                "scriptPath": null,
+                "command": "/bin/bash -lc 'if [ ! -d /home/agent/.agents/skills/tanteki/node_modules ]; then npm ci --prefix /home/agent/.agents/skills/tanteki; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type design-doc /workspace/file-import-design-doc.md'",
+                "cwd": "/workspace",
+                "processId": "45444",
+                "source": "unifiedExecStartup",
+                "status": "completed",
+                "commandActions": [
+                  {
+                    "type": "unknown",
+                    "command": "if [ ! -d /home/agent/.agents/skills/tanteki/node_modules ]; then npm ci --prefix /home/agent/.agents/skills/tanteki; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type design-doc /workspace/file-import-design-doc.md"
+                  }
+                ],
+                "aggregatedOutput": null,
+                "exitCode": 0,
+                "durationMs": 735
+              },
+              "threadId": "01a0bf5d-2f46-74e3-b08f-96130ce885ac",
+              "turnId": "01a0bf5d-2f63-7370-9b81-49cdf57d6c4b",
+              "completedAtMs": 1789916983573
+            },
+            "emittedAtMs": 1789916983573
+          }
+        }
+      ]
+    },
+    {
+      "id": "runbook-missing.1.with_skill",
+      "recordObservation": false,
+      "source": {
+        "path": "runbook-missing.1.with_skill/events.jsonl",
+        "sha256": "9380b1cfee809078515a510718a4bfe2f3e1e1b133564be36c5a5727bbed0082"
+      },
+      "commandEvents": [
+        {
+          "type": "event",
+          "event": {
+            "method": "item/completed",
+            "params": {
+              "item": {
+                "type": "commandExecution",
+                "id": "exec-ccdf0b85-16f1-4f9a-be3c-10e0ca8ab6fe",
+                "pluginId": null,
+                "scriptPath": null,
+                "command": "/bin/bash -lc 'if [ ! -d /home/agent/.agents/skills/tanteki/node_modules ]; then npm ci --prefix /home/agent/.agents/skills/tanteki; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /workspace/cache-restart-runbook-draft.md'",
+                "cwd": "/workspace",
+                "processId": "21863",
+                "source": "unifiedExecStartup",
+                "status": "completed",
+                "commandActions": [
+                  {
+                    "type": "unknown",
+                    "command": "if [ ! -d /home/agent/.agents/skills/tanteki/node_modules ]; then npm ci --prefix /home/agent/.agents/skills/tanteki; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /workspace/cache-restart-runbook-draft.md"
+                  }
+                ],
+                "aggregatedOutput": null,
+                "exitCode": 0,
+                "durationMs": 1294
+              },
+              "threadId": "01a0bf5e-d701-7ed0-9b0e-04121c21cbc6",
+              "turnId": "01a0bf5e-d71f-7603-93b5-fb8489b7e403",
+              "completedAtMs": 1789917097461
+            },
+            "emittedAtMs": 1789917097461
+          }
+        }
+      ]
+    }
+  ]
+}

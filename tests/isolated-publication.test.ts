@@ -82,7 +82,8 @@ test("publication verifies archived evidence without local Docker or today's har
 test("site renders isolated outputs and paired metrics, preserving links and rejecting missing quotations", async () => {
   const root = await mkdtemp(join(tmpdir(), "tanteki-isolated-site-"));
   try {
-    await fixture(root);
+    const out = await fixture(root);
+    await writeFile(join(out, "run-notes.md"), "本文を照合した所見。\n");
     await cp(new URL("../docs/", import.meta.url), join(root, "docs"), { recursive: true });
     await save(join(root, "docs/benchmark.json"), { run: "benchmarks/results/test-isolated" });
     const note = { text: "担当者", note: "動作を行う人を示しています。" };
@@ -94,6 +95,7 @@ test("site renders isolated outputs and paired metrics, preserving links and rej
     assert.match(html, /有効ペアは1\/1組/);
     assert.match(html, /5\/5/);
     assert.match(html, /results\/documents\/example\.1\.with_skill\.md/);
+    assert.match(html, /href="\.\/results\/run-notes\.md"/);
     assert.doesNotMatch(html, /用途を満たすか|最大1回修正|<!-- (EXAMPLES|RUN_CONTEXT)/);
     for (const [, target] of html.matchAll(/(?:href|cite)="(\.\/[^"#]*)[^"]*"/g)) await access(join(root, "dist", target));
     const comparison = await readFile(join(root, "dist/evaluation.html"), "utf8");

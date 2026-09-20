@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
@@ -62,7 +62,7 @@ export async function build(projectRoot = root) {
     ['環境無効', (arm) => arm.invalid_environment],
     ['実行失敗', (arm) => arm.execution_failed],
     ['スキル本文取得の観測', (arm) => `${arm.skillTextSeen}/${arm.planned}`],
-    ['lintコマンドの観測', (arm) => `${arm.lintCommandSeen}/${arm.planned}`],
+    ['lintの直接呼び出しの観測', (arm) => `${arm.lintCommandSeen}/${arm.planned}`],
   ]);
   const metrics = rowsFor([
     ['採点した出力', (arm) => arm.assessed],
@@ -79,7 +79,9 @@ export async function build(projectRoot = root) {
   for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- COMPARISON_CONTEXT -->']) {
     if (rawTemplate.split(marker).length !== 2) throw new Error(`Expected one ${marker}`);
   }
-  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
+  const notesLink = (await readdir(join(root, run))).includes('run-notes.md')
+    ? '<p><a class="text-link small" href="./results/run-notes.md">本文と判定を照合した所見を読む ↗</a></p>' : '';
+  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context + notesLink).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
   for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->', '<!-- BENCHMARK_ROWS -->']) {
     if (template.split(placeholder).length !== 2) throw new Error(`Expected one ${placeholder}`);
   }

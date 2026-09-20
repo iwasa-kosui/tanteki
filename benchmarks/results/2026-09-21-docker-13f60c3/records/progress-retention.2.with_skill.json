@@ -1,0 +1,28 @@
+{
+  "promptHash": "c861cb7b6edd708d2bc58c44d3531541943217c95b164382058dc6b42b217d83",
+  "jobHash": "3c42f65a92ac798e4de81e1d5fbd677b0be71237d1e68b852f01f9991e63984a",
+  "environmentHash": "16665238521370c4d2604654bb6b87e3b1ceb86e4f19ee28c0008d2383ca600d",
+  "containerId": "ef2d66a0c9ee69838ac67ab5f2bedefcfb6d3ee85236fad7a68e4dd17cb0bde0",
+  "usage": {
+    "input_tokens": 44436,
+    "cached_input_tokens": 33543,
+    "output_tokens": 1197
+  },
+  "modelCalls": 5,
+  "providerResponses": 5,
+  "elapsedMs": 35819,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": true
+  },
+  "id": "progress-retention.2.with_skill",
+  "caseId": "progress-retention",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "### 進捗報告（2026年8月17日〜8月21日）\n\n- **担当**：鈴木\n- **完了**：BILL-218の受付APIを実装済み。PR #106はレビュー待ち。\n- **次の作業**：再試行処理の実装。\n- **阻害要因**：再試行の最大回数が未決定のため、作業停止中。\n- **PdMへの依頼**：再試行の最大回数を2026年8月24日までに判断してください。",
+    "notes": "進捗報告（flow）として作成。tantekiのlint検査を通過済み。"
+  },
+  "responseHash": "134985f56700e92a28119d4feb9277ea29d3f2af6668b7e71215c077200b1daa"
+}

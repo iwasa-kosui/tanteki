@@ -1,0 +1,28 @@
+{
+  "promptHash": "61c432b8cff0ca17afca43f6f45e9d12dac1b94370adecf33b52b5a8bbc3cb76",
+  "jobHash": "9e75b7f615b49503ce861b3b2bd9f74ac8cfd0be511ca61a9c92828067a645d4",
+  "environmentHash": "bd10131995100a382416063e10f00eaa00a3cff4a14c4b2e6490019699f35124",
+  "containerId": "5c9cd0e5c36b0efdfcc992a3373e4b5a45f5fe483d824f4c069a644a9a1c71b8",
+  "usage": {
+    "input_tokens": 45556,
+    "cached_input_tokens": 29330,
+    "output_tokens": 1430
+  },
+  "modelCalls": 4,
+  "providerResponses": 4,
+  "elapsedMs": 29049,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": true
+  },
+  "id": "incident-record.2.with_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "## ポストモーテム：請求検索エラー増加\n\n### 概要\n8月19日、請求検索のエラーが増加した。09:17に直前の変更を戻し、09:22に復旧を確認した。検索失敗は340件だったが、決済への影響はなかった。\n\n### 経過\n- 09:10　請求検索のエラー増加を検知\n- 09:17　当番の加藤が直前の変更を戻した\n- 09:22　復旧を確認\n\n### 原因\nDB接続枯渇が原因と考えている。ただし、ログの確認は未完了であり、原因は確定していない。\n\n### 対応と課題\n- 対応済み：直前の変更を戻した。\n- OPS-315：接続数の記録を追加する。担当は加藤、期限は8月26日。",
+    "notes": "運用・障害の記録として構成し、提示情報のみを記載しました。tanteki の record 向け lint は通過しています。"
+  },
+  "responseHash": "fe3703eb17496a1eda38607a1955e4d96039eaa2fe04669a979c78428ddd416c"
+}

@@ -1,4 +1,4 @@
 {
-  "format": "legacy",
-  "run": "benchmarks/results/2026-09-20-isolated-ca1c0eb"
+  "format": "isolated",
+  "run": "benchmarks/results/2026-09-21-docker-13f60c3"
 }

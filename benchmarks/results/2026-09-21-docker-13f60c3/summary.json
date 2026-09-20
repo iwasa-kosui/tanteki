@@ -1,0 +1,124 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "plannedPairs": 20,
+  "validPairs": 16,
+  "gradedPairs": 16,
+  "pairedScoreDifferences": [
+    {
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "difference": 2
+    },
+    {
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "incident-record",
+      "repeat": 1,
+      "difference": 1
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "difference": 2
+    },
+    {
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "difference": -2
+    },
+    {
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "difference": 2
+    },
+    {
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "difference": -1
+    },
+    {
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "difference": 1
+    },
+    {
+      "caseId": "incident-record",
+      "repeat": 2,
+      "difference": 1
+    },
+    {
+      "caseId": "no-document",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "difference": 2
+    },
+    {
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "difference": 3
+    }
+  ],
+  "arms": {
+    "without_skill": {
+      "planned": 20,
+      "valid": 18,
+      "invalid_environment": 0,
+      "execution_failed": 2,
+      "inputTokens": 118397,
+      "outputTokens": 12545,
+      "cachedInputTokens": 11979,
+      "modelCalls": 22,
+      "elapsedMs": 185841,
+      "skillTextSeen": 0,
+      "lintCommandSeen": 0,
+      "assessed": 16,
+      "rubricPasses": 60,
+      "rubricTotal": 80,
+      "lintPasses": 8
+    },
+    "with_skill": {
+      "planned": 20,
+      "valid": 17,
+      "invalid_environment": 0,
+      "execution_failed": 3,
+      "inputTokens": 954302,
+      "outputTokens": 28749,
+      "cachedInputTokens": 725644,
+      "modelCalls": 85,
+      "elapsedMs": 664525,
+      "skillTextSeen": 16,
+      "lintCommandSeen": 5,
+      "assessed": 16,
+      "rubricPasses": 71,
+      "rubricTotal": 80,
+      "lintPasses": 15
+    }
+  }
+}
