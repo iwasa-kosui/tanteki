@@ -69,7 +69,7 @@ test("offline review report shows full evidence, shares identical reviews and pr
     const plan = buildReviewPlan(cases, arms.map((arm) => record(arm, 1, body)), profiles);
     const input = plan.inputs[0];
     const review = { ...good(), status: "revision_needed", strengths: ["良い点を保持"], findings: [{ severity: "major", kind: "claim", basis: "source", excerpt: "本文", source_excerpt: "原依頼", finding: "要修正の記述", impact: "判断を誤る影響", suggested_change: "具体的な修正案" }], source_gaps: [{ missing_information: "原資料の不足", blocks_use: true, handled_appropriately: true, excerpt: "本文", consequence: "後続の実装は待つ" }] };
-    const manifest = { fingerprint: "fixture", model: "offline", effort: "high", sourceEvaluation: { skillRevision: "pinned" }, entries: plan.entries, inputHashes: [{ reviewId: input.reviewId, inputHash: input.inputHash }] };
+    const manifest = { fingerprint: "fixture", model: "offline", effort: "high", sourceEvaluation: { skillRevision: "pinned", fingerprint: "fb12f9804152845fe34867c7aeeb75008ed1d00688d5f3e9e97882e07917cd6f" }, entries: plan.entries, inputHashes: [{ reviewId: input.reviewId, inputHash: input.inputHash }] };
     const frozen = new Map();
     async function freeze(path, value) { const text = typeof value === "string" ? value : JSON.stringify(value); await writeFile(join(dir, path), text); frozen.set(path, hash(text)); }
     await freeze("manifest.json", manifest);
@@ -83,6 +83,9 @@ test("offline review report shows full evidence, shares identical reviews and pr
     assert.equal(summary.calls, 1);
     assert.equal(summary.usage.input_tokens, 100);
     const html = await readFile(join(dir, "comparison.html"), "utf8");
+    assert.match(html, /比較無効/);
+    assert.match(await readFile(join(dir, "report.md"), "utf8"), /^> \*\*比較無効/);
+    assert.match(await readFile(join(dir, "comparisons/example.1.md"), "utf8"), /^> \*\*比較無効/);
     const md = await readFile(join(dir, "comparisons/example.1.md"), "utf8");
     for (const text of ["良い点を保持", "要修正の記述", "判断を誤る影響", "具体的な修正案", "原資料の不足", "後続の実装は待つ", "原依頼"]) {
       assert.ok(html.includes(text), text);

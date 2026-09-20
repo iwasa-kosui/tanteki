@@ -115,7 +115,7 @@ async function run(o) {
   } else {
     await mkdir(dirname(o.out), { recursive: true });
     await mkdir(o.out); // Never replace an existing run or the author evidence.
-    await save(join(o.out, "manifest.json"), { createdAt: new Date().toISOString(), fingerprint, ...specification, runtime, jobs: o.jobs, isolation: "fresh ephemeral session; no tools, user/project instructions, native skills, plugins, history, old judgments, candidate notes, arm names or skill text" });
+    await save(join(o.out, "manifest.json"), { createdAt: new Date().toISOString(), fingerprint, ...specification, runtime, jobs: o.jobs, isolation: { verified: false, requested: "fresh ephemeral session; no tools, user/project instructions, native skills, plugins or history", promptExcludes: "old judgments, candidate notes, arm names and skill text", evidence: "CLI flags and tool events only; effective model input has not been verified" } });
     for (const name of ["inputs", "reviews", "calls", "artifacts"]) await mkdir(join(o.out, name));
     await save(join(o.out, "schema.json"), schema);
     await writeFile(join(o.out, "instructions.txt"), await read(join(root, "benchmarks/document-review-instructions.txt")));

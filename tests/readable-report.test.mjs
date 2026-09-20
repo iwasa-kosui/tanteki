@@ -65,6 +65,8 @@ test("offline reports preserve all evidence, exact draft bodies and swapped A/B 
     });
     for (const p of evidenceFiles) assert.equal(await readFile(join(temp, p), "utf8"), before[p], `Evidence changed: ${p}`);
     const html = await readFile(join(temp, "comparison.html"), "utf8");
+    assert.match(html, /比較無効/);
+    assert.match(await readFile(join(temp, "report.md"), "utf8"), /^> \*\*比較無効/);
     const comparisons = await readdir(join(temp, "comparisons"));
     assert.equal(comparisons.length, 20);
     assert.equal((await readdir(join(temp, "documents"))).length, 48);
@@ -76,6 +78,7 @@ test("offline reports preserve all evidence, exact draft bodies and swapped A/B 
     for (const p of evidenceFiles.filter((p) => p.startsWith("records/"))) {
       const record = JSON.parse(before[p]);
       const comparison = await readFile(join(temp, "comparisons", `${record.caseId}.${record.repeat}.md`), "utf8");
+      assert.match(comparison, /^> \*\*比較無効/);
       for (const [i, a] of record.attempts.entries()) {
         assert.equal(await readFile(join(temp, "documents", `${record.id}.${i + 1}.md`), "utf8"), a.response.body);
         assert.ok(html.includes(renderMarkdown(a.response.body)), `${record.id} draft ${i + 1} missing from HTML`);

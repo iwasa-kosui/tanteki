@@ -50,14 +50,14 @@ test("seeded schedule contains each pair exactly once per repeat and balances fi
   }
 });
 
-test("both arms receive the same revision evidence without a hidden rubric", () => {
+test("baseline rejects revision feedback while treatment can repair lint findings", () => {
   const previous = { body: "本文", notes: "" }, feedback = [{ ruleId: "sentence-length", line: 1, message: "短くする" }];
-  for (const arm of arms) {
-    const prompt = authorPrompt(cases[0], arm, "SKILL-CONTEXT", previous, feedback);
-    assert.ok(prompt.includes(JSON.stringify(previous)));
-    assert.ok(prompt.includes(JSON.stringify(feedback)));
-    assert.equal(prompt.includes("SKILL-CONTEXT"), arm === "with_skill");
-  }
+  assert.throws(() => authorPrompt(cases[0], "without_skill", "SKILL-CONTEXT", previous, feedback), /Baseline/);
+  assert.throws(() => authorPrompt(cases[0], "without_skill", "SKILL-CONTEXT", undefined, feedback), /Baseline/);
+  const prompt = authorPrompt(cases[0], "with_skill", "SKILL-CONTEXT", previous, feedback);
+  assert.ok(prompt.includes(JSON.stringify(previous)));
+  assert.ok(prompt.includes(JSON.stringify(feedback)));
+  assert.ok(prompt.includes("SKILL-CONTEXT"));
 });
 
 test("invalid generations, incomplete turns, and tool use cannot become successes", () => {
@@ -72,7 +72,7 @@ test("invalid generations, incomplete turns, and tool use cannot become successe
   assert.throws(() => parseEvents([completed, { type: "error", message: "failure" }].map(JSON.stringify).join("\n")), /failed/);
 });
 
-test("CLI disables user instructions, native skills, tools and session persistence for both arms", () => {
+test("CLI requests isolation; flags alone do not establish runtime isolation", () => {
   const args = codexArgs({ model: "test", effort: "low", workspace: "/tmp/empty", instructions: "/tmp/instructions", schema: "/tmp/schema", output: "/tmp/output", skills: ["/tmp/a skill"] });
   for (const flag of ["--ignore-user-config", "--ephemeral", "project_doc_max_bytes=0", "features.plugins=false", "features.shell_tool=false", "features.multi_agent=false", 'web_search="disabled"', 'skills.config=[{path="/tmp/a skill",enabled=false}]']) assert.ok(args.includes(flag), flag);
   assert.ok(!args.includes("--dangerously-bypass-approvals-and-sandbox"));
@@ -111,5 +111,6 @@ test("dry-run validates every case and never invokes a model", () => {
   const stdout = execFileSync(process.execPath, [join(root, "benchmarks/benchmark.mjs"), "run", "--out", "/tmp/not-created-nihongo-dry", "--model", "not-a-model", "--judge-model", "not-a-judge", "--dry-run"], { encoding: "utf8", env: { ...process.env, CODEX_BIN: "/does/not/exist" } });
   const plan = JSON.parse(stdout);
   assert.equal(plan.plan.length, 40);
+  assert.deepEqual(plan.settings.maxLintRevisions, { without_skill: 0, with_skill: 1 });
   assert.ok(plan.sourceHashes["rules/lib/japanese-rule.mjs"], "Nested lint helpers must be fingerprinted for safe resume");
 });

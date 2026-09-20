@@ -27,7 +27,7 @@ tanteki を使って、この設計書を開発者向けに短く推敲して。
 （ここに草稿を貼る）
 ```
 
-詳しくは[スキルの手順](SKILL.md)、[CLIでの検査](references/lint.md)、[出力の比較](benchmarks/results/2026-09-20-main-ca1c0eb/document-review/report.md)を参照してください。
+詳しくは[スキルの手順](SKILL.md)、[CLIでの検査](references/lint.md)、[比較の無効化と確認状況](benchmarks/baseline-audit.md)を参照してください。
 
 ## 設計の参考
 
