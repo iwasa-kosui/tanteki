@@ -79,7 +79,7 @@ test("publication verifies archived evidence without local Docker or today's har
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("site renders isolated outputs and paired metrics, preserving links and rejecting missing quotations", async () => {
+test("site renders isolated outputs and comparison context, preserving links and rejecting missing quotations", async () => {
   const root = await mkdtemp(join(tmpdir(), "tanteki-isolated-site-"));
   try {
     const out = await fixture(root);
@@ -92,8 +92,7 @@ test("site renders isolated outputs and paired metrics, preserving links and rej
     await build(root);
     const html = await readFile(join(root, "dist/index.html"), "utf8");
     assert.match(html, /test-model/);
-    assert.match(html, /有効ペアは1\/1組/);
-    assert.match(html, /5\/5/);
+    assert.match(html, /両条件で生成が成功した文書のうち、1組を採点/);
     assert.match(html, /results\/documents\/example\.1\.with_skill\.md/);
     assert.match(html, /href="\.\/results\/run-notes\.md"/);
     assert.doesNotMatch(html, /用途を満たすか|最大1回修正|<!-- (EXAMPLES|RUN_CONTEXT)/);
@@ -122,9 +121,9 @@ test("site verifies supplemental examples and keeps their evidence separate from
     const html = await readFile(join(root, "dist/index.html"), "utf8");
     assert.match(html, /実測から、2課題を紹介/);
     assert.match(html, /手順書の例は2026年9月20日（UTC）に開始した追加実測/);
-    assert.match(html, /以下の集計には含めません/);
-    assert.match(html, /有効ペアは1\/1組/);
-    assert.doesNotMatch(html, /有効ペアは2\/2組/);
+    assert.match(html, /手順書の例は追加実測から選び、この採点件数には含めていません/);
+    assert.match(html, /両条件で生成が成功した文書のうち、1組を採点/);
+    assert.doesNotMatch(html, /両条件で生成が成功した文書のうち、2組を採点/);
     assert.match(html, /runbook-exportへの依頼/);
     assert.match(html, /cite="\.\/examples\/test-runbook\/documents\/runbook-export\.1\.with_skill\.md"/);
     assert.match(html, /href="\.\/examples\/test-runbook\/comparison.html#runbook-export\.1"/);
