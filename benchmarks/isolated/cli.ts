@@ -24,7 +24,7 @@ const root = resolve(here, "../..");
 const readJSON = async (path: string): Promise<unknown> => JSON.parse(await readFile(path, "utf8"));
 const save = (path: string, value: unknown) => writeFile(path, JSON.stringify(value, null, 2) + "\n");
 const workerFiles = ["protocol.ts", "worker.ts", "worker-environment.ts", "model-relay.ts", "codex-client.ts", "codex-session.ts", "turn-state.ts", "turn-event.ts", "worker-message.ts", "native-evidence.ts", "job.ts", "validation.ts"];
-const runtimeFiles = ["Dockerfile", "Bundle.Dockerfile", "package.json", "package-lock.json", ...workerFiles, "lint-worker.ts", "docker.ts", "cli.ts", "report.ts", "benchmark-case.ts", "execution.ts", "manifest.ts", "evaluation.ts", "runtime-lock.ts", "options.ts", "plan.ts", "observations.ts", "../readable-report.mjs", "../comparison.css", "../../package-lock.json"];
+const runtimeFiles = ["Dockerfile", "Bundle.Dockerfile", "package.json", "package-lock.json", ...workerFiles, "lint-worker.ts", "docker.ts", "cli.ts", "report.ts", "benchmark-case.ts", "execution.ts", "manifest.ts", "evaluation.ts", "runtime-lock.ts", "options.ts", "plan.ts", "observations.ts", "../readable-report.mjs", "../comparison-validity.mjs", "../invalidated-runs.json", "../comparison.css", "../../package-lock.json"];
 
 async function runtimeSources(): Promise<Record<string,string>> { return Object.fromEntries(await Promise.all(runtimeFiles.map(async (name) => [name, sha256(await readFile(join(here, name)))]))); }
 

@@ -209,6 +209,7 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
     child.stderr.on("data", (chunk: Buffer) => log({ type: "dockerStderr", text: chunk.toString() }));
     timer = setTimeout(() => stop("Execution timed out"), timeout * 1000);
     signal?.addEventListener("abort", onAbort, { once: true });
+    if (signal?.aborted) onAbort(); // An interrupt during container creation must not be lost.
     const lines = createInterface({ input: child.stdout, crlfDelay: Infinity });
     let count = 0;
     let ordered = Promise.resolve();
