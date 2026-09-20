@@ -1,0 +1,57 @@
+{
+  "id": "incident-record.2.without_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "## 請求検索エラー増加ポストモーテム\n\n### 概要\n8月19日、請求検索のエラー増加が発生しました。直前の変更をロールバックし、約12分後に復旧を確認しました。\n\n### タイムライン\n- 09:10　請求検索のエラー増加を検知\n- 09:17　当番の加藤が直前の変更をロールバック\n- 09:22　復旧を確認\n\n### 影響\n- 請求検索の失敗：340件\n- 決済への影響：なし\n\n### 原因\nDB接続枯渇が原因である可能性がありますが、ログ確認が未完了のため未確定です。\n\n### 改善課題\n- OPS-315：DB接続数の記録を追加（担当：加藤、期限：8月26日）",
+        "notes": "原因は仮説段階であり、ログ確認完了後に確定してください。"
+      },
+      "usage": {
+        "input_tokens": 2562,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 289,
+        "reasoning_output_tokens": 32
+      },
+      "elapsedMs": 11789,
+      "metrics": {
+        "characters": 288,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 16,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "44fd572c40ff3e1f95c0497485a005d177366a553e9808764ced4d2e2ec291e7"
+    },
+    {
+      "response": {
+        "body": "## 請求検索エラー増加ポストモーテム\n\n### 概要\n8月19日、請求検索のエラー増加が発生しました。直前の変更をロールバックし、約12分後に復旧を確認しました。\n\n### タイムライン\n- 09:10　請求検索のエラー増加を検知\n- 09:17　当番の加藤が直前の変更をロールバック\n- 09:22　復旧を確認\n\n### 影響\n- 請求検索の失敗：340件\n- 決済への影響：なし\n\n### 原因\n原因はDB接続枯渇の可能性があります。ログ確認は未完了で、確定していません。\n\n### 改善課題\n- OPS-315：DB接続数の記録を追加（担当：加藤、期限：8月26日）",
+        "notes": "原因は仮説段階であり、ログ確認完了後に確定してください。"
+      },
+      "usage": {
+        "input_tokens": 2975,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 374,
+        "reasoning_output_tokens": 118
+      },
+      "elapsedMs": 10875,
+      "metrics": {
+        "characters": 287,
+        "headings": 6,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "2deb93059e3ff67f96733cd695037153928f9a9fedc732a36e7dca15b35f5adb"
+    }
+  ]
+}

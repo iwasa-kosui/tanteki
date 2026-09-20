@@ -1,0 +1,29 @@
+{
+  "id": "comparison-rfc.1.with_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 検索基盤の方式に関するRFC\n\n## 状態\n提案中。開発チームの合意を求める。\n\n## 問題\n商品検索が遅い。特に部分一致検索の速度改善が必要である。\n\n## 提案\n検索専用サービスを導入する方式Bを採用する。方式Bでは部分一致検索を高速化できる一方、別サービスの運用と、データをDBから反映するまでの遅延が発生する。\n\n検索結果は最大60秒古くても許容する案とする。ただし、業務側はまだ承認していないため、この条件は未決定である。\n\n## 代替案\n方式Aは既存DBに索引を追加する。運用対象は増えないが、部分一致検索は速くならないため、提案には採用しない。\n\n## 影響\n方式Bを採用すると、検索専用サービスの運用が必要になる。また、DBの変更が検索結果へ反映されるまで遅延が生じる。計測値と費用は未確認である。\n\n## 合意が必要な事項\n- 別サービスを運用すること\n- 検索結果の最大60秒の古さを許容すること",
+        "notes": "型: RFC（stock）。読者: 開発チーム。主題: 部分一致検索の改善には方式Bを提案するが、運用負担と検索結果の鮮度について合意が必要。出典: 依頼文と原資料の作業メモ。作業追跡情報（SEARCH-88、PR #71、レビュー期限）は本文に含めていない。構成と本文は自身で検査した草稿であり、外部のlintは未実施。"
+      },
+      "usage": {
+        "input_tokens": 18614,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 499,
+        "reasoning_output_tokens": 59
+      },
+      "elapsedMs": 20443,
+      "metrics": {
+        "characters": 410,
+        "headings": 7,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "247da53f54af3cc57caada72737981dd1bdab6d0ce45f2f77275cb3829bcf1ff"
+    }
+  ]
+}

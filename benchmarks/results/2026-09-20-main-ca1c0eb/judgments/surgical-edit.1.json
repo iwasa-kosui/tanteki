@@ -1,0 +1,65 @@
+{
+  "caseId": "surgical-edit",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "本文は「失敗率が7%を超えたら」「当番が」「配信を停止する」を正確に保持している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "本文には新たな監視条件、復旧手順、通知先の追加がない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "タイトル、空行、前2文を維持し、末尾の対象文だけを置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "旧文は残っておらず、失敗率が7%を超えた時に当番が配信を停止することが明確である。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "本文は要求された改稿後の全文だけであり、章や補足を追加していない。本文外notesは本文の追加ではない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "本文は「失敗率が7%を超えたら」「当番が」「配信を停止する」を正確に保持している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "本文には新たな監視条件、復旧手順、通知先の追加がない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "タイトル、空行、前2文を維持し、末尾の対象文だけを置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "旧文は残っておらず、失敗率が7%を超えた時に当番が配信を停止することが明確である。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "本文は要求された改稿後の全文だけであり、章や補足を追加していない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4697,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 490,
+      "reasoning_output_tokens": 73
+    },
+    "elapsedMs": 21479
+  },
+  "promptHash": "84e059cb0167170e895347176e4b8457cbb415b239c7ea5f9c6f4f98f7c2b0c2"
+}

@@ -51,9 +51,9 @@
           <div><p class="eyebrow">01 / BEFORE &amp; AFTER</p><h2 id="examples-title">スキルなしと、スキルありの出力を比べる</h2></div>
           <p>同じ依頼から別々に生成した2つの文書を、全文で並べています。</p>
         </div>
-        <p class="comparison-context">「なし／あり」は同じ依頼から別々に生成した結果です。同じ文章を順に編集した履歴ではありません。2026年9月6日の保存記録から紹介します。</p>
+        <p class="comparison-context">「なし／あり」は同じ依頼から別々に生成した結果です。同じ文章を順に編集した履歴ではありません。2026年9月20日の実測から、同じ3課題の反復1を紹介します。</p>
         <!-- EXAMPLES -->
-        <p class="source-note">各欄をスクロールして全文を読めます。本文は原文のまま掲載し、比較する箇所に色を付けて、変わった点をその下に書き添えています。</p>
+        <p class="source-note">各欄をスクロールして全文を読めます。本文は原文のまま掲載し、比較する箇所に色を付けて、違いや共通点をその下に書き添えています。</p>
       </section>
 
       <section id="doc-types" class="doc-types wrap section" aria-labelledby="doc-types-title">
@@ -119,8 +119,15 @@
       </section>
 
       <section id="evidence" class="evidence wrap section" aria-labelledby="evidence-title">
-        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">評価の結果と、生成した文書の全文</h2><p>10課題を各2回、スキルなし／ありで生成。<br>文書として用途を満たすかを、後から評価した記録です。</p><a class="text-link" href="./evaluation.html">全20組の本文と評価を読む <span aria-hidden="true">↗</span></a></div>
-        <div class="evaluation"><table><caption>保存された20組の判定</caption><thead><tr><th scope="col">判定</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- EVALUATION_ROWS --></tbody></table><p>旧版 <a href="https://github.com/iwasa-kosui/tanteki/tree/fb6fd0b085bcd2b03ea8381709ae36d5f95d437e"><code>fb6fd0b</code></a> の記録です。単一モデルによる事後評価で、現行版の性能を保証するものではありません。PRD は評価に含みません。</p><a class="text-link small" href="https://github.com/iwasa-kosui/tanteki/blob/main/benchmarks/results/2026-09-06-main-fb6fd0b/document-review/report.md">評価方法と限界を確認する ↗</a></div>
+        <div><p class="eyebrow">05 / EVIDENCE</p><h2 id="evidence-title">評価の結果と、生成した文書の全文</h2><p>2026年9月20日、10課題を各2回、スキルなし／ありで生成しました。両条件とも、文章検査の指摘による修正は最大1回です。</p><p>対象は実行時の main <a href="https://github.com/iwasa-kosui/tanteki/tree/ca1c0eb"><code>ca1c0eb</code></a>。生成は gpt-5.6-luna / low、5基準の採点は gpt-5.6-terra / low、用途のレビューは gpt-6-astra / high です。</p><p>比較するのは執筆指示の付与効果です。構成検査や委譲を含む通常の工程全体は測っていません。作成者が選んだ10課題と単一モデルの判定による小規模な比較であり、PRD は含みません。</p><a class="text-link" href="./evaluation.html">全20組の本文と評価を読む <span aria-hidden="true">↗</span></a></div>
+        <div class="evaluation">
+          <table><caption>文書として用途を満たすか（各20出力）</caption><thead><tr><th scope="col">判定</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- EVALUATION_ROWS --></tbody></table>
+          <p>生成後に、原資料と本文だけでレビューしました。「原資料の不足で利用に制限」は、不足を本文で適切に示した状態です。執筆の失敗には数えません。</p>
+          <table><caption>固定した5基準の採点と生成量</caption><thead><tr><th scope="col">指標</th><th scope="col">なし</th><th scope="col">あり</th></tr></thead><tbody><!-- BENCHMARK_ROWS --></tbody></table>
+          <p>5基準は事実・根拠・役割・明確さ・簡潔さです。LLM の生の採点には誤判定があり、短さや文章検査の合格だけでは品質を判断できません。</p>
+          <p>トークンは生成と修正の合計で、入力はキャッシュを含みます。採点・レビューの利用量は含みません。</p>
+          <a class="text-link small" href="https://github.com/iwasa-kosui/tanteki/blob/main/benchmarks/results/2026-09-20-main-ca1c0eb/run-notes.md">実測の解釈と判定の照合を読む ↗</a>
+        </div>
       </section>
     </main>
     <footer class="site-footer wrap"><a class="wordmark" href="./">tanteki<span aria-hidden="true">.</span></a><p>文書の種類ごとに、必要な情報が揃うまで直します。</p><div><a href="https://github.com/iwasa-kosui/tanteki">GitHub ↗</a><a href="https://github.com/iwasa-kosui/tanteki/blob/main/LICENSE">MIT License</a></div></footer>

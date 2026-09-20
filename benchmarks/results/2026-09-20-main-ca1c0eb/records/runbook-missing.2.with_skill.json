@@ -1,0 +1,29 @@
+{
+  "id": "runbook-missing.2.with_skill",
+  "caseId": "runbook-missing",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 本番キャッシュ再起動手順\n\n## 前提\n監視でエラーを確認した場合に、当番が本番のキャッシュを再起動する。再起動コマンド、停止してよい条件、復旧確認方法、連絡先は未決定である。\n\n## 検知\n監視でエラーを確認したら、本手順を開始する。\n\n## 手順\n1. 再起動してよい条件を確認する。条件は未決定である。\n2. 再起動コマンドを実行する。コマンドは未決定である。\n3. 復旧確認方法で状態を確認する。方法は未決定である。\n\n## 停止条件\n次のいずれかに該当する場合は、再起動を実行せずに停止する。\n\n- 再起動してよい条件を満たすか判断できない。\n- 再起動コマンドが分からない。\n- 復旧確認方法が分からない。\n\n## 連絡先\n再起動を実行できない場合の連絡先は未決定である。",
+        "notes": "種別は運用Runbook、区分はstockです。原資料だけでは本番操作に必要な情報が不足するため、未決定事項を補わず草稿として作成しました。構成は「前提・検知・手順・停止条件・連絡先」とし、本文の検査とtextlintは未実施です。"
+      },
+      "usage": {
+        "input_tokens": 12584,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 453,
+        "reasoning_output_tokens": 78
+      },
+      "elapsedMs": 13110,
+      "metrics": {
+        "characters": 344,
+        "headings": 6,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308"
+    }
+  ]
+}

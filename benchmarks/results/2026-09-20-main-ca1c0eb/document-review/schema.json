@@ -1,0 +1,133 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intended_use",
+    "status",
+    "summary",
+    "strengths",
+    "findings",
+    "source_gaps"
+  ],
+  "properties": {
+    "intended_use": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "usable",
+        "revision_needed",
+        "source_limited"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strengths": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "severity",
+          "kind",
+          "basis",
+          "excerpt",
+          "source_excerpt",
+          "finding",
+          "impact",
+          "suggested_change"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "claim",
+              "omission",
+              "structure"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "source",
+              "document_purpose"
+            ]
+          },
+          "excerpt": {
+            "type": "string"
+          },
+          "source_excerpt": {
+            "type": "string"
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          },
+          "impact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "suggested_change": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "source_gaps": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "missing_information",
+          "blocks_use",
+          "handled_appropriately",
+          "excerpt",
+          "consequence"
+        ],
+        "properties": {
+          "missing_information": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blocks_use": {
+            "type": "boolean"
+          },
+          "handled_appropriately": {
+            "type": "boolean"
+          },
+          "excerpt": {
+            "type": "string"
+          },
+          "consequence": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

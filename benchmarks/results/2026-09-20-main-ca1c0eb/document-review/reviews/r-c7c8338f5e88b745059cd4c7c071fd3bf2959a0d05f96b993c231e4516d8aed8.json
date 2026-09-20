@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8",
+  "inputHash": "c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式と採用条件について、開発チームが合意を判断するための短いRFC。",
+        "status": "usable",
+        "summary": "方式の比較、Bの提案理由、運用・鮮度への影響が分かり、条件付きの合意形成に使える。性能・費用の定量評価と、60秒の鮮度許容に対する業務承認は未了と明示されている。",
+        "strengths": [
+          "両方式を部分一致の性能と運用負担で比較でき、Bを提案する理由が読み取れる。",
+          "60秒の鮮度許容を承認済みと扱わず、採用条件として確認が必要と明示している。",
+          "合意事項を別サービスの運用と60秒の許容に絞り、合意後の詳細設計と区別している。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "性能の計測値と費用情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "計測値・費用は現時点で未取得。",
+            "consequence": "改善幅や費用対効果の定量判断はできないが、定性的な方式比較と採用条件の協議は可能。本文は計測・見積もりを次のステップに置いている。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6331,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 811,
+        "reasoning_output_tokens": 447
+      },
+      "elapsedMs": 30125,
+      "validationErrors": null
+    }
+  ]
+}

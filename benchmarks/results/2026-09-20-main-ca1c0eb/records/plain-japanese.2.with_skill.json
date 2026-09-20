@@ -1,0 +1,29 @@
+{
+  "id": "plain-japanese.2.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "利用者は、既存の認証が有効であれば再ログインせずに請求画面へ移れます。認証の有効期限が切れている場合は、ログイン画面が表示されます。",
+        "notes": "機能仕様として、CS担当者が利用者への案内に使える形へ推敲しました。造語と抽象表現は削除しています。"
+      },
+      "usage": {
+        "input_tokens": 12626,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 188,
+        "reasoning_output_tokens": 81
+      },
+      "elapsedMs": 10595,
+      "metrics": {
+        "characters": 66,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "3055aeb262f59f11a8b1d1175269b89a8c0037749ff31822c42ad42e1b5a496a"
+    }
+  ]
+}

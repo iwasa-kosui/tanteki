@@ -1,0 +1,65 @@
+{
+  "caseId": "runbook-missing",
+  "repeat": 2,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視でエラーを確認した場合の本番キャッシュ再起動を対象にし、コマンド・実施可否条件・復旧確認・連絡先をいずれも未決定として残している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "具体的なコマンド、閾値、待機時間、環境名、連絡先を補っておらず、安全性も断言していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "notesで、必要情報が不足した「草稿」と明示し、検証済み・完成済みとは報告していない。"
+        },
+        "clarity": {
+          "pass": false,
+          "evidence": "未決定であることは示すが、本文は「本手順を開始する」「コマンドを実行する」という実行手順の形であり、実行前に誰へ何を確認すべきかを具体的な確認事項・質問として十分に示していない。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "原資料から書ける最小限の対象、未決定事項、停止判断を記した草稿であり、空見出しを大量には設けていない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視エラー時のキャッシュ再起動を扱い、再起動コマンド、停止条件、復旧確認、連絡先が未確定であることを明記している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない「運用責任者の承認が必要」という本番操作の必須条件を追加している。コマンド等はプレースホルダーであり創作していないが、根拠のない運用要件を補っている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "題名の「未確定事項あり」と本文の「確定後に使用」により未完成の草稿であることを示し、完成・検証済みとはしていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "この文書だけでは本番操作をしてはいけないと明示し、コマンド、条件、復旧確認、連絡先・エスカレーション先など、事前に確定すべき事項を具体的に列挙している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "不足事項をプレースホルダーで残しつつ最小限の草稿を提示しており、質問だけで作成依頼を省略していない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5421,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 911,
+      "reasoning_output_tokens": 304
+    },
+    "elapsedMs": 36889
+  },
+  "promptHash": "fb7eea77499b0259bde8b23b2c2dbbd585d1d98e2cc3bc778d727b6b2ae06630"
+}

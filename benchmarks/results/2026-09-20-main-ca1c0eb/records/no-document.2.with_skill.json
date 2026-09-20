@@ -1,0 +1,29 @@
+{
+  "id": "no-document.2.with_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たに議事録を残す必要はありません。開催前に中止し、議論・決定・宿題がなく、中止連絡も参加者へ送信済みだからです。\n\nただし、出席実績や中止履歴の保存を求める社内規程・監査要件がある場合は、送信済みの中止連絡をその記録として保存してください。",
+        "notes": "文書種別は会議メモ／決定ログに該当しますが、保存すべき論点・決定・アクションがないため、新規作成は不要と判断しました。"
+      },
+      "usage": {
+        "input_tokens": 12581,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 209,
+        "reasoning_output_tokens": 48
+      },
+      "elapsedMs": 7630,
+      "metrics": {
+        "characters": 121,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "83833a31a55e0ed29118100d896d7bdea7d286382675e5ec882eb8c60d8b1ee9"
+    }
+  ]
+}

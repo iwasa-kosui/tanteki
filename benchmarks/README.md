@@ -1,20 +1,20 @@
 # スキルあり／なしの執筆ベンチマーク
 
-`origin/main`の日本語執筆スキルを、同じ課題・モデル・修正上限で比較する。[評価の要点と採点の照合メモ](findings.md)、[実測結果](results/2026-09-06-main-fb6fd0b/report.md)を参照。本文と判定理由はMarkdownで読める。
+`origin/main`の日本語執筆スキルを、同じ課題・モデル・修正上限で比較する。[評価の要点と採点の照合メモ](results/2026-09-20-main-ca1c0eb/run-notes.md)、[実測結果](results/2026-09-20-main-ca1c0eb/report.md)を参照。本文と判定理由はMarkdownで読める。
 
-保存結果は、再評価開始時に取得した`origin/main`の`fb6fd0b085bcd2b03ea8381709ae36d5f95d437e`を対象とする。両条件の40出力と20件の採点を新たに実行した。過去の評価ファイルは削除し、この結果だけを保存する。
+最新の保存結果は、2026年9月20日に取得した`origin/main`の`ca1c0eb501cd5885dde28c6a84a1438dd42232a6`を対象とする。両条件の40出力と20件の採点を新たに実行した。[9月6日の結果](results/2026-09-06-main-fb6fd0b/report.md)と[当時の照合メモ](findings.md)も履歴として保持する。
 
 ## 結果の読み方
 
-まず[本文の左右比較（HTML）](results/2026-09-06-main-fb6fd0b/comparison.html)をダウンロードし、ブラウザで開く。外部サービスやサーバーは不要。課題・反復・初稿／最終稿を切り替えると、左にスキルなし、右にスキルありの本文全文を表示する。原依頼、本文外の注記、lint指摘、最終稿の採点基準と理由も同じ画面で確認できる。各比較のURLには課題・反復・稿を保存する。
+まず[本文の左右比較（HTML）](results/2026-09-20-main-ca1c0eb/comparison.html)をダウンロードし、ブラウザで開く。外部サービスやサーバーは不要。課題・反復・初稿／最終稿を切り替えると、左にスキルなし、右にスキルありの本文全文を表示する。原依頼、本文外の注記、lint指摘、最終稿の採点基準と理由も同じ画面で確認できる。各比較のURLには課題・反復・稿を保存する。
 
-GitHub上では、[課題別の比較一覧](results/2026-09-06-main-fb6fd0b/report.md#本文初稿採点理由を読む)からMarkdownを開く。たとえば[ADRの2回目](results/2026-09-06-main-fb6fd0b/comparisons/adr-boundary.2.md)には両条件の本文と判定理由があり、本文だけの `.md` ファイルにも移動できる。JSONは集計・検証用として残す。
+GitHub上では、[課題別の比較一覧](results/2026-09-20-main-ca1c0eb/report.md#本文初稿採点理由を読む)からMarkdownを開く。たとえば[ADRの2回目](results/2026-09-20-main-ca1c0eb/comparisons/adr-boundary.2.md)には両条件の本文と判定理由があり、本文だけの `.md` ファイルにも移動できる。JSONは集計・検証用として残す。
 
-修正のなかった出力は「初稿＝最終稿」と明記する。意味の採点は最終稿だけが対象。元のLLM判定には誤りがあるため、[照合メモ](findings.md#採点の照合メモ)も併せて読む。
+修正のなかった出力は「初稿＝最終稿」と明記する。意味の採点は最終稿だけが対象。元のLLM判定には誤りがあるため、[照合メモ](results/2026-09-20-main-ca1c0eb/run-notes.md#採点の照合)も併せて読む。
 
 ## 比較するもの
 
-用途に照らした批判的レビューは[別の結果](results/2026-09-06-main-fb6fd0b/document-review/report.md)に保存する。本文・指摘・修正案は[左右比較](results/2026-09-06-main-fb6fd0b/document-review/comparison.html)と課題ごとのMarkdownで読める。[検討メモ](results/2026-09-06-main-fb6fd0b/document-review/review-notes.md)には、新レビュー自体に疑問が残る判定も示す。以下の5基準による旧採点は変更しない。
+用途に照らした批判的レビューは[別の結果](results/2026-09-20-main-ca1c0eb/document-review/report.md)に保存する。本文・指摘・修正案は[左右比較](results/2026-09-20-main-ca1c0eb/document-review/comparison.html)と課題ごとのMarkdownで読める。[検討メモ](results/2026-09-20-main-ca1c0eb/run-notes.md)には、新レビュー自体に疑問が残る判定も示す。以下の5基準による旧採点は変更しない。
 
 同じ原資料、モデル、推論量、出力形式、最大呼び出し回数で、スキル本文・関連資料の付与だけを変える。
 
@@ -58,7 +58,7 @@ GitHub上では、[課題別の比較一覧](results/2026-09-06-main-fb6fd0b/rep
 
 ## 実行
 
-Node.js 22以上、依存関係、認証済みのCodex CLIを用意する。実測時のCLIは0.150.1。モデル名は環境で使えるものを明示し、利用できない場合に別モデルへ自動変更しない。実行はアカウントのモデル利用枠を消費する。`npm test`と`--dry-run`はモデルを呼ばない。
+Node.js 22以上、依存関係、認証済みのCodex CLIを用意する。今回のCLIは0.154.0。モデル名は環境で使えるものを明示し、利用できない場合に別モデルへ自動変更しない。実行はアカウントのモデル利用枠を消費する。`npm test`と`--dry-run`はモデルを呼ばない。
 
 ```sh
 # 取得したorigin/mainの内容を取り込んだcheckoutで実行する
@@ -81,7 +81,7 @@ npm run benchmark -- run --out /tmp/nihongo-bench-new \
   --repeats 2 --seed 20260906 --jobs 2 --resume
 
 # 保存済みの結果から集計・HTML・比較Markdown・本文Markdownを再生成。モデル呼び出しなし
-npm run benchmark -- report --out benchmarks/results/2026-09-06-main-fb6fd0b
+npm run benchmark -- report --out benchmarks/results/2026-09-20-main-ca1c0eb
 ```
 
 `--source-ref`は対象refをコミットへ解決し、生成に使うスキル・lintコード・設定・lockfileがそのコミットと一致するか検証する。不一致ならモデルを呼ばずに失敗する。再実行対象を同じ版に固定するには、`origin/main`の代わりに保存済みのコミットIDを指定する。
@@ -116,18 +116,18 @@ CLIの実行方式は[公式の非対話実行ドキュメント](https://learn.
 
 各指摘には重大度、本文の引用、原資料の引用、読み手への影響、修正案を付ける。原資料にない情報を補わなかったことは執筆の欠陥にせず、資料不足として分ける。重大・要修正の指摘があれば「文書の修正が必要」、その指摘がなく、適切に明示された資料不足が用途を妨げれば「原資料の不足で利用に制限」、それ以外は「用途を満たす」とする。最後の判定にも改善提案はあり得る。
 
-依頼と本文が同じ場合は1回だけレビューし、同じ結果を共有する。CRLFとLF、末尾改行の差だけを同一視し、その他の空白は保持する。本文の写しは改行も含め元の出力と同一。今回の40出力は36件の固有入力になる。これは判定の揺れを測る実験ではなく、同じ本文への矛盾したラベルを避ける設計である。
+依頼と本文が同じ場合は1回だけレビューし、同じ結果を共有する。CRLFとLF、末尾改行の差だけを同一視し、その他の空白は保持する。本文の写しは改行も含め元の出力と同一。固有入力の件数は実行ごとのレビュー集計に記録する。これは判定の揺れを測る実験ではなく、同じ本文への矛盾したラベルを避ける設計である。
 
 ```sh
 # 入力を検証。モデル呼び出し・ファイル作成なし
 npm run benchmark:review -- run \
-  --source benchmarks/results/2026-09-06-main-fb6fd0b \
+  --source benchmarks/results/2026-09-20-main-ca1c0eb \
   --out /tmp/nihongo-document-review-new \
   --model gpt-6-astra --effort high --dry-run
 
 # 認証済みで対象モデルを利用できるCLIを使う。CODEX_BINで実行ファイルを指定できる
 npm run benchmark:review -- run \
-  --source benchmarks/results/2026-09-06-main-fb6fd0b \
+  --source benchmarks/results/2026-09-20-main-ca1c0eb \
   --out /tmp/nihongo-document-review-new \
   --model gpt-6-astra --effort high --jobs 2
 

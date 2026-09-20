@@ -6,7 +6,7 @@ import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const source = join(root, 'docs');
 const output = join(root, 'dist');
-const run = 'benchmarks/results/2026-09-06-main-fb6fd0b';
+const run = 'benchmarks/results/2026-09-20-main-ca1c0eb';
 const review = `${run}/document-review`;
 const repo = 'https://github.com/iwasa-kosui/tanteki/blob/main/';
 const read = (path) => readFile(join(root, path), 'utf8');
@@ -16,6 +16,7 @@ async function build() {
   const examples = JSON.parse(await read('docs/examples.json'));
   const cases = JSON.parse(await read(`${run}/cases.json`));
   const summary = JSON.parse(await read(`${review}/summary.json`));
+  const { summary: authoring } = JSON.parse(await read(`${run}/summary.json`));
   const panels = [];
   // Keep an inspectable Markdown version of the exact page prose for textlint.
   const exampleCopy = [];
@@ -34,7 +35,7 @@ async function build() {
         const occurrences = html.split(needle).length - 1;
         if (occurrences === 0) throw new Error(`Missing highlight in ${path}: ${item.text}`);
         if (occurrences >= 2) throw new Error(`Ambiguous highlight in ${path}: "${item.text}" occurs ${occurrences} times, use a longer, unique string`);
-        const label = name === 'before' ? '問題点' : '変更点';
+        const label = '比較のポイント';
         html = html.replace(needle, `<mark>${needle}</mark><span class="change-note" role="note"><span class="change-note-label">${label}</span>${escape(item.note)}</span>`);
       }
       documents.push(`<div class="document ${name}"><p class="document-label" id="label-${example.id}-${name}"><b>${name.toUpperCase()}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span><span class="full-text-label">全文</span></p><div class="document-scroll" role="region" aria-labelledby="label-${example.id}-${name}" tabindex="0"><blockquote cite="${repo}${path}">${html}</blockquote></div></div>`);
@@ -50,11 +51,19 @@ async function build() {
   }
   const tabs = `<div class="example-tabs" aria-label="比較する文書" hidden>${examples.map((example, index) => `<button type="button" id="tab-${example.id}" data-example-tab aria-controls="example-${example.id}"><span>0${index + 1}</span>${escape(example.tab)}</button>`).join('')}</div>`;
   const rows = [['usable', '用途を満たす'], ['revision_needed', '文書の修正が必要'], ['source_limited', '原資料の不足で利用に制限']].map(([status, name]) => `<tr><th scope="row">${name}</th><td>${summary.counts.without_skill[status]}</td><td>${summary.counts.with_skill[status]}</td></tr>`).join('');
+  const metrics = [
+    ['全5基準に合格', (arm) => `${arm.allCriteriaPass}/${arm.n}`],
+    ['最終稿のlint合格', (arm) => `${arm.finalLintPass}/${arm.n}`],
+    ['平均本文文字数', (arm) => (arm.finalCharacters / arm.n).toFixed(1)],
+    ['生成呼び出し数', (arm) => arm.calls.toLocaleString('ja-JP')],
+    ['入力トークン', (arm) => arm.inputTokens.toLocaleString('ja-JP')],
+    ['出力トークン', (arm) => arm.outputTokens.toLocaleString('ja-JP')],
+  ].map(([label, value]) => `<tr><th scope="row">${label}</th><td>${value(authoring.without_skill)}</td><td>${value(authoring.with_skill)}</td></tr>`).join('');
   const template = await read('docs/index.html');
-  for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->']) {
+  for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->', '<!-- BENCHMARK_ROWS -->']) {
     if (template.split(placeholder).length !== 2) throw new Error(`Expected one ${placeholder}`);
   }
-  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n')).replace('<!-- EVALUATION_ROWS -->', rows);
+  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n')).replace('<!-- EVALUATION_ROWS -->', rows).replace('<!-- BENCHMARK_ROWS -->', metrics);
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
