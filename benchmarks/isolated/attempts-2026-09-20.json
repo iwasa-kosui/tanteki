@@ -1,0 +1,91 @@
+{
+  "purpose": "Execution diagnostics, not a quality comparison",
+  "attempts": [
+    {
+      "directory": ".cache/isolated-generation",
+      "revision": "304728a",
+      "startedAt": "2026-09-20T14:35:41.659Z",
+      "completedAt": null,
+      "sealed": false,
+      "fingerprint": null,
+      "settings": {
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "repeats": 2,
+        "seed": "isolated-v1",
+        "timeout": 600,
+        "maxCalls": 24
+      },
+      "planned": 40,
+      "recorded": 32,
+      "valid": 0,
+      "invalidEnvironment": 31,
+      "executionFailed": 1,
+      "providerResponses": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "recordsDigest": "10665b528954cfe2099652de115047d193b90b3bbd202d6db8afafc8c2936ee3",
+      "failures": {
+        "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"message\"\n    ],\n    \"path\": [\n      \"type\"\n    ],\n    \"message\": \"Invalid input: expected \\\"message\\\"\"\n  },\n  {\n    \"expected\": \"array\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"content\"\n    ],\n    \"message\": \"Invalid input: expected array, received undefined\"\n  }\n]": 31,
+        "Execution interrupted": 1
+      }
+    },
+    {
+      "directory": ".cache/isolated-generation-v2",
+      "revision": "add9192",
+      "startedAt": "2026-09-20T14:39:25.684Z",
+      "completedAt": "2026-09-20T14:42:26.223Z",
+      "sealed": true,
+      "fingerprint": "723fa9b168eb065d9049574b4d3dadf4c403bec2e8248ff4a8306f040bed668e",
+      "settings": {
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "repeats": 2,
+        "seed": "isolated-v1",
+        "timeout": 600,
+        "maxCalls": 24
+      },
+      "planned": 40,
+      "recorded": 40,
+      "valid": 7,
+      "invalidEnvironment": 0,
+      "executionFailed": 33,
+      "providerResponses": 14,
+      "inputTokens": 97346,
+      "outputTokens": 2597,
+      "recordsDigest": "187b37684c6f62ebfdcd08e8870648edd0ad57ae346e049de9ca1f743594db6a",
+      "failures": {
+        "Provider response did not complete exactly once": 33
+      }
+    },
+    {
+      "directory": ".cache/isolated-generation-v3",
+      "revision": "7d659d5",
+      "startedAt": "2026-09-20T14:43:43.967Z",
+      "completedAt": null,
+      "sealed": false,
+      "fingerprint": null,
+      "settings": {
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "repeats": 2,
+        "seed": "isolated-v1",
+        "timeout": 600,
+        "maxCalls": 24
+      },
+      "planned": 40,
+      "recorded": 27,
+      "valid": 0,
+      "invalidEnvironment": 0,
+      "executionFailed": 27,
+      "providerResponses": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "recordsDigest": "8e8d17f96c8e3295593a7f0c986c3a8e351c611470c54c42e507444a7d88704b",
+      "failures": {
+        "Provider failure: rate_limit_exceeded": 26,
+        "Execution interrupted": 1
+      }
+    }
+  ]
+}

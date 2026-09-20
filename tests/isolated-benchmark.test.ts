@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, symlink, rm, readFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { canonical, digest, publicJob, checkCatalog, skillPath, checkContainer, checkRequest, comparableRequest, inventory, pairedRecords } from "../benchmarks/isolated/protocol.ts";
-import { containerArgs, SSEUsage, decodeRequest } from "../benchmarks/isolated/docker.ts";
+import { containerArgs, SSEUsage, decodeRequest, paceTransport } from "../benchmarks/isolated/docker.ts";
 import { summarize } from "../benchmarks/isolated/report.ts";
 import type { SkillCatalog } from "../benchmarks/isolated/native-evidence.ts";
 import type { Arm } from "../benchmarks/isolated/benchmark-case.ts";
@@ -148,6 +148,18 @@ test("initial comparison permits only native skill discovery and fresh session i
   assert.notEqual(digest(comparableRequest(changed, job, false)), digest(expected));
 });
 
+test("code-mode tool definitions are compared in full while fresh item IDs may differ", () => {
+  const job = publicJob({ prompt: "依頼" }, { model: "fixed", effort: "low" });
+  const tools = [{ type: "function", name: "exec_command", description: "Run a command" }];
+  const request = (id: string, definitions: unknown[] = tools) => ({ model: "fixed", store: false, reasoning: { effort: "low" }, input: [{ type: "additional_tools", id, role: "developer", tools: definitions }] });
+  const expected = comparableRequest(request("first"), job, false);
+  assert.deepEqual(comparableRequest(request("second"), job, false), expected);
+  assert.notEqual(digest(comparableRequest(request("first", []), job, false)), digest(expected));
+  assert.notEqual(digest(comparableRequest(request("first", [{ ...tools[0], description: "Different instruction" }]), job, false)), digest(expected));
+  assert.throws(() => comparableRequest({ ...request("first"), input: [{ type: "function_call", name: "exec_command", arguments: "{}" }] }, job, false));
+  assert.throws(() => comparableRequest({ ...request("first"), input: [{ type: "additional_tools", role: "user", tools }] }, job, false));
+});
+
 test("checking whether textlint exists is not counted as executing lint", () => {
   const event = (command: string, exitCode = 0) => ({ method: "item/completed", params: { item: { type: "commandExecution", exitCode, commandActions: [{ type: "unknown", command }] } } });
   for (const command of ["node -e \"require.resolve('textlint')\"", "cat /skill/scripts/lint.mjs", "rg textlint package.json", "echo textlint"]) assert.equal(sawLintCommand(event(command)), false);
@@ -172,4 +184,29 @@ test("seeded plans contain every pair and alternate the first condition for each
     }
     assert.equal(first.filter((arm) => arm === "with_skill").length, 2);
   }
+});
+
+
+test("transport spaces concurrent requests and cancels queued calls without retries", async () => {
+  const starts: number[] = [];
+  const response = new Response("ok");
+  const transport = paceTransport(async () => { starts.push(Date.now()); return response; }, 40);
+  const active = new AbortController();
+  const cancelled = new AbortController();
+  const first = transport(Buffer.from("first"), active.signal);
+  const skipped = transport(Buffer.from("cancelled"), cancelled.signal);
+  const rejected = assert.rejects(skipped, /abort/i);
+  cancelled.abort();
+  const last = transport(Buffer.from("last"), active.signal);
+  await Promise.all([first, last, rejected]);
+  assert.equal(starts.length, 2);
+  assert.ok(starts[1] - starts[0] >= 35);
+});
+
+test("streamed provider failures retain their code without claiming token usage", () => {
+  const parser = new SSEUsage();
+  parser.push('data: {"type":"response.failed","response":{"error":{"code":"rate_limit_exceeded","message":"private diagnostic"}}}\n\n');
+  assert.equal(parser.failureCode, "rate_limit_exceeded");
+  assert.equal(parser.completed, 0);
+  assert.equal(parser.usage.output_tokens, 0);
 });

@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "f19df18fda33288bcf8b12671040c659bf255356ec05e4d22c7c5a81a716952e",
+  "containerId": "f86cb314f8985725f46dcbc1fda0dc17b4e0b8295cb27a15b3cc9334a1834571",
+  "usage": {
+    "input_tokens": 5850,
+    "cached_input_tokens": 0,
+    "output_tokens": 94
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 5654,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.2.without_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たに議事録を残す必要はありません。議論・決定・宿題がなく、中止連絡も参加者へ送信済みのため、既存の会議記録やカレンダーに「中止（開催前、議論・決定・宿題なし）」とだけ記録すれば十分です。",
+    "notes": ""
+  },
+  "responseHash": "e0668c234312b886bad5a89e74700d52cb0853a776c6ce14f2dffae7c5f7e02d"
+}

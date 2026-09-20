@@ -1,0 +1,24 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "f19df18fda33288bcf8b12671040c659bf255356ec05e4d22c7c5a81a716952e",
+  "containerId": "0bfddfefb252af637cf0d65b04d5f614d6007c01617003a8b850d3d7d44ff859",
+  "usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "modelCalls": 1,
+  "providerResponses": 0,
+  "elapsedMs": 6947,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.1.with_skill",
+  "caseId": "no-document",
+  "repeat": 1,
+  "arm": "with_skill",
+  "status": "execution_failed",
+  "error": "Provider failure: rate_limit_exceeded"
+}

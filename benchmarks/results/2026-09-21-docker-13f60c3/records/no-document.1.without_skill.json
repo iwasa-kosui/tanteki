@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "f19df18fda33288bcf8b12671040c659bf255356ec05e4d22c7c5a81a716952e",
+  "containerId": "aece9af08933da8c18f198c279f7878e894f1bd9089279fc3b46728ed65ab242",
+  "usage": {
+    "input_tokens": 5850,
+    "cached_input_tokens": 0,
+    "output_tokens": 107
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 8251,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.1.without_skill",
+  "caseId": "no-document",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たに議事録を残す必要はありません。\n\n開催前に中止し、議論・決定・宿題がなく、中止連絡も参加者へ送信済みであれば、追加の議事録は不要です。必要に応じて、予定表や会議管理欄に「中止（事前連絡済み）」とだけ記録してください。",
+    "notes": ""
+  },
+  "responseHash": "267fa86329b928303601c47f3f3f008c2debbdd92fbd8dd37dd1b25a6347b08f"
+}

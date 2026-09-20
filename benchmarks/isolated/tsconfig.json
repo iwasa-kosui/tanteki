@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["./**/*.ts", "../../tests/isolated-*.test.ts"],
+  "include": ["./**/*.ts", "../../tests/isolated-*.test.ts", "../../scripts/publish-benchmark.ts"],
   "exclude": ["node_modules"]
 }

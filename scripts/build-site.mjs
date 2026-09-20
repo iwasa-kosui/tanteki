@@ -7,13 +7,18 @@ import { verifyRunInputs } from '../benchmarks/verify-inputs.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const source = join(root, 'docs');
 const output = join(root, 'dist');
-const run = 'benchmarks/results/2026-09-20-isolated-ca1c0eb';
-const review = `${run}/document-review`;
 const repo = './results/';
 const read = (path) => readFile(join(root, path), 'utf8');
 const escape = (text) => text.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
 async function build() {
+  const { format, run } = JSON.parse(await read('docs/benchmark.json'));
+  if (format === 'isolated') {
+    const { build: buildIsolated } = await import('./build-isolated-site.mjs');
+    return buildIsolated(root);
+  }
+  if (format !== 'legacy' || !/^benchmarks\/results\/[a-z0-9-]+$/.test(run)) throw new Error('Invalid benchmark publication configuration');
+  const review = `${run}/document-review`;
   await verifyRunInputs(join(root, run));
   const examples = JSON.parse(await read('docs/examples.json'));
   const cases = JSON.parse(await read(`${run}/cases.json`));

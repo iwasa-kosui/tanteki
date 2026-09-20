@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { mkdir, mkdtemp, chmod, writeFile, readFile, appendFile, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { setTimeout as delay } from "node:timers/promises";
 import * as zlib from "node:zlib";
 import { z } from "zod";
 import { decode, messageOf } from "./validation.ts";
@@ -74,13 +75,34 @@ export function decodeRequest(message: { data: string; encoding: string }) {
 // Production has one fixed destination; there is no generic proxy or CONNECT.
 export function apiTransport(apiKey: string | undefined): Transport {
   invariant(typeof apiKey === "string" && apiKey.length > 0, "Set OPENAI_API_KEY on the host; credentials are never copied into containers");
-  return async (body, signal) => fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` }, body: body.toString("utf8"), signal, redirect: "error" });
+  return paceTransport(async (body, signal) => fetch("https://api.openai.com/v1/responses", { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${apiKey}` }, body: body.toString("utf8"), signal, redirect: "error" }));
+}
+
+// One queue covers both arms and child agents. Pace before the first attempt;
+// never retry a failed request or alter the measured candidate.
+export function paceTransport(transport: Transport, intervalMs = 7000): Transport {
+  let lastStartedAt = -Infinity;
+  let queue = Promise.resolve();
+  return async (body, signal) => {
+    const turn = queue.then(async () => {
+      signal.throwIfAborted();
+      const remaining = lastStartedAt + intervalMs - Date.now();
+      if (remaining > 0) await delay(remaining, undefined, { signal });
+      signal.throwIfAborted();
+      lastStartedAt = Date.now();
+    });
+    // A cancelled turn must not reject the following request's queue.
+    queue = turn.catch(() => {});
+    await turn;
+    return transport(body, signal);
+  };
 }
 
 export class SSEUsage {
   buffer = "";
   usage = { input_tokens: 0, cached_input_tokens: 0, output_tokens: 0 };
   completed = 0;
+  failureCode: string | undefined;
   push(chunk: string) {
     this.buffer += chunk;
     invariant(this.buffer.length < 20 * 1024 * 1024, "Oversized SSE event");
@@ -90,6 +112,10 @@ export class SSEUsage {
       if (!line.startsWith("data: ") || line.slice(6).trim() === "[DONE]") continue;
       const raw: unknown = JSON.parse(line.slice(6));
       const event = decode(z.looseObject({ type: z.string() }), raw);
+      if (event.type === "response.failed") {
+        const failed = decode(z.object({ response: z.object({ error: z.object({ code: z.string() }) }) }), raw);
+        this.failureCode = failed.response.error.code;
+      }
       if (event.type !== "response.completed") continue;
       const value = decode(z.object({ response: z.object({ usage: z.object({ input_tokens: z.number(), output_tokens: z.number(), input_tokens_details: z.object({ cached_tokens: z.number() }).optional() }) }) }), raw);
       const usage = value.response.usage;
@@ -138,13 +164,14 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
     const index = ++metrics.modelCalls;
     if (index > maxCalls) { stop("Model-call budget exceeded"); return; }
     const bytes = decodeRequest(message);
+    // Preserve rejected requests as evidence too; validation still precedes API access.
+    await writeFile(join(directory, `request-${index}.json`), bytes);
     const body = checkRequest(JSON.parse(bytes.toString("utf8")), job);
     if (index === 1) {
       invariant(body.input.some((item) => { const parsed = userMessage.safeParse(item); return parsed.success && parsed.data.content.some((part) => part.text === job.prompt); }), "Prompt missing from actual model request");
       metrics.environmentHash = digest({ runtime: metrics.environmentHash, request: comparableRequest(body, job, bundle !== null) });
     }
     if (bytes.includes(Buffer.from("name: tanteki\\n"))) metrics.observations.skillTextSeen = true;
-    await writeFile(join(directory, `request-${index}.json`), bytes);
     const controller = new AbortController();
     controllers.add(controller);
     const usage = new SSEUsage();
@@ -160,13 +187,13 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
       }
       if (upstream.ok) usage.push(decoder.decode() + "\n");
       send({ type: "end", id: message.id });
-      invariant(!upstream.ok || usage.completed === 1, "Provider response did not complete exactly once");
+      invariant(!upstream.ok || usage.completed === 1, usage.failureCode ? `Provider failure: ${usage.failureCode}` : "Provider response did not complete exactly once");
     } catch (error) { if (!controller.signal.aborted) stop(messageOf(error)); }
     finally {
       for (const key of ["input_tokens", "cached_input_tokens", "output_tokens"] as const) metrics.usage[key] += usage.usage[key];
       metrics.providerResponses += usage.completed;
       controllers.delete(controller);
-      log({ type: "providerUsage", index, ...usage.usage, completed: usage.completed });
+      log({ type: "providerUsage", index, ...usage.usage, completed: usage.completed, failureCode: usage.failureCode });
     }
   }
 

@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "f19df18fda33288bcf8b12671040c659bf255356ec05e4d22c7c5a81a716952e",
+  "containerId": "293d93f99cc4dcc7cc15e2fc5200b5cf45e2701f8964ab5baef162c48a8dc8c4",
+  "usage": {
+    "input_tokens": 6064,
+    "cached_input_tokens": 0,
+    "output_tokens": 137
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 7535,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.2.with_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たに議事録を残す必要はありません。\n\n開催前に中止し、議論・決定・宿題がなく、中止連絡も参加者へ送信済みであれば、記録として追加すべき情報はありません。必要なら、予定表や定例管理表のステータスを「中止」に更新するだけで十分です。",
+    "notes": ""
+  },
+  "responseHash": "b5d0e14b4d8ea49b44f0fc2deccdcdd7b217efdc01cbef0bb4eab14b5b1fc622"
+}
