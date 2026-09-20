@@ -28,6 +28,13 @@ function main(args) {
   const manifest = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
   // Repository tests and benchmarks are not part of the installed skill.
   delete manifest.scripts;
+  delete manifest.devDependencies;
+  const lock = JSON.parse(readFileSync(join(root, "package-lock.json"), "utf8"));
+  delete lock.packages[""].devDependencies;
+  for (const [path, dependency] of Object.entries(lock.packages)) {
+    if (dependency.dev === true) delete lock.packages[path];
+  }
+  files.set("package-lock.json", Buffer.from(`${JSON.stringify(lock, null, 2)}\n`));
   files.set("package.json", Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`));
 
   if (args[0] === "--check") {
