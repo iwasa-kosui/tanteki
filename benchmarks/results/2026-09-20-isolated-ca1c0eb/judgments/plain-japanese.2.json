@@ -1,0 +1,73 @@
+{
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "既存の認証情報で請求画面へ移動でき、通常は再ログイン不要で、有効期限切れの場合のみログイン画面を表示すると明記している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "資料にない認証方式、自動更新、エラー時の動作を追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "CSが利用者へそのまま説明できる仕様本文であり、本文に推敲手順の説明を含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "抽象表現を、認証状態・再ログインの要否・有効期限切れ時の画面表示という具体的動作に置き換えている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い一段落で、見出しや重複なく要点を伝えている。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "既存の認証状態のまま請求画面へ移れること、再ログイン不要であること、有効期限切れの場合に限りログイン画面を表示することをすべて記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "確定事項以外の認証仕様や例外動作を補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "利用者向けに説明可能な仕様本文のみで構成され、書き換え方法の解説は本文に混在していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "草稿の抽象語を、請求画面への遷移条件とログイン画面の表示条件に具体化している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "簡潔な二文で内容の重複や見出しの羅列がない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4709,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 467,
+      "reasoning_output_tokens": 21
+    },
+    "elapsedMs": 21477,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/plain-japanese.2.judge.json",
+      "sha256": "0535ee08520899d73c77ba1ada9379acf7b70516f9786292d9b0675751827268",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "9580742a4dd53db4ee58e275e33b7bf200dbdf502a4edd1fab14618db8414551",
+      "sessionId": "01a0beb4-6bb0-7a31-bfc9-a75341ece040"
+    }
+  },
+  "promptHash": "9580742a4dd53db4ee58e275e33b7bf200dbdf502a4edd1fab14618db8414551"
+}

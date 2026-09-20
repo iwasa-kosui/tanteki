@@ -1,0 +1,47 @@
+{
+  "reviewId": "r-cab983681affcac5d766be45f8e1e9a2f3078210e28667c3ea625955bb355045",
+  "inputHash": "cab983681affcac5d766be45f8e1e9a2f3078210e28667c3ea625955bb355045",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "社員を既存の正本へ案内し、通常の提出方法と例外条件を伝える。",
+        "status": "revision_needed",
+        "summary": "通常の提出方法と例外条件は分かりますが、正本への案内がなく、確認先を特定できません。",
+        "strengths": [
+          "経費システムへPDFを添付する確定ルールを簡潔に伝えています。",
+          "原本提出の例外を、経理から個別に求められた場合として正確に示しています。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "omission",
+            "basis": "source",
+            "excerpt": "",
+            "source_excerpt": "正本は https://example.test/expense の『領収書の提出』節。",
+            "finding": "正本のURLと参照する節が記載されていません。",
+            "impact": "社員は提出方法を理解できても、正式な記載をどこで確認すればよいか分からず、既存の正本への案内という用途を果たせません。",
+            "suggested_change": "現在の案内に、正本のURLと『領収書の提出』節への参照を追加してください。"
+          }
+        ],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5907,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 430,
+        "reasoning_output_tokens": 104
+      },
+      "elapsedMs": 16696,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-cab983681affcac5d766be45f8e1e9a2f3078210e28667c3ea625955bb355045.1.json",
+        "sha256": "e74a0971aaff47b4a386ab2db35575a593d05ca7b45cfdd1990563afcb6362f0",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "cab983681affcac5d766be45f8e1e9a2f3078210e28667c3ea625955bb355045",
+        "sessionId": "01a0beb5-baaa-74e1-9e59-767373226024"
+      },
+      "validationErrors": null
+    }
+  ]
+}

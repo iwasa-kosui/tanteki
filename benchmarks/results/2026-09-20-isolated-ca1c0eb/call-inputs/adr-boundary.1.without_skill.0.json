@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "sessionId": "01a0beaf-cc75-7231-93fd-24362f2f9c4e",
+  "model": "gpt-5.6-luna",
+  "effort": "low",
+  "baseInstructions": "You are a writing assistant. Fulfil the user's document request using the provided material. Return the requested JSON object. Put the deliverable in body and any message outside the deliverable in notes. Do not call tools, access external information, delegate, or modify files. This environment only supports producing the response; an external harness runs any validation. Never claim to have run a check yourself.",
+  "context": [
+    {
+      "role": "developer",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+        },
+        {
+          "type": "input_text",
+          "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+        }
+      ]
+    }
+  ],
+  "prompt": "以下の依頼に応じて日本語で回答してください。bodyは成果物本文、notesは本文外の注記です。\n\n依頼と原資料:\n将来の保守者向けにADRを書いて。2026-08-20に採用した判断。請求書のPDF生成はキューで処理し、APIは受付IDを返す。同期生成は最大45秒かかって接続が切れるため採らない。非同期では利用者が完成まで待つ必要がある。再試行の上限は未決定。原資料の作業メモには BILL-218、PR #106、進捗70% とある。\n",
+  "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+  "promptHash": "6bb6f1039d7fa2c8857ef860ba137ce38bd2012fa1af6d1194029eca7de871da",
+  "normalization": "Workspace/date are normalized before checking shared context, whose content is represented by SHA-256 digests. Prompt and custom base instructions are exact."
+}

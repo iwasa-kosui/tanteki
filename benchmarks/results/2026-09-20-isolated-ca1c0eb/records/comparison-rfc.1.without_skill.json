@@ -1,0 +1,44 @@
+{
+  "id": "comparison-rfc.1.without_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# RFC: 商品検索基盤の方式\n\n## 概要\n商品検索の応答が遅いため、検索基盤の方式を決定する。提案は方式B（検索専用サービス）である。\n\n## 選択肢\n- **方式A: 既存DB索引の追加**\n  - 長所: 別サービスが増えず、運用対象を増やさない。\n  - 短所: 部分一致検索の高速化は期待できない。\n- **方式B: 検索専用サービスの導入（提案）**\n  - 長所: 部分一致検索を高速化できる。\n  - 短所: 別サービスの運用が必要で、DBから検索基盤への反映に遅延が生じる。\n\n## 提案\n部分一致検索の改善を優先し、方式Bを採用する。検索結果は最大60秒古くても許容する案とする。ただし、この許容について業務側の承認は未取得である。\n\n## 合意が必要な事項\n1. 検索専用サービスを別途運用すること。\n2. DB更新から検索結果への反映が最大60秒遅れることを許容すること。\n\n## 未確定事項・確認事項\n性能改善値、費用、運用負荷は現時点で未計測である。採用前に、部分一致を含む検索性能、反映遅延、運用手順および費用を計測・確認する。\n\n## 判断依頼\n開発チームは方式Bと上記2点の合意可否を判断する。業務側には60秒の鮮度許容について承認を依頼する。\n\n## 関連\n- 作業メモ: SEARCH-88\n- PR: #71\n- レビュー期限: 8月28日",
+        "notes": "計測値・費用・運用負荷は原資料にないため、数値を補っていません。"
+      },
+      "usage": {
+        "input_tokens": 2609,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 540,
+        "reasoning_output_tokens": 47
+      },
+      "elapsedMs": 13515,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/comparison-rfc.1.without_skill.0.json",
+        "sha256": "cf60bcafb467eb734ba7baeecdcee2f8c969b12b857eec198626e6f7a7682ed6",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "b0e0e3ef524bdd1cddc1cb026f8a663e16b1706b49e6dea490d01ef316991179",
+        "sessionId": "01a0beb0-15c7-7c10-9cb3-98cca4542f73"
+      },
+      "metrics": {
+        "characters": 592,
+        "headings": 8,
+        "lint": [
+          {
+            "ruleId": "stock-boundary",
+            "line": 28,
+            "column": 9,
+            "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "b0e0e3ef524bdd1cddc1cb026f8a663e16b1706b49e6dea490d01ef316991179"
+    }
+  ]
+}

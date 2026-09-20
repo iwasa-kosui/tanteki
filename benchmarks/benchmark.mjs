@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { lintFiles } from "../scripts/lint.mjs";
 import { writeReadableReports } from "./readable-report.mjs";
 import { validityMarkdown } from "./comparison-validity.mjs";
+import { auditInput, readSessionRollout } from "./input-audit.mjs";
 
 export const root = fileURLToPath(new URL("..", import.meta.url));
 export const dimensions = ["facts", "grounding", "role", "clarity", "economy"];
@@ -149,7 +150,7 @@ export async function disabledSkills() {
 
 const disabledFeatures = ["shell_tool", "unified_exec", "multi_agent", "multi_agent_v2", "apps", "plugins", "hooks", "memories", "skill_search", "shell_snapshot", "browser_use", "computer_use", "image_generation", "view_image", "goals"];
 export function codexArgs({ model, effort, workspace, instructions, schema, output, skills = [] }) {
-  return ["exec", "--ignore-user-config", "--ephemeral", "--skip-git-repo-check", "-C", workspace, "-s", "read-only", "-m", model,
+  return ["exec", "--ignore-user-config", "--skip-git-repo-check", "-C", workspace, "-s", "read-only", "-m", model,
     "-c", `model_reasoning_effort=${JSON.stringify(effort)}`, "-c", `model_instructions_file=${JSON.stringify(instructions)}`,
     "-c", "project_doc_max_bytes=0", "-c", 'web_search="disabled"', "-c", 'personality="none"',
     "-c", `skills.config=[${skills.map((path) => `{path=${JSON.stringify(path)},enabled=false}`).join(",")}]`,
@@ -182,7 +183,14 @@ export async function callModel({ model, effort, prompt, schema, instructionFile
     await writeFile(`${prefix}.stderr.txt`, result.stderr);
     if (result.code !== 0 || result.timedOut) throw new Error(`Codex failed (${result.timedOut ? "timeout" : result.code}); see ${prefix}.stderr.txt`);
     const usage = parseEvents(result.stdout);
-    return { response: await json(output), usage, elapsedMs: Math.round(performance.now() - started) };
+    const sessionId = result.stdout.split("\n").filter(Boolean).map(JSON.parse).find((event) => event.type === "thread.started")?.thread_id;
+    const rollout = await readSessionRollout(sessionId);
+    await writeFile(`${prefix}.rollout.jsonl`, rollout);
+    const input = auditInput(rollout, { prompt, instructions: await text(instructionFile), model, effort, workspace });
+    const inputPath = join(dirname(prefix), "..", "call-inputs", `${prefix.split(/[\\/]/).at(-1)}.json`);
+    await mkdir(dirname(inputPath), { recursive: true });
+    await save(inputPath, input);
+    return { response: await json(output), usage, elapsedMs: Math.round(performance.now() - started), inputAudit: { verified: true, file: `call-inputs/${prefix.split(/[\\/]/).at(-1)}.json`, sha256: hash(await text(inputPath)), contextHash: input.contextHash, promptHash: input.promptHash, sessionId } };
   } finally { await rm(workspace, { recursive: true, force: true }); }
 }
 
@@ -311,7 +319,7 @@ async function run(o) {
   const files = {};
   for (const name of ["SKILL.md", "references/delegation.md", "references/japanese.md", "references/structure.md", "references/document-types.md", ...await typeFiles()]) files[name] = await text(join(root, name));
   const sourceHashes = {};
-  for (const name of [...Object.keys(files), "package-lock.json", ".textlintrc.json", "scripts/lint.mjs", "benchmarks/benchmark.mjs", "benchmarks/readable-report.mjs", "benchmarks/comparison.css", "benchmarks/comparison.js", "benchmarks/cases.json", "benchmarks/author-instructions.txt", "benchmarks/judge-instructions.txt", "benchmarks/author.schema.json", ...await ruleFiles()]) sourceHashes[name] = hash(await text(join(root, name)));
+  for (const name of [...Object.keys(files), "package-lock.json", ".textlintrc.json", "scripts/lint.mjs", "benchmarks/benchmark.mjs", "benchmarks/input-audit.mjs", "benchmarks/runtime-context.json", "benchmarks/readable-report.mjs", "benchmarks/comparison.css", "benchmarks/comparison.js", "benchmarks/cases.json", "benchmarks/author-instructions.txt", "benchmarks/judge-instructions.txt", "benchmarks/author.schema.json", ...await ruleFiles()]) sourceHashes[name] = hash(await text(join(root, name)));
   const settings = { model: o.model, judgeModel: o.judgeModel, effort: o.effort, repeats: o.repeats, seed: o.seed, jobs: o.jobs, timeout: o.timeout, maxLintRevisions: { without_skill: 0, with_skill: 1 } };
   const plan = makePlan(cases, o.repeats, o.seed);
   const contexts = Object.fromEntries(cases.map((c) => [c.id, skillContext(c, files)]));
@@ -338,7 +346,7 @@ async function run(o) {
       skillWorktreeDirty: Boolean(execFileSync("git", ["-C", root, "status", "--porcelain", "--", "SKILL.md", "references", "rules", "scripts/lint.mjs", ".textlintrc.json", "package-lock.json"], { encoding: "utf8" }).trim()),
       codexVersion: execFileSync(process.env.CODEX_BIN || "codex", ["--version"], { encoding: "utf8" }).trim(),
       nodeVersion: process.version, disabledSkillPaths: skills.length,
-      isolation: { verified: false, requested: { userConfig: false, projectInstructions: false, nativeSkills: false, plugins: false, tools: false, history: "new ephemeral session per call", builtInInstructions: "replaced by checked-in instruction file" }, evidence: "CLI flags and tool events only; effective model input has not been verified" }
+      isolation: { verification: "per-response saved-session input audit", requested: { userConfig: false, projectInstructions: "fixed shared AGENTS instructions pinned in runtime-context.json", nativeSkills: false, plugins: false, tools: false, history: "new saved session per call; never resume model conversations", builtInInstructions: "replaced by checked-in instruction file" }, evidence: "Every accepted response has a saved-session input audit in call-inputs; unexpected context or prompt fails the run" }
     });
     await save(join(o.out, "cases.json"), cases);
     await save(join(o.out, "skill-snapshot.json"), files);

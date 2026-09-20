@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-d636bd944245e841872f26a96d9778dc14d1cd4171fcca6d200ea87b1e62a407",
+  "inputHash": "d636bd944245e841872f26a96d9778dc14d1cd4171fcca6d200ea87b1e62a407",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式について、開発チームが合意を判断するための短いRFC。",
+        "status": "usable",
+        "summary": "方式の比較、Bを提案する理由、運用上の影響、未承認の条件が明確で、合意すべき論点を判断できる。性能改善の程度や費用対効果は、資料不足により判断できない。",
+        "strengths": [
+          "部分一致の高速化と運用負担の対応関係が示され、AではなくBを提案する理由が分かる。",
+          "最大60秒の遅延許容を業務側の未承認事項として明示している。",
+          "提案中であることと、採否の判断に必要な2つの合意事項が明確である。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "性能の計測値と費用情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "計測値と費用は未取得のため、このRFCでは評価しない。",
+            "consequence": "定性的な方式比較と合意論点の検討はできるが、改善幅や費用対効果の定量評価には追加情報が必要。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6252,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 552,
+        "reasoning_output_tokens": 221
+      },
+      "elapsedMs": 22546,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-d636bd944245e841872f26a96d9778dc14d1cd4171fcca6d200ea87b1e62a407.1.json",
+        "sha256": "5803a23de5288cdddcfe2c9836e83031ab6c251fc917ca96b451bf1c44d7686c",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "d636bd944245e841872f26a96d9778dc14d1cd4171fcca6d200ea87b1e62a407",
+        "sessionId": "01a0beb5-fbe1-7152-871c-dd3a7173ee20"
+      },
+      "validationErrors": null
+    }
+  ]
+}

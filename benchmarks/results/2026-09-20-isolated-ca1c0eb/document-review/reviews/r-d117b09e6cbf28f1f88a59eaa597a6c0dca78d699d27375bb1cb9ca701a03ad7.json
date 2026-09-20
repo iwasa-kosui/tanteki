@@ -1,0 +1,56 @@
+{
+  "reviewId": "r-d117b09e6cbf28f1f88a59eaa597a6c0dca78d699d27375bb1cb9ca701a03ad7",
+  "inputHash": "d117b09e6cbf28f1f88a59eaa597a6c0dca78d699d27375bb1cb9ca701a03ad7",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "将来の保守者が、請求書PDF生成の非同期化について採用判断・背景・比較対象・影響を再構成するためのADR。",
+        "status": "revision_needed",
+        "summary": "採用判断と同期生成を退けた理由は再構成できます。ただし、資料にない受付IDによる完成確認方式を確定事項として記載しているため、修正が必要です。",
+        "strengths": [
+          "採用状態・判断日・対象となる処理が明確です。",
+          "同期生成の接続切断という問題と、非同期化による効果が対応しています。",
+          "再試行の上限を未決定として扱い、採用済みの判断と区別しています。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "利用者は受付IDを使って、請求書PDFの完成を確認する必要がある。",
+            "source_excerpt": "非同期では利用者が完成まで待つ必要がある。",
+            "finding": "資料が示すのは完成までの待機が必要という影響であり、受付IDを使って利用者が完成確認する方式までは決まっていません。受付IDを返すことだけから、この確認方式は導けません。",
+            "impact": "将来の保守者が、受付IDによる完成確認を採用済みのインターフェース要件と誤認するおそれがあります。",
+            "suggested_change": "利用者が完成まで待つ必要があるという、資料で確認できる影響に限定してください。完成確認方式の詳細を追加する必要はありません。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "再試行の上限。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "再試行の上限は未決定である。",
+            "consequence": "再試行の実装には別途決定が必要ですが、非同期化の採用判断を理解する用途は妨げません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6133,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 866,
+        "reasoning_output_tokens": 346
+      },
+      "elapsedMs": 31127,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-d117b09e6cbf28f1f88a59eaa597a6c0dca78d699d27375bb1cb9ca701a03ad7.1.json",
+        "sha256": "d79a12086e0a3b367286834222b5ccbe96c9b7487aca3e6eae64dfaabf41cf13",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "d117b09e6cbf28f1f88a59eaa597a6c0dca78d699d27375bb1cb9ca701a03ad7",
+        "sessionId": "01a0beb5-e53c-7d11-bec0-f5185ff6e94f"
+      },
+      "validationErrors": null
+    }
+  ]
+}

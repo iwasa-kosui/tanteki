@@ -1,22 +1,22 @@
 # スキルあり／なしの執筆ベンチマーク
 
-**比較結果は無効です。** 「スキルなし」側にも tanteki の lint 指摘を返していたため、9月20日と9月6日の保存結果をスキルの有無による比較としては使いません。[無効化の理由と分離の確認状況](baseline-audit.md)を参照してください。以下の保存結果にある条件名と数値は、検証用の記録です。
+同じ依頼と生成モデルで、tanteki の執筆指示と lint 修正を加えた場合の違いを測る。スキルなし側は初稿1回だけを生成し、スキルの資料や lint の修正指示を渡さない。スキルあり側は資料を付与し、lint の指摘に応じて最大1回修正する。
 
-`origin/main`の日本語執筆スキルを、同じ課題・モデルで比較するための実行系である。[評価の要点と採点の照合メモ](results/2026-09-20-main-ca1c0eb/run-notes.md)、[実測結果](results/2026-09-20-main-ca1c0eb/report.md)を参照。本文と判定理由はMarkdownで読める。
+最新の保存先は [2026年9月20日の比較](results/2026-09-20-isolated-ca1c0eb/report.md) で、対象は `origin/main` の `ca1c0eb501cd5885dde28c6a84a1438dd42232a6`。[原文と用途のレビュー](results/2026-09-20-isolated-ca1c0eb/document-review/report.md)、[実測の要点](results/2026-09-20-isolated-ca1c0eb/run-notes.md)も参照できる。
 
-最新の保存結果は、2026年9月20日に取得した`origin/main`の`ca1c0eb501cd5885dde28c6a84a1438dd42232a6`を対象とする。両条件の40出力と20件の採点を新たに実行した。[9月6日の結果](results/2026-09-06-main-fb6fd0b/report.md)と[当時の照合メモ](findings.md)も履歴として保持する。
+旧方式はスキルなし側にも独自の lint 指摘を返していたため、9月6日と9月20日の旧結果を無効化した。[修正と入力検証の記録](baseline-audit.md)に経緯を残す。旧結果を新しい比較として流用しない。
 
 ## 結果の読み方
 
-まず[本文の左右比較（HTML）](results/2026-09-20-main-ca1c0eb/comparison.html)をダウンロードし、ブラウザで開く。外部サービスやサーバーは不要。課題・反復・初稿／最終稿を切り替えると、左にスキルなし、右にスキルありの本文全文を表示する。原依頼、本文外の注記、lint指摘、最終稿の採点基準と理由も同じ画面で確認できる。各比較のURLには課題・反復・稿を保存する。
+まず[本文の左右比較（HTML）](results/2026-09-20-isolated-ca1c0eb/comparison.html)をダウンロードし、ブラウザで開く。外部サービスやサーバーは不要。課題・反復・初稿／最終稿を切り替えると、左にスキルなし、右にスキルありの本文全文を表示する。原依頼、本文外の注記、lint指摘、最終稿の採点基準と理由も同じ画面で確認できる。各比較のURLには課題・反復・稿を保存する。
 
-GitHub上では、[課題別の比較一覧](results/2026-09-20-main-ca1c0eb/report.md#本文初稿採点理由を読む)からMarkdownを開く。たとえば[ADRの2回目](results/2026-09-20-main-ca1c0eb/comparisons/adr-boundary.2.md)には両条件の本文と判定理由があり、本文だけの `.md` ファイルにも移動できる。JSONは集計・検証用として残す。
+GitHub上では、[課題別の比較一覧](results/2026-09-20-isolated-ca1c0eb/report.md#本文初稿採点理由を読む)からMarkdownを開く。たとえば[ADRの2回目](results/2026-09-20-isolated-ca1c0eb/comparisons/adr-boundary.2.md)には両条件の本文と判定理由があり、本文だけの `.md` ファイルにも移動できる。JSONは集計・検証用として残す。
 
-修正のなかった出力は「初稿＝最終稿」と明記する。意味の採点は最終稿だけが対象。元のLLM判定には誤りがあるため、[照合メモ](results/2026-09-20-main-ca1c0eb/run-notes.md#採点の照合)も併せて読む。
+修正のなかった出力は「初稿＝最終稿」と明記する。意味の採点は最終稿だけが対象。元のLLM判定には誤りがあるため、[照合メモ](results/2026-09-20-isolated-ca1c0eb/run-notes.md#採点の照合)も併せて読む。
 
 ## 比較するもの
 
-用途に照らした批判的レビューは[別の結果](results/2026-09-20-main-ca1c0eb/document-review/report.md)に保存する。本文・指摘・修正案は[左右比較](results/2026-09-20-main-ca1c0eb/document-review/comparison.html)と課題ごとのMarkdownで読める。[検討メモ](results/2026-09-20-main-ca1c0eb/run-notes.md)には、新レビュー自体に疑問が残る判定も示す。以下の5基準による旧採点は変更しない。
+用途に照らした批判的レビューは[別の結果](results/2026-09-20-isolated-ca1c0eb/document-review/report.md)に保存する。本文・指摘・修正案は[左右比較](results/2026-09-20-isolated-ca1c0eb/document-review/comparison.html)と課題ごとのMarkdownで読める。[検討メモ](results/2026-09-20-isolated-ca1c0eb/run-notes.md)には、新レビュー自体に疑問が残る判定も示す。以下の5基準による旧採点は変更しない。
 
 同じ原資料、モデル、推論量、出力形式、最大呼び出し回数で、スキル本文・関連資料の付与だけを変える。
 
@@ -25,11 +25,13 @@ GitHub上では、[課題別の比較一覧](results/2026-09-20-main-ca1c0eb/rep
 | `without_skill` | 共通の執筆指示、依頼と原資料 |
 | `with_skill` | 上記に `SKILL.md`、委譲手順、日本語基準、文書分類の区分と該当行を追加。ADR・設計・RFCには型の資料も追加 |
 
-両条件を新しい `codex exec` セッションで実行する。空の一時ディレクトリを使い、ユーザー設定、AGENTS.md、個人のネイティブスキル、プラグイン、履歴を読み込まない設定にする。組み込み指示は共通の短い執筆指示に置き換える。モデルがツールを使った実行は失敗扱いにする。ホストに管理者設定などの共通指示がある場合まで完全に消去するものではない。
+両条件を新しい `codex exec` セッションで実行する。空の一時ディレクトリを使い、ユーザー設定、ネイティブスキル、プラグインを無効にする設定を渡す。組み込み指示は、保存済みの短い共通指示に置き換える。ツールを使った実行は失敗扱いにする。共通の AGENTS.md 指示やモデル固有の操作指示は `runtime-context.json` にハッシュで固定し、生成条件間で同じ内容にする。
+
+CLI の設定値だけで分離を判断せず、各呼び出しの保存セッションから実際の入力を取り出す。基本指示・モデル・推論量・原依頼の一致と、新規1ターンであることを検査する。共通指示は一時パスと日付だけを正規化し、モデルごとの固定ハッシュと一致させる。想定外のスキル一覧や指示が増えた場合は、その呼び出しを採用しない。対応モデルを追加するときは、モデル固有の共通指示を先に確認する。
 
 修正後の実行系は、スキルなし側には初稿1回だけを生成させる。生成後のlintは測定に限り、指摘や修正指示を返さない。スキルあり側だけが、lintの指摘に応じて最大1回修正する。隠した意味基準の不合格は修正フィードバックに使わない。保存済みの9月20日・9月6日の実行は、両条件に指摘を返す旧方式であり、再測定ではない。検査が失敗したときはlint不合格と混同せず、実行を失敗させる。
 
-修正後に比較するのは**執筆指示とlint修正の付与**である。モデルへ渡る指示の分離は未検証なので、新しい実行だけでスキル非適用が証明されるわけではない。スキルの自動発火、参照資料を選ぶ能力、親子エージェントへの委譲、親の意味確認による修正、モデル昇格は対象外。スキル全文を渡すが、委譲・検査は外部実行系の制約で代替すると明示する。通常運用のスキル一式の効果を示す結果として扱わない。
+修正後に比較するのは**執筆指示とlint修正の付与**である。保存入力の検査を全件に行い、記録と一緒に保存する。スキルの自動発火、参照資料を選ぶ能力、親子エージェントへの委譲、親の意味確認による修正、モデル昇格は対象外。スキル全文を渡すが、委譲・検査は外部実行系の制約で代替すると明示する。通常運用のスキル一式の効果を示す結果として扱わない。
 
 構成と本文にラダーを分けたスキルの検証には、[工程を通す動作確認](../tests/skill-cases.md#依頼20-新規作成で構成から本文まで実行する)を使う。本ベンチマークは構成案の提出と親の合格判定を挟まずに本文を生成するため、構成検査から各節の執筆へ進む工程の成否は測れない。従来の点数と、構成検査を含む実行の結果は分けて報告する。
 
@@ -83,7 +85,7 @@ npm run benchmark -- run --out /tmp/nihongo-bench-new \
   --repeats 2 --seed 20260906 --jobs 2 --resume
 
 # 保存済みの結果から集計・HTML・比較Markdown・本文Markdownを再生成。モデル呼び出しなし
-npm run benchmark -- report --out benchmarks/results/2026-09-20-main-ca1c0eb
+npm run benchmark -- report --out benchmarks/results/2026-09-20-isolated-ca1c0eb
 ```
 
 `--source-ref`は対象refをコミットへ解決し、生成に使うスキル・lintコード・設定・lockfileがそのコミットと一致するか検証する。不一致ならモデルを呼ばずに失敗する。再実行対象を同じ版に固定するには、`origin/main`の代わりに保存済みのコミットIDを指定する。
@@ -102,7 +104,8 @@ npm run benchmark -- report --out benchmarks/results/2026-09-20-main-ca1c0eb
 - `comparisons/`: 原依頼、両条件の本文、注記、採点基準と理由、初稿とlint指摘を読むMarkdown。
 - `documents/`: 各生成呼び出しの本文そのもの。ファイル名末尾の1は初稿、2はlint修正稿。改行も含めて元の`body`と同一。
 - `summary.json` / `report.md`: 再集計した機械可読データと、比較表・全文比較への入口。
-- `calls/`: 実行時のプロンプト、CLIイベント、stderr、各稿のMarkdown。ローカル診断用でGitには追加しない。公開する`records/`には全候補の本文と全修正履歴を保持する。
+- `call-inputs/`: 検証済みの基本指示、共通指示のハッシュ、依頼文、モデル、セッションID。`records/` の `inputAudit` からハッシュで対応付ける。
+- `calls/`: 実行時のプロンプト、CLIイベント、stderr、各稿のMarkdown、保存セッション。ローカル診断用でGitには追加しない。公開する`records/`には全候補の本文と全修正履歴を保持する。
 
 HTMLとMarkdownは`report`コマンドで毎回生成する。無効化した実行は、集計と各課題の比較に告知を付ける。無効化情報は実行時のfingerprintで照合するため、保存先を変えても告知を保持する。追加の依存関係は不要で、既存のtextlint用Markdownパーサーを使う。HTMLでは生成文に含まれるHTMLタグを文字として表示し、画像などの外部リソースを取得しない。元のMarkdownは本文ファイルで確認できる。表示の再生成は`records/`、`judgments/`、実行時の`manifest.json`を変更しない。
 
@@ -123,13 +126,13 @@ CLIの実行方式は[公式の非対話実行ドキュメント](https://learn.
 ```sh
 # 入力を検証。モデル呼び出し・ファイル作成なし
 npm run benchmark:review -- run \
-  --source benchmarks/results/2026-09-20-main-ca1c0eb \
+  --source benchmarks/results/2026-09-20-isolated-ca1c0eb \
   --out /tmp/nihongo-document-review-new \
   --model gpt-6-astra --effort high --dry-run
 
 # 認証済みで対象モデルを利用できるCLIを使う。CODEX_BINで実行ファイルを指定できる
 npm run benchmark:review -- run \
-  --source benchmarks/results/2026-09-20-main-ca1c0eb \
+  --source benchmarks/results/2026-09-20-isolated-ca1c0eb \
   --out /tmp/nihongo-document-review-new \
   --model gpt-6-astra --effort high --jobs 2
 

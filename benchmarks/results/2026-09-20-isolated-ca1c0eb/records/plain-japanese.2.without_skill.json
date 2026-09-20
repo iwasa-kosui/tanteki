@@ -1,0 +1,37 @@
+{
+  "id": "plain-japanese.2.without_skill",
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "利用者は、既存の認証情報を使って請求画面へ移動できます。通常、再ログインは必要ありません。認証の有効期限が切れている場合のみ、ログイン画面が表示されます。",
+        "notes": "草稿に含まれていた造語は正式名称ではないため、使用していません。"
+      },
+      "usage": {
+        "input_tokens": 2544,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 127,
+        "reasoning_output_tokens": 34
+      },
+      "elapsedMs": 8353,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/plain-japanese.2.without_skill.0.json",
+        "sha256": "e0f9f94e9ddb99485d643a6999f34bc68b29e7ef26fe4ab470294665b7bf5a71",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "3e56d3f073b27e9e4aadd50318e834f56708422feea60d2d66aebad8bf821ce5",
+        "sessionId": "01a0beb0-c3a1-76a1-8772-498b9c6ee4dc"
+      },
+      "metrics": {
+        "characters": 77,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "3e56d3f073b27e9e4aadd50318e834f56708422feea60d2d66aebad8bf821ce5"
+    }
+  ]
+}

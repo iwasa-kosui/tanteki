@@ -1,0 +1,73 @@
+{
+  "caseId": "progress-retention",
+  "repeat": 2,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": false,
+          "evidence": "期間両端、鈴木、BILL-218、受付API実装、再試行処理は記載されているが、PR #106は「レビューを依頼した」とあり、資料どおりの「レビュー待ち」という状態が明記されていない。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "レビュー完了・マージ済みとは記載せず、再試行回数以外の仕様や担当も補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "BILL-218、PR #106、作業停止要因、PdMへの期限付き判断依頼を残して進捗として報告している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "再試行最大回数が未決定のため開始できないことと、PdMに2026年8月24日までの決定を求めることが明確に結び付いている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "見出しと短い箇条書きで簡潔に整理され、同一状況の重複説明はない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "対象期間の両端、鈴木、BILL-218の受付API実装済み、PR #106のレビュー待ち、次の再試行処理をすべて記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "レビュー完了やマージ済みとはせず、未決定の最大回数以外の数値・仕様・担当を追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "課題、PR #106の追跡状況、次作業、PdMへの判断依頼がすべて残されている。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "最大再試行回数が未決定で作業停止中であることと、PdMに8月24日までの判断を依頼することを明記している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "単一の短い箇条書き一覧で要点を伝え、重複がない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4899,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 764,
+      "reasoning_output_tokens": 246
+    },
+    "elapsedMs": 32154,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/progress-retention.2.judge.json",
+      "sha256": "cd8262e9c12580bf7e7dc06a5290aa3771b7b7e0c74a1bc292194b1ed5536fca",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "b358212a7f78cbe1ebce75339b42a8c4d84b52da69003a81245d921be4c603c2",
+      "sessionId": "01a0beb3-9657-76f1-b7e7-7aef9a5b13c1"
+    }
+  },
+  "promptHash": "b358212a7f78cbe1ebce75339b42a8c4d84b52da69003a81245d921be4c603c2"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "incident-record.2.without_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求検索エラー増加ポストモーテム\n\n## 概要\n8月19日、請求検索のエラーが増加しました。直前の変更をロールバックし、09:22に復旧を確認しました。\n\n## 影響\n- 検索失敗：340件\n- 決済への影響：なし\n\n## タイムライン\n- 09:10：エラー増加を検知\n- 09:17：当番の加藤が直前の変更をロールバック\n- 09:22：復旧を確認\n\n## 原因\nDB接続枯渇が原因である可能性がありますが、ログ確認が未完了のため未確定です。\n\n## 改善課題\n- OPS-315：接続数の記録を追加（担当：加藤、期限：8月26日）",
+        "notes": "DB接続枯渇は仮説として記載し、確定原因とはしていません。"
+      },
+      "usage": {
+        "input_tokens": 2562,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 279,
+        "reasoning_output_tokens": 28
+      },
+      "elapsedMs": 12968,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/incident-record.2.without_skill.0.json",
+        "sha256": "5444b081b40d83fc1b3e60162b867cac046c0af4056fba9181e4ab523ca0bd3c",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "44fd572c40ff3e1f95c0497485a005d177366a553e9808764ced4d2e2ec291e7",
+        "sessionId": "01a0beb1-5f9f-75d2-a7a0-bcb74c2b6343"
+      },
+      "metrics": {
+        "characters": 270,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 16,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "44fd572c40ff3e1f95c0497485a005d177366a553e9808764ced4d2e2ec291e7"
+    }
+  ]
+}

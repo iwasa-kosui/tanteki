@@ -1,0 +1,37 @@
+{
+  "id": "comparison-rfc.2.with_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 検索基盤の方式に関するRFC\n\n## 問題\n商品検索が遅い。特に、部分一致検索の速度を改善する方式を選ぶ必要がある。\n\n## 提案\n検索専用サービスを導入する方式Bを採用する。方式Bは部分一致検索を高速化できるためである。検索結果は最大60秒古くても許容する案とするが、業務側の承認はまだ得ていない。\n\n## 適用範囲\n本RFCでは、商品検索の方式と、検索結果の反映遅延に関する許容条件を扱う。計測値や費用は未確認であり、方式の比較には含めない。\n\n## 代替案\n\n| 方式 | 利点 | 制約 |\n|---|---|---|\n| A：既存DB索引の追加 | 運用対象が増えない | 部分一致は速くならない |\n| B：検索専用サービス | 部分一致が速くなる | 別サービスの運用が必要 |\n| B：検索専用サービス | — | DBからの反映遅延が生じる |\n\n方式Aは運用対象を増やさない一方、今回の課題である部分一致検索を改善できないため、提案しない。\n\n## 影響\n方式Bを採用すると、開発チームは検索専用サービスを運用する必要がある。また、DBの更新が検索結果へ反映されるまで遅延が生じる。最大60秒の遅延を許容する場合、この条件を業務側と合意する必要がある。\n\n## 合意が必要な事項\n1. 別サービスを運用する方式Bを採用するか。\n2. 検索結果が最大60秒古くなることを許容するか。\n\n## 状態\n提案中。業務側による60秒の遅延許容は未承認である。",
+        "notes": "文書種別はRFC（stock）、読者は開発チーム、主題は「部分一致検索の改善には方式Bを提案するが、運用負担と最大60秒の反映遅延の合意が必要」。構成と本文は執筆者自身が検査して作成した。外部のlint・意味検査は未実施。SEARCH-88、PR #71、レビュー期限8月28日は作業追跡情報のため本文から除外した。"
+      },
+      "usage": {
+        "input_tokens": 18612,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 665,
+        "reasoning_output_tokens": 62
+      },
+      "elapsedMs": 26545,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/comparison-rfc.2.with_skill.0.json",
+        "sha256": "30973f41dda5d02ee4425a991cd884b44847e77cf224ef0d73392d594b6db01a",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "247da53f54af3cc57caada72737981dd1bdab6d0ce45f2f77275cb3829bcf1ff",
+        "sessionId": "01a0beb0-e96e-7222-8258-89b8fb93af2b"
+      },
+      "metrics": {
+        "characters": 636,
+        "headings": 8,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "247da53f54af3cc57caada72737981dd1bdab6d0ce45f2f77275cb3829bcf1ff"
+    }
+  ]
+}

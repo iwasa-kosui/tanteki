@@ -1,0 +1,36 @@
+{
+  "reviewId": "r-20746904a013543ce73f9d9878329e043ed4bf38063a0d9b9b4da1c41352208f",
+  "inputHash": "20746904a013543ce73f9d9878329e043ed4bf38063a0d9b9b4da1c41352208f",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "中止した定例の議事録を新たに残す必要があるかを判断するための回答",
+        "status": "usable",
+        "summary": "新たな議事録は不要という結論と、原資料に基づく理由が明確で、記録を増やすべきかの判断に使えます。",
+        "strengths": [
+          "開催前の中止、議論・決定・宿題がないこと、中止連絡済みという判断根拠を正確に反映しています。",
+          "既存の記録の保持は必要に応じた提案として示し、新たな文書作成を求めていません。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5884,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 253,
+        "reasoning_output_tokens": 59
+      },
+      "elapsedMs": 12942,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-20746904a013543ce73f9d9878329e043ed4bf38063a0d9b9b4da1c41352208f.1.json",
+        "sha256": "f494426eea67cfecb097b15f15ae7bf3483d102d053c8f91ca286cf338031524",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "20746904a013543ce73f9d9878329e043ed4bf38063a0d9b9b4da1c41352208f",
+        "sessionId": "01a0beb3-2838-70d2-9be1-138fbb58d619"
+      },
+      "validationErrors": null
+    }
+  ]
+}

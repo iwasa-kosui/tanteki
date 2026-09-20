@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-9301d8e0eef64e9f54523259560ff736035b860bb5287af123dea9cf521b7cb9",
+  "inputHash": "9301d8e0eef64e9f54523259560ff736035b860bb5287af123dea9cf521b7cb9",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "社員の問い合わせに対し、新しいFAQを増やさず、領収書提出の正本へ案内する。",
+        "status": "usable",
+        "summary": "正本のURLと参照節、通常のPDF添付、個別に原本提出を求められた場合の対応が明確で、問い合わせへの案内として使えます。",
+        "strengths": [
+          "正本へのリンクと「領収書の提出」という参照節が明示されています。",
+          "通常の提出方法と、経理から個別に求められた場合の例外を正確に区別しています。",
+          "資料にない操作手順を追加せず、簡潔な案内に収めています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5945,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 253,
+        "reasoning_output_tokens": 51
+      },
+      "elapsedMs": 12350,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-9301d8e0eef64e9f54523259560ff736035b860bb5287af123dea9cf521b7cb9.1.json",
+        "sha256": "760a2690168ac9264244b17b8fa30aeafffc51db828f7e6b471093799a265dd5",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "9301d8e0eef64e9f54523259560ff736035b860bb5287af123dea9cf521b7cb9",
+        "sessionId": "01a0beb4-d64f-7443-8865-5e84bbfa04cd"
+      },
+      "validationErrors": null
+    }
+  ]
+}

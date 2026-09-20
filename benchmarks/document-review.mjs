@@ -103,7 +103,7 @@ async function run(o) {
   }
   const { entries, inputs } = buildReviewPlan(cases, records, profiles);
   const harnessHashes = {};
-  for (const p of ["benchmarks/document-review.mjs", "benchmarks/document-review-instructions.txt", "benchmarks/document-review-profiles.json", "benchmarks/document-review.schema.json", "benchmarks/benchmark.mjs"]) harnessHashes[p] = hash(await read(join(root, p)));
+  for (const p of ["benchmarks/document-review.mjs", "benchmarks/document-review-instructions.txt", "benchmarks/document-review-profiles.json", "benchmarks/document-review.schema.json", "benchmarks/benchmark.mjs", "benchmarks/input-audit.mjs", "benchmarks/runtime-context.json"]) harnessHashes[p] = hash(await read(join(root, p)));
   const specification = { version: 1, model: o.model, effort: o.effort, timeout: o.timeout, maxValidationRepairs: 1, sourceEvaluation: { fingerprint: sourceManifest.fingerprint, skillRevision: sourceManifest.skillRevision }, sourceHashes, harnessHashes, entries, inputHashes: inputs.map(({ reviewId, inputHash }) => ({ reviewId, inputHash })) };
   const fingerprint = hash(JSON.stringify(specification));
   if (o.dryRun) { console.log(JSON.stringify({ fingerprint, records: entries.length, uniqueInputs: inputs.length, model: o.model, effort: o.effort }, null, 2)); return; }
@@ -115,7 +115,7 @@ async function run(o) {
   } else {
     await mkdir(dirname(o.out), { recursive: true });
     await mkdir(o.out); // Never replace an existing run or the author evidence.
-    await save(join(o.out, "manifest.json"), { createdAt: new Date().toISOString(), fingerprint, ...specification, runtime, jobs: o.jobs, isolation: { verified: false, requested: "fresh ephemeral session; no tools, user/project instructions, native skills, plugins or history", promptExcludes: "old judgments, candidate notes, arm names and skill text", evidence: "CLI flags and tool events only; effective model input has not been verified" } });
+    await save(join(o.out, "manifest.json"), { createdAt: new Date().toISOString(), fingerprint, ...specification, runtime, jobs: o.jobs, isolation: { verification: "per-response saved-session input audit", requested: "fresh session, fixed shared context, no tools, native skills, plugins or prior conversation", promptExcludes: "old judgments, candidate notes, arm names and skill text", evidence: "call-inputs for each accepted response" } });
     for (const name of ["inputs", "reviews", "calls", "artifacts"]) await mkdir(join(o.out, name));
     await save(join(o.out, "schema.json"), schema);
     await writeFile(join(o.out, "instructions.txt"), await read(join(root, "benchmarks/document-review-instructions.txt")));

@@ -1,0 +1,73 @@
+{
+  "caseId": "incident-record",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "8月19日、09:10検知、09:17に加藤がロールバック、09:22復旧、検索失敗340件、決済影響なしを本文に明記している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "DB接続枯渇を可能性（仮説）として扱い、ログ確認未完了のため未確定としている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "OPS-315、接続数記録の追加、担当加藤、期限8月26日を本文に記載している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "影響、時系列、原因、改善課題が節で分かれ、事実・仮説・予定を区別できる。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "概要でエラー増加と復旧を述べた後、タイムラインでも同じ事象を再掲しており、同じ要約の重複がある。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "8月19日09:10の検知、09:17の加藤による変更戻し、09:22復旧、340件、決済影響なしを本文に保持している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "DB接続枯渇は可能性に留め、ログ未確認のため原因未確定と明記している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "OPS-315、接続数の記録追加、担当加藤、期限8月26日を本文に記載している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "影響・時系列・原因・改善策が分離され、観測事実、原因仮説、改善予定を追える。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "必要事項を一度ずつ簡潔に記し、架空の再発防止項目や不要な重複を加えていない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5050,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 622,
+      "reasoning_output_tokens": 141
+    },
+    "elapsedMs": 26337,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/incident-record.2.judge.json",
+      "sha256": "54baacd0413a26e4598c88788238cb28a31e5956801879a776d1ca9f30e8213f",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "79042a2adfa446172e854905a7495071d7fbe2ac302d9169e64f53170376f7fa",
+      "sessionId": "01a0beb3-a6b8-7ed2-8ff3-2cf4f2f68824"
+    }
+  },
+  "promptHash": "79042a2adfa446172e854905a7495071d7fbe2ac302d9169e64f53170376f7fa"
+}

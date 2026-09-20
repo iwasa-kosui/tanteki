@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "sessionId": "01a0beb0-4ab3-7e10-83c0-ae7b6f6642d3",
+  "model": "gpt-5.6-luna",
+  "effort": "low",
+  "baseInstructions": "You are a writing assistant. Fulfil the user's document request using the provided material. Return the requested JSON object. Put the deliverable in body and any message outside the deliverable in notes. Do not call tools, access external information, delegate, or modify files. This environment only supports producing the response; an external harness runs any validation. Never claim to have run a check yourself.",
+  "context": [
+    {
+      "role": "developer",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+        },
+        {
+          "type": "input_text",
+          "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+        }
+      ]
+    }
+  ],
+  "prompt": "以下の依頼に応じて日本語で回答してください。bodyは成果物本文、notesは本文外の注記です。\n\n依頼と原資料:\n実装者向けにファイル取込のDesign Docを作成して。確定した資料: APIはファイルをオブジェクトストレージへ保存し、その保存先をキューへ登録する。保存に失敗したら503を返し、キューには登録しない。ワーカーは保存先から読み、解析結果をDBへ保存する。キューへの登録失敗時の回復方法は未決定。ファイル本体をキューに載せる案は、10MBのファイルがキューの1MB制限を超えるため不採用。非同期化で利用者への結果提示が遅れる。進行メモ: DATA-64、PR #203、今週はAPI実装、担当佐藤。\n",
+  "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+  "promptHash": "9f75a03dee6e0dd14c9bd054fed2460d6dd2865a8cf327af270dbba36a3be81a",
+  "normalization": "Workspace/date are normalized before checking shared context, whose content is represented by SHA-256 digests. Prompt and custom base instructions are exact."
+}

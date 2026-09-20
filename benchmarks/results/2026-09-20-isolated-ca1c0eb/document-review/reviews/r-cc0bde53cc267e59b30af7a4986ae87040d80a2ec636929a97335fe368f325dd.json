@@ -1,0 +1,148 @@
+{
+  "reviewId": "r-cc0bde53cc267e59b30af7a4986ae87040d80a2ec636929a97335fe368f325dd",
+  "inputHash": "cc0bde53cc267e59b30af7a4986ae87040d80a2ec636929a97335fe368f325dd",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番が実施可否と未完成の範囲を把握するための、本番キャッシュ再起動Runbookの草稿。",
+        "status": "source_limited",
+        "summary": "未決事項の確認に使える草稿です。条件を確認できなければ実施しないと明記されており、現状での再起動を抑止できます。ただし、操作・復旧確認・連絡に必要な情報は未確定で、本番実行には使えません。",
+        "strengths": [
+          "実施条件を確認できない場合は再起動しないという安全上の境界が明確です。",
+          "復旧確認方法、実施条件、連絡先を未決定と示し、架空の仕様で補っていません。",
+          "検知から実施可否、操作、復旧確認までの流れを把握できます。"
+        ],
+        "findings": [
+          {
+            "severity": "minor",
+            "kind": "omission",
+            "basis": "source",
+            "excerpt": "2. 再起動コマンドを実行する。",
+            "source_excerpt": "再起動コマンド、停止してよい条件、復旧確認方法、連絡先はまだ決まっていない。",
+            "finding": "他の未決事項と異なり、再起動コマンドも未決定であることが明記されていません。",
+            "impact": "実施禁止の条件はあるため直ちに誤操作を促すものではありませんが、読者がコマンドを単なる記載漏れや既知の操作と受け取り、確定が必要な事項から漏らす可能性があります。",
+            "suggested_change": "手順の該当箇所に、再起動コマンドは未決定である旨を追記してください。具体的なコマンドを補う必要はありません。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "再起動コマンド",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "2. 再起動コマンドを実行する。",
+            "consequence": "実行する操作を特定できません。本文でも未決定と明記すると、草稿の残課題が明確になります。"
+          },
+          {
+            "missing_information": "停止してよい条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動してよい条件は未決定。条件を確認できない場合は、再起動を実施しない。",
+            "consequence": "実施可否を判断できないため、現状では再起動に進めません。本文はその制約を適切に示しています。"
+          },
+          {
+            "missing_information": "復旧確認方法",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "復旧確認方法は未決定。",
+            "consequence": "再起動後の復旧や対応完了を判定できません。確認方法の確定が必要です。"
+          },
+          {
+            "missing_information": "連絡先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先は未決定。",
+            "consequence": "実施できない場合や復旧しない場合の連絡先を、この草稿から特定できません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6020,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1428,
+        "reasoning_output_tokens": 600
+      },
+      "elapsedMs": 46636,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-cc0bde53cc267e59b30af7a4986ae87040d80a2ec636929a97335fe368f325dd.1.json",
+        "sha256": "ae4c1cf3e855b0f8db626e0db561cc6e60964514916177a3ceadeb28fcbc3905",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "cc0bde53cc267e59b30af7a4986ae87040d80a2ec636929a97335fe368f325dd",
+        "sessionId": "01a0beb5-de2a-7451-94c4-bc17b40249b7"
+      },
+      "validationErrors": "status: inadequately handled blocking gaps require an explicit major/critical finding"
+    },
+    {
+      "response": {
+        "intended_use": "当番が実施可否と未完成の範囲を把握するための、本番キャッシュ再起動Runbookの草稿。",
+        "status": "revision_needed",
+        "summary": "実施条件・復旧確認方法・連絡先の未決定は把握できます。ただし、再起動コマンドも未決定であることが明示されておらず、実行できない範囲の表示に修正が必要です。現状では本番実行には使えません。",
+        "strengths": [
+          "実施条件を確認できない場合は再起動しないという安全上の境界が明確です。",
+          "復旧確認方法、実施条件、連絡先を未決定と示し、架空の仕様で補っていません。",
+          "検知から実施可否、操作、復旧確認までの流れを把握できます。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "omission",
+            "basis": "source",
+            "excerpt": "2. 再起動コマンドを実行する。",
+            "source_excerpt": "再起動コマンド、停止してよい条件、復旧確認方法、連絡先はまだ決まっていない。",
+            "finding": "実行に必須の再起動コマンドについて、他の未決事項と異なり、未決定であることが明記されていません。資料不足そのものではなく、実行を妨げる未決事項の表示漏れが問題です。",
+            "impact": "条件不明時の実施禁止は示されていますが、条件を確認できても操作は未確定です。当番が条件の確認だけで実行に進めると誤解したり、コマンドの確定を残課題から漏らしたりするおそれがあります。",
+            "suggested_change": "再起動コマンドは未決定であり、確定するまで実行に進めない旨を該当手順に明記してください。具体的なコマンドを創作する必要はありません。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "再起動コマンド",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "2. 再起動コマンドを実行する。",
+            "consequence": "実行する操作を特定できません。本文でも未決定と明記し、操作を実行できないことを示す必要があります。"
+          },
+          {
+            "missing_information": "停止してよい条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動してよい条件は未決定。条件を確認できない場合は、再起動を実施しない。",
+            "consequence": "実施可否を判断できないため、現状では再起動に進めません。本文はその制約を適切に示しています。"
+          },
+          {
+            "missing_information": "復旧確認方法",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "復旧確認方法は未決定。",
+            "consequence": "再起動後の復旧や対応完了を判定できません。確認方法の確定が必要です。"
+          },
+          {
+            "missing_information": "連絡先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先は未決定。",
+            "consequence": "実施できない場合や復旧しない場合の連絡先を、この草稿から特定できません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6812,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1071,
+        "reasoning_output_tokens": 196
+      },
+      "elapsedMs": 38048,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-cc0bde53cc267e59b30af7a4986ae87040d80a2ec636929a97335fe368f325dd.2.json",
+        "sha256": "c6e9c7195b85f9537b0c9c4edf1cf87af439d5d0a33ac364fa28a8c3c1427cfa",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "2ff8fdfbb3d784104a7b89126b1d8ea3fd3760d956598dd6ed5e67444e02d77a",
+        "sessionId": "01a0beb6-968f-7bc0-b45d-0092cf85e00d"
+      },
+      "validationErrors": null
+    }
+  ]
+}

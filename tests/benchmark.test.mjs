@@ -74,7 +74,7 @@ test("invalid generations, incomplete turns, and tool use cannot become successe
 
 test("CLI requests isolation; flags alone do not establish runtime isolation", () => {
   const args = codexArgs({ model: "test", effort: "low", workspace: "/tmp/empty", instructions: "/tmp/instructions", schema: "/tmp/schema", output: "/tmp/output", skills: ["/tmp/a skill"] });
-  for (const flag of ["--ignore-user-config", "--ephemeral", "project_doc_max_bytes=0", "features.plugins=false", "features.shell_tool=false", "features.multi_agent=false", 'web_search="disabled"', 'skills.config=[{path="/tmp/a skill",enabled=false}]']) assert.ok(args.includes(flag), flag);
+  for (const flag of ["--ignore-user-config", "project_doc_max_bytes=0", "features.plugins=false", "features.shell_tool=false", "features.multi_agent=false", 'web_search="disabled"', 'skills.config=[{path="/tmp/a skill",enabled=false}]']) assert.ok(args.includes(flag), flag);
   assert.ok(!args.includes("--dangerously-bypass-approvals-and-sandbox"));
   assert.equal(args.at(-1), "-");
 });

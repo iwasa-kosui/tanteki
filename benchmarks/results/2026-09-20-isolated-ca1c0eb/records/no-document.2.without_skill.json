@@ -1,0 +1,37 @@
+{
+  "id": "no-document.2.without_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たな議事録は残す必要ありません。開催前に中止され、議論・決定・宿題がなく、中止連絡も参加者へ送信済みだからです。必要であれば、予定表や中止連絡の記録だけを保持してください。",
+        "notes": ""
+      },
+      "usage": {
+        "input_tokens": 2496,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 124,
+        "reasoning_output_tokens": 40
+      },
+      "elapsedMs": 6320,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/no-document.2.without_skill.0.json",
+        "sha256": "fedb65f67de18e3c02ece66a21e47a33a2f872b0cfb9c286ebe849bb665a2adf",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e",
+        "sessionId": "01a0beb2-1531-7e72-af69-693a81cd9ccb"
+      },
+      "metrics": {
+        "characters": 87,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e"
+    }
+  ]
+}

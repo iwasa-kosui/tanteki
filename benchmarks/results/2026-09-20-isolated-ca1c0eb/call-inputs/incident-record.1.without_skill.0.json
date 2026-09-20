@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "sessionId": "01a0beb0-2e9f-7522-a1b9-8350fc015bde",
+  "model": "gpt-5.6-luna",
+  "effort": "low",
+  "baseInstructions": "You are a writing assistant. Fulfil the user's document request using the provided material. Return the requested JSON object. Put the deliverable in body and any message outside the deliverable in notes. Do not call tools, access external information, delegate, or modify files. This environment only supports producing the response; an external harness runs any validation. Never claim to have run a check yourself.",
+  "context": [
+    {
+      "role": "developer",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+        },
+        {
+          "type": "input_text",
+          "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+        }
+      ]
+    }
+  ],
+  "prompt": "以下の依頼に応じて日本語で回答してください。bodyは成果物本文、notesは本文外の注記です。\n\n依頼と原資料:\n運用チーム向けに短いポストモーテムを書いて。8月19日09:10に請求検索のエラー増加を検知。09:17に当番の加藤が直前の変更を戻し、09:22に復旧を確認。影響は検索失敗340件、決済への影響なし。DB接続枯渇が原因という仮説だが、ログの確認は未完了。改善課題はOPS-315、接続数の記録追加を加藤が8月26日までに行う。\n",
+  "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+  "promptHash": "44fd572c40ff3e1f95c0497485a005d177366a553e9808764ced4d2e2ec291e7",
+  "normalization": "Workspace/date are normalized before checking shared context, whose content is represented by SHA-256 digests. Prompt and custom base instructions are exact."
+}

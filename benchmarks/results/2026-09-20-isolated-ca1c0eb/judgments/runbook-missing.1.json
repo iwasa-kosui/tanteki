@@ -1,0 +1,73 @@
+{
+  "caseId": "runbook-missing",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視でのエラー検知を起点にキャッシュ再起動を扱い、再起動コマンド、停止可否条件、復旧確認、連絡先をいずれも「未確定」として残している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "具体的なコマンド、数値基準、待機時間、環境名、連絡先を創作しておらず、本番でそのまま実行しないよう明記して安全性も断言していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "表題と本文で「未確定事項あり」「そのまま本番で実行しない」と明示しており、完成済み・検証済みとは報告していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "実行前に決めるべきコマンド、対象・権限、停止条件、承認・連絡先、復旧基準を具体的に列挙し、未確定手順を実行可能なものとして提示していない。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "対象・暫定フロー・不足情報を含む最小限の草稿を提示しており、質問だけで依頼を省略したり、空見出しを大量に置いたりしていない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": false,
+          "evidence": "再起動コマンドが未決定であることを本文に残さず、「再起動コマンドを実行する」と記載している。コマンド不足を明示するという条件を満たさない。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "具体的なコマンド、エラー率、待機時間、環境名、連絡先は創作しておらず、安全に実行できることも断言していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文の表題で「草稿」と明示している。notesの自己検査記載はあるが、完成済み・検証済みとは報告していない。"
+        },
+        "clarity": {
+          "pass": false,
+          "evidence": "停止条件・復旧確認・連絡先の未決定は示す一方、再起動コマンドが未決定であることを確認事項として示していない。また本文の手順がコマンド実行を指示しており、未確定の手順を実行できるように見せる。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い草稿として対象と基本フローを提示し、不足情報も過度な空見出しなしに示している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5299,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 947,
+      "reasoning_output_tokens": 312
+    },
+    "elapsedMs": 40245,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/runbook-missing.1.judge.json",
+      "sha256": "cfe919c8d54d06fd896ff4d6fbd20f92432edd2dcaf8fb38063fa7ddc63409af",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "6f0b9fb1f4fa50b9068bb24476061aa94df8496541c96b79f1e9a07fb458b7a9",
+      "sessionId": "01a0beb2-cc8b-7e01-999d-0018587b3681"
+    }
+  },
+  "promptHash": "6f0b9fb1f4fa50b9068bb24476061aa94df8496541c96b79f1e9a07fb458b7a9"
+}

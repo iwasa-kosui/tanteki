@@ -1,0 +1,73 @@
+{
+  "caseId": "surgical-edit",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "末尾が「失敗率が7%を超えたら当番が配信を停止する。」であり、閾値・当番・配信停止を保持している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "新しい監視条件、復旧手順、通知先を追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "タイトル、前2文、改行を維持し、末尾のみを置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "旧文は残らず、失敗率7%超時に当番が配信停止することが明確である。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "本文は要求された改稿後全文のみで、章や補足を追加していない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "本文末尾が「失敗率が7%を超えたら当番が配信を停止する。」であり、必要な確定事項を保持している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "本文には新しい監視条件、復旧手順、通知先が追加されていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文ではタイトル、前2文、改行を維持し、末尾のみを置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "本文から、失敗率7%超時に当番が配信を停止することが明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "本文外notesに型・主題・改稿説明の補足があり、「改稿後全文だけを本文に返す」という要求を満たさない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4656,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 410,
+      "reasoning_output_tokens": 0
+    },
+    "elapsedMs": 20335,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/surgical-edit.2.judge.json",
+      "sha256": "c1919655fb3e3858171e5cd19f78725d2ae793478ce50838e343bddec5f86aa7",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "dfd55fbbfd0ca6854ae3c9f8e61260429ba8adecddb70c577f24d3d8ebe82576",
+      "sessionId": "01a0beb4-0d9e-73d2-bc00-d4ebdb8a2be0"
+    }
+  },
+  "promptHash": "dfd55fbbfd0ca6854ae3c9f8e61260429ba8adecddb70c577f24d3d8ebe82576"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "adr-boundary.2.without_skill",
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# ADR: 請求書PDF生成を非同期キュー処理にする\n\n- **日付**: 2026-08-20\n- **ステータス**: 採用\n- **関連**: BILL-218、PR #106\n\n## コンテキスト\n\n請求書PDFの生成には最大45秒かかる場合があり、同期処理ではAPI接続が切断される。これにより、生成結果を安定して返却できない。\n\n## 決定\n\n請求書PDFの生成はキューを介した非同期処理とする。APIは生成処理を受け付けた時点で受付IDを返し、クライアントは受付IDを使って処理状況や完成結果を確認する。\n\n## 理由\n\n同期生成では、最大45秒の処理中に接続が切れる可能性があるため採用しない。非同期化により、APIの接続維持時間を短くし、長時間のPDF生成を安定して処理できる。\n\n## 影響\n\n- API利用者は、受付IDを保持して完成までの状態確認を行う必要がある。\n- 利用者はPDFが完成するまで待つ必要がある。\n- キュー、ワーカー、処理状況および完成結果を確認する仕組みが必要になる。\n- 再試行回数の上限は未決定であり、別途決定する必要がある。\n\n## 参考情報\n\n原資料の作業メモでは、進捗は70%と記録されている。",
+        "notes": "再試行の上限は原資料で未決定とされているため、値や運用方針は補っていません。"
+      },
+      "usage": {
+        "input_tokens": 2543,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 469,
+        "reasoning_output_tokens": 40
+      },
+      "elapsedMs": 13186,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/adr-boundary.2.without_skill.0.json",
+        "sha256": "d0fc04649835541b5709139d59d55d5f7dfbb27703d7f6563c3f49b3611f428c",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "6bb6f1039d7fa2c8857ef860ba137ce38bd2012fa1af6d1194029eca7de871da",
+        "sessionId": "01a0beb1-5141-7463-95fe-a888cb125ed3"
+      },
+      "metrics": {
+        "characters": 526,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "stock-boundary",
+            "line": 5,
+            "column": 11,
+            "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          },
+          {
+            "ruleId": "stock-boundary",
+            "line": 5,
+            "column": 20,
+            "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          },
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 17,
+            "column": 27,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "6bb6f1039d7fa2c8857ef860ba137ce38bd2012fa1af6d1194029eca7de871da"
+    }
+  ]
+}

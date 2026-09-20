@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-27b86054fd6b4ca0d23306ddbc39ba485e4fe429d23c68ea31dff892723a8f04",
+  "inputHash": "27b86054fd6b4ca0d23306ddbc39ba485e4fe429d23c68ea31dff892723a8f04",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式と鮮度の許容条件について、開発チームが合意を判断するための短いRFC。",
+        "status": "usable",
+        "summary": "方式A・Bの違い、Bの提案理由、運用上の影響、未承認の条件が明確で、合意事項を議論できる。性能改善の程度や費用対効果の定量判断はできない。",
+        "strengths": [
+          "部分一致の性能と運用負担を対応付け、Bを提案する理由を説明している。",
+          "60秒は許容条件の案であり、業務側が未承認であることを明示している。",
+          "別サービスの運用と60秒の許容を、合意すべき事項として明確に分けている。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "性能の計測値および費用情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "計測値や費用は未確認であり、方式の比較には含めない。",
+            "consequence": "定性的な方式選択の議論は可能だが、改善幅や費用対効果を判断するには追加情報が必要。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6413,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 718,
+        "reasoning_output_tokens": 385
+      },
+      "elapsedMs": 27435,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-27b86054fd6b4ca0d23306ddbc39ba485e4fe429d23c68ea31dff892723a8f04.1.json",
+        "sha256": "8f90e178a39a2de8ee2154ca3de083e466eb865eac8bad5dcd4adc2723f8551b",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "27b86054fd6b4ca0d23306ddbc39ba485e4fe429d23c68ea31dff892723a8f04",
+        "sessionId": "01a0beb3-501e-7572-99d9-539a63dd7c7b"
+      },
+      "validationErrors": null
+    }
+  ]
+}
