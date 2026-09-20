@@ -1,12 +1,11 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 import { readPublication } from '../benchmarks/isolated/publication.ts';
 import { writeReport } from '../benchmarks/isolated/report.ts';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const repo = './results/';
 const escape = (text) => text.replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
 export async function build(projectRoot = root) {
@@ -18,19 +17,30 @@ export async function build(projectRoot = root) {
   if (!/^benchmarks\/results\/[a-z0-9-]+$/.test(run)) throw new Error('Invalid benchmark publication path');
   const data = await readPublication(join(root, run));
   const { cases, manifest, lock, evaluation, summary } = data;
+  const publications = new Map([[run, { data, destination: 'results' }]]);
   const examples = JSON.parse(await read('docs/examples.json'));
   const panels = [];
   // Keep an inspectable Markdown version of the exact page prose for textlint.
   const exampleCopy = [];
   for (const example of examples) {
-    const task = cases.find(({ id }) => id === example.id);
+    const exampleRun = example.run ?? run;
+    if (!/^benchmarks\/results\/[a-z0-9-]+$/.test(exampleRun)) throw new Error('Invalid example publication path');
+    if (!publications.has(exampleRun)) {
+      publications.set(exampleRun, {
+        data: await readPublication(join(root, exampleRun)),
+        destination: `examples/${basename(exampleRun)}`,
+      });
+    }
+    const publication = publications.get(exampleRun);
+    const task = publication.data.cases.find(({ id }) => id === example.id);
     if (!task) throw new Error(`Missing source case: ${example.id}`);
+    const evaluationUrl = exampleRun === run ? './evaluation.html' : `./${publication.destination}/comparison.html`;
     const documents = [];
     for (const [arm, name, label] of [['without_skill', 'before', 'スキルなし'], ['with_skill', 'after', 'tanteki あり']]) {
       const repeat = example.repeat ?? 1;
-      const record = data.records.find((r) => r.id === `${example.id}.${repeat}.${arm}`);
+      const record = publication.data.records.find((r) => r.id === `${example.id}.${repeat}.${arm}`);
       if (record?.status !== 'valid') throw new Error(`Invalid example: ${example.id}.${repeat}.${arm}`);
-      const path = `${run}/documents/${record.id}.md`;
+      const path = `${exampleRun}/documents/${record.id}.md`;
       const body = await read(path);
       let html = renderMarkdown(body);
       for (const [index, item] of example[name].highlight.entries()) {
@@ -43,13 +53,13 @@ export async function build(projectRoot = root) {
         const label = '比較のポイント';
         html = html.replace(needle, `<mark>${needle}</mark><span class="change-note" role="note"><span class="change-note-label">${label}</span>${escape(item.note)}</span>`);
       }
-      documents.push(`<div class="document ${name}"><p class="document-label" id="label-${example.id}-${name}"><b>${name === 'before' ? 'WITHOUT' : 'WITH'}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span><span class="full-text-label">全文</span></p><div class="document-scroll" role="region" aria-labelledby="label-${example.id}-${name}" tabindex="0"><blockquote cite="${repo}${path.slice(run.length + 1)}">${html}</blockquote></div></div>`);
+      documents.push(`<div class="document ${name}"><p class="document-label" id="label-${example.id}-${name}"><b>${name === 'before' ? 'WITHOUT' : 'WITH'}</b><span${name === 'after' ? ' class="badge"' : ''}>${label}</span><span class="full-text-label">全文</span></p><div class="document-scroll" role="region" aria-labelledby="label-${example.id}-${name}" tabindex="0"><blockquote cite="./${publication.destination}/documents/${record.id}.md">${html}</blockquote></div></div>`);
     }
     panels.push(`<section class="example-panel" id="example-${example.id}" aria-label="${escape(example.tab)}の比較">
       <div class="example-title"><h3>${escape(example.title)}</h3><span>${escape(example.scope)}</span></div>
       <div class="comparison">${documents.join('\n')}</div>
       <p class="comparison-insight"><strong>読み比べるポイント</strong><span>${escape(example.insight)}</span></p>
-      <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="./evaluation.html#${example.id}.${example.repeat ?? 1}">評価の詳細 ↗</a></div>
+      <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="${evaluationUrl}#${example.id}.${example.repeat ?? 1}">評価の詳細 ↗</a></div>
     </section>`);
     const notes = [...example.before.highlight, ...example.after.highlight].map(({ note }) => note);
     exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n\n${notes.join('\n\n')}\n`);
@@ -73,7 +83,14 @@ export async function build(projectRoot = root) {
     ['出力トークン', (arm) => arm.outputTokens.toLocaleString('ja-JP')],
   ]);
   const started = new Date(manifest.createdAt).toLocaleDateString('ja-JP', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' });
-  const comparisonContext = `「なし／あり」は同じ依頼から別々に生成した結果です。${started}（UTC）に開始したDocker分離方式の実測から、${examples.length}課題を紹介します。`;
+  const comparisonContext = `「なし／あり」は同じ依頼から別々に生成した結果です。Docker分離方式の実測から、${examples.length}課題を紹介します。各例の依頼と評価は、比較欄から確認できます。`;
+  const additionalContext = (await Promise.all(examples.filter((example) => example.run && example.run !== run).map(async (example) => {
+    const { data: extra, destination } = publications.get(example.run);
+    const date = new Date(extra.manifest.createdAt).toLocaleDateString('ja-JP', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' });
+    const notes = (await readdir(join(root, example.run))).includes('run-notes.md')
+      ? ` · <a href="./${destination}/run-notes.md">題材の見直しと本文の所見 ↗</a>` : '';
+    return `<p>${escape(example.tab)}の例は${escape(date)}（UTC）に開始した追加実測です。以下の集計には含めません。生成は ${escape(extra.manifest.settings.model)} / ${escape(extra.manifest.settings.effort)}、採点は ${escape(extra.evaluation.model)} / ${escape(extra.evaluation.effort)} です。<a href="./${destination}/comparison.html">追加実測の本文と評価 ↗</a> · <a href="./${destination}/runtime-lock.json">実行環境の記録 ↗</a>${notes}</p>`;
+  }))).join('');
   const context = `<p>${escape(started)}（UTC）に生成を開始し、${cases.length}課題を各${manifest.settings.repeats}回、スキルなし／ありで実行しました。条件ごとに新しいコンテナを用意し、tanteki一式の導入だけを変えています。</p><p>対象は <a href="https://github.com/iwasa-kosui/tanteki/tree/${escape(lock.sourceRevision)}"><code>${escape(lock.sourceRevision.slice(0, 7))}</code></a>。生成は ${escape(manifest.settings.model)} / ${escape(manifest.settings.effort)}、採点は ${escape(evaluation.model)} / ${escape(evaluation.effort)} です。</p><p>有効ペアは${summary.validPairs}/${summary.plannedPairs}組、採点済みは${summary.gradedPairs}組です。生成後の採点結果は書き手に返しません。スキルを使わなかった試行も残し、品質は両条件が有効なペアで比較します。</p><p>作成者が選んだ${cases.length}課題と単一モデルの判定による小規模な比較です。${cases.some((c) => c.type === "prd") ? "" : "PRDは含みません。"}旧方式の結果とは分けて読みます。</p><a class="text-link" href="./evaluation.html">全${summary.plannedPairs}組の本文と評価を読む <span aria-hidden="true">↗</span></a>`;
   const rawTemplate = await read('docs/isolated.html');
   for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- COMPARISON_CONTEXT -->']) {
@@ -81,7 +98,7 @@ export async function build(projectRoot = root) {
   }
   const notesLink = (await readdir(join(root, run))).includes('run-notes.md')
     ? '<p><a class="text-link small" href="./results/run-notes.md">本文と判定を照合した所見を読む ↗</a></p>' : '';
-  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context + notesLink).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
+  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', additionalContext + context + notesLink).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
   for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->', '<!-- BENCHMARK_ROWS -->']) {
     if (template.split(placeholder).length !== 2) throw new Error(`Expected one ${placeholder}`);
   }
@@ -92,8 +109,17 @@ export async function build(projectRoot = root) {
   for (const file of ['styles.css', 'site.js', 'favicon.svg']) await cp(join(source, file), join(output, file));
   await writeFile(join(output, '.nojekyll'), '');
   // Ship the original outputs and evaluation records so preview links work too.
-  await cp(join(root, run), join(output, 'results'), { recursive: true, filter: (path) => !path.split(/[\\/]/).includes('calls') });
-  await writeReport({ ...data, out: join(output, 'results') });
+  for (const [publicationRun, { data: published, destination }] of publications) {
+    const target = join(output, destination);
+    await cp(join(root, publicationRun), target, { recursive: true, filter: (path) => !path.split(/[\\/]/).includes('calls') });
+    await writeReport({ ...published, out: target });
+    if (publicationRun !== run) {
+      const comparisonPath = join(target, 'comparison.html');
+      const comparison = (await readFile(comparisonPath, 'utf8'))
+        .replace('<h1>', '<nav style="padding:16px"><a href="../../">← tanteki の紹介へ戻る</a></nav><h1>');
+      await writeFile(comparisonPath, comparison);
+    }
+  }
   const report = (await readFile(join(output, 'results/comparison.html'), 'utf8'))
     .replace('<h1>', '<nav style="padding:16px"><a href="./">← tanteki の紹介へ戻る</a></nav><h1>');
   await writeFile(join(output, 'evaluation.html'), report);
