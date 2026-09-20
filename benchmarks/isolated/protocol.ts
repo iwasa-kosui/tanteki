@@ -143,8 +143,18 @@ export function comparableRequest(raw: unknown, job: Job, withSkill: boolean) {
   const { prompt_cache_key, client_metadata, input, ...settings } = body;
   let catalogs = 0;
   const messageSchema = z.looseObject({ type: z.literal("message"), role: z.enum(["developer", "user", "system"]), content: z.array(z.looseObject({ type: z.literal("input_text"), text: z.string() })) });
+  const inputSchema = z.discriminatedUnion("type", [messageSchema,
+    z.looseObject({ type: z.literal("additional_tools"), role: z.literal("developer"), tools: z.array(z.record(z.string(), z.unknown())) })
+  ]);
   const messages = input.map((rawMessage) => {
-    const { id, content, ...message } = decode(messageSchema, rawMessage);
+    const item = decode(inputSchema, rawMessage);
+    if (item.type === "additional_tools") {
+      // Code-mode models put tool definitions in input. Compare all definitions,
+      // excluding only the identifier of this fresh input item.
+      const { id, ...definitions } = item;
+      return definitions;
+    }
+    const { id, content, ...message } = item;
     return { ...message, content: content.filter((part) => {
       if (!part.text.startsWith("<skills_instructions>\n")) return true;
       invariant(withSkill && message.role === "developer" && part.text.endsWith("</skills_instructions>") && part.text.includes("\n- tanteki:"), "Unexpected native skill instructions");

@@ -148,6 +148,18 @@ test("initial comparison permits only native skill discovery and fresh session i
   assert.notEqual(digest(comparableRequest(changed, job, false)), digest(expected));
 });
 
+test("code-mode tool definitions are compared in full while fresh item IDs may differ", () => {
+  const job = publicJob({ prompt: "依頼" }, { model: "fixed", effort: "low" });
+  const tools = [{ type: "function", name: "exec_command", description: "Run a command" }];
+  const request = (id: string, definitions: unknown[] = tools) => ({ model: "fixed", store: false, reasoning: { effort: "low" }, input: [{ type: "additional_tools", id, role: "developer", tools: definitions }] });
+  const expected = comparableRequest(request("first"), job, false);
+  assert.deepEqual(comparableRequest(request("second"), job, false), expected);
+  assert.notEqual(digest(comparableRequest(request("first", []), job, false)), digest(expected));
+  assert.notEqual(digest(comparableRequest(request("first", [{ ...tools[0], description: "Different instruction" }]), job, false)), digest(expected));
+  assert.throws(() => comparableRequest({ ...request("first"), input: [{ type: "function_call", name: "exec_command", arguments: "{}" }] }, job, false));
+  assert.throws(() => comparableRequest({ ...request("first"), input: [{ type: "additional_tools", role: "user", tools }] }, job, false));
+});
+
 test("checking whether textlint exists is not counted as executing lint", () => {
   const event = (command: string, exitCode = 0) => ({ method: "item/completed", params: { item: { type: "commandExecution", exitCode, commandActions: [{ type: "unknown", command }] } } });
   for (const command of ["node -e \"require.resolve('textlint')\"", "cat /skill/scripts/lint.mjs", "rg textlint package.json", "echo textlint"]) assert.equal(sawLintCommand(event(command)), false);

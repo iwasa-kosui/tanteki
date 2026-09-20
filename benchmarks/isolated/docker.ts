@@ -138,13 +138,14 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
     const index = ++metrics.modelCalls;
     if (index > maxCalls) { stop("Model-call budget exceeded"); return; }
     const bytes = decodeRequest(message);
+    // Preserve rejected requests as evidence too; validation still precedes API access.
+    await writeFile(join(directory, `request-${index}.json`), bytes);
     const body = checkRequest(JSON.parse(bytes.toString("utf8")), job);
     if (index === 1) {
       invariant(body.input.some((item) => { const parsed = userMessage.safeParse(item); return parsed.success && parsed.data.content.some((part) => part.text === job.prompt); }), "Prompt missing from actual model request");
       metrics.environmentHash = digest({ runtime: metrics.environmentHash, request: comparableRequest(body, job, bundle !== null) });
     }
     if (bytes.includes(Buffer.from("name: tanteki\\n"))) metrics.observations.skillTextSeen = true;
-    await writeFile(join(directory, `request-${index}.json`), bytes);
     const controller = new AbortController();
     controllers.add(controller);
     const usage = new SSEUsage();
