@@ -74,7 +74,7 @@ async function build() {
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
-  for (const file of ['styles.css', 'site.js', 'favicon.svg']) await cp(join(source, file), join(output, file));
+  for (const file of ['styles.css', 'site.js', 'favicon.svg', 'og-image.png']) await cp(join(source, file), join(output, file));
   await copyMermaidAssets(source, output);
   await writeFile(join(output, '.nojekyll'), '');
   // Ship the original outputs and evaluation records so preview links work too.

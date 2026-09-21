@@ -1,0 +1,19 @@
+Generated with the built-in image_gen tool on 2026-09-22.
+Output: docs/og-image.png (1731 × 909 pixels, original output retained).
+Used for both Open Graph and X summary_large_image cards.
+
+Final generation prompt:
+
+Use case: ads-marketing
+Asset type: Open Graph social link preview image for the Japanese website "tanteki", used on X and Facebook.
+Primary request: Generate one finished, polished Japanese typographic brand card in a wide 1.91:1 landscape format, ideally exactly 1200 × 630 pixels. This must look like a carefully typeset Japanese editorial cover, immediately readable at small feed sizes.
+Scene/backdrop: flat pure white #ffffff background, generous whitespace, very faint pale blue horizontal editorial rules or paper details.
+Subject: "tanteki." wordmark and the website's exact Japanese headline. A restrained abstract document motif at far right: several grey text lines become three concise cobalt blue lines, indicating clarity in writing. Keep motif minimal and secondary to headline.
+Style/medium: crisp professional graphic design, Japanese modern Gothic sans-serif typography, flat colors, no photographic elements, no gradients, no shadows, no 3D.
+Composition/framing: one landscape card, edge-to-edge background; all meaningful content safely inset at least 75 pixels from every edge. Left-aligned brand at upper left; dominant Japanese headline on two lines in the center-left; modest descriptor near bottom-left. Headline must occupy most of the visual attention. A thin cobalt blue rule beneath the headline. Balance document motif in the open space on the right without touching text.
+Color palette: white #ffffff, deep navy #1f2937 text, vivid cobalt blue #1d4ed8 accent, muted slate #627188 descriptor, pale slate #e2e8f0 lines.
+Text (verbatim, only these three text elements):
+1. "tanteki." — bold lowercase sans-serif wordmark, navy letters and a cobalt blue period.
+2. "業務のための文書を" on first line, "もっと端的に" on second line — large, bold Japanese Gothic sans-serif, navy, correct Japanese glyphs, precise spelling.
+3. "日本語の業務・技術文書のための Skill" — smaller but legible muted slate Japanese Gothic sans-serif.
+Constraints: Exact text. Minimal, confident, calm. Main headline entirely readable. No extra copy, no numbers, no platform logos, no watermark, no device frame. Entire graphic must work when lightly cropped to 2:1.
