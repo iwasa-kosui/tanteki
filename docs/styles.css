@@ -198,12 +198,6 @@ h3 {
   border-top:1px solid var(--line);
   padding-top:42px;
 }
-.comparison-context {
-  font-size:11px;
-  color:var(--muted);
-  max-width:790px;
-  margin:0 0 26px;
-}
 .example-tabs {
   display:flex;
   border-bottom:1px solid var(--line);
@@ -403,21 +397,6 @@ h3 {
   overflow:hidden;
   clip-path:inset(50%);
   white-space:nowrap;
-}
-.comparison-insight {
-  display:flex;
-  gap:14px;
-  align-items:baseline;
-  background:#e9eff5;
-  padding:15px 22px;
-  font-size:12px;
-  margin:0;
-  border-radius:0 0 3px 3px;
-}
-.comparison-insight strong {
-  white-space:nowrap;
-  color:#1d4ed8;
-  font-size:11px;
 }
 .example-source {
   display:flex;
@@ -795,9 +774,6 @@ summary {
   h2 {
     font-size:26px;
   }
-  .comparison-context {
-    font-size:10px;
-  }
   .example-tabs {
     gap:0;
   }
@@ -840,15 +816,6 @@ summary {
   .change-note {
     padding:8px 12px;
     font-size:.85rem;
-  }
-  .comparison-insight {
-    display:block;
-    padding:15px 18px;
-    font-size:11px;
-  }
-  .comparison-insight strong {
-    display:block;
-    margin-bottom:4px;
   }
   .example-source {
     gap:16px;

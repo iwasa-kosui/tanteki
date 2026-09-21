@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { copyMermaidAssets, addMermaidPreview } from './mermaid-assets.mjs';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 import { readPublication } from '../benchmarks/isolated/publication.ts';
 import { writeReport } from '../benchmarks/isolated/report.ts';
@@ -58,15 +59,13 @@ export async function build(projectRoot = root) {
     panels.push(`<section class="example-panel" id="example-${example.id}" aria-label="${escape(example.tab)}の比較">
       <div class="example-title"><h3>${escape(example.title)}</h3><span>${escape(example.scope)}</span></div>
       <div class="comparison">${documents.join('\n')}</div>
-      <p class="comparison-insight"><strong>読み比べるポイント</strong><span>${escape(example.insight)}</span></p>
       <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="${evaluationUrl}#${example.id}.${example.repeat ?? 1}">評価の詳細 ↗</a></div>
     </section>`);
     const notes = [...example.before.highlight, ...example.after.highlight].map(({ note }) => note);
-    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n\n${notes.join('\n\n')}\n`);
+    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${notes.join('\n\n')}\n`);
   }
   const tabs = `<div class="example-tabs" aria-label="比較する文書" hidden>${examples.map((example, index) => `<button type="button" id="tab-${example.id}" data-example-tab aria-controls="example-${example.id}"><span>0${index + 1}</span>${escape(example.tab)}</button>`).join('')}</div>`;
   const started = new Date(manifest.createdAt).toLocaleDateString('ja-JP', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' });
-  const comparisonContext = `「なし／あり」は同じ依頼から別々に生成した結果です。Docker分離方式の実測から、${examples.length}課題を紹介します。各例の依頼と評価は、比較欄から確認できます。`;
   const supplementalExamples = examples.filter((example) => example.run && example.run !== run);
   const additionalContext = (await Promise.all(supplementalExamples.map(async (example) => {
     const { data: extra, destination } = publications.get(example.run);
@@ -80,31 +79,30 @@ export async function build(projectRoot = root) {
     ? '<p><a class="text-link" href="./results/run-notes.md">本文と採点を照合した所見を読む ↗</a></p>' : '';
   const sources = `<p><a class="text-link" href="./evaluation.html">全${summary.plannedPairs}組の本文と評価を読む ↗</a></p>${notesLink}<details><summary>実行条件の詳細</summary><p>${escape(started)}（UTC）に生成を開始しました。各試行を新しいコンテナで実行し、生成後の採点結果は書き手に返していません。</p><p>生成は ${escape(manifest.settings.model)} / ${escape(manifest.settings.effort)}、採点は ${escape(evaluation.model)} / ${escape(evaluation.effort)} です。対象は <a href="https://github.com/iwasa-kosui/tanteki/tree/${escape(lock.sourceRevision)}">tanteki ${escape(lock.sourceRevision.slice(0, 7))}</a> です。</p><p><a href="./results/report.md">実行結果の集計を読む ↗</a></p>${additionalContext}</details>`;
   const rawTemplate = await read('docs/isolated.html');
-  for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- RUN_SOURCES -->', '<!-- COMPARISON_CONTEXT -->', '<!-- EXAMPLES -->']) {
+  for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- RUN_SOURCES -->', '<!-- EXAMPLES -->']) {
     if (rawTemplate.split(marker).length !== 2) throw new Error(`Expected one ${marker}`);
   }
-  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context).replace('<!-- RUN_SOURCES -->', sources).replace('<!-- COMPARISON_CONTEXT -->', escape(comparisonContext));
+  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context).replace('<!-- RUN_SOURCES -->', sources);
   const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n'));
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
   for (const file of ['styles.css', 'site.js', 'favicon.svg']) await cp(join(source, file), join(output, file));
+  await copyMermaidAssets(source, output);
   await writeFile(join(output, '.nojekyll'), '');
   // Ship the original outputs and evaluation records so preview links work too.
   for (const [publicationRun, { data: published, destination }] of publications) {
     const target = join(output, destination);
     await cp(join(root, publicationRun), target, { recursive: true, filter: (path) => !path.split(/[\\/]/).includes('calls') });
     await writeReport({ ...published, out: target });
-    if (publicationRun !== run) {
-      const comparisonPath = join(target, 'comparison.html');
-      const comparison = (await readFile(comparisonPath, 'utf8'))
-        .replace('<h1>', '<nav style="padding:16px"><a href="../../">← tanteki の紹介へ戻る</a></nav><h1>');
-      await writeFile(comparisonPath, comparison);
-    }
+    const comparisonPath = join(target, 'comparison.html');
+    const base = publicationRun === run ? '../' : '../../';
+    const original = await readFile(comparisonPath, 'utf8');
+    const withPreview = (base) => addMermaidPreview(original, base)
+      .replace('<h1>', `<nav style="padding:16px"><a href="${base}">← tanteki の紹介へ戻る</a></nav><h1>`);
+    await writeFile(comparisonPath, withPreview(base));
+    if (publicationRun === run) await writeFile(join(output, 'evaluation.html'), withPreview('./'));
   }
-  const report = (await readFile(join(output, 'results/comparison.html'), 'utf8'))
-    .replace('<h1>', '<nav style="padding:16px"><a href="./">← tanteki の紹介へ戻る</a></nav><h1>');
-  await writeFile(join(output, 'evaluation.html'), report);
   const prose = template
     .replace(/<head>[\s\S]*?<\/head>/g, '')
     .replace(/<pre[^>]*>([\s\S]*?)<\/pre>/g, (_, content) => `\n\n\`\`\`text\n${content.replace(/<[^>]*>/g, '')}\n\`\`\`\n\n`)

@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { copyMermaidAssets } from './mermaid-assets.mjs';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 import { verifyRunInputs } from '../benchmarks/verify-inputs.mjs';
 
@@ -50,11 +51,10 @@ async function build() {
     panels.push(`<section class="example-panel" id="example-${example.id}" aria-label="${escape(example.tab)}の比較">
       <div class="example-title"><h3>${escape(example.title)}</h3><span>${escape(example.scope)}</span></div>
       <div class="comparison">${documents.join('\n')}</div>
-      <p class="comparison-insight"><strong>読み比べるポイント</strong><span>${escape(example.insight)}</span></p>
       <div class="example-source"><details><summary>この文書への依頼・原資料を読む</summary><p>${escape(task.prompt).replaceAll('\n', '<br>')}</p></details><a href="./evaluation.html#${example.id}.1">評価の詳細 ↗</a></div>
     </section>`);
     const notes = [...example.before.highlight, ...example.after.highlight].map(({ note }) => note);
-    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${example.insight}\n\n${notes.join('\n\n')}\n`);
+    exampleCopy.push(`## ${example.tab}\n\n${example.title}\n\n${notes.join('\n\n')}\n`);
   }
   const tabs = `<div class="example-tabs" aria-label="比較する文書" hidden>${examples.map((example, index) => `<button type="button" id="tab-${example.id}" data-example-tab aria-controls="example-${example.id}"><span>0${index + 1}</span>${escape(example.tab)}</button>`).join('')}</div>`;
   const rows = [['usable', '用途を満たす'], ['revision_needed', '文書の修正が必要'], ['source_limited', '原資料の不足で利用に制限']].map(([status, name]) => `<tr><th scope="row">${name}</th><td>${summary.counts.without_skill[status]}</td><td>${summary.counts.with_skill[status]}</td></tr>`).join('');
@@ -75,6 +75,7 @@ async function build() {
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
   for (const file of ['styles.css', 'site.js', 'favicon.svg']) await cp(join(source, file), join(output, file));
+  await copyMermaidAssets(source, output);
   await writeFile(join(output, '.nojekyll'), '');
   // Ship the original outputs and evaluation records so preview links work too.
   await cp(join(root, run), join(output, 'results'), { recursive: true, filter: (path) => !path.split(/[\\/]/).includes('calls') });

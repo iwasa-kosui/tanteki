@@ -33,7 +33,7 @@ async function fixture(root: string, name = "test-isolated", caseId = "example")
     const container = { Id: `container-${arm}`, Image: lock.runtimeImage, Config: { Hostname: "benchmark", WorkingDir: "/workspace", Env: ["LANG=C.UTF-8"] }, Mounts: mounts.map((m) => ({ Type: "bind", Source: m.source, Destination: m.target, RW: false })), HostConfig: { NetworkMode: "none", Privileged: false, ReadonlyRootfs: true, SecurityOpt: ["no-new-privileges"], CapDrop: ["ALL"], CapAdd: ["SETUID", "SETGID"], PidMode: "", IpcMode: "private", Memory: 2147483648, NanoCpus: 2000000000, PidsLimit: 256, Tmpfs: { "/home/agent": "", "/tmp": "", "/workspace": "" } } };
     const preflight = { protocol, promptHash: sha256(c.prompt), configTextHash: sha256(configText(job)), privateHomeEmpty: true, workspaceEmpty: true, skillDigest: withSkill ? emptyInventory.digest : null, initialized: {}, config: { config: { mcp_servers: {} } }, catalog: { data: [{ cwd: "/workspace", errors: [], skills: withSkill ? [{ name: "tanteki", path: `${skillPath}/SKILL.md`, scope: "user", enabled: true }] : [] }] }, thread: { model: settings.model, modelProvider: "benchmark", cwd: "/workspace", instructionSources: [], thread: { id } } };
     const request = { model: settings.model, store: false, reasoning: { effort: settings.effort }, input: [{ type: "message", role: "developer", content: withSkill ? [{ type: "input_text", text: "<skills_instructions>\n- tanteki: test\n</skills_instructions>" }] : [] }, { type: "message", role: "user", content: [{ type: "input_text", text: c.prompt }] }] };
-    const response = { body: "担当者は原資料を確認します。\n", notes: "検証用データ。品質の実測ではありません。" };
+    const response = { body: "担当者は原資料を確認します。\n\n```mermaid\ngraph TD\n A[確認] --> B[完了]\n```\n", notes: "検証用データ。品質の実測ではありません。" };
     const record = { id, caseId: c.id, repeat: 1, arm, status: "valid", promptHash: sha256(c.prompt), jobHash: digest(job), containerId: container.Id, environmentHash: digest({ runtime: digest({ container: digest(checkContainer(container, lock.runtimeImage, mounts)), config: preflight.config.config }), request: comparableRequest(request, job, withSkill) }), response, responseHash: digest(response), usage: { input_tokens: 10, output_tokens: 2, cached_input_tokens: 0 }, modelCalls: 1, providerResponses: 1, elapsedMs: 10, observations: { skillTextSeen: withSkill, lintCommandSeen: false } } as const satisfies Execution;
     records.push(record);
     await save(join(out, "records", `${id}.json`), record);
@@ -95,11 +95,20 @@ test("site renders isolated outputs and comparison context, preserving links and
     assert.match(html, /両条件で生成が成功した文書のうち、1組を採点/);
     assert.match(html, /results\/documents\/example\.1\.with_skill\.md/);
     assert.match(html, /href="\.\/results\/run-notes\.md"/);
+    assert.match(html, /<pre data-mermaid><code>graph TD/);
+    assert.match(html, /src="\.\/mermaid-preview.js"/);
+    await access(join(root, "dist/vendor/mermaid/mermaid.esm.min.mjs"));
+    await access(join(root, "dist/vendor/mermaid/LICENSE"));
+    const mermaid = await readFile(join(root, "dist/vendor/mermaid/mermaid.esm.min.mjs"), "utf8");
+    for (const [, chunk] of mermaid.matchAll(/"(\.\/chunks\/[^" ]+\.mjs)"/g)) await access(join(root, "dist/vendor/mermaid", chunk));
     assert.doesNotMatch(html, /用途を満たすか|最大1回修正|<!-- (EXAMPLES|RUN_CONTEXT)/);
     for (const [, target] of html.matchAll(/(?:href|cite)="(\.\/[^"#]*)[^"]*"/g)) await access(join(root, "dist", target));
     const comparison = await readFile(join(root, "dist/evaluation.html"), "utf8");
     assert.match(comparison, /id="example.1"/);
     assert.match(comparison, /tanteki の紹介へ戻る/);
+    assert.match(comparison, /src="\.\/mermaid-preview.js"/);
+    assert.match(comparison, /<pre data-mermaid><code>graph TD/);
+    assert.match(await readFile(join(root, "dist/results/comparison.html"), "utf8"), /src="\.\.\/mermaid-preview.js"/);
     await save(join(root, "docs/examples.json"), [{ ...example, before: { highlight: [{ ...note, text: "存在しない引用" }] } }]);
     await assert.rejects(build(root), /Missing highlight/);
   } finally { await rm(root, { recursive: true, force: true }); }
@@ -119,7 +128,7 @@ test("site verifies supplemental examples and keeps their evidence separate from
     await save(join(root, "docs/examples.json"), [example, supplemental]);
     await build(root);
     const html = await readFile(join(root, "dist/index.html"), "utf8");
-    assert.match(html, /実測から、2課題を紹介/);
+    assert.match(html, /id="examples-title">比較<\/h2>/);
     assert.match(html, /手順書の例は2026年9月20日（UTC）に開始した追加実測/);
     assert.match(html, /手順書の例は追加実測から選び、この採点件数には含めていません/);
     assert.match(html, /両条件で生成が成功した文書のうち、1組を採点/);
@@ -132,6 +141,7 @@ test("site verifies supplemental examples and keeps their evidence separate from
     const comparison = await readFile(join(root, "dist/examples/test-runbook/comparison.html"), "utf8");
     assert.match(comparison, /id="runbook-export.1"/);
     assert.match(comparison, /href="\.\.\/\.\.\/">← tanteki/);
+    assert.match(comparison, /src="\.\.\/\.\.\/mermaid-preview.js"/);
     const archived = await readPublication(join(root, "dist/examples/test-runbook"));
     assert.equal(archived.summary.gradedPairs, 1);
     const mainComparison = await readFile(join(root, "dist/evaluation.html"), "utf8");
