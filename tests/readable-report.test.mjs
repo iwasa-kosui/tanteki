@@ -7,6 +7,19 @@ import { join } from "node:path";
 import { root } from "../benchmarks/benchmark.mjs";
 import { renderMarkdown } from "../benchmarks/readable-report.mjs";
 
+test("Mermaid fences are marked for preview while their source remains escaped text", () => {
+  const source = 'graph TD\n A["<script>alert(1)</script>"] --> B["完了 & 確認"]';
+  for (const fence of ['```mermaid', '~~~Mermaid']) {
+    const html = renderMarkdown(`${fence}\n${source}\n${fence.slice(0, 3)}`);
+    assert.match(html, /^<pre data-mermaid><code>graph TD/);
+    assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+    assert.match(html, /完了 &amp; 確認/);
+    assert.doesNotMatch(html, /<script>/);
+  }
+  assert.equal(renderMarkdown('```text\ngraph TD\n A --> B\n```'), '<pre><code>graph TD\n A --&gt; B</code></pre>');
+  assert.doesNotMatch(renderMarkdown('`mermaid`\n\n    graph TD\n    A --> B'), /data-mermaid/);
+});
+
 test("reader renders Markdown structure while candidate HTML and unsafe links stay inert", () => {
   const html = renderMarkdown(`# 題名
 

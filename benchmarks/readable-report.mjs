@@ -40,7 +40,7 @@ export function renderMarkdown(source) {
       case "Delete": return wrapped("del");
       case "BlockQuote": return wrapped("blockquote");
       case "Code": return `<code>${escape(node.value)}</code>`;
-      case "CodeBlock": return `<pre><code>${escape(node.value)}</code></pre>`;
+      case "CodeBlock": return `<pre${node.lang?.toLowerCase() === "mermaid" ? ' data-mermaid' : ''}><code>${escape(node.value)}</code></pre>`;
       case "HorizontalRule": return "<hr>";
       case "Break": return "<br>";
       case "List": return node.ordered ? `<ol start="${Number.isInteger(node.start) ? node.start : 1}">${content()}</ol>` : wrapped("ul");
