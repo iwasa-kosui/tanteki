@@ -37,7 +37,7 @@ const agent = document.querySelector('#agent');
 for (const element of document.querySelectorAll('[data-enhance]')) element.hidden = false;
 agent?.addEventListener('change', () => {
   document.querySelector('#install-command').textContent =
-    `gh skills install iwasa-kosui/tanteki tanteki --scope user${agent.value ? ` --agent ${agent.value}` : ''}`;
+    `gh skill install iwasa-kosui/tanteki tanteki --scope user${agent.value ? ` --agent ${agent.value}` : ''}`;
   document.querySelector('[data-copy="install-command"]').textContent = 'コピー';
 });
 
