@@ -36,10 +36,9 @@ export function Layout({ metadata, children }) {
         h('div', null, h('a', { href: 'https://github.com/iwasa-kosui/tanteki' }, 'GitHub ↗'), h('a', { href: 'https://github.com/iwasa-kosui/tanteki/blob/main/LICENSE' }, 'MIT License')))));
 }
 
-function Hero({ eyebrow, children }) {
+function Hero({ children }) {
   return h('section', { className: 'hero wrap', 'aria-labelledby': 'hero-title' },
     h('div', { className: 'hero-copy' },
-      h('p', { className: 'eyebrow' }, h('span', { className: 'accent-dot', 'aria-hidden': true }), ` ${eyebrow}`),
       blocks(children).map((child) => child.type === 'h1' ? cloneElement(child, { id: 'hero-title' })
         : child.type === 'p' ? cloneElement(child, { className: 'hero-description' }) : child)));
 }
