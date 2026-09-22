@@ -63,27 +63,43 @@ export function makePlan(cases, repeats, seed) {
 }
 
 export function skillContext(c, files) {
-  const classification = files["references/document-types.md"].split("\n");
+  const classification = files["references/document-types.md"];
   const headerLine = "| 種別 | 主な読者 | 目的 | 目的ではないこと | 最小内容 | 区分 |";
-  let row;
+  let entry;
+  let legacyClassification;
   for (const name of Object.keys(files).filter((name) => name.startsWith("references/types/")).sort()) {
     const lines = files[name].split("\n");
+    // Older skill snapshots store the classification in a table.
     const headerIndex = lines.indexOf(headerLine);
-    if (headerIndex === -1) continue;
     // Skip the separator row; only the classification table (not later "答える問い" tables) is in scope.
-    for (let i = headerIndex + 2; i < lines.length && lines[i].trim() !== ""; i++) {
-      if (lines[i].startsWith(`| ${c.documentType} |`)) { row = lines[i]; break; }
+    for (let i = headerIndex + 2; headerIndex !== -1 && i < lines.length && lines[i].trim() !== ""; i++) {
+      if (lines[i].startsWith(`| ${c.documentType} |`)) {
+        // Archived prompts must keep their original bytes for evidence verification.
+        legacyClassification = [...classification.split("\n").slice(0, 11), headerLine, lines[i]].join("\n");
+        entry = ["references/document-types.md (区分と該当行)", legacyClassification];
+        break;
+      }
     }
-    if (row) break;
+    if (entry) break;
+    const sectionIndex = lines.indexOf(`## ${c.documentType}`);
+    if (sectionIndex !== -1) {
+      const nextSection = lines.findIndex((line, index) => index > sectionIndex && /^#{1,2} /.test(line));
+      entry = [name, lines.slice(sectionIndex, nextSection === -1 ? undefined : nextSection).join("\n").trim()];
+      break;
+    }
   }
-  if (!row) throw new Error(`Missing document classification: ${c.documentType}`);
+  if (!entry) throw new Error(`Missing document classification: ${c.documentType}`);
   const parts = [
     ["SKILL.md", files["SKILL.md"]],
     ["references/delegation.md", files["references/delegation.md"]],
     ["references/japanese.md", files["references/japanese.md"]],
-    ["references/structure.md", files["references/structure.md"]],
-    ["references/document-types.md (区分と該当行)", [...classification.slice(0, 11), headerLine, row].join("\n")]
+    ["references/structure.md", files["references/structure.md"]]
   ];
+  if (legacyClassification !== undefined) parts.push(entry);
+  else parts.push(
+    ["references/document-types.md (区分)", classification.split(/^## 役割を決める\s*$/m)[0].trim()],
+    [entry[0] + " (該当種別)", entry[1]]
+  );
   if (c.shapes) for (const name of Object.keys(files).filter((name) => name.startsWith("references/types/")).sort()) parts.push([name, files[name]]);
   return parts.map(([name, content]) => `--- ${name} ---\n${content}`).join("\n\n");
 }
