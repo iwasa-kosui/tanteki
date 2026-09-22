@@ -1,0 +1,174 @@
+[
+  {
+    "id": "adr-boundary.1.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/adr-boundary.1.with_skill/events.jsonl",
+    "sha256": "39f9d9d3f5c43934f22e3fdf9afaf57e7c6f139a4ea8e60a149f7bac222a537a",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type adr /workspace/adr-invoice-pdf.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "adr-boundary.2.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/adr-boundary.2.with_skill/events.jsonl",
+    "sha256": "359478e3ff51c6328243b9e8f3a5589b8ed81089322132887cd8781020f45b86",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type adr /workspace/adr-invoice-pdf-generation.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "canonical-reference.1.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/canonical-reference.1.with_skill/events.jsonl",
+    "sha256": "38db8f6bc8775b43e43966627ddfd77e43899783177872a7441af50705f65464",
+    "commands": [
+      {
+        "command": "/bin/bash -lc \"if [ -d /home/agent/.agents/skills/tanteki/node_modules ]; then node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /tmp/expense-guide.md; else echo 'node_modules not installed'; fi\"",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "comparison-rfc.2.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/comparison-rfc.2.with_skill/events.jsonl",
+    "sha256": "9c41277bd85ac3ab29a52277b5f7ea4c4073ae20a9b793f42d6b85f05e3ea75a",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type rfc /workspace/search-rfc.md'",
+        "exitCode": 0
+      },
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type rfc /workspace/search-rfc.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "design-tradeoff.1.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/design-tradeoff.1.with_skill/events.jsonl",
+    "sha256": "3ea37cb25aa6c3c0b250e9c2049c3dabe7d40dbf8816623c4ed1401d8a15aabf",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'if [ ! -d /home/agent/.agents/skills/tanteki/node_modules ]; then npm ci --prefix /home/agent/.agents/skills/tanteki; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type design-doc /tmp/file-import-design-doc.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "design-tradeoff.2.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/design-tradeoff.2.with_skill/events.jsonl",
+    "sha256": "384661a568e26b9a362bbdcc43e4a6cdfb31542c6c7c0470846b6bb306b89ae0",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type design-doc /tmp/file-import-design.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "incident-record.1.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/incident-record.1.with_skill/events.jsonl",
+    "sha256": "53fdfe36524d0778336b54abafda42264d2f43e5bccb4c0c9d201d57cad3dff1",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'if [ -d /home/agent/.agents/skills/tanteki/node_modules ]; then node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type record /workspace/postmortem.md; else cd /home/agent/.agents/skills/tanteki && npm ci && node scripts/lint.mjs --type record /workspace/postmortem.md; fi'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "incident-record.2.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/incident-record.2.with_skill/events.jsonl",
+    "sha256": "e92afe9a36ac8002318ed96f9f4de3169b7d6aef949408ef4c0189912f5d9dce",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type record /workspace/postmortem.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "plain-japanese.1.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/plain-japanese.1.with_skill/events.jsonl",
+    "sha256": "aefe15a650a6d9ab32451704322d17723fa61534f653c9c35ff2c0bc145c35f2",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /workspace/cs-spec.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "plain-japanese.2.with_skill",
+    "directCallObserved": true,
+    "eventFile": "calls/plain-japanese.2.with_skill/events.jsonl",
+    "sha256": "0162d29f65263149c1e513e57c77cd547ddb341fe8b5d322dc619a36f100a71b",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /workspace/cs-spec.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "progress-retention.1.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/progress-retention.1.with_skill/events.jsonl",
+    "sha256": "72790ede14ecb81170d6e09249eb267f23a4920f877a70cf291e219737ba8b5f",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'if [ -d node_modules ]; then :; else npm ci; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type flow /workspace/progress-report.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "progress-retention.2.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/progress-retention.2.with_skill/events.jsonl",
+    "sha256": "3e17d9e877dbf6a0eea7ca2df3e69b18c669eb90c98603b4f36ac0a29e9cfe35",
+    "commands": [
+      {
+        "command": "/bin/bash -lc \"if [ -d /home/agent/.agents/skills/tanteki/node_modules ]; then node /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type flow /workspace/progress-report.md; else echo 'tanteki dependencies are not installed'; fi\"",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "runbook-missing.1.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/runbook-missing.1.with_skill/events.jsonl",
+    "sha256": "f051b4b79a3ba613178077d1bca54654129e132699b36d5d3e921c14dd4e25a0",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'if [ -d /home/agent/.agents/skills/tanteki/node_modules ]; then :; else npm ci --silent; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type stock /workspace/cache-runbook-draft.md'",
+        "exitCode": 0
+      }
+    ]
+  },
+  {
+    "id": "runbook-missing.2.with_skill",
+    "directCallObserved": false,
+    "eventFile": "calls/runbook-missing.2.with_skill/events.jsonl",
+    "sha256": "e0a14fb7b36b6e7019d5b0c02b0cc1e613a98847a9e1c899cd50ccd92bd01717",
+    "commands": [
+      {
+        "command": "/bin/bash -lc 'if [ ! -d node_modules ]; then npm ci; fi\nnode /home/agent/.agents/skills/tanteki/scripts/lint.mjs --type flow /workspace/cache-restart-runbook.md'",
+        "exitCode": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,144 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "plannedPairs": 20,
+  "validPairs": 20,
+  "gradedPairs": 20,
+  "pairedScoreDifferences": [
+    {
+      "caseId": "plain-japanese",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "no-document",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "canonical-reference",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "comparison-rfc",
+      "repeat": 1,
+      "difference": 2
+    },
+    {
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "difference": 1
+    },
+    {
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "incident-record",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "difference": 3
+    },
+    {
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "difference": 0
+    },
+    {
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "difference": 1
+    },
+    {
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "difference": 3
+    },
+    {
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "difference": -1
+    },
+    {
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "difference": 2
+    },
+    {
+      "caseId": "incident-record",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "no-document",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "difference": 1
+    },
+    {
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "difference": 0
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "difference": 3
+    }
+  ],
+  "arms": {
+    "without_skill": {
+      "planned": 20,
+      "valid": 20,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 117998,
+      "outputTokens": 12382,
+      "cachedInputTokens": 0,
+      "modelCalls": 20,
+      "elapsedMs": 183611,
+      "skillTextSeen": 0,
+      "lintCommandSeen": 0,
+      "assessed": 20,
+      "rubricPasses": 75,
+      "rubricTotal": 100,
+      "lintPasses": 13
+    },
+    "with_skill": {
+      "planned": 20,
+      "valid": 20,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 1168471,
+      "outputTokens": 32215,
+      "cachedInputTokens": 847803,
+      "modelCalls": 90,
+      "elapsedMs": 775700,
+      "skillTextSeen": 18,
+      "lintCommandSeen": 7,
+      "assessed": 20,
+      "rubricPasses": 90,
+      "rubricTotal": 100,
+      "lintPasses": 19
+    }
+  }
+}

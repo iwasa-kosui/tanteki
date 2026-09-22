@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "474c70163c2e1554f5b61503113cd27d82fdbba08b7f0cb1becc7b4cafe9d191",
+  "containerId": "3ec678fdf2de88c3edebe1c549b752c5d831dd1ec1062d0f90b43b9dfe9f15ba",
+  "usage": {
+    "input_tokens": 6078,
+    "cached_input_tokens": 0,
+    "output_tokens": 156
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 9085,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.2.with_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たな議事録は残さなくてよいです。\n\n議論・決定・宿題がなく、開催前に中止し、参加者への中止連絡も済んでいるためです。\n\nただし、予定・出欠・開催実績を管理する必要がある場合は、議事録ではなく予定に「中止（議論・決定事項なし）」と一言記録しておくと十分です。",
+    "notes": ""
+  },
+  "responseHash": "735697fcf197e0f7f27b69b0ae4de7d13a73328008a16e62a43e01ed77b54825"
+}

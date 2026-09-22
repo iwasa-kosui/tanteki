@@ -1,0 +1,28 @@
+{
+  "promptHash": "08a8fa361e49313b6803f40d88fbe161bffb933d3979e59ac2ef83b65da6718f",
+  "jobHash": "082778836d7196a23cb1179e4955d2f5bcb8823f3d9767af8385a5ace32b9767",
+  "environmentHash": "2c138314c6151c4adde6003007ea4026301da5c5a9e3009e3815f55a9f2aaeea",
+  "containerId": "2cb90c34a6629051e066be0c7b0d673ded60c2e55b07afb78a0fa92a5faea9d1",
+  "usage": {
+    "input_tokens": 27997,
+    "cached_input_tokens": 14435,
+    "output_tokens": 1479
+  },
+  "modelCalls": 3,
+  "providerResponses": 3,
+  "elapsedMs": 29707,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": false
+  },
+  "id": "comparison-rfc.1.with_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "## RFC：商品検索基盤の方式選定\n\n### 背景\n商品検索が遅い。検索性能を改善する方式を選定し、次の2点について合意する。\n\n- 検索専用の別サービスを運用するか\n- 検索結果の最大60秒の遅延を許容するか\n\n計測値と費用は未取得である。\n\n### 方式比較\n\n| 方式 | 利点 | 懸念 |\n|---|---|---|\n| A：既存DB索引を追加 | 運用対象が増えない | 部分一致は速くならない |\n| B：検索専用サービスを導入 | 部分一致が速くなる | 別サービスの運用が必要 |\n| B：DBから検索サービスへ反映 | — | 反映遅延が生じる |\n\n### 提案\n方式Bを提案する。部分一致を高速化でき、今回の課題に適合するためである。方式Bでは、DBから検索専用サービスへの反映遅延を受け入れる必要がある。\n\n検索結果が最大60秒古くても許容する案を提示する。ただし、これは業務側の承認前であり、未決定である。\n\n### 合意事項\n開発チームおよび業務側で、以下を決定する。\n\n1. 検索専用サービスを別サービスとして運用するか\n2. 検索結果の最大60秒の古さを許容するか\n\n### 参考\n- 課題：SEARCH-88\n- 実装候補：PR #71\n- レビュー期限：8月28日",
+    "notes": "文書分類：技術提案（RFC）。原資料にない計測値・費用・性能目標は追加していません。"
+  },
+  "responseHash": "14d82654a4722ab32e8dbbacfe1004f4e700b49f6cb5628827babc9b415cf62e"
+}
