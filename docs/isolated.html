@@ -106,7 +106,7 @@
             <div class="step-intro"><span class="step-number">1</span><h3>スキルを入れる</h3><p><a href="https://cli.github.com/">GitHub CLI</a> 2.90以降と<br>Node.js 22以降が必要です。</p></div>
             <div class="step-content">
               <div class="code-toolbar"><label for="agent" data-enhance hidden>利用するエージェント</label><select id="agent" data-enhance hidden><option value="">対話画面で選ぶ</option><option value="claude-code">Claude Code</option><option value="codex">Codex</option><option value="cursor">Cursor</option></select><button class="copy-button" type="button" data-copy="install-command" aria-label="インストールコマンドをコピー" hidden>コピー</button></div>
-              <pre><code id="install-command">gh skills install iwasa-kosui/tanteki tanteki --scope user</code></pre>
+              <pre><code id="install-command">gh skill install iwasa-kosui/tanteki tanteki --scope user</code></pre>
               <p class="step-caption">ターミナルで実行します。文書検査の依存関係は、初回利用時にエージェントが <code>npm ci</code> で導入します。<a href="https://cli.github.com/manual/gh_skill_install">公式のインストール手順 ↗</a></p>
             </div>
             <div class="step-intro"><span class="step-number">2</span><h3>文書を渡す</h3><p>新しいセッションを開き、<br>依頼文と草稿を渡します。</p></div>
