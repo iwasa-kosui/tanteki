@@ -1,0 +1,154 @@
+export const metadata = {
+  title: 'tanteki — 業務のための文書をもっと端的に',
+  description: 'tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。使用前後を実際の出力で見比べられます。',
+  imageAlt: 'tanteki。業務のための文書をもっと端的に。日本語の業務・技術文書のための Skill。青い行を強調した文書のイラスト。',
+  footer: '文書の種類ごとに、必要な情報が揃うまで直します。',
+};
+
+<Hero eyebrow="日本語の業務・技術文書のための Skill">
+
+# 業務のための文書を<br />もっと端的に
+
+同じ説明を何度も繰り返すADR、不要な進捗報告が書かれたDesign Doc。<br/>生成AIが書いたノイズだらけの文書にうんざりしていませんか？<br/>tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。
+
+<Actions>
+  <Link href="#examples" primary>使用前後を見比べる <span aria-hidden="true">↓</span></Link>
+  <Link href="#start">使ってみる <span aria-hidden="true">↗</span></Link>
+</Actions>
+
+</Hero>
+
+<Section id="examples" eyebrow="01 / COMPARISON">
+
+## 比較
+
+<Examples />
+
+</Section>
+
+<Section id="doc-types" eyebrow="02 / DOCUMENT TYPES">
+
+## 主にサポートする文書
+
+tantekiは、主に以下の文書をサポートします。
+
+文書の種類ごとに「書くべき情報」と「書くべきではない情報」を判定し、書くべきではない情報を文書から削除します。
+
+<DocumentTable caption="文書の種類ごとの規定">
+
+| 文書の種類 | 書くべき情報 | 書くべきではない情報 |
+| --- | --- | --- |
+| PRD | 要求・優先度・根拠・制約・検証方法 | 進捗報告・課題IDの台帳 |
+| Design Doc | 背景・目的・スコープ・制約に照らした実現方法と採否の理由、影響 | 進捗報告・課題IDの台帳 |
+| ADR | 何を決定し、なぜ選んだか。その結果と決定の状態 | 詳細設計・実装の進捗・作業チケットの管理 |
+| Runbook | 前提・検知・手順・確認・停止条件・連絡先 | 事故の原因分析・作業の進捗 |
+| 調査報告 | 方法・対象・観察・解釈・限界・示唆 | 一人の発言からの市場全体の断定 |
+
+</DocumentTable>
+
+<Link href="https://github.com/iwasa-kosui/tanteki/blob/main/references/document-types.md">文書の種類ごとの規定を読む <span aria-hidden="true">↗</span></Link>
+
+</Section>
+
+<Section id="approach" eyebrow="03 / HOW IT WORKS">
+
+## 原則
+
+このスキルは次の原則に従って文書を作成します。
+
+<Principles>
+<Principle number="01">
+
+### 文書の種類と読者を決める
+
+まずは「誰に向けて、何の文書を書くのか」を明確にします。これにより伝えるべき情報が絞り込まれ、各節で説明すべき内容と根拠が自然と整理されます。
+
+</Principle>
+<Principle number="02">
+
+### 構成を検査する
+
+いきなり本文を書き始めることはしません。まずは目次や論理展開などの「構成」をチェックし、問題がないことを確認してから本文の執筆に進みます。
+
+</Principle>
+<Principle number="03">
+
+### 本文を検査する
+
+書き上がった本文は元の資料と照合し、事実や条件が正確に保たれているか確認します。推測で情報を書き足すことはせず、textlintを用いた機械的な文章チェックも行います。
+
+</Principle>
+</Principles>
+
+<Link href="https://github.com/iwasa-kosui/tanteki/blob/main/SKILL.md">スキルの手順を読む <span aria-hidden="true">↗</span></Link>
+
+</Section>
+
+<Section id="start" eyebrow="04 / GET STARTED" intro={<>使っているエージェントに追加して、<br />読者と目的を添えて依頼します。</>}>
+
+## インストールして使う
+
+<Steps>
+<Step number="1">
+
+### スキルを入れる
+
+[GitHub CLI](https://cli.github.com/) 2.90以降と<br />Node.js 22以降が必要です。
+
+</Step>
+<CopyBlock id="install-command">
+
+```sh
+gh skill install iwasa-kosui/tanteki tanteki --scope user
+```
+
+ターミナルで実行します。文書検査の依存関係は、初回利用時にエージェントが `npm ci` で導入します。[公式のインストール手順 ↗](https://cli.github.com/manual/gh_skill_install)
+
+</CopyBlock>
+<Step number="2">
+
+### 文書を渡す
+
+新しいセッションを開き、<br />依頼文と草稿を渡します。
+
+</Step>
+<CopyBlock id="prompt" label="依頼文の例">
+
+```text
+tanteki を使って、この設計書を開発者向けに短く推敲して。
+実現方式と不採用案の理由、制約、例外は残して。
+
+（ここに草稿を貼る）
+```
+
+新規の執筆も依頼できます。原資料と、未決定の内容を添えてください。
+
+</CopyBlock>
+</Steps>
+
+<Footnote>
+
+PRD（製品要求書）、設計書、ADR（設計上の決定記録）、運用手順、調査報告などに。[文書ごとの使い分け ↗](https://github.com/iwasa-kosui/tanteki/blob/main/references/document-types.md)
+
+</Footnote>
+
+</Section>
+
+<IsolatedOnly>
+<Evidence>
+<EvidenceIntro>
+
+## 使用例の比較条件
+
+<RunContext />
+
+</EvidenceIntro>
+<EvidenceSources>
+
+<RunSources />
+
+</EvidenceSources>
+</Evidence>
+</IsolatedOnly>
+
+<LegacyEvidence />

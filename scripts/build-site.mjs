@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { copyMermaidAssets } from './mermaid-assets.mjs';
+import { renderSite } from './site-mdx.mjs';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 import { verifyRunInputs } from '../benchmarks/verify-inputs.mjs';
 
@@ -66,11 +67,9 @@ async function build() {
     ['入力トークン', (arm) => arm.inputTokens.toLocaleString('ja-JP')],
     ['出力トークン', (arm) => arm.outputTokens.toLocaleString('ja-JP')],
   ].map(([label, value]) => `<tr><th scope="row">${label}</th><td>${value(authoring.without_skill)}</td><td>${value(authoring.with_skill)}</td></tr>`).join('');
-  const template = await read('docs/index.html');
-  for (const placeholder of ['<!-- EXAMPLES -->', '<!-- EVALUATION_ROWS -->', '<!-- BENCHMARK_ROWS -->']) {
-    if (template.split(placeholder).length !== 2) throw new Error(`Expected one ${placeholder}`);
-  }
-  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n')).replace('<!-- EVALUATION_ROWS -->', rows).replace('<!-- BENCHMARK_ROWS -->', metrics);
+  const { html, prose } = await renderSite(source, 'legacy', {
+    Examples: tabs + panels.join('\n'), EvaluationRows: rows, BenchmarkRows: metrics,
+  });
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
@@ -84,14 +83,6 @@ async function build() {
       ? attribute : `href="${escape(`./results/document-review/${url}`)}"`)
     .replace('<body>', '<body><nav style="padding:16px"><a href="./">← tanteki の紹介へ戻る</a></nav>');
   await writeFile(join(output, 'evaluation.html'), report);
-  const prose = template
-    .replace(/<head>[\s\S]*?<\/head>/g, '')
-    .replace(/<pre[^>]*>([\s\S]*?)<\/pre>/g, (_, content) => `\n\n\`\`\`text\n${content.replace(/<[^>]*>/g, '')}\n\`\`\`\n\n`)
-    .replace(/<!--[^]*?-->/g, '')
-    .replace(/<(?:br|\/p|\/h[1-6]|\/div|\/li|\/dt|\/dd|\/caption|\/th|\/td|\/label|\/option|\/button|\/summary)[^>]*>/g, '\n\n')
-    .replace(/<[^>]*>/g, '')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .split('\n').map((line) => line.trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   await mkdir(join(root, '.cache'), { recursive: true });
   await writeFile(join(root, '.cache/site-copy.md'), `${prose}\n\n${exampleCopy.join('\n')}`);
   console.log('Built dist/: showcase, original comparisons, and .cache/site-copy.md for textlint.');

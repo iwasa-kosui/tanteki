@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { copyMermaidAssets, addMermaidPreview } from './mermaid-assets.mjs';
+import { renderSite } from './site-mdx.mjs';
 import { renderMarkdown } from '../benchmarks/readable-report.mjs';
 import { readPublication } from '../benchmarks/isolated/publication.ts';
 import { writeReport } from '../benchmarks/isolated/report.ts';
@@ -78,12 +79,9 @@ export async function build(projectRoot = root) {
   const notesLink = (await readdir(join(root, run))).includes('run-notes.md')
     ? '<p><a class="text-link" href="./results/run-notes.md">本文と採点を照合した所見を読む ↗</a></p>' : '';
   const sources = `<p><a class="text-link" href="./evaluation.html">全${summary.plannedPairs}組の本文と評価を読む ↗</a></p>${notesLink}<details><summary>実行条件の詳細</summary><p>${escape(started)}（UTC）に生成を開始しました。各試行を新しいコンテナで実行し、生成後の採点結果は書き手に返していません。</p><p>生成は ${escape(manifest.settings.model)} / ${escape(manifest.settings.effort)}、採点は ${escape(evaluation.model)} / ${escape(evaluation.effort)} です。対象は <a href="https://github.com/iwasa-kosui/tanteki/tree/${escape(lock.sourceRevision)}">tanteki ${escape(lock.sourceRevision.slice(0, 7))}</a> です。</p><p><a href="./results/report.md">実行結果の集計を読む ↗</a></p>${additionalContext}</details>`;
-  const rawTemplate = await read('docs/isolated.html');
-  for (const marker of ['<!-- RUN_CONTEXT -->', '<!-- RUN_SOURCES -->', '<!-- EXAMPLES -->']) {
-    if (rawTemplate.split(marker).length !== 2) throw new Error(`Expected one ${marker}`);
-  }
-  const template = rawTemplate.replace('<!-- RUN_CONTEXT -->', context).replace('<!-- RUN_SOURCES -->', sources);
-  const html = template.replace('<!-- EXAMPLES -->', tabs + panels.join('\n'));
+  const { html, prose } = await renderSite(source, 'isolated', {
+    Examples: tabs + panels.join('\n'), RunContext: context, RunSources: sources,
+  });
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await writeFile(join(output, 'index.html'), html);
@@ -103,14 +101,6 @@ export async function build(projectRoot = root) {
     await writeFile(comparisonPath, withPreview(base));
     if (publicationRun === run) await writeFile(join(output, 'evaluation.html'), withPreview('./'));
   }
-  const prose = template
-    .replace(/<head>[\s\S]*?<\/head>/g, '')
-    .replace(/<pre[^>]*>([\s\S]*?)<\/pre>/g, (_, content) => `\n\n\`\`\`text\n${content.replace(/<[^>]*>/g, '')}\n\`\`\`\n\n`)
-    .replace(/<!--[^]*?-->/g, '')
-    .replace(/<(?:br|\/p|\/h[1-6]|\/div|\/li|\/dt|\/dd|\/caption|\/th|\/td|\/label|\/option|\/button|\/summary)[^>]*>/g, '\n\n')
-    .replace(/<[^>]*>/g, '')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .split('\n').map((line) => line.trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   await mkdir(join(root, '.cache'), { recursive: true });
   await writeFile(join(root, '.cache/site-copy.md'), `${prose}\n\n${exampleCopy.join('\n')}`);
   console.log('Built dist/: showcase, original comparisons, and .cache/site-copy.md for textlint.');
