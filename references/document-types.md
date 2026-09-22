@@ -28,9 +28,9 @@
 
 質問するのは、作成を左右する重大な情報が足りない場合に限る。未確認の数値、承認、仕様は補わず、確認待ちでも書ける部分は進める。組織の文書名が以下の分類になければ、この5点で役割を定める。
 
-`stock` には作業の進捗、PR 番号、Jira 課題IDを入れない。作業を管理する文書から設計や判断の文書を参照する。ADR の採用・廃止・置換の状態、判断日、別の ADR への参照は残す。仕様が定める業務上の状態も残す。`flow` と `record` に必要な日付、担当、時系列、課題への参照を機械的に削除しない。
+`stock` には作業の進捗、PR 番号、Jira 課題IDを入れない。作業を管理する文書から設計や決定の文書を参照する。ADR の採用・廃止・置換の状態、決定日、別の ADR への参照は残す。仕様が定める業務上の状態も残す。`flow` と `record` に必要な日付、担当、時系列、課題への参照を機械的に削除しない。
 
-種類別の資料は、文書の役割と、その役割を果たすために説明すべき内容を定める。たとえば Design Doc では、実現方法に加え、背景・目的・範囲・制約に照らしてその方式を選ぶ理由を説明する。必要な語句が揃っていても、内容の関係を読者が理解できなければ役割を果たしていない。
+種類別の資料は、文書の役割と、その役割を果たすために説明すべき内容を定める。たとえば Design Doc では、実現方法に加え、背景・目的・スコープ・制約に照らしてその方式を選ぶ理由を説明する。必要な語句が揃っていても、内容の関係を読者が理解できなければ役割を果たしていない。
 
 具体的な見出し、順序、節の数は、原資料と読者に合わせて[文書全体の構成](structure.md#文書全体の構成を決める)で決める。種類別の説明をそのまま章立てに置き換えない。必要な根拠が資料にない場合は、未確認事項として扱う。
 
@@ -41,7 +41,7 @@
 - [戦略・プロダクト](types/strategy.md): ビジョン・戦略、製品企画の概要（Product Brief）、製品要求書（PRD）、ロードマップ。
 - [調査・分析](types/research.md): 問題定義、顧客調査、分析結果、実験計画、環境調査。
 - [要求・仕様](types/requirements.md): 要求仕様、ユーザーストーリー、ユースケース、機能仕様、非機能要求、API 仕様。
-- [設計・意思決定](types/design.md): 設計書（Design Doc）、技術提案（RFC）、設計判断の記録（ADR）、脅威モデル、データモデル設計。
+- [設計・意思決定](types/design.md): 設計書（Design Doc）、技術提案（RFC）、設計上の決定記録（ADR）、脅威モデル、データモデル設計。
 - [QA・リリース](types/qa-release.md): テスト計画、テスト結果、受け入れテスト手順書、リリース計画、データ移行計画。
 - [運用・障害](types/operations.md): 運用手順書（Runbook）、サービスの品質指標・目標（SLI/SLO）の方針、インシデント記録、障害の振り返り、廃止告知。
 - [知識・計画・記録](types/knowledge.md): プロジェクト計画、進捗報告、会議メモ、確認依頼、README、ガイド、FAQ。
@@ -54,7 +54,7 @@
 |---|---|
 | 製品要求書 | `prd` |
 | 設計書 | `design-doc` |
-| 設計判断の記録 | `adr` |
+| 設計上の決定記録 | `adr` |
 | 技術提案 | `rfc` |
 | その他の参照用文書 | `stock` |
 | 作業を進める文書 | `flow` |
@@ -69,5 +69,5 @@
 次は、文書の役割を考える際に参照した一次資料である。本スキルの3区分を定めた外部規格ではない。
 
 - [Google Documentation Best Practices](https://google.github.io/styleguide/docguide/best_practices.html): Design Doc と PRD を実装案への意見収集に使い、実装後は判断の記録として残す指針。
-- [Michael Nygard, Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions): ADR を、重要な判断の背景・決定・結果を短く記録する文書として説明した原典。
+- [Michael Nygard, Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions): ADR を、重要な決定の背景・理由・結果を短く記録する文書として説明した原典。
 - [RFC 2026: The Internet Standards Process](https://www.rfc-editor.org/rfc/rfc2026): RFC、Internet-Draft、標準化の段階、文書の正式な状態を区別する資料。
