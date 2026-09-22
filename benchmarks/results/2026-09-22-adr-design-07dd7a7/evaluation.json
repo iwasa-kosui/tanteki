@@ -1,0 +1,388 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "runFingerprint": "a3cca61f940d17da296bc5fa994d24f304b8c3d952dd57023b5d61987dca52b4",
+  "model": "gpt-5.6-terra",
+  "effort": "low",
+  "instructionsHash": "f3743b02fec66bafe187a1b8e93296519958204b1da63394bf0025dd75180f9e",
+  "createdAt": "2026-09-22T06:32:29.268Z",
+  "lint": {
+    "adr-boundary.1.without_skill": {
+      "bodyHash": "09aeacd3a6126aaf457ef4f1ccf60f77b76db4b8b1ca527b85e78b9e66e2844e",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 20,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 9,
+          "column": 54,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 19,
+          "column": 37,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        }
+      ]
+    },
+    "adr-boundary.1.with_skill": {
+      "bodyHash": "b846509628a63db1967910028b7122e268c1aebcd86c01c6b87671bfd1644c6b",
+      "lint": []
+    },
+    "design-tradeoff.1.without_skill": {
+      "bodyHash": "814d1cb1b556761ddd02923deb12aff38ff77bcfa2a2389760337cfab507e83d",
+      "lint": [
+        {
+          "ruleId": "no-vague-action",
+          "line": 70,
+          "column": 9,
+          "message": "曖昧な動作の候補です。実施する条件・しない条件が前後の文から分かるか確認してください。否定・条件を保って見直してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 178,
+          "column": 46,
+          "message": "一文に二回以上利用されている助詞 \"に\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"に\"\n- \"に\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 185,
+          "column": 10,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "design-tradeoff.1.with_skill": {
+      "bodyHash": "1000d1e2249309faed9a2e652894a29104a1dcdf6fad42094b5115df583b13e8",
+      "lint": []
+    },
+    "adr-boundary.2.without_skill": {
+      "bodyHash": "4d6008e6027bd324042fc2e5643c72375be222d03ad92aa978662957b207c202",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 20,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "adr-boundary.2.with_skill": {
+      "bodyHash": "89153a2570b5918d112130a32b234bad584aa372286faa84fa30490a3ff6e713",
+      "lint": []
+    },
+    "design-tradeoff.2.without_skill": {
+      "bodyHash": "ef9a66dc081dd1182ba1a9402738b8b69281c55ba39b8c0141ec5c72ecd1456b",
+      "lint": [
+        {
+          "ruleId": "no-vague-action",
+          "line": 44,
+          "column": 3,
+          "message": "曖昧な動作の候補です。実施する条件・しない条件が前後の文から分かるか確認してください。否定・条件を保って見直してください。"
+        },
+        {
+          "ruleId": "no-vague-action",
+          "line": 80,
+          "column": 17,
+          "message": "曖昧な動作の候補です。実施する条件・しない条件が前後の文から分かるか確認してください。否定・条件を保って見直してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 121,
+          "column": 9,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 128,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 129,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 130,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 131,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 132,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 133,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 134,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 135,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 136,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "design-tradeoff.2.with_skill": {
+      "bodyHash": "6bced933108e39db11cd378d515c571f7c523312a3edcc2fa97b44aeef14b57c",
+      "lint": []
+    }
+  },
+  "pairs": {
+    "adr-boundary.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用、2026-08-20、キュー、受付ID、同期生成時の最大45秒と接続切断、完成待ち、再試行上限が未決定であることをすべて記載している。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "受付IDでの処理状況確認、完了後のPDF取得、完成通知や状態確認APIの仕様に言及しており、原資料にない結果確認API・通知方法を本文へ持ち込んでいる。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文にBILL-218、PR #106、および進捗70%を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "採用判断（キューによる非同期化）、同期生成を採らない理由（最大45秒・接続切断）、利用者が完了まで待つ代償が本文中で対応付けられている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "多数の章見出しと重複する説明があり、「一段落か短い箇条書き」の範囲を超える。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用、2026-08-20、キュー、受付ID、同期生成の最大45秒による接続切断、完成待ち、再試行上限未決定をすべて本文に含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "結果確認API、通知方法、具体的な再試行回数を創作しておらず、再試行上限を未決定としている。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にはBILL-218、PR #106、進捗70%を含めていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "キューでの非同期処理と受付ID返却という判断、同期生成を不採用にした45秒・接続切断の理由、利用者の完成待ちという代償が明確に示されている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "背景、決定、決定理由、影響、代替案など章見出しが多く、理由と不採用理由も反復しているため、短い箇条書きまたは一段落には収まっていない。"
+          }
+        }
+      }
+    },
+    "design-tradeoff.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "API→オブジェクトストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503およびキュー未登録、キュー登録失敗時の回復未決定、10MB対1MB、非同期化による結果提示の遅れをすべて本文に記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "キュー登録失敗後の回復方法や結果提示方法は未決定・別途決定とし、再送、削除、通知、状態取得API等を確定仕様として補っていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にはDATA-64、PR #203、今週の作業、担当佐藤といった進行追跡情報を記載していない。これらは注記にのみある。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗では「503を返し、キューには登録しない」とし、キュー登録失敗は保存後の別事象として未決定と明記している。10MBのファイル本体を1MB上限のキューに載せない理由も明確である。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な処理フロー、失敗時の扱い、代替案の不採用理由、影響、未決定事項に収まっており、同じ結論を導入・まとめで不必要に反復していない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "API→ストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503と未登録、登録失敗回復の未決定、10MB対1MB、結果提示が遅れる点はいずれも本文にある。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "multipart受付、一意ID、202応答、状態確認API、再試行・DLQ・状態遷移・冪等化など、資料にない仕様を本文で具体的な実装方針として追加している。さらにキュー登録失敗の回復候補も列挙している。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の「10. スコープと進行状況」にDATA-64、PR #203、今週のAPI実装、担当佐藤を記載しており、本文に追跡情報を入れない要件に反する。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗時の503・キュー未登録と、保存後のキュー登録失敗時の未決定を別節で区別している。ファイル本体をキューに載せない理由も10MB対1MBとして明示されている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "依頼資料にない詳細なAPI形式、ID、メタデータ、状態遷移、冪等化、監視、テスト、実装計画を広範に追加しており、必要な設計論点を超えている。"
+          }
+        }
+      }
+    },
+    "adr-boundary.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用日2026-08-20、キュー処理、APIの受付ID返却、同期では最大45秒で接続切断、完成待ち、再試行上限未決定をすべて本文に含む。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "原資料にない、受付IDで生成状況や完成PDFを確認する方法を本文で確定的に記載している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にはBILL-218、PR #106、進捗70%を含めていない。注記での除外説明は本文への再掲ではない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "採用判断、同期案を不採用とする理由（最大45秒で接続切断）、非同期化の代償（完成待ち）が明確に対応している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "複数の章見出しと、同期不採用理由・受付IDに関する反復があり、一段落または短い箇条書きには収まっていない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用日2026-08-20、キュー、受付ID、最大45秒の同期接続切断、完成待ち、再試行上限未決定をすべて本文に含む。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "原資料にない受付IDによる状態確認の仕組み、完成後の取得、失敗・再試行結果の確認を「用意する」と本文で定めている。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の関連情報としてBILL-218、PR #106、進捗70%を記載しており、禁止事項に抵触する。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "キューによる非同期処理の採用、同期生成を不採用とする接続切断理由、利用者が完成を待つ代償が明確である。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "多数の章見出し、詳細な運用前提、未決定事項、重複する説明があり、短いADRとしては過剰である。"
+          }
+        }
+      }
+    },
+    "design-tradeoff.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "API→ストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503と未登録、登録失敗回復の未決定、10MB対1MB、非同期化による結果提示遅延をすべて本文に記載している。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "再送ジョブ、Outbox、削除運用、状態照会、冪等性、再試行・隔離、監視など、資料にない仕様・方針を本文で具体的に補っている。未決定とした箇所もあるが、本文中の追加仕様は確定資料に基づかない。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の「進行メモ」にDATA-64、PR #203、今週のAPI実装、担当佐藤を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗（503・キュー未登録）とキュー登録失敗を別節で区別し、10MBが1MB制限を超えるため本体をキューに載せない理由も明示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "確定資料にないAPI詳細、状態管理、監視、運用、チェックリストなどを大きく追加しており、依頼外の実装計画も含む。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "必要な処理順、保存失敗時のHTTP 503およびキュー未登録、キュー登録失敗回復の未決定、10MBと1MB制限、非同期化による結果確認の遅れを本文にすべて残している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "キュー登録失敗時の応答・回復方法・結果提示方法を未決定事項として扱い、再送、削除、通知、状態取得APIなどを確定仕様として追加していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "DATA-64、PR #203、今週の作業、担当佐藤は本文に含まれていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗とキュー登録失敗を表および本文で分離し、前者は503・未登録、後者は回復方法未決定と明確にしている。10MBと1MB制限による代替案不採用の理由も明記している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "処理フロー、境界、失敗時の扱い、未決定事項に必要な内容を集約しており、同じ結論の反復や依頼外の実装計画はない。"
+          }
+        }
+      }
+    }
+  },
+  "sealed": true,
+  "fingerprint": "61cb8368caa9f257f465f49df10762a770047a3f0ee08788f113c926406c0570"
+}
