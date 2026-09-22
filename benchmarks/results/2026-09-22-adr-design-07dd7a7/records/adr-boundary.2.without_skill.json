@@ -1,0 +1,28 @@
+{
+  "promptHash": "2761b9937031231eef704bd1375ef88bd66308af63f15bea65f2cfe331804e7d",
+  "jobHash": "26de9f88e7f2c6dc25a2ddd3991c2320e22a54f9d3ae7c14f0d40492d779d333",
+  "environmentHash": "80344698a6c08163531aa3208ed61f47fe2ee50df08685186897f77f88278c72",
+  "containerId": "751d0803697d45f7bc90723df60e446ec6f5ea63b26b9223bd9714ede52bdbb2",
+  "usage": {
+    "input_tokens": 5899,
+    "cached_input_tokens": 0,
+    "output_tokens": 775
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 9706,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "adr-boundary.2.without_skill",
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "# ADR-XXX: 請求書PDF生成を非同期キュー処理にする\n\n- **状態**: 採用\n- **決定日**: 2026-08-20\n- **関連**: BILL-218、PR #106\n- **原資料の進捗**: 70%\n\n## コンテキスト\n\n請求書PDFの生成には最大45秒かかる場合があり、同期処理ではAPI接続がタイムアウトまたは切断される。利用者がAPI応答を待ち続ける設計は安定しない。\n\n## 決定\n\n請求書PDFの生成はキューに投入して非同期で処理する。APIは生成完了を待たず、受付IDを返す。利用者は受付IDを使って処理状況や生成結果を確認し、PDFの完成を待つ。\n\n同期生成は、接続切断のリスクがあるため採用しない。\n\n## 影響\n\n### 利点\n\n- 長時間のPDF生成によるAPI接続切断を避けられる。\n- APIの応答時間を短く保てる。\n- PDF生成処理をキューによって平準化・再実行できる。\n\n### 欠点・留意点\n\n- 利用者はPDFの完成まで待つ必要がある。\n- 処理状況、完了通知または取得方法など、非同期処理向けの利用者体験が必要になる。\n- キューやワーカーなどの運用対象が増える。\n- 再試行の上限は未決定であり、別途決定する必要がある。上限を決める際は、重複生成、恒久的な失敗、運用コストへの影響を考慮する。\n\n## 運用上の前提\n\n1. APIは受付IDを返す。\n2. 受付IDから処理状態を確認できる仕組みを用意する。\n3. PDF完成後に利用者が取得できるようにする。\n4. 失敗状態と再試行結果を利用者および運用者が確認できるようにする。\n5. 再試行上限は未決定事項として追跡し、決定後に本ADRを更新する。\n\n## 代替案\n\n### 同期生成\n\nAPIリクエスト中にPDFを生成し、完成したPDFを同じ応答で返す案。最大45秒かかり接続が切れるため、不採用とした。\n\n## 未決定事項\n\n- PDF生成失敗時の再試行上限\n- 完成通知の方式\n- 受付IDによる処理状況確認APIの詳細\n",
+    "notes": "原資料の作業メモにあるBILL-218、PR #106、進捗70%を関連情報として反映しました。"
+  },
+  "responseHash": "c8d237299140be9ea987a0b93a1a8861e256e07fa4330df0bf72da66c80a7587"
+}

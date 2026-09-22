@@ -1,0 +1,755 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "promptHash": "f842542b6670ff5c6a1af9ce61e213cb4da8ea06d0835d95412b2046e18636dc",
+  "configTextHash": "c426cf8a18d0972e9de6a18fc0da979a82ec28cd122fb2909a90633bf39a0dbe",
+  "privateHomeEmpty": true,
+  "workspaceEmpty": true,
+  "skillDigest": null,
+  "initialized": {
+    "userAgent": "tanteki_benchmark/0.155.1 (Debian 12.0.0; aarch64) unknown (tanteki_benchmark; 1.0.0)",
+    "codexHome": "/home/agent/.codex",
+    "platformFamily": "unix",
+    "platformOs": "linux"
+  },
+  "config": {
+    "config": {
+      "mcp_servers": {},
+      "model": "gpt-5.6-luna",
+      "review_model": null,
+      "model_context_window": null,
+      "model_auto_compact_token_limit": null,
+      "model_auto_compact_token_limit_scope": null,
+      "model_provider": "benchmark",
+      "approval_policy": "never",
+      "approvals_reviewer": null,
+      "sandbox_mode": "danger-full-access",
+      "sandbox_workspace_write": null,
+      "forced_chatgpt_workspace_id": null,
+      "forced_login_method": null,
+      "web_search": "disabled",
+      "tools": null,
+      "instructions": null,
+      "developer_instructions": null,
+      "compact_prompt": null,
+      "model_reasoning_effort": "low",
+      "model_reasoning_summary": null,
+      "model_verbosity": null,
+      "service_tier": null,
+      "analytics": {
+        "enabled": false
+      },
+      "apps": null,
+      "browser_use": null,
+      "computer_use": null,
+      "desktop": null,
+      "notify": null,
+      "auto_review": null,
+      "tui": null,
+      "mcp_oauth_callback_url": null,
+      "project_doc_fallback_filenames": [],
+      "audio": null,
+      "js_repl_node_module_dirs": null,
+      "allow_login_shell": true,
+      "tool_output_token_limit": null,
+      "agents": null,
+      "experimental_realtime_start_instructions": null,
+      "allow_symlinked_codex_home": null,
+      "cli_auth_credentials_store": "file",
+      "experimental_realtime_ws_startup_context": null,
+      "model_catalog_json": null,
+      "tool_suggest": null,
+      "model_providers": {
+        "benchmark": {
+          "name": "benchmark",
+          "base_url": "http://127.0.0.1:19876/v1",
+          "env_key": "BENCHMARK_TOKEN",
+          "env_key_instructions": null,
+          "experimental_bearer_token": null,
+          "auth": null,
+          "aws": null,
+          "wire_api": "responses",
+          "query_params": null,
+          "http_headers": null,
+          "env_http_headers": null,
+          "request_max_retries": 0,
+          "stream_max_retries": 0,
+          "stream_idle_timeout_ms": null,
+          "websocket_connect_timeout_ms": null,
+          "requires_openai_auth": false,
+          "supports_websockets": false,
+          "supports_standalone_web_search": false
+        }
+      },
+      "disable_paste_burst": null,
+      "profiles": {},
+      "include_environment_context": true,
+      "default_permissions": null,
+      "realtime": null,
+      "permissions": null,
+      "projects": null,
+      "log_dir": null,
+      "otel": null,
+      "show_raw_agent_reasoning": null,
+      "mcp_oauth_callback_port": null,
+      "experimental_realtime_webrtc_call_base_url": null,
+      "openai_base_url": null,
+      "plugins": {},
+      "windows": null,
+      "experimental_realtime_ws_backend_prompt": null,
+      "sqlite_home": null,
+      "features": {
+        "network_proxy": null,
+        "apps": false,
+        "hooks": false,
+        "memories": false,
+        "multi_agent": true,
+        "plugins": false,
+        "shell_snapshot": false,
+        "shell_tool": true,
+        "unified_exec": true,
+        "api_key_model_discovery": false,
+        "auth_elicitation": true,
+        "background_paginated_rollout_migration": false,
+        "codex_apps_mcp_2026_07_28": false,
+        "mcp_2026_07_28": false,
+        "mentions_v2": true,
+        "remote_control": false,
+        "remote_plugin": true,
+        "tool_suggest": true,
+        "windows_sandbox_service": false
+      },
+      "experimental_use_unified_exec_tool": null,
+      "history": {
+        "persistence": "save-all",
+        "max_bytes": null
+      },
+      "background_terminal_max_timeout": 300000,
+      "notice": null,
+      "experimental_realtime_ws_model": null,
+      "file_opener": "vscode",
+      "plan_mode_reasoning_effort": null,
+      "include_apps_instructions": true,
+      "hide_agent_reasoning": false,
+      "personality": "none",
+      "experimental_thread_store_endpoint": null,
+      "include_collaboration_mode_instructions": true,
+      "experimental_compact_prompt_file": null,
+      "memories": null,
+      "project_root_markers": [
+        ".git"
+      ],
+      "feedback": null,
+      "marketplaces": {},
+      "oss_provider": null,
+      "include_permissions_instructions": true,
+      "mcp_oauth_credentials_store": "auto",
+      "profile": null,
+      "experimental_realtime_ws_base_url": null,
+      "goals": null,
+      "experimental_thread_store": null,
+      "check_for_update_on_startup": null,
+      "thread_unload_delay_secs": null,
+      "suppress_unstable_features_warning": null,
+      "js_repl_node_path": null,
+      "skills": {
+        "config": [
+          {
+            "path": "/home/agent/.codex/skills/.system/imagegen/SKILL.md",
+            "enabled": false
+          },
+          {
+            "path": "/home/agent/.codex/skills/.system/openai-docs/SKILL.md",
+            "enabled": false
+          },
+          {
+            "path": "/home/agent/.codex/skills/.system/plugin-creator/SKILL.md",
+            "enabled": false
+          },
+          {
+            "path": "/home/agent/.codex/skills/.system/review-agent/SKILL.md",
+            "enabled": false
+          },
+          {
+            "path": "/home/agent/.codex/skills/.system/skill-creator/SKILL.md",
+            "enabled": false
+          },
+          {
+            "path": "/home/agent/.codex/skills/.system/skill-installer/SKILL.md",
+            "enabled": false
+          }
+        ]
+      },
+      "project_doc_max_bytes": 0,
+      "shell_environment_policy": {
+        "inherit": null,
+        "ignore_default_excludes": null,
+        "exclude": null,
+        "set": null,
+        "include_only": null,
+        "filters": null,
+        "experimental_use_profile": null
+      },
+      "model_instructions_file": null,
+      "hooks": null,
+      "ghost_snapshot": null,
+      "chatgpt_base_url": "https://chatgpt.com/backend-api/",
+      "apps_mcp_product_sku": null,
+      "responses_api_metadata": null,
+      "mcp_optional_startup_grace_ms": null,
+      "orchestrator": null
+    },
+    "origins": {
+      "approval_policy": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.stream_max_retries": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "web_search": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.request_max_retries": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.3.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.memories": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.4.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.multi_agent": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "project_doc_max_bytes": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.4.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.wire_api": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.shell_snapshot": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.5.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.1.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.0.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.plugins": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.env_key": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.2.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.2.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.base_url": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.apps": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.name": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.shell_tool": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.5.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.3.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "analytics.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_reasoning_effort": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_provider": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.1.enabled": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "skills.config.0.path": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.unified_exec": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "personality": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "sandbox_mode": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "model_providers.benchmark.supports_websockets": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      },
+      "features.hooks": {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9"
+      }
+    },
+    "layers": [
+      {
+        "name": {
+          "type": "user",
+          "file": "/home/agent/.codex/config.toml",
+          "profile": null
+        },
+        "version": "sha256:c6f844c6e5ba06b3c6802915ce436968135242d72acd8552946cc468b45a3bc9",
+        "config": {
+          "model": "gpt-5.6-luna",
+          "model_provider": "benchmark",
+          "model_reasoning_effort": "low",
+          "approval_policy": "never",
+          "sandbox_mode": "danger-full-access",
+          "project_doc_max_bytes": 0,
+          "web_search": "disabled",
+          "personality": "none",
+          "features": {
+            "apps": false,
+            "plugins": false,
+            "hooks": false,
+            "memories": false,
+            "shell_snapshot": false,
+            "multi_agent": true,
+            "shell_tool": true,
+            "unified_exec": true
+          },
+          "analytics": {
+            "enabled": false
+          },
+          "model_providers": {
+            "benchmark": {
+              "name": "benchmark",
+              "base_url": "http://127.0.0.1:19876/v1",
+              "env_key": "BENCHMARK_TOKEN",
+              "wire_api": "responses",
+              "supports_websockets": false,
+              "request_max_retries": 0,
+              "stream_max_retries": 0
+            }
+          },
+          "skills": {
+            "config": [
+              {
+                "path": "/home/agent/.codex/skills/.system/imagegen/SKILL.md",
+                "enabled": false
+              },
+              {
+                "path": "/home/agent/.codex/skills/.system/openai-docs/SKILL.md",
+                "enabled": false
+              },
+              {
+                "path": "/home/agent/.codex/skills/.system/plugin-creator/SKILL.md",
+                "enabled": false
+              },
+              {
+                "path": "/home/agent/.codex/skills/.system/review-agent/SKILL.md",
+                "enabled": false
+              },
+              {
+                "path": "/home/agent/.codex/skills/.system/skill-creator/SKILL.md",
+                "enabled": false
+              },
+              {
+                "path": "/home/agent/.codex/skills/.system/skill-installer/SKILL.md",
+                "enabled": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": {
+          "type": "system",
+          "file": "/etc/codex/config.toml"
+        },
+        "version": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "config": {}
+      }
+    ]
+  },
+  "catalog": {
+    "data": [
+      {
+        "cwd": "/workspace",
+        "skills": [
+          {
+            "name": "imagegen",
+            "path": "/home/agent/.codex/skills/.system/imagegen/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
+            "interface": {
+              "displayName": "Image Gen",
+              "shortDescription": "Generate or edit images for websites, games, and more",
+              "iconSmall": "/home/agent/.codex/skills/.system/imagegen/assets/imagegen-small.svg",
+              "iconLarge": "/home/agent/.codex/skills/.system/imagegen/assets/imagegen.png",
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": "Use $imagegen to make or edit an image for this project."
+            },
+            "pluginId": null
+          },
+          {
+            "name": "openai-docs",
+            "path": "/home/agent/.codex/skills/.system/openai-docs/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.",
+            "shortDescription": "Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, and self-knowledge; OpenAI APIs and ChatGPT Work. 'You'/'this app' means Codex only.",
+            "interface": {
+              "displayName": "OpenAI Docs",
+              "shortDescription": "OpenAI and Codex docs for models, skills, tasks, and setup",
+              "iconSmall": "/home/agent/.codex/skills/.system/openai-docs/assets/openai-small.svg",
+              "iconLarge": "/home/agent/.codex/skills/.system/openai-docs/assets/openai.png",
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": "Use OpenAI Docs for official docs lookup, questions about Codex itself or Codex surfaces, model selection, model migration, and prompt-upgrade work."
+            },
+            "pluginId": null
+          },
+          {
+            "name": "plugin-creator",
+            "path": "/home/agent/.codex/skills/.system/plugin-creator/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Create and scaffold plugin directories for Codex with a required `.codex-plugin/plugin.json`, optional plugin folders/files, valid manifest defaults, and personal-marketplace entries by default. Use when Codex needs to create a new personal plugin, add optional plugin structure, generate or update marketplace entries for plugin ordering and availability metadata, or update an existing local plugin during development with the CLI-driven cachebuster and reinstall flow.",
+            "interface": {
+              "displayName": "Plugin Creator",
+              "shortDescription": "Scaffold plugins and marketplace entries",
+              "iconSmall": "/home/agent/.codex/skills/.system/plugin-creator/assets/plugin-creator-small.svg",
+              "iconLarge": "/home/agent/.codex/skills/.system/plugin-creator/assets/plugin-creator.png",
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": "Use $plugin-creator to scaffold a valid plugin in the personal marketplace, then validate it before handing it back."
+            },
+            "pluginId": null
+          },
+          {
+            "name": "review-agent",
+            "path": "/home/agent/.codex/skills/.system/review-agent/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions.",
+            "interface": {
+              "displayName": "Review Agent",
+              "shortDescription": "Find actionable bugs in code changes",
+              "iconSmall": null,
+              "iconLarge": null,
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": "Use $review-agent to review the requested code changes and return actionable findings."
+            },
+            "pluginId": null
+          },
+          {
+            "name": "skill-creator",
+            "path": "/home/agent/.codex/skills/.system/skill-creator/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Create or update a Codex skill with appropriately scoped instructions and any needed supporting resources.",
+            "shortDescription": "Create or update a skill",
+            "interface": {
+              "displayName": "Skill Creator",
+              "shortDescription": "Create or update a skill",
+              "iconSmall": "/home/agent/.codex/skills/.system/skill-creator/assets/skill-creator-small.svg",
+              "iconLarge": "/home/agent/.codex/skills/.system/skill-creator/assets/skill-creator.png",
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": null
+            },
+            "pluginId": null
+          },
+          {
+            "name": "skill-installer",
+            "path": "/home/agent/.codex/skills/.system/skill-installer/SKILL.md",
+            "scope": "system",
+            "enabled": false,
+            "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
+            "shortDescription": "Install curated skills from openai/skills or other repos",
+            "interface": {
+              "displayName": "Skill Installer",
+              "shortDescription": "Install curated skills from openai/skills or other repos",
+              "iconSmall": "/home/agent/.codex/skills/.system/skill-installer/assets/skill-installer-small.svg",
+              "iconLarge": "/home/agent/.codex/skills/.system/skill-installer/assets/skill-installer.png",
+              "iconSmallUrl": null,
+              "iconLargeUrl": null,
+              "brandColor": null,
+              "defaultPrompt": null
+            },
+            "pluginId": null
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "thread": {
+    "model": "gpt-5.6-luna",
+    "modelProvider": "benchmark",
+    "cwd": "/workspace",
+    "instructionSources": [],
+    "thread": {
+      "id": "01a0c7ce-e9a7-7a52-ba09-7e939a8e0bca",
+      "environments": [
+        {
+          "environmentId": "local",
+          "cwd": "/workspace",
+          "runtimeWorkspaceRoots": [
+            "/workspace"
+          ]
+        }
+      ],
+      "extra": null,
+      "sessionId": "01a0c7ce-e9a7-7a52-ba09-7e939a8e0bca",
+      "forkedFromId": null,
+      "parentThreadId": null,
+      "preview": "",
+      "ephemeral": true,
+      "section": null,
+      "sectionEnteredAt": null,
+      "projectId": null,
+      "historyMode": "legacy",
+      "modelProvider": "benchmark",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "low",
+      "createdAt": 1790058621,
+      "updatedAt": 1790058621,
+      "recencyAt": 1790058621,
+      "status": {
+        "type": "idle"
+      },
+      "path": null,
+      "cwd": "/workspace",
+      "cliVersion": "0.155.1",
+      "originator": "tanteki_benchmark",
+      "source": "vscode",
+      "canAcceptDirectInput": true,
+      "threadSource": null,
+      "agentNickname": null,
+      "agentRole": null,
+      "gitInfo": null,
+      "name": null,
+      "daybreakEnabled": null,
+      "turns": []
+    },
+    "serviceTier": null,
+    "runtimeWorkspaceRoots": [
+      "/workspace"
+    ],
+    "approvalPolicy": "never",
+    "approvalsReviewer": "user",
+    "sandbox": {
+      "type": "dangerFullAccess"
+    },
+    "activePermissionProfile": null,
+    "reasoningEffort": "low",
+    "multiAgentMode": "explicitRequestOnly"
+  }
+}

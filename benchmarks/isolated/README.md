@@ -60,11 +60,30 @@ npm run benchmark -- report \
 
 `MODEL`と`JUDGE_MODEL`には、利用アカウントのResponses APIで使えるモデルを指定する。モデルが利用できなければ失敗し、代替モデルへ切り替えない。Codex CLIは既定で0.155.1に固定する。`--codex-version`で変更できるが、変更後は下記の結合テストで互換性を確認する。
 
-生成の既定値は10課題、2反復、推論量low、各試行600秒、最大24回のモデルリクエスト。`--cases adr-boundary,progress-retention`、`--repeats`、`--effort`、`--timeout`、`--max-model-calls`で変更できる。独自課題は`--cases-file`で指定する。採点は1ペアにつきモデルリクエスト1回。生成中の子エージェントの呼び出しも同じ上限に含める。
+生成の既定値は10課題、2反復、推論量low、各試行600秒、最大24回のモデルリクエスト。`--cases`、`--repeats`、`--effort`、`--timeout`、`--max-model-calls`で変更できる。独自課題は`--cases-file`で指定する。採点は1ペアにつきモデルリクエスト1回。生成中の子エージェントの呼び出しも同じ上限に含める。
 
 ホストからのAPIリクエストは、両条件と子エージェントを通して開始間隔を7秒以上空ける。待ち時間は試行の制限時間に含む。1日あたりの呼び出し数やトークン数の上限は別に適用される。40試行でもモデル呼び出しは40回とは限らないため、利用枠を確認する。制限に達したリクエストを自動で再送しない。
 
 中断した実行は未確定のまま残す。再開や条件片側だけの再試行は行わず、新しい出力先でペアを実行し直す。全試行が終わると、失敗を含む結果を確定する。記録、入力、コードのハッシュが一致しない結果は採点できない。
+
+### 変更した文書の種類だけ再評価する
+
+`--cases` に [課題一覧](../cases.json) のIDをカンマ区切りで指定する。ADRとDesign Docなら、次の指定で2課題 × 2反復 × 2条件の8試行になる。課題を1つにすることも、`--repeats 1` で各条件を1回ずつにすることもできる。
+
+```sh
+npm run benchmark -- generate \
+  --lock .cache/benchmark-build/runtime-lock.json \
+  --out .cache/benchmark-generation-adr-design --model MODEL \
+  --cases adr-boundary,design-tradeoff --repeats 2
+
+npm run benchmark -- grade \
+  --run .cache/benchmark-generation-adr-design \
+  --out .cache/benchmark-grade-adr-design --model JUDGE_MODEL
+```
+
+スキルを変更した場合は、先に配布スキルを再生成し、新しい出力先で `build` を実行する。上の `--lock` には、その新しいロックファイルを指定する。実行前に `generate` へ `--dry-run` を加えると、モデルを呼ばずに対象と試行数を確認できる。
+
+採点とレポートは、指定した実行に含まれるペアだけを対象にする。以前の結果と合算せず、出力先を分けて保存する。部分評価は指定した課題の確認であり、他の文書の種類への影響までは確認できない。
 
 ## 結果の読み方
 

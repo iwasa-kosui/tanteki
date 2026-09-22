@@ -1,0 +1,245 @@
+{
+  "digest": "554f2efb7153b24d413798026bc789ece5813713534f338bb48952bf3de2cab0",
+  "files": {
+    "adr-boundary.1.with_skill/container.json": {
+      "sha256": "b642eb5e444127ee7a44da51a8afdfbbe94553c38af4387e5a28db63401858e4",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/events.jsonl": {
+      "sha256": "4b5f7d0de618ac6186d699dfcb716e0f581fd2b718d3327fb17a4fc455032799",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/preflight.json": {
+      "sha256": "7f996e131c073d861a69d8c66c9f90937f015e7c964aa9dd7dd010889280dc22",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/request-1.json": {
+      "sha256": "2aa76ad7e5d6b22f5f815a318d452192d5f1d55fdb17c85f660f2d8b0b8f2078",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/request-2.json": {
+      "sha256": "94e86a3425a18fe9d32043fca35f0186e49b74ca97606c96896893668aa5da23",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/request-3.json": {
+      "sha256": "1f713f101f7885dc1e89805b83145eaaea901885b532c8a5d1abdff175193af9",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/request-4.json": {
+      "sha256": "e53079c0d9fc9e8c6e7ab450adadd2d03eb4140f281ac0425e4fe632c9cdc936",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/request-5.json": {
+      "sha256": "18408df11ddf3cd13247f61ddb3f4e623ec7fe47c18a6f8976cd4a62f4df791f",
+      "executable": false
+    },
+    "adr-boundary.1.with_skill/result.json": {
+      "sha256": "233dca9c9902a1a39172490bb538d1b4313ce1bd98ddcbe0252e0e05f632fdae",
+      "executable": false
+    },
+    "adr-boundary.1.without_skill/container.json": {
+      "sha256": "5701de38df5c7ba3287cff1161b1ad8c1f3f7a106c9634eb16ea1bdb9544e2f7",
+      "executable": false
+    },
+    "adr-boundary.1.without_skill/events.jsonl": {
+      "sha256": "40e1f83393ab1b30afc6a43760378372d4e314d699d58ce55fa8277dc1d41a9a",
+      "executable": false
+    },
+    "adr-boundary.1.without_skill/preflight.json": {
+      "sha256": "8051b3dd441ad1e8dfc5fe985fb9ddb075cc76ad810e3b4786a9a71c17303fe6",
+      "executable": false
+    },
+    "adr-boundary.1.without_skill/request-1.json": {
+      "sha256": "155c4d6b691b2fef7720a15a22b737779c52c2b98f58e8207999ece256d33439",
+      "executable": false
+    },
+    "adr-boundary.1.without_skill/result.json": {
+      "sha256": "d828a07bc594458e93beea1e4796d430e33c31dcc29131d701244dc5148dd591",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/container.json": {
+      "sha256": "0daa622dc067e0ab576958bd71d143deafc1a89df215bfee2e0be866ac583f53",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/events.jsonl": {
+      "sha256": "c4a3016568f6a11f91e9291735f3f8e0c38047eef236a2d7b5032e7f3c4488fc",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/preflight.json": {
+      "sha256": "a5e4e86bbf60bf6cd4f860d4df7a9998d124cbc3b2ff51f40426c6ce8b723390",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-1.json": {
+      "sha256": "8c0bc2c83eb49380f29c561d4dae6cdea3ae7cb99dbe5f4f8835804c51f0b8ab",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-2.json": {
+      "sha256": "449fe2f46bb479fd87e4eae7f6516d51c92e3b6703523389f7abf7468df34adb",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-3.json": {
+      "sha256": "c11f00760ee26aaa1cf0d568ca7746b5cbf781aabb6306c7b5e08151c7837ec0",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-4.json": {
+      "sha256": "95eccd1a09ff8311f3ad1ee32b3f68567b1e6cfacce74af010f39cdbc1eec20a",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-5.json": {
+      "sha256": "7b06b70a9c7083080bc3ded0d7e52c52ce2a501a800db27ea2e21a00e0ebd20f",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-6.json": {
+      "sha256": "9804c493d3c97c342b3e515828a129f945f881e671ef785c1f046fa2dbbab96d",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-7.json": {
+      "sha256": "25a12ef251b4e365a26f039a09e646abe5e1f3d9fd0d342c73fba14455c1f72b",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-8.json": {
+      "sha256": "7575798fdfdf7138f23024a9a567c791ea859b1e405b25c5b1825b78e5f36ccd",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/request-9.json": {
+      "sha256": "380fa819fc5a1a234a84bdb715fb5c9a191cc1b9657bfe6b327da81ec84c766a",
+      "executable": false
+    },
+    "adr-boundary.2.with_skill/result.json": {
+      "sha256": "b9ac3047c53368aa6fd61ba1bb7227a04dd55deef71138415dbe3d295b4d2dd2",
+      "executable": false
+    },
+    "adr-boundary.2.without_skill/container.json": {
+      "sha256": "67a04f7659077b0462c4274613cbeae3e139c4ab179435f3b923471167e58836",
+      "executable": false
+    },
+    "adr-boundary.2.without_skill/events.jsonl": {
+      "sha256": "7b8c7c38e8fecfc6af955fc4f7163dcd5155abc47f3f1faa5005c58307d12deb",
+      "executable": false
+    },
+    "adr-boundary.2.without_skill/preflight.json": {
+      "sha256": "d9bb2932a3b04fd51a879a2e8da751b0fe23c790b1f5ab45ade347c3bd422af6",
+      "executable": false
+    },
+    "adr-boundary.2.without_skill/request-1.json": {
+      "sha256": "3322777d74e5e649286cd9c0993607f45f1196eac302b897fa1e6ecccb53519e",
+      "executable": false
+    },
+    "adr-boundary.2.without_skill/result.json": {
+      "sha256": "f289eef6a75243159a01ee36f935777bec12ef83c6543f28431048a9b4afaa04",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/container.json": {
+      "sha256": "f487d1f177ca8a9d7bd840f6a6d7acdf2e6ad08a3c31dd164bc847122f5dc724",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/events.jsonl": {
+      "sha256": "c6d4678b9fa74abe9aad462b2c365685e94245a2a34dd7302ff7c77cb8fc5822",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/preflight.json": {
+      "sha256": "3eb8a79d7d075732d98614e2747512c125de7422df5e4e585a599bb6e03ebb10",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/request-1.json": {
+      "sha256": "e60d6f50a1218b6d4cc958572b3dd32120089aa2ad409840e8839de97db12596",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/request-2.json": {
+      "sha256": "f435ede27b18c6df791c8a95ac91d81d9c297993b01625bef63b2ac614b9033b",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/request-3.json": {
+      "sha256": "709a397a6d9db02fc26ed08f0c414b30b7167cfd6f5669f7ae1e4bcb2e2f0a95",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/request-4.json": {
+      "sha256": "01b8655cf0432583558e726ced397ea404cfb35a45ae048b3ce71f5d5669cd8f",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/request-5.json": {
+      "sha256": "2a92b518c08f2df9f418a8c0a62b30d600bc79e2d23e47e9bc7bee42a6b00192",
+      "executable": false
+    },
+    "design-tradeoff.1.with_skill/result.json": {
+      "sha256": "918836170b8cdbba3feb4ab18acef0a4ee8c8186e08c5acac9566b71d7c6d7e5",
+      "executable": false
+    },
+    "design-tradeoff.1.without_skill/container.json": {
+      "sha256": "d73b3b726844f87bb554b5a37aad202281c7944d2c3eee1cfd6ced1d8987db7d",
+      "executable": false
+    },
+    "design-tradeoff.1.without_skill/events.jsonl": {
+      "sha256": "097b12eabddb3bf7f901c92853073a04115318a4c9c33a45f3c434f109a2fba0",
+      "executable": false
+    },
+    "design-tradeoff.1.without_skill/preflight.json": {
+      "sha256": "0f45ef62272c19f35b12dcf87693736e6fe7d45829d2ae93b81fb5516bc9c38d",
+      "executable": false
+    },
+    "design-tradeoff.1.without_skill/request-1.json": {
+      "sha256": "9d130cd620bf0842f978428dde9aff00415f56d104a172321337f92a09b3245b",
+      "executable": false
+    },
+    "design-tradeoff.1.without_skill/result.json": {
+      "sha256": "d8bc20a9e68654d1d2b5ec2dc307261ecbd6c1082928dd35d64efe07256d45cd",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/container.json": {
+      "sha256": "9c507957b071ac8a771c13c43d9045401ff807944a70ba058f4e421ccdbdd2bf",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/events.jsonl": {
+      "sha256": "96add2dfcc1e9e69a88fef6796ec33d64f4d1e5cd382db10cd5f4a7d2246be48",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/preflight.json": {
+      "sha256": "4ef87d8d09503718437ceaf52062e117747405e7da3e3f77714c819e1a8acb61",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/request-1.json": {
+      "sha256": "9b7335b3b12c43687dbfd364ec2d120c8deb7eb95591cea63d95033a23c7e4d7",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/request-2.json": {
+      "sha256": "ab42256f0d7f2876ef166900bf0a1da6407edc868ec54b84c7f1919e7b8631cb",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/request-3.json": {
+      "sha256": "f899e2aee1e076c67bce19444d585849cd2b21ac839cf4866142294c6d2a8f23",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/request-4.json": {
+      "sha256": "c6c1af4dd9b686cf15de9d4f9b606e759719481554a5cb2a3fbb8cb53fcf01ce",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/request-5.json": {
+      "sha256": "af5f7a7c0ffaba8a3683209b6cacf15c45e214f402c11c8ebc5f35e561c85e24",
+      "executable": false
+    },
+    "design-tradeoff.2.with_skill/result.json": {
+      "sha256": "c8bd005dc7126bd46909cb7e531394bfcdbac1817a3c17888b547d7ed5391fcd",
+      "executable": false
+    },
+    "design-tradeoff.2.without_skill/container.json": {
+      "sha256": "aa813c2814d722f95e6a7cb99467124c12463fb43fa95a4c04d83ef26f8c3a50",
+      "executable": false
+    },
+    "design-tradeoff.2.without_skill/events.jsonl": {
+      "sha256": "b62598a123760f375b304558fc259b1bdd5664621b3e90ef05ecb083455aca73",
+      "executable": false
+    },
+    "design-tradeoff.2.without_skill/preflight.json": {
+      "sha256": "33e003d8d89e1d1655d43466173a08ab2ae6f0f3502af32ca20332d7aca458de",
+      "executable": false
+    },
+    "design-tradeoff.2.without_skill/request-1.json": {
+      "sha256": "2216399f362c2a968eef980fc05da4f16884ee04c782329a84e8c396bad5c907",
+      "executable": false
+    },
+    "design-tradeoff.2.without_skill/result.json": {
+      "sha256": "7a6435bd33d25e28e993abfca54ca6accacb1eb338370aa52985869d484ba4f0",
+      "executable": false
+    }
+  }
+}

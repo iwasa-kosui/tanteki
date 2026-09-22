@@ -1,0 +1,64 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "plannedPairs": 4,
+  "validPairs": 4,
+  "gradedPairs": 4,
+  "pairedScoreDifferences": [
+    {
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "difference": 2
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "difference": 3
+    },
+    {
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "difference": 1
+    },
+    {
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "difference": 3
+    }
+  ],
+  "arms": {
+    "without_skill": {
+      "planned": 4,
+      "valid": 4,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 23708,
+      "outputTokens": 5744,
+      "cachedInputTokens": 0,
+      "modelCalls": 4,
+      "elapsedMs": 67768,
+      "skillTextSeen": 0,
+      "lintCommandSeen": 0,
+      "assessed": 4,
+      "rubricPasses": 8,
+      "rubricTotal": 20,
+      "lintPasses": 0
+    },
+    "with_skill": {
+      "planned": 4,
+      "valid": 4,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 344185,
+      "outputTokens": 12600,
+      "cachedInputTokens": 265814,
+      "modelCalls": 24,
+      "elapsedMs": 260145,
+      "skillTextSeen": 4,
+      "lintCommandSeen": 2,
+      "assessed": 4,
+      "rubricPasses": 17,
+      "rubricTotal": 20,
+      "lintPasses": 4
+    }
+  }
+}

@@ -36,6 +36,28 @@ test("all cases have complete private rubrics and resolvable skill context", () 
   assert.throws(() => validateCases([cases[0], cases[0]]), /duplicate/);
 });
 
+test("skill context retains classification and nested guidance without adjacent document types", () => {
+  const source = {
+    "SKILL.md": "執筆方針", "references/delegation.md": "委譲手順",
+    "references/japanese.md": "日本語基準", "references/structure.md": "構成基準",
+    "references/document-types.md": "# 分類\n\n## 区分\n\nstock: 参照用\n\nflow: 作業用\n\nrecord: 記録用\n\n## 役割を決める\n\n分類後の手順",
+    "references/types/example.md": "# 種類\n\n## 隣の種類\n\n隣の説明\n\n## ADR\n\n判断の理由を残す。\n\n### 未確認事項\n\n採用条件を残す。\n\n## 同じ題材の最小例\n\n### ADR\n\nこの例は対象外。"
+  };
+  const context = skillContext({ documentType: "ADR" }, source);
+  for (const text of ["stock: 参照用", "flow: 作業用", "record: 記録用", "判断の理由を残す。", "採用条件を残す。"]) {
+    assert.ok(context.includes(text));
+  }
+  for (const text of ["分類後の手順", "隣の説明", "この例は対象外。"]) assert.ok(!context.includes(text));
+  assert.throws(() => skillContext({ documentType: "未知の種類" }, source), /Missing document classification/);
+
+  const header = "| 種別 | 主な読者 | 目的 | 目的ではないこと | 最小内容 | 区分 |";
+  source["references/types/example.md"] = `${header}\n|---|---|---|---|---|---|\n| ADR | 保守者 | 判断を残す | 進捗管理 | 決定の理由 | stock |\n| 隣の種類 | 隣の説明 | | | | flow |\n\n## ADR\n\n過去の詳細節`;
+  const legacyContext = skillContext({ documentType: "ADR" }, source);
+  assert.ok(legacyContext.includes("決定の理由"));
+  assert.ok(!legacyContext.includes("隣の説明"));
+  assert.ok(!legacyContext.includes("過去の詳細節"));
+});
+
 test("seeded schedule contains each pair exactly once per repeat and balances first arm", () => {
   const plan = makePlan(cases, 2, "seed");
   assert.deepEqual(plan, makePlan(cases, 2, "seed"));

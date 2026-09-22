@@ -1,0 +1,28 @@
+{
+  "promptHash": "c3820a536d23882a4167f48baaada8114747d86c43bbb0eeb99e5151f8b49372",
+  "jobHash": "04d423f3ddd2859ed847c04d4698e59e073b81330df2a2158ba54bdbd34952e7",
+  "environmentHash": "bab191e03574740866739ec3ae19144d58411ef582561627e7a346cf55dd3b1e",
+  "containerId": "c3cc4ddf38ea796783cf9fece758ce11dde4e03dbc75549078ca4cd8543053c5",
+  "usage": {
+    "input_tokens": 5900,
+    "cached_input_tokens": 0,
+    "output_tokens": 132
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 8230,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "plain-japanese.1.without_skill",
+  "caseId": "plain-japanese",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "利用者は、既存の認証情報を利用して請求画面へ移動できます。移動時に再ログインする必要はありません。ただし、認証の有効期限が切れている場合は、ログイン画面が表示されます。",
+    "notes": "草稿中の造語や抽象的な表現は使用せず、確定事項に基づいて具体化しました。"
+  },
+  "responseHash": "1b35ed589e3eb8fb5841c0a20d5a3b6741b45497ad2c7c5e9c4df9967dea7b27"
+}

@@ -1,0 +1,28 @@
+{
+  "promptHash": "e84929dc134115a0d4e0076b736b1b724f2e561757a8057ae508a0a37bfc30cd",
+  "jobHash": "46c66c4033c5b769749f467e214ce1e193e708e5e7cf68a232c6d6c7469abc36",
+  "environmentHash": "c84c991dcb3eb8fcce5a17371d0aecec74c963c994f1bc3838acbc78366fc09d",
+  "containerId": "90a2466e16dd253b45f799ef5bc01b7fdc8a75df9057e58645433489cae6a0b9",
+  "usage": {
+    "input_tokens": 35500,
+    "cached_input_tokens": 24327,
+    "output_tokens": 456
+  },
+  "modelCalls": 4,
+  "providerResponses": 4,
+  "elapsedMs": 28970,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": false
+  },
+  "id": "surgical-edit.2.with_skill",
+  "caseId": "surgical-edit",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "# 配信の確認\n\n当番は監視画面を開く。\n成功件数と失敗件数を確認する。\n失敗率が7%を超えたら当番が配信を停止する。",
+    "notes": "運用手順書として、指定された末尾の一文のみを置き換えました。"
+  },
+  "responseHash": "90f8551373654b1c9ea59d9b8ecc0d8594cbc5cd96728f7a77691e905574c8d8"
+}
