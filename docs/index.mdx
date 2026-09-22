@@ -9,8 +9,10 @@ export const metadata = {
 
 # 業務のための文書を<br />もっと端的に
 
-PRD、ADR、Design Doc、Runbook。<br />
-文書の種類ごとに、書くべき情報と書くべきではない情報が違います。<br className="desktop-break" />
+論点が多すぎるADR、不要な進捗報告が書かれたDesign Doc。
+<br className="desktop-break" />
+生成AIが書いたノイズだらけの文書にうんざりしていませんか？
+<br />
 tanteki はその文書が本質的に述べたいことを見定めて、必要な情報だけを記述します。
 
 <Actions>
@@ -24,27 +26,17 @@ tanteki はその文書が本質的に述べたいことを見定めて、必要
 
 ## 比較
 
-<IsolatedOnly>
-<Note>
-
-ADRとDesign Docは、用語と文書の役割を見直した後の部分評価です。手順書は、以前に別の題材で行った実測です。
-
-</Note>
-</IsolatedOnly>
-
 <Examples />
-
-<Note>
-
-各欄をスクロールして全文を読めます。本文は原文のまま掲載し、比較する箇所に色を付けています。スキルの有無で何が変わり、どう読み取りやすくなったかを、その下で説明しています。
-
-</Note>
 
 </Section>
 
-<Section id="doc-types" eyebrow="02 / DOCUMENT TYPES" intro="規定は種類ごとに定義されていて、依頼の内容から該当する1つを選びます。">
+<Section id="doc-types" eyebrow="02 / DOCUMENT TYPES">
 
-## 文書の種類ごとに、書くべき情報は違う
+## 主にサポートする文書
+
+tantekiは、主に以下の文書をサポートします。
+
+文書の種類ごとに「書くべき情報」と「書くべきではない情報」を判定し、書くべきではない情報を文書から削除します。
 
 <DocumentTable caption="文書の種類ごとの規定">
 
@@ -58,41 +50,39 @@ ADRとDesign Docは、用語と文書の役割を見直した後の部分評価�
 
 </DocumentTable>
 
-文書の種類は7つのカテゴリに分かれています。依頼の内容から該当する種類を1つ選び、その規定だけを読みます。
-
 <Link href="https://github.com/iwasa-kosui/tanteki/blob/main/references/document-types.md">文書の種類ごとの規定を読む <span aria-hidden="true">↗</span></Link>
 
 </Section>
 
 <Section id="approach" eyebrow="03 / HOW IT WORKS">
 
-## 構成を検査してから、本文を書く
+## 原則
+
+このスキルは次の原則に従って文書を作成します。
 
 <Principles>
 <Principle number="01">
 
 ### 文書の種類と読者を決める
 
-文書の種類を決めると、読者と、その種類で書くべき情報が決まります。節ごとの問いと根拠を整理します。
+まずは「誰に向けて、何の文書を書くのか」を明確にします。これにより伝えるべき情報が絞り込まれ、各節で説明すべき内容と根拠が自然と整理されます。
 
 </Principle>
 <Principle number="02">
 
 ### 構成を検査する
 
-構成が合格するまで本文を書きません。検査していない構成を、合格済みとして扱いません。
+いきなり本文を書き始めることはしません。まずは目次や論理展開などの「構成」をチェックし、問題がないことを確認してから本文の執筆に進みます。
 
 </Principle>
 <Principle number="03">
 
 ### 本文を検査する
 
-事実・条件・例外を原資料と照合し、textlint も通します。原資料にない事実や数値は書きません。
+書き上がった本文は元の資料と照合し、事実や条件が正確に保たれているか確認します。推測で情報を書き足すことはせず、textlintを用いた機械的な文章チェックも行います。
 
 </Principle>
 </Principles>
-
-短い案内や指定箇所の修正は、自分で書いて検査します。構成の検査が必要なら構成案と本文の執筆を分け、節ごとに異なる資料を読む必要がある場合は分担します。検査を通せなければ、残る問題を明記して草稿として返します。
 
 <Link href="https://github.com/iwasa-kosui/tanteki/blob/main/SKILL.md">スキルの手順を読む <span aria-hidden="true">↗</span></Link>
 
