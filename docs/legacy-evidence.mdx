@@ -1,0 +1,37 @@
+<Evidence>
+<EvidenceIntro>
+
+## 評価の結果と、生成した文書の全文
+
+2026年9月20日、10課題を各2回、スキルなし／ありで生成しました。スキルなしは初稿、スキルありは tanteki の指示を読み、文章検査の指摘に応じて最大1回修正した最終稿です。
+
+対象は実行時の main [`ca1c0eb`](https://github.com/iwasa-kosui/tanteki/tree/ca1c0eb)。生成は gpt-5.6-luna / low、5基準の採点は gpt-5.6-terra / low、用途のレビューは gpt-6-astra / high です。
+
+比較するのは、tanteki の執筆指示と文章検査による修正を加えた効果です。構成検査や委譲を含む通常の工程全体は測っていません。作成者が選んだ10課題と単一モデルの判定による小規模な比較であり、PRD は含みません。
+
+<Link href="./evaluation.html">全20組の本文と評価を読む <span aria-hidden="true">↗</span></Link>
+
+</EvidenceIntro>
+<Evaluation>
+<ResultsTable caption="文書として用途を満たすか（各20出力）" label="判定">
+
+<EvaluationRows />
+
+</ResultsTable>
+
+生成後に、原資料と本文だけでレビューしました。「原資料の不足で利用に制限」は、不足を本文で適切に示した状態です。執筆の失敗には数えません。
+
+<ResultsTable caption="固定した5基準の採点と生成量" label="指標">
+
+<BenchmarkRows />
+
+</ResultsTable>
+
+5基準は事実・根拠・役割・明確さ・簡潔さです。LLM の生の採点には誤判定があり、短さや文章検査の合格だけでは品質を判断できません。
+
+トークンは生成と修正の合計で、入力はキャッシュを含みます。採点・レビューの利用量は含みません。
+
+<Link href="./results/run-notes.md">実測の解釈と判定の照合を読む ↗</Link>
+
+</Evaluation>
+</Evidence>
