@@ -29,7 +29,9 @@ test('MDX renders static pages for both publication formats with accessible tabl
     assert.match(html, /src="\.\/mermaid-preview.js"/);
     assert.ok(html.includes(fragments.Examples));
     assert.doesNotMatch(html, /site-slot|react-dom|jsx-runtime/);
-    assert.match(prose, /文書の種類ごとに、書くべき情報は違う/);
+    const documentTypesHeading = html.match(/<h2 id="doc-types-title">([^<]+)<\/h2>/);
+    assert.ok(documentTypesHeading, 'the document types section has a heading');
+    assert.ok(prose.includes(documentTypesHeading[1]), 'lint copy includes the rendered section heading');
     assert.match(prose, /```text\ngh skills install/);
     assert.doesNotMatch(prose, /引用の原文|notJavaScript|og:image|<[^>]+>/);
     if (format === 'isolated') {
@@ -49,12 +51,16 @@ test('MDX renders static pages for both publication formats with accessible tabl
 test('editing Markdown and metadata changes the rendered page and lint copy without editing HTML', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'tanteki-mdx-edit-'));
   try {
-    const original = await readFile(join(source, 'index.mdx'), 'utf8');
+    const original = await readFile(new URL('./fixtures/site-edit.mdx', import.meta.url), 'utf8');
+    await writeFile(join(dir, 'index.mdx'), original);
+    const before = await renderSite(dir, 'isolated', fragments);
+    assert.match(before.html, /<title>元のページ名<\/title>/);
+    assert.match(before.prose, /元の本文。/);
     await writeFile(join(dir, 'index.mdx'), original
-      .replace("title: 'tanteki — 業務のための文書をもっと端的に'", "title: '変更したページ名'")
-      .replace('## 比較', '## 使用例を読む')
-      .replace('構成が合格するまで本文を書きません。', '**構成**を確認してから本文を書きます。 {1 + 1}件です。')
-      .replace('| PRD | 要求・優先度・根拠・制約・検証方法 |', '| PRD | 要求と検証方法 |'));
+      .replace("title: '元のページ名'", "title: '変更したページ名'")
+      .replace('## 元の見出し', '## 使用例を読む')
+      .replace('元の本文。', '**構成**を確認してから本文を書きます。 {1 + 1}件です。')
+      .replace('| PRD | 元の要求 |', '| PRD | 要求と検証方法 |'));
     const { html, prose } = await renderSite(dir, 'isolated', fragments);
     assert.match(html, /<title>変更したページ名<\/title>/);
     assert.match(html, /property="og:title" content="変更したページ名"/);
@@ -64,6 +70,8 @@ test('editing Markdown and metadata changes the rendered page and lint copy with
     assert.match(html, /<td>要求と検証方法<\/td>/);
     assert.match(prose, /構成を確認してから本文を書きます。 2件です。/);
     assert.match(prose, /要求と検証方法/);
+    assert.doesNotMatch(html, /元のページ名|元の見出し|元の本文|元の要求/);
+    assert.doesNotMatch(prose, /元の見出し|元の本文|元の要求/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
