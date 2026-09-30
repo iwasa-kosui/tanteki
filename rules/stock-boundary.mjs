@@ -1,5 +1,3 @@
-const DOCUMENT_ID_PREFIXES = new Set(["ADR", "DOC", "ISO", "JIS", "PRD", "REQ", "RFC", "SPEC", "TLS", "UTF"]);
-
 function maskedSource(source, ranges) {
   const characters = source.split("");
   for (const [start, end] of ranges) {
@@ -14,16 +12,14 @@ function allMatches(source, expression) {
   return [...source.matchAll(new RegExp(expression.source, `${expression.flags.replace("g", "")}g`))];
 }
 
-export default function stockBoundary(context, options = {}) {
-  const allow = new Set(options.allow ?? []);
+export default function stockBoundary(context) {
   const { Syntax, getSource, report, RuleError, locator } = context;
   let quoteDepth = 0;
   let document;
   const excludedRanges = [];
 
-  function reportMatches(node, source, expression, label, predicate = () => true) {
+  function reportMatches(node, source, expression, label) {
     for (const match of allMatches(source, expression)) {
-      if (!predicate(match[0], match.index)) continue;
       report(node, new RuleError(`文書に${label}が含まれています。作業追跡はチケットまたは進捗文書へ移してください。`, {
         padding: locator.range([match.index, match.index + match[0].length])
       }));
@@ -41,10 +37,6 @@ export default function stockBoundary(context, options = {}) {
       reportMatches(document, masked, /(?:状態|ステータス)\s*[:：]\s*(?:実装中|進行中|対応中|未着手|保留)/g, "作業状態の記述");
       reportMatches(document, masked, /(?:\b(?:PR|Pull Request)|プルリクエスト)\s*[#＃]\s*\d+\b/gi, "PR番号");
       reportMatches(document, masked, /https?:\/\/[^\s<>"')\]]*\/(?:(?:pull|pulls|issues)\/\d+|browse\/[A-Z][A-Z0-9]{1,9}-\d+)[^\s<>"')\]]*/gi, "PR・IssueまたはJiraのリンクURL");
-      reportMatches(document, masked, /\b[A-Z][A-Z0-9]{1,9}-\d+\b/g, "Jira課題ID", (key, index) => {
-        const prefix = key.slice(0, key.indexOf("-"));
-        return !DOCUMENT_ID_PREFIXES.has(prefix) && !allow.has(key) && !allow.has(prefix) && !/https?:\/\/[^\s<>]*$/.test(masked.slice(0, index));
-      });
     },
     [Syntax.BlockQuote](node) {
       quoteDepth += 1;

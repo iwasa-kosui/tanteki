@@ -17,7 +17,7 @@ node /absolute/path/to/nihongo-de-ok/scripts/lint.mjs \
 
 `preset-japanese` は助詞の重複や二重否定など、既存の日本語ルールを検査します。`no-ai-jargon` は既知の直訳調・抽象表現を、語と述語の組み合わせから検出します。`no-opaque-compound` は対象・抽象的な変化・仕組みを重ねた名詞句を検出します。`no-vague-action` は程度・条件・参照先が不明確になりやすい修飾句と動作を検出します。
 
-ストック文書には `stock-boundary` も適用され、作業進捗、チェックボックス、PR・Jira の追跡情報を検出します。`table-cell-length` は全区分に適用され、Markdown の表の見出しと本文セルを検査します。
+ストック文書には `stock-boundary` も適用され、作業進捗、チェックボックス、PR番号、PR・Issue・Jira の URL を検出します。`table-cell-length` は全区分に適用され、Markdown の表の見出しと本文セルを検査します。
 
 ## 日本語の文型と検出範囲
 
@@ -55,16 +55,10 @@ node /absolute/path/to/nihongo-de-ok/scripts/lint.mjs \
     "no-ai-jargon": { "allow": ["可観測性", "レバレッジ比率", "ロバストな推定"] },
     "no-opaque-compound": { "allow": [] },
     "no-vague-action": { "allow": [] },
-    "stock-boundary": { "allow": [] },
+    "stock-boundary": true,
     "table-cell-length": true
   }
 }
 ```
 
 同じ設定方法を `no-opaque-compound` と `no-vague-action` にも使えます。理由を確認した用語だけを指定し、検査を通すためにルール全体を無効にしたり、問題文をコード・引用へ移したりしないでください。`allow` は用語の一致範囲だけを除外し、同じ段落の他の表現は検査します。表セルの上限は `allow` で緩められません。
-
-## Jira課題IDの例外
-
-`stock-boundary` は、大文字のキーと番号の組み合わせから Jira 課題IDを推定します。`ADR-001` や `UTF-8` などは除外しますが、任意の仕様IDと課題IDを完全には区別できません。
-
-誤検出を避ける必要がある場合は、`stock-boundary.allow` に例外のID全体または接頭辞を指定できます。この例外を指定しても、追跡URL、進捗、チェックボックスの検出は無効になりません。
