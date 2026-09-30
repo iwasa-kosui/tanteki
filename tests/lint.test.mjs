@@ -107,54 +107,52 @@ test("no-vague-action catches polite conjugations, repeated hits, and excludes c
   assert.equal(allowed.length, 0);
 });
 
-test("stock boundary reports headings, checkboxes, PRs, tracker links, and Jira IDs", async () => {
-  const text = "## 進捗\n- [ ] 実装\nPR #12\n[PR](https://github.com/acme/repo/pull/3)\nABC-12\nhttps://jira.example.test/browse/DEV-3\n";
-  const found = await messages("stock", text, config({ "stock-boundary": { allow: [] } }));
+test("stock boundary reports headings, checkboxes, PRs, and tracker links", async () => {
+  const text = "## 進捗\n- [ ] 実装\nPR #12\n[PR](https://github.com/acme/repo/pull/3)\nhttps://jira.example.test/browse/DEV-3\n";
+  const found = await messages("stock", text, config({ "stock-boundary": true }));
   const stock = found.filter((message) => message.ruleId === "stock-boundary");
-  assert.deepEqual(stock.map(({ line, column }) => [line, column]), [[1, 1], [2, 1], [3, 1], [4, 6], [5, 1], [6, 1]]);
+  assert.deepEqual(stock.map(({ line, column }) => [line, column]), [[1, 1], [2, 1], [3, 1], [4, 6], [5, 1]]);
   assert.ok(stock.every((message) => message.message.includes("作業追跡はチケットまたは進捗文書へ移して")));
 });
 
-test("stock boundary accepts document IDs, ADR business states, dates, and configured Jira allow entries", async () => {
+test("stock boundary accepts document IDs, ADR business states, and dates", async () => {
   const accepted = "ADR-001\nPRD-001\nRFC-9110\nREQ-001\nISO-8601\n状態：処理中\n状態: 完了\n状態: 採用\n状態: 廃止\n状態: 置換\n2026-09-05\n";
-  const found = await messages("adr", accepted, config({ "stock-boundary": { allow: ["ABC-12"] } }));
+  const found = await messages("adr", accepted, config({ "stock-boundary": true }));
   assert.equal(found.length, 0);
-  const allowed = await messages("adr", "ABC-12\nDEV-3", config({ "stock-boundary": { allow: ["ABC-12"] } }));
-  assert.deepEqual(allowed.map(({ line, column }) => [line, column]), [[2, 1]]);
 });
 
 test("stock checks inline code and links but excludes fenced and nested block quotes", async () => {
-  const found = await messages("design-doc", "`PR #12` [ticket](https://github.com/a/b/issues/9)\n```md\nPR #13\n```\n> PR #14\n> > DEV-3\n> ## 進捗\n> - [ ] 引用内の作業\n", config({ "stock-boundary": { allow: [] } }));
+  const found = await messages("design-doc", "`PR #12` [ticket](https://github.com/a/b/issues/9)\n```md\nPR #13\n```\n> PR #14\n> > DEV-3\n> ## 進捗\n> - [ ] 引用内の作業\n", config({ "stock-boundary": true }));
   const stock = found.filter((message) => message.ruleId === "stock-boundary");
   assert.deepEqual(stock.map(({ line, column }) => [line, column]), [[1, 2], [1, 19]]);
 });
 
 test("stock masking follows AST ranges for variable fences and quoted fences, then resumes scanning", async () => {
-  const found = await messages("stock", "````md\n``` literal fence\n````\n> ```md\n> PR #12\n> ```\n> lazy quote PR #13\nPR #14\n", config({ "stock-boundary": { allow: [] } }));
+  const found = await messages("stock", "````md\n``` literal fence\n````\n> ```md\n> PR #12\n> ```\n> lazy quote PR #13\nPR #14\n", config({ "stock-boundary": true }));
   const stock = found.filter((message) => message.ruleId === "stock-boundary");
   assert.deepEqual(stock.map(({ line, column }) => [line, column]), [[8, 1]]);
 });
 
 test("stock finds ATX and Setext progress headings plus enterprise tracker URLs", async () => {
-  const found = await messages("stock", "進捗状況\n====\n\n## ステータス詳細\nhttps://git.acme.test/team/repo/pull/42\nhttps://tracker.acme.test/browse/OPS-5\n", config({ "stock-boundary": { allow: [] } }));
+  const found = await messages("stock", "進捗状況\n====\n\n## ステータス詳細\nhttps://git.acme.test/team/repo/pull/42\nhttps://tracker.acme.test/browse/OPS-5\n", config({ "stock-boundary": true }));
   const stock = found.filter((message) => message.ruleId === "stock-boundary");
   assert.deepEqual(stock.map(({ line, column }) => [line, column]), [[1, 1], [4, 1], [5, 1], [6, 1]]);
 });
 
-test("stock exempts ordinary protocol identifiers but treats API-style IDs as possible Jira keys", async () => {
-  const found = await messages("stock", "UTF-8\nTLS-1\nAPI-123\n", config({ "stock-boundary": { allow: [] } }));
-  assert.deepEqual(found.map(({ line, column }) => [line, column]), [[3, 1]]);
+test("stock does not treat Jira-style IDs such as API-123 as work tracking", async () => {
+  const found = await messages("stock", "UTF-8\nTLS-1\nAPI-123\nABC-12\n", config({ "stock-boundary": true }));
+  assert.deepEqual(found.map(({ line, column }) => [line, column]), []);
 });
 
 test("stock rule is limited to stock-bearing profiles", async () => {
-  const text = "PR #12\nABC-12\n";
+  const text = "PR #12\n";
   for (const type of ["flow", "record"]) {
-    const found = await messages(type, text, config({ "stock-boundary": { allow: [] } }));
+    const found = await messages(type, text, config({ "stock-boundary": true }));
     assert.equal(found.length, 0, type);
   }
   for (const type of ["design-doc", "prd", "adr", "rfc", "stock"]) {
-    const found = await messages(type, text, config({ "stock-boundary": { allow: [] } }));
-    assert.equal(found.filter((message) => message.ruleId === "stock-boundary").length, 2, type);
+    const found = await messages(type, text, config({ "stock-boundary": true }));
+    assert.equal(found.filter((message) => message.ruleId === "stock-boundary").length, 1, type);
   }
 });
 

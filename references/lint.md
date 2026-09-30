@@ -32,7 +32,7 @@ node /absolute/path/to/tanteki/scripts/lint.mjs \
 | `stock-boundary` | 参照用の文書に混ざった作業進捗や追跡情報 |
 | `table-cell-length` | 表の見出しと本文セルの文字数 |
 
-`stock-boundary` は `stock` と同じ検査を行う文書に適用します。作業進捗、チェックボックス、PR や Jira の追跡情報が対象です。その他のルールは全区分に適用します。
+`stock-boundary` は `stock` と同じ検査を行う文書に適用します。作業進捗、チェックボックス、PR番号、PR・Issue・Jira の URL が対象です。その他のルールは全区分に適用します。
 
 ## 日本語の文型と検出範囲
 
@@ -78,16 +78,10 @@ node /absolute/path/to/tanteki/scripts/lint.mjs \
     "no-ai-jargon": { "allow": ["可観測性", "レバレッジ比率", "ロバストな推定"] },
     "no-opaque-compound": { "allow": [] },
     "no-vague-action": { "allow": [] },
-    "stock-boundary": { "allow": [] },
+    "stock-boundary": true,
     "table-cell-length": true
   }
 }
 ```
 
 同じ設定方法を `no-opaque-compound` と `no-vague-action` にも使えます。例外とする理由を確認した用語だけを指定してください。検査を通すためにルール全体を無効にしたり、問題のある文をコードや引用へ移したりしてはいけません。`allow` は用語の一致範囲だけを除外し、同じ段落の他の表現は検査します。表セルの上限は `allow` で緩められません。
-
-## Jira課題IDの例外
-
-`stock-boundary` は、大文字のキーと番号の組み合わせから Jira 課題IDを推定します。`ADR-001` や `UTF-8` などは除外しますが、任意の仕様IDと課題IDを完全には区別できません。
-
-誤検出を避ける必要がある場合は、`stock-boundary.allow` に例外のID全体または接頭辞を指定できます。この例外を指定しても、追跡URL、進捗、チェックボックスの検出は無効になりません。
