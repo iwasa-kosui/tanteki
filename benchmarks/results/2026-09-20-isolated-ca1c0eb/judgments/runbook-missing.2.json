@@ -1,0 +1,73 @@
+{
+  "caseId": "runbook-missing",
+  "repeat": 2,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視でキャッシュのエラーを確認した場合の再起動を対象にし、再起動コマンド、停止条件、復旧確認、連絡先をいずれも未決定として残している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "具体的なコマンド、閾値、待機時間、環境名、連絡先を創作しておらず、安全に実行可能とは断言していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "notesで「草稿」と明示し、必須情報が決まるまで本番作業には使用できないとしている。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "実行前に定めるべき対象・コマンド・停止条件・監視項目・正常判定基準・連絡先を具体的に示し、未確定のまま安全に実行できるとは見せていない。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "依頼された最小限の手順草稿を提示しつつ、不足事項を簡潔に明示している。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視エラー時のキャッシュ再起動を扱い、コマンド、停止条件、復旧確認、連絡先を未確定・未定義として明示している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "資料にない責任者または当番の承認、エスカレーション先、影響範囲確認、プロセス稼働・主要リクエスト・ヒット状況・エラー率などの復旧基準を具体的に追加している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文の「未確定事項あり」およびnotesで、確定前には本番でそのまま実行できないことを明示している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "停止条件、コマンド、復旧確認、連絡先の確定が実施前に必要であり、単独で本番再起動を行わない旨を明記している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "最小草稿に必要な範囲を超え、資料にない承認・記録・複数の確認観点や役割を多数追加している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5549,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 883,
+      "reasoning_output_tokens": 316
+    },
+    "elapsedMs": 36428,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/runbook-missing.2.judge.json",
+      "sha256": "2dfa3a95bd116f5e530bdd58a7ddc9b3af41643e252b240a36b770a44da7c9c7",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "3dce2bb53b5c3b195d064ed64f1c0c2402283cdfda8cb8f1374c7377c384cefc",
+      "sessionId": "01a0beb3-eb8b-7f73-9dda-b63cb261cf03"
+    }
+  },
+  "promptHash": "3dce2bb53b5c3b195d064ed64f1c0c2402283cdfda8cb8f1374c7377c384cefc"
+}

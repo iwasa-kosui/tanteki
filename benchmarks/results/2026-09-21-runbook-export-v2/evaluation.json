@@ -1,0 +1,82 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "runFingerprint": "95d19dc9348b67ab0eedb047ba56839cc39ffc6668a8789c13f96ab12210da36",
+  "model": "gpt-5.6-terra",
+  "effort": "low",
+  "instructionsHash": "f3743b02fec66bafe187a1b8e93296519958204b1da63394bf0025dd75180f9e",
+  "createdAt": "2026-09-20T15:53:07.651Z",
+  "lint": {
+    "runbook-export.1.without_skill": {
+      "bodyHash": "30c76faeeb4973b0121159f92ae75a3884ba16462e903f86974e91b2a8dc8c64",
+      "lint": []
+    },
+    "runbook-export.1.with_skill": {
+      "bodyHash": "c962981f60e999ffbfc765d4997d3922d7341b878d06bfec2ac1c6619f7abf57",
+      "lint": [
+        {
+          "ruleId": "no-doubled-conjunction",
+          "line": 30,
+          "column": 57,
+          "message": "同じ接続詞（または）が連続して使われています。"
+        }
+      ]
+    }
+  },
+  "pairs": {
+    "runbook-export.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "実施条件から対象月・締め済み確認、件数記録、1回生成、検査、同名確認後の1回保存、開き直し確認、完了連絡までの必要事項を含む。3列、行数、対象月、0件時ヘッダーのみ、保存先・ファイル名も保持している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "『月次請求』『CSVを生成』『ダウンロード』、5分、チャット名、保存先、ファイル名を原資料どおりに記載し、再生成・上書き・独自の復旧手順を加えていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "当番向けの前提、開始条件、操作、完了確認、中止条件および連絡先がそろった手順書全文である。"
+          },
+          "clarity": {
+            "pass": false,
+            "evidence": "生成失敗・5分未完了時の中止条件が『ダウンロード』の手順の後に置かれており、生成完了を待つ間に判断して次操作へ進まない順序が明確ではない。その他の中止時連絡、完了連絡の条件は明記されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "前提、操作、中止時対応を必要な節と番号付き手順で示し、不要な背景説明や重複はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "毎月第1営業日の当番作業、前月対象、事前条件・権限、生成から保存後確認・連絡までの順序、CSVの3列・行数・対象月確認、0件時の扱い、保存先と命名規則を含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "画面名、ボタン名、5分、中止先・完了連絡先、保存先およびファイル名を変更せず、資料外のコマンド、再生成、上書き、復旧策、承認を追加していない。注記も本文の不足を補うものではない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "当番が前提、操作、確認、中止時の対応、連絡先を追える完成した手順書であり、質問や草稿だけで終わっていない。"
+          },
+          "clarity": {
+            "pass": false,
+            "evidence": "前月不一致・『締め済み』でない場合の中止条件が、生成・ダウンロード手順の後に置かれている。また、生成失敗・5分未完了の判断も『ダウンロード』指示の後であり、中止判断を次操作より先に行う順序として明確でない。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な節と番号付き手順で簡潔に構成され、概要も作業内容の範囲にとどまる。詳細の重複や資料外の説明はない。"
+          }
+        }
+      }
+    }
+  },
+  "sealed": true,
+  "fingerprint": "b2f22dff11b318401e5622bd5aad1840031e016154b671f6347db744dfd7b556"
+}

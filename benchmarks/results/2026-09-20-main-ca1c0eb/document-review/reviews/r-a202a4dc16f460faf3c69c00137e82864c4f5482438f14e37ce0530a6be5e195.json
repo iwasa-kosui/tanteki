@@ -1,0 +1,29 @@
+{
+  "reviewId": "r-a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195",
+  "inputHash": "a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "新たに議事録を残す必要があるかを、提示された事実に基づいて判断するための回答。",
+        "status": "usable",
+        "summary": "開催前の中止、議論・決定・宿題の不存在、中止連絡済みという資料に基づいて、議事録を新設しない判断ができます。",
+        "strengths": [
+          "結論が明確で、その理由も原資料と一致しています。",
+          "社内規程・監査要件は条件付きで示しており、存在を事実として断定していません。",
+          "追加の議事録作成と、既存の中止連絡の保存を区別しています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5912,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 487,
+        "reasoning_output_tokens": 289
+      },
+      "elapsedMs": 18563,
+      "validationErrors": null
+    }
+  ]
+}

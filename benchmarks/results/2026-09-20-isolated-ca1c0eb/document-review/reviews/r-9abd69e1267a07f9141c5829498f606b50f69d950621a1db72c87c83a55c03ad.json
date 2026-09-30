@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-9abd69e1267a07f9141c5829498f606b50f69d950621a1db72c87c83a55c03ad",
+  "inputHash": "9abd69e1267a07f9141c5829498f606b50f69d950621a1db72c87c83a55c03ad",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式と採用条件について、開発チームが合意を判断するための短いRFC。",
+        "status": "usable",
+        "summary": "方式Bの提案理由、採用に伴う影響、未承認の条件が明確で、方針への合意判断に使える。性能・費用の定量評価は別途必要。",
+        "strengths": [
+          "方式A・Bの利点と制約が対応しており、部分一致検索を優先する提案理由を理解できる。",
+          "60秒の鮮度許容を提案として扱い、業務側の承認が未取得であることを明示している。",
+          "合意すべき2点、採用前の確認事項、業務側への承認依頼を区別している。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "性能の計測値と費用情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "性能改善値、費用、運用負荷は現時点で未計測である。採用前に、部分一致を含む検索性能、反映遅延、運用手順および費用を計測・確認する。",
+            "consequence": "改善幅や費用対効果は判断できないが、定性的な方式比較と採用条件の合意判断は可能。本文は採用前の確認が必要であることを示している。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6391,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 635,
+        "reasoning_output_tokens": 251
+      },
+      "elapsedMs": 24166,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-9abd69e1267a07f9141c5829498f606b50f69d950621a1db72c87c83a55c03ad.1.json",
+        "sha256": "7de26616823bc3d130d4815228a66989c214763064d4257bf382e859d27be06e",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "9abd69e1267a07f9141c5829498f606b50f69d950621a1db72c87c83a55c03ad",
+        "sessionId": "01a0beb5-0532-7dc2-863a-a094e7c2d240"
+      },
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "no-document.2.without_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たな議事録は残す必要はありません。開催前に中止され、議論・決定・宿題がなく、中止連絡も参加者へ送信済みだからです。",
+        "notes": "必要に応じて、予定表や中止連絡を証跡として保持してください。"
+      },
+      "usage": {
+        "input_tokens": 2496,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 110,
+        "reasoning_output_tokens": 25
+      },
+      "elapsedMs": 7542,
+      "metrics": {
+        "characters": 58,
+        "headings": 0,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 1,
+            "column": 12,
+            "message": "一文に二回以上利用されている助詞 \"は\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- 録\"は\"\n- 必要\"は\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "5839b7abbd1c2fbdb46da6ea579d82684c2970f8a899e95e95fbb72f9c394f0e"
+    },
+    {
+      "response": {
+        "body": "新たな議事録を残す必要はありません。開催前に中止され、議論・決定・宿題がなく、中止連絡も参加者へ送信済みだからです。",
+        "notes": "必要に応じて、予定表や中止連絡を証跡として保持してください。"
+      },
+      "usage": {
+        "input_tokens": 2742,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 113,
+        "reasoning_output_tokens": 28
+      },
+      "elapsedMs": 6735,
+      "metrics": {
+        "characters": 58,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "f9ae6d8e0d431ed6f38ed591a28a3d0bfaa093c0c4259c762d45e887b91e8191"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "no-document.1.with_skill",
+  "caseId": "no-document",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "新たな議事録は残さなくてよいです。議論・決定・宿題がなく、参加者への中止連絡も済んでいるため、会議メモの最小内容を満たしません。\n\nただし、開催中止の履歴を残す運用や監査要件がある場合は、既送信の中止連絡を保存してください。",
+        "notes": "文書の新規作成ではなく、会議メモ／決定ログを増やす必要性への回答です。"
+      },
+      "usage": {
+        "input_tokens": 12581,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 199,
+        "reasoning_output_tokens": 60
+      },
+      "elapsedMs": 7862,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/no-document.1.with_skill.0.json",
+        "sha256": "20248df223b7bb8a197d2eb7591f7bd52d859da45ac29bace597eb7d61c1c58d",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "83833a31a55e0ed29118100d896d7bdea7d286382675e5ec882eb8c60d8b1ee9",
+        "sessionId": "01a0beaf-cc75-7700-b853-0342227dd49b"
+      },
+      "metrics": {
+        "characters": 112,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "83833a31a55e0ed29118100d896d7bdea7d286382675e5ec882eb8c60d8b1ee9"
+    }
+  ]
+}

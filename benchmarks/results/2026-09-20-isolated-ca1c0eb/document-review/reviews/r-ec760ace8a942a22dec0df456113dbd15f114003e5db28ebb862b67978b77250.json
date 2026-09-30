@@ -1,0 +1,70 @@
+{
+  "reviewId": "r-ec760ace8a942a22dec0df456113dbd15f114003e5db28ebb862b67978b77250",
+  "inputHash": "ec760ace8a942a22dec0df456113dbd15f114003e5db28ebb862b67978b77250",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "実装者向けのファイル取込Design Doc",
+        "status": "revision_needed",
+        "summary": "基本構成、処理順序、保存失敗時の動作は理解できる。ただし、ファイルサイズの上限と大小関係に誤記があり、修正が必要。キュー登録失敗時の回復処理は、資料上も未決定であり実装を確定できない。",
+        "strengths": [
+          "APIからオブジェクトストレージ、キュー、ワーカー、DBへの処理とデータの流れが明確である。",
+          "保存失敗時に503を返し、キューへ登録しない条件を正確に記載している。",
+          "キュー登録失敗時の回復方法を未決定と明示し、保存済みファイルの扱いも確認事項としている。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "キューの上限が1MBであり、対象ファイルの上限10MBを超えるためである。",
+            "source_excerpt": "ファイル本体をキューに載せる案は、10MBのファイルがキューの1MB制限を超えるため不採用。",
+            "finding": "資料にある10MBのファイルを、対象ファイルの上限10MBという未確定の仕様へ変えている。また、文面では1MBが10MBを超えるという逆の大小関係になっており、後段の代替案表とも矛盾する。",
+            "impact": "実装者が10MBを受付上限として実装するおそれがあり、不採用理由となるキュー制約も誤解させる。",
+            "suggested_change": "10MBのファイルがキューの1MB制限を超えるという資料どおりの関係に修正し、対象ファイルの上限とは記載しない。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "キュー登録失敗時の回復方法と、保存済みファイルの扱い。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "キューへの登録失敗時の回復方法は未決定である。この設計では回復処理を定めない。",
+            "consequence": "正常系と保存失敗時の実装には使えるが、キュー登録失敗後の処理は追加の設計判断が必要である。"
+          },
+          {
+            "missing_information": "受け付けるファイルサイズの上限。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "対象ファイルの上限10MB",
+            "consequence": "資料から受付上限は確定できない。サイズ検証を実装する場合は別途確認が必要である。"
+          },
+          {
+            "missing_information": "解析結果を利用者へ提示する方法と、提示までの状態管理。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "利用者へ解析結果を提示する方法と、提示までの状態管理。",
+            "consequence": "DBへの保存までの設計理解は妨げないが、利用者が結果を受け取るまでの機能全体は確定できない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6759,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1336,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 46013,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-ec760ace8a942a22dec0df456113dbd15f114003e5db28ebb862b67978b77250.1.json",
+        "sha256": "b6079e53976ee5a5c265386822949e3c00c402f389008450ba16c80166d3093a",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "ec760ace8a942a22dec0df456113dbd15f114003e5db28ebb862b67978b77250",
+        "sessionId": "01a0beb6-ddf7-7841-9a83-a49784385ee9"
+      },
+      "validationErrors": null
+    }
+  ]
+}

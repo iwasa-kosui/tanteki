@@ -1,0 +1,28 @@
+{
+  "promptHash": "61c432b8cff0ca17afca43f6f45e9d12dac1b94370adecf33b52b5a8bbc3cb76",
+  "jobHash": "9e75b7f615b49503ce861b3b2bd9f74ac8cfd0be511ca61a9c92828067a645d4",
+  "environmentHash": "3a3fc8c4f76c9e3ee7389e49d42bea25a49ed8d00db7931a235a08e6cdcc754a",
+  "containerId": "f3257a0f633cbc718df2c0081601684e7ee39aa8e2c02f474a0d912e5f1fd06b",
+  "usage": {
+    "input_tokens": 5916,
+    "cached_input_tokens": 0,
+    "output_tokens": 218
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 6377,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "incident-record.1.without_skill",
+  "caseId": "incident-record",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "## 請求検索エラー増加 ポストモーテム\n\n- **発生日時:** 8月19日 09:10〜09:22\n- **検知:** 請求検索のエラー増加を検知\n- **対応:** 09:17、当番の加藤が直前の変更をロールバック。09:22、復旧を確認\n- **影響:** 検索失敗340件。決済への影響なし\n- **原因:** DB接続枯渇が有力な仮説。ただし、ログ確認は未完了であり、確定していない\n- **改善課題:** OPS-315。DB接続数の記録を追加（担当：加藤、期限：8月26日）",
+    "notes": ""
+  },
+  "responseHash": "023775ec6cac6237695476b52873aa07a549bd74002ca699608f7f41214678e5"
+}

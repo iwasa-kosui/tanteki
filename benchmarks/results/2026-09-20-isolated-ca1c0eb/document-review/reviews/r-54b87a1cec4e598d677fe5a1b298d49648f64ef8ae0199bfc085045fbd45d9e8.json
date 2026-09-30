@@ -1,0 +1,36 @@
+{
+  "reviewId": "r-54b87a1cec4e598d677fe5a1b298d49648f64ef8ae0199bfc085045fbd45d9e8",
+  "inputHash": "54b87a1cec4e598d677fe5a1b298d49648f64ef8ae0199bfc085045fbd45d9e8",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "定例の議事録を新たに残す必要があるかを判断するための回答。",
+        "status": "usable",
+        "summary": "原資料に基づいて新規議事録は不要と判断しており、その理由も明確です。既存欄への記録は任意の提案として区別されています。",
+        "strengths": [
+          "開催前の中止、議論・決定・宿題の不在、参加者への連絡済みという事実に即して結論を示しています。",
+          "任意の記録先を既存の予定や管理欄とし、新たな文書の作成を要求していません。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5903,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 271,
+        "reasoning_output_tokens": 78
+      },
+      "elapsedMs": 13500,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-54b87a1cec4e598d677fe5a1b298d49648f64ef8ae0199bfc085045fbd45d9e8.1.json",
+        "sha256": "7133a3787fabfe004c23dd5efd9b53aa1179a910abd885697d4c8f2d3e53ebbd",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "54b87a1cec4e598d677fe5a1b298d49648f64ef8ae0199bfc085045fbd45d9e8",
+        "sessionId": "01a0beb3-cace-7e02-8c38-b4da8a04c87a"
+      },
+      "validationErrors": null
+    }
+  ]
+}

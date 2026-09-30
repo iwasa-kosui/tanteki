@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "474c70163c2e1554f5b61503113cd27d82fdbba08b7f0cb1becc7b4cafe9d191",
+  "containerId": "4a1502beaf626e9da93c9d0a1b3473daefab6d57aa4d2b03ac2dd7ff2cc9b79b",
+  "usage": {
+    "input_tokens": 5850,
+    "cached_input_tokens": 0,
+    "output_tokens": 138
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 6746,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.1.without_skill",
+  "caseId": "no-document",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たな議事録は残さなくてよいと判断します。\n\n理由：\n- 開催前に中止しており、議論・決定・宿題がない\n- 中止連絡は参加者へ送信済みで、必要な記録がすでに存在する\n\nただし、予定管理上の証跡が必要な場合は、会議予定を「中止」に更新するか、既存の予定・連絡欄に中止済みとだけ記録してください。",
+    "notes": ""
+  },
+  "responseHash": "c467af7d3d6a04dac39283f61020948763afb4a0f118ffc46bdcfcaa062a2927"
+}

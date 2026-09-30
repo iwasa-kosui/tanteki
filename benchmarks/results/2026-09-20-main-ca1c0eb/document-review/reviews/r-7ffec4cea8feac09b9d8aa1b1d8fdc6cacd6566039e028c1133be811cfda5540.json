@@ -1,0 +1,58 @@
+{
+  "reviewId": "r-7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540",
+  "inputHash": "7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番が使用する本番キャッシュ再起動Runbookの草稿",
+        "status": "source_limited",
+        "summary": "未決定事項と実行を止める条件が明示されており、未完成の範囲を確認する草稿として使える。実際の再起動・復旧確認・連絡には、原資料の不足を解消する必要がある。",
+        "strengths": [
+          "原資料で未決定のコマンド、実施条件、復旧確認方法、連絡先を、確定事項として補っていない。",
+          "実施可否を判断できない場合や操作・確認方法が不明な場合は、再起動しないことを明示している。",
+          "検知から実施可否、操作、復旧確認、停止、連絡までの流れを確認できる。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "停止・再起動してよい条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動してよい条件を確認する。条件は未決定である。",
+            "consequence": "当番が実施可否を判断できず、再起動には進めない。本文は判断できない場合の停止を明示している。"
+          },
+          {
+            "missing_information": "本番キャッシュの再起動コマンド",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動コマンドを実行する。コマンドは未決定である。",
+            "consequence": "実操作はできない。本文はコマンドを創作せず、不明な場合は実行しないとしている。"
+          },
+          {
+            "missing_information": "復旧確認方法",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "復旧確認方法で状態を確認する。方法は未決定である。",
+            "consequence": "復旧を判定できない。本文は確認方法が不明な状態で再起動を実行しないとしている。"
+          },
+          {
+            "missing_information": "再起動を実行できない場合の連絡先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "再起動を実行できない場合の連絡先は未決定である。",
+            "consequence": "停止後の連絡先をこの草稿から特定できない。未決定であることは明示されている。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6104,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 780,
+        "reasoning_output_tokens": 150
+      },
+      "elapsedMs": 28099,
+      "validationErrors": null
+    }
+  ]
+}

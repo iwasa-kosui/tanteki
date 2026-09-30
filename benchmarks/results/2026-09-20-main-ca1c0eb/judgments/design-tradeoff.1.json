@@ -1,0 +1,65 @@
+{
+  "caseId": "design-tradeoff",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "API→ストレージ→保存先をキュー→ワーカー→DB、保存失敗時の503・非登録、キュー登録失敗時の回復未決定、10MBと1MB制限、結果提示の遅延をすべて本文に記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "再送、削除、通知、状態取得などを確定仕様として追加していない。キュー登録失敗後の扱いは未決定としている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文にはDATA-64、PR #203、今週の作業、佐藤担当の追跡情報を含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "ストレージ保存失敗時の503・キュー非登録と、保存成功後のキュー登録失敗時の未決定事項を明確に区別している。10MBが1MB制限を超えるため本体をキューに載せない理由も明示されている。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "同じ処理フローや結論を導入、背景、目標、設計、データの流れ、代替案、影響、到達範囲で繰り返しており、必要以上に重複している。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "必要な処理フロー、保存失敗時の503・キュー非登録、キュー登録失敗時の回復未決定、10MB対1MBの制限、非同期化による結果提示の遅れを記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない受付成功レスポンス、再試行・状態管理・運用復旧、孤立ファイル対策、結果取得方法、状態管理、利用者への伝達方法を実装前の仕様検討事項として追加している。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "本文の「今回のスコープ」に「今週はAPI実装」「担当は佐藤」と進行メモ由来の追跡情報を記載している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "ストレージ保存失敗とキュー登録失敗を別節で区別し、本体をキューに載せない10MB対1MBの理由も明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "依頼外の実装前確認事項としてレスポンス、結果取得、状態管理、通知方法などを列挙しており、必要な設計記述を超えた実装計画を付加している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 6431,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 939,
+      "reasoning_output_tokens": 303
+    },
+    "elapsedMs": 38731
+  },
+  "promptHash": "66bd9d232ea8e467519f7646abfe658247037da3c1af861e1229b93a00a552ef"
+}

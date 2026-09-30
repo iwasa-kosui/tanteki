@@ -1,0 +1,28 @@
+{
+  "reviewId": "r-95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2",
+  "inputHash": "95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "中止した定例について、新たに議事録を残す必要があるか判断するための回答",
+        "status": "usable",
+        "summary": "新たな議事録は不要という結論と、資料に基づく理由が明確で、依頼者の判断に使えます。",
+        "strengths": [
+          "開催前の中止、議論・決定・宿題がないこと、中止連絡済みという資料の事実を正確に根拠としています。",
+          "既存の予定や連絡履歴への追記は任意の提案として示され、新規文書の作成を求めていません。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5908,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 247,
+        "reasoning_output_tokens": 56
+      },
+      "elapsedMs": 12090,
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "caseId": "progress-retention",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "期間の両端、鈴木、BILL-218、受付API実装済み、PR #106レビュー待ち、次作業の再試行処理をすべて記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "PRをレビュー完了・マージ済みとはせず、回数・仕様・担当も補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "課題、PR #106の追跡状況、作業状況、PdMへの期限付き判断依頼を残している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "最大回数が未決定のため停止中であることと、PdMへ8月24日までの判断を依頼することが明確に結び付いている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "簡潔な箇条書きで、同一状況の重複がない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "対象期間、鈴木、BILL-218の受付API実装、PR #106レビュー待ち、再試行処理をすべて記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "「PdMは…決定する」と断定し、原文の「PdMに判断を依頼したい」をPdMの確定した担当・実施事項として補っている。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "見出しは「判断依頼」だが、本文はPdMへの依頼ではなくPdMが決定するという断定であり、判断依頼を正確に報告していない。"
+        },
+        "clarity": {
+          "pass": false,
+          "evidence": "期限とPdMの決定は書かれているが、PdMへの判断依頼として書かれておらず、求める依頼内容が明確でない。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い見出しと段落で整理され、重複はない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4877,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 731,
+      "reasoning_output_tokens": 247
+    },
+    "elapsedMs": 30305
+  },
+  "promptHash": "e0f287ef1d308947703c36b1e483ff1f7f5206102f56d2cb19aecac3b65d7678"
+}

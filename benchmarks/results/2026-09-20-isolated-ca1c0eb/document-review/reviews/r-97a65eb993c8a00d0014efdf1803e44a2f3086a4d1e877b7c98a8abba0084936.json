@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-97a65eb993c8a00d0014efdf1803e44a2f3086a4d1e877b7c98a8abba0084936",
+  "inputHash": "97a65eb993c8a00d0014efdf1803e44a2f3086a4d1e877b7c98a8abba0084936",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チーム向けの進捗報告",
+        "status": "usable",
+        "summary": "実装済みの内容、レビュー待ちの状態、次の作業と阻害要因が把握できます。判断事項・判断者・期限も明確で、進捗共有と判断依頼に使えます。",
+        "strengths": [
+          "受付APIの実装完了とPRのレビュー待ちを区別しています。",
+          "BILL-218とPR #106が記載され、関連作業を追跡できます。",
+          "担当は鈴木、最大回数の判断者はPdM、判断期限は2026年8月24日と明確です。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5976,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 341,
+        "reasoning_output_tokens": 145
+      },
+      "elapsedMs": 14290,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-97a65eb993c8a00d0014efdf1803e44a2f3086a4d1e877b7c98a8abba0084936.1.json",
+        "sha256": "c900ec31ee746a53555e2a221d59cb140daac0653f5851ddccc2e5e10e02b6c6",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "97a65eb993c8a00d0014efdf1803e44a2f3086a4d1e877b7c98a8abba0084936",
+        "sessionId": "01a0beb4-efb8-7af3-b4b1-50fcd3a40bab"
+      },
+      "validationErrors": null
+    }
+  ]
+}

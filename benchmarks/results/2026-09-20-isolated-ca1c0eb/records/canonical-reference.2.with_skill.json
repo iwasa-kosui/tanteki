@@ -1,0 +1,37 @@
+{
+  "id": "canonical-reference.2.with_skill",
+  "caseId": "canonical-reference",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "経費の領収書は、経費システムにPDFで添付してください。\n\n経理から原本の提出を個別に求められた場合は、その指示に従ってください。",
+        "notes": "型：FAQ（stock）。主題：経費の領収書の提出先と例外を案内する。正本：https://example.test/expense の「領収書の提出」節。構成・本文・意味は確認済み。外部実行系による検査は未実施。"
+      },
+      "usage": {
+        "input_tokens": 12618,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 165,
+        "reasoning_output_tokens": 28
+      },
+      "elapsedMs": 11474,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/canonical-reference.2.with_skill.0.json",
+        "sha256": "20671b6eb10c58cf8d808a39191d538e92e5b22fa9683cac130894fc74ed438e",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "f5f47cef03659effacf8b399ce124ac86ebf0ecd93ec10a2a6cfbed8b9e6e3ce",
+        "sessionId": "01a0beb1-e8a2-7593-9a82-5d9da3b9ac40"
+      },
+      "metrics": {
+        "characters": 65,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "f5f47cef03659effacf8b399ce124ac86ebf0ecd93ec10a2a6cfbed8b9e6e3ce"
+    }
+  ]
+}

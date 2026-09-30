@@ -1,0 +1,28 @@
+{
+  "promptHash": "2761b9937031231eef704bd1375ef88bd66308af63f15bea65f2cfe331804e7d",
+  "jobHash": "26de9f88e7f2c6dc25a2ddd3991c2320e22a54f9d3ae7c14f0d40492d779d333",
+  "environmentHash": "bf302bf51729f2bf9f3fbbb9280e3067bd22a23cf33b3ff41121f7bb0ce7926a",
+  "containerId": "5e417732e4f37e21de75e0b16322a46e704355b0fa833d48ace0bacb70222baa",
+  "usage": {
+    "input_tokens": 57816,
+    "cached_input_tokens": 40381,
+    "output_tokens": 1325
+  },
+  "modelCalls": 5,
+  "providerResponses": 5,
+  "elapsedMs": 36052,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": true
+  },
+  "id": "adr-boundary.2.with_skill",
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "# ADR: 請求書PDF生成を非同期キューで処理する\n\n- **状態**: 採用\n- **判断日**: 2026-08-20\n\n## 背景\n\n請求書のPDF生成は、同期処理では最大45秒かかる。処理中に接続が切れるため、同期生成では受付結果を安定して返せない。\n\n## 決定\n\n請求書のPDF生成をキューに投入して非同期で処理する。APIはPDFそのものを待って返さず、受付IDを返す。\n\n## 代替案と理由\n\n同期生成は採用しない。最大45秒の処理中に接続が切れるためである。\n\n## 結果\n\nAPIは短時間で受付を完了でき、接続が処理時間に左右されにくくなる。一方、利用者は受付IDを使って生成完了まで待つ必要がある。\n\n再試行の上限はこの判断では定めない。上限を決める場合は、別途、再試行の設計で定める。",
+    "notes": "ADRとして構成を検査し、tantekiのADR lint（--type adr）を実行して問題ありませんでした。作業メモのBILL-218、PR #106、進捗70%は、ADRではなく作業追跡情報のため本文から除外しました。"
+  },
+  "responseHash": "9975800bf3fbcfd0d42b1973bad65139f705788c1e1e61e1d3d4f3483466b102"
+}

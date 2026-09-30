@@ -1,0 +1,123 @@
+{
+  "gpt-5.6-luna": {
+    "hash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+    "messages": [
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+          },
+          {
+            "type": "input_text",
+            "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+          }
+        ]
+      }
+    ]
+  },
+  "gpt-5.6-terra": {
+    "hash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+    "messages": [
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+          }
+        ]
+      },
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "af60719c7b64906bd05733aec72a96726712fe25d382a7bc9e05a6733cfd67dc"
+          }
+        ]
+      },
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "6ded806e3cdbb35599ecaf8742574bc5274908472b1729090010c404c2151e8e"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+          },
+          {
+            "type": "input_text",
+            "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+          }
+        ]
+      }
+    ]
+  },
+  "gpt-6-astra": {
+    "hash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+    "messages": [
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "29dad5ed6993c5e717376e0a1c84d54ab60ee593510916ac6cee4295e803315d"
+          },
+          {
+            "type": "input_text",
+            "sha256": "bec8e7b5358a20b4cd552dae768b3a65ebf4ea9fb2645220085b84d60ee3fe81"
+          }
+        ]
+      },
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "47091490938505958b0c22ff42db6fd79b272a2af6923166f4c2cc53c4fe0df4"
+          }
+        ]
+      },
+      {
+        "role": "developer",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "6ded806e3cdbb35599ecaf8742574bc5274908472b1729090010c404c2151e8e"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "sha256": "a88f2d728dd9c2a0cfbab5b577edc0fdb53bda60ab866bd60eb9598de9701b04"
+          },
+          {
+            "type": "input_text",
+            "sha256": "b52e8d033939da66d72856aec290d83d54d1e76da7188b6e55c88fc00d595a6e"
+          }
+        ]
+      }
+    ]
+  }
+}

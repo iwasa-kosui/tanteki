@@ -7,6 +7,19 @@ import { join } from "node:path";
 import { root } from "../benchmarks/benchmark.mjs";
 import { renderMarkdown } from "../benchmarks/readable-report.mjs";
 
+test("Mermaid fences are marked for preview while their source remains escaped text", () => {
+  const source = 'graph TD\n A["<script>alert(1)</script>"] --> B["完了 & 確認"]';
+  for (const fence of ['```mermaid', '~~~Mermaid']) {
+    const html = renderMarkdown(`${fence}\n${source}\n${fence.slice(0, 3)}`);
+    assert.match(html, /^<pre data-mermaid><code>graph TD/);
+    assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+    assert.match(html, /完了 &amp; 確認/);
+    assert.doesNotMatch(html, /<script>/);
+  }
+  assert.equal(renderMarkdown('```text\ngraph TD\n A --> B\n```'), '<pre><code>graph TD\n A --&gt; B</code></pre>');
+  assert.doesNotMatch(renderMarkdown('`mermaid`\n\n    graph TD\n    A --> B'), /data-mermaid/);
+});
+
 test("reader renders Markdown structure while candidate HTML and unsafe links stay inert", () => {
   const html = renderMarkdown(`# 題名
 
@@ -65,6 +78,8 @@ test("offline reports preserve all evidence, exact draft bodies and swapped A/B 
     });
     for (const p of evidenceFiles) assert.equal(await readFile(join(temp, p), "utf8"), before[p], `Evidence changed: ${p}`);
     const html = await readFile(join(temp, "comparison.html"), "utf8");
+    assert.match(html, /比較無効/);
+    assert.match(await readFile(join(temp, "report.md"), "utf8"), /^> \*\*比較無効/);
     const comparisons = await readdir(join(temp, "comparisons"));
     assert.equal(comparisons.length, 20);
     assert.equal((await readdir(join(temp, "documents"))).length, 48);
@@ -76,6 +91,7 @@ test("offline reports preserve all evidence, exact draft bodies and swapped A/B 
     for (const p of evidenceFiles.filter((p) => p.startsWith("records/"))) {
       const record = JSON.parse(before[p]);
       const comparison = await readFile(join(temp, "comparisons", `${record.caseId}.${record.repeat}.md`), "utf8");
+      assert.match(comparison, /^> \*\*比較無効/);
       for (const [i, a] of record.attempts.entries()) {
         assert.equal(await readFile(join(temp, "documents", `${record.id}.${i + 1}.md`), "utf8"), a.response.body);
         assert.ok(html.includes(renderMarkdown(a.response.body)), `${record.id} draft ${i + 1} missing from HTML`);

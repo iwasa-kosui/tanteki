@@ -1,0 +1,37 @@
+{
+  "id": "incident-record.1.with_skill",
+  "caseId": "incident-record",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n\n- 8月19日09:10：請求検索のエラー増加を検知。\n- 8月19日09:17：当番の加藤が直前の変更を戻した。\n- 8月19日09:22：復旧を確認。\n\n## 原因\n\nDB接続枯渇が原因と考えている。ただし、ログの確認が未完了のため、原因は未確定である。\n\n## 改善策\n\n- OPS-315で改善課題を追跡する。\n- 加藤が8月26日までに接続数の記録を追加する。",
+        "notes": "種別はポストモーテム、読者は運用チーム、構成は影響・時系列・原因・改善策の並列構成とした。構成・本文の意味点検は実施したが、textlintは未実行。"
+      },
+      "usage": {
+        "input_tokens": 12663,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 346,
+        "reasoning_output_tokens": 66
+      },
+      "elapsedMs": 10155,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/incident-record.1.with_skill.0.json",
+        "sha256": "39b9401e6061fd82cf31d22f6a55feb9f67217955d7ba66f4159ad69abedd2bd",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006",
+        "sessionId": "01a0beb0-2a8c-7342-90a1-b8716643aed3"
+      },
+      "metrics": {
+        "characters": 253,
+        "headings": 5,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006"
+    }
+  ]
+}

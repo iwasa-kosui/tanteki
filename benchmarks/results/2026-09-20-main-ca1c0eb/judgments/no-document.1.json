@@ -1,0 +1,65 @@
+{
+  "caseId": "no-document",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "開催前の中止、議論・決定・宿題なし、中止連絡済みを理由としている。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "原資料にない監査・社内規程を持ち込み、条件付きでも規程への対応を述べている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "新たな議事録は不要と結論づけ、議事録本文やひな型は作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "「新たな議事録は残さなくてよい」と理由を直接示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論と理由が一文ではなく、保存手順と規程に関する追加説明もある。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "開催前の中止、議論・決定・宿題なし、中止連絡済みを理由としている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "開催された会議や次回予定、規程などを創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "議事録は不要と判断しており、議事録本文・ひな型も新規作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "「新たに議事録を残す必要はありません」と理由が明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論と理由が一文ではなく、予定や連絡履歴への記録という追加手順も示している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4700,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 789,
+      "reasoning_output_tokens": 404
+    },
+    "elapsedMs": 32923
+  },
+  "promptHash": "3519020e2fc129fe20a1cbdfeac0c8736ea0d6b4295df86aa4c4db737183621b"
+}

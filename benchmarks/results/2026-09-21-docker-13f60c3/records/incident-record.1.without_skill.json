@@ -1,0 +1,28 @@
+{
+  "promptHash": "61c432b8cff0ca17afca43f6f45e9d12dac1b94370adecf33b52b5a8bbc3cb76",
+  "jobHash": "9e75b7f615b49503ce861b3b2bd9f74ac8cfd0be511ca61a9c92828067a645d4",
+  "environmentHash": "bd10131995100a382416063e10f00eaa00a3cff4a14c4b2e6490019699f35124",
+  "containerId": "68d73884ebc5715cc73e3bc5632c2db85efa8809e02b352d22c3b3a86cfaf76f",
+  "usage": {
+    "input_tokens": 5916,
+    "cached_input_tokens": 0,
+    "output_tokens": 212
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 4421,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "incident-record.1.without_skill",
+  "caseId": "incident-record",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "## 請求検索エラー増加：ポストモーテム\n\n- **発生日時:** 8月19日 09:10検知\n- **復旧:** 09:17に当番の加藤が直前の変更をロールバックし、09:22に復旧確認\n- **影響:** 請求検索の失敗340件。決済への影響なし。\n- **原因:** DB接続枯渇が原因と推測されるが、ログ確認は未完了。\n- **対応:** 直前の変更をロールバック。\n- **改善課題:** OPS-315。DB接続数の記録追加を加藤が8月26日までに実施する。",
+    "notes": ""
+  },
+  "responseHash": "c23574822c1b89732aaf9a43a288dcbb3b67366ad3730ae3fa7688aedbc99111"
+}

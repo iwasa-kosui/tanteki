@@ -1,0 +1,73 @@
+{
+  "id": "incident-record.2.with_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：請求検索のエラー増加を検知。\n- 09:17：当番の加藤が直前の変更を戻した。\n- 09:22：復旧を確認。\n\n## 原因\nDB接続枯渇が原因である可能性がある。ただし、ログの確認が未完了のため、原因は未確定である。\n\n## 改善策と追跡\n- 改善課題：OPS-315\n- 接続数の記録を追加する。担当は加藤、期限は8月26日。",
+        "notes": "種別はポストモーテム（record）。主題は、請求検索エラー増加の影響・経過・未確定の原因・改善策を運用チームが追跡できるようにすること。原資料に寄与要因の情報がないため、未確認事項として原因の確定を明記した。構成・本文・検査はこの実行環境では実施していない。"
+      },
+      "usage": {
+        "input_tokens": 12665,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 379,
+        "reasoning_output_tokens": 66
+      },
+      "elapsedMs": 10111,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/incident-record.2.with_skill.0.json",
+        "sha256": "79deaac1be37aaa8379f5533374ab5dfb491442d1438901a34110b74dd34f300",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006",
+        "sessionId": "01a0beb1-84e7-74e0-8c43-b4a4c56ef10e"
+      },
+      "metrics": {
+        "characters": 243,
+        "headings": 5,
+        "lint": [
+          {
+            "ruleId": "no-doubled-joshi",
+            "line": 12,
+            "column": 16,
+            "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "c089131375afe966379a61015adc4fa41401f14fd8b4aa928b7f5cadec9e1006"
+    },
+    {
+      "response": {
+        "body": "# 請求検索エラー増加のポストモーテム\n\n## 影響\n請求検索に340件の失敗が発生した。決済への影響はなかった。\n\n## 時系列\n- 8月19日09:10：請求検索のエラー増加を検知。\n- 09:17：当番の加藤が直前の変更を戻した。\n- 09:22：復旧を確認。\n\n## 原因\nDB接続枯渇が原因である可能性はある。ただし、ログを確認できていないため、原因は未確定である。\n\n## 改善策と追跡\n- 改善課題：OPS-315\n- 接続数の記録を追加する。担当は加藤、期限は8月26日。",
+        "notes": "種別はポストモーテム（record）。外部textlintの指摘箇所を、助詞「が」の重複を避けて修正した。原資料の未確定条件と改善策は維持している。"
+      },
+      "usage": {
+        "input_tokens": 13134,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 402,
+        "reasoning_output_tokens": 134
+      },
+      "elapsedMs": 15406,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/incident-record.2.with_skill.1.json",
+        "sha256": "f81d0b921f951291a0395feaa94e65ea72c42b9060b478cf0057a398e70daecb",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "70d28c7d078c0c130f1ecfff4ecc81b65e73c6d8d32ec0498805209fdf85565e",
+        "sessionId": "01a0beb1-ac60-78d0-b08c-7cef107575ae"
+      },
+      "metrics": {
+        "characters": 244,
+        "headings": 5,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "70d28c7d078c0c130f1ecfff4ecc81b65e73c6d8d32ec0498805209fdf85565e"
+    }
+  ]
+}

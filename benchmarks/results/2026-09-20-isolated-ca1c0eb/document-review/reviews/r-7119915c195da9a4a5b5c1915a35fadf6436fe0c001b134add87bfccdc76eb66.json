@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-7119915c195da9a4a5b5c1915a35fadf6436fe0c001b134add87bfccdc76eb66",
+  "inputHash": "7119915c195da9a4a5b5c1915a35fadf6436fe0c001b134add87bfccdc76eb66",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チーム向けの進捗報告",
+        "status": "usable",
+        "summary": "実装済みの範囲、レビュー待ちの状況、次の作業と停止理由が明確です。PdMに求める判断内容と期限も示されており、進捗共有と判断依頼に使えます。",
+        "strengths": [
+          "受付APIの実装完了とPRのレビュー待ちを区別し、BILL-218とPR #106で追跡できます。",
+          "次の作業である再試行処理と、最大再試行回数が未決定という阻害要因が対応しています。",
+          "担当者、報告期間、判断依頼先、判断期限が原資料どおり明記されています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5999,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 306,
+        "reasoning_output_tokens": 87
+      },
+      "elapsedMs": 12944,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-7119915c195da9a4a5b5c1915a35fadf6436fe0c001b134add87bfccdc76eb66.1.json",
+        "sha256": "320c3e850e28c63fa6d2712a7912bcd84b96d52f5c8c59f833256aaed38fbb55",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "7119915c195da9a4a5b5c1915a35fadf6436fe0c001b134add87bfccdc76eb66",
+        "sessionId": "01a0beb4-2b81-7f52-8c9e-36a7d998f31d"
+      },
+      "validationErrors": null
+    }
+  ]
+}

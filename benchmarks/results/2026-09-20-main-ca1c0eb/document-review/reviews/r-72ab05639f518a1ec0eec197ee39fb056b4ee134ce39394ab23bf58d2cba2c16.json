@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16",
+  "inputHash": "72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "実装者向けのファイル取込Design Doc",
+        "status": "source_limited",
+        "summary": "構成、処理順序、保存失敗時の挙動、不採用案の理由を理解できる。キュー登録失敗時の回復方法は適切に未決定と示されており、異常系を含む実装の確定には追加判断が必要。",
+        "strengths": [
+          "APIからストレージ、キュー、ワーカー、DBへの処理とデータの受け渡しが具体的に示されている。",
+          "保存失敗時の503応答とキュー未登録の条件を正確に記載している。",
+          "10MBのファイルとキューの1MB制限による不採用理由、非同期化による結果提示の遅延、未決定事項を明示している。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "ストレージ保存成功後にキュー登録が失敗した場合の回復方法。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "APIがオブジェクトストレージへの保存に成功した後、キューへの登録に失敗した場合の回復方法が未決定である。この場合の扱いは、追加で決定する必要がある。",
+            "consequence": "正常系と保存失敗時の実装方針は理解できるが、保存済みファイルを解析処理へ確実につなぐ異常系の実装は、この資料だけでは確定できない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6777,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 652,
+        "reasoning_output_tokens": 248
+      },
+      "elapsedMs": 23857,
+      "validationErrors": null
+    }
+  ]
+}

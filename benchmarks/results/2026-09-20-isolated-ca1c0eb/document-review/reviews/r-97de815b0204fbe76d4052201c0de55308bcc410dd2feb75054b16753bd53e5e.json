@@ -1,0 +1,57 @@
+{
+  "reviewId": "r-97de815b0204fbe76d4052201c0de55308bcc410dd2feb75054b16753bd53e5e",
+  "inputHash": "97de815b0204fbe76d4052201c0de55308bcc410dd2feb75054b16753bd53e5e",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "担当チーム向けの進捗報告",
+        "status": "revision_needed",
+        "summary": "実装済みの内容、次の作業、PdMへの判断依頼と期限は把握できます。ただし、停止中の作業を未着手と断定している点は修正が必要です。",
+        "strengths": [
+          "対象期間、担当、チケット番号、PR番号が明記されています。",
+          "再試行回数の未決定が阻害要因であることと、判断主体・期限が明確です。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "再試行の最大回数が未決定のため、作業を開始できない。",
+            "source_excerpt": "最大回数が未決定で作業が止まっている。",
+            "finding": "原資料は作業の停止を示していますが、未着手であるとは示していません。「開始できない」は進捗状態を限定する、根拠のない断定です。",
+            "impact": "担当チームが再試行処理を未着手と認識し、残作業や再開時の対応を誤って見積もる可能性があります。",
+            "suggested_change": "「作業が止まっている」とし、着手済みかどうかは断定しないでください。"
+          },
+          {
+            "severity": "minor",
+            "kind": "omission",
+            "basis": "source",
+            "excerpt": "- PR #106を作成し、レビューを依頼した。",
+            "source_excerpt": "PR #106はレビュー待ち。",
+            "finding": "レビューを依頼したという過去の行動だけが記載され、現在もレビュー待ちであることが明示されていません。",
+            "impact": "PR番号による追跡はできますが、報告時点でレビューが未完了かを本文だけでは確定できません。",
+            "suggested_change": "PR #106が現在レビュー待ちであることを明記してください。"
+          }
+        ],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 6000,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1188,
+        "reasoning_output_tokens": 664
+      },
+      "elapsedMs": 39626,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-97de815b0204fbe76d4052201c0de55308bcc410dd2feb75054b16753bd53e5e.1.json",
+        "sha256": "ae6193aed8327c71923d808906e37ccbf528672977cff0d3432a3a72da66c2b1",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "97de815b0204fbe76d4052201c0de55308bcc410dd2feb75054b16753bd53e5e",
+        "sessionId": "01a0beb4-fda9-7be2-ba24-52c785e55bf2"
+      },
+      "validationErrors": null
+    }
+  ]
+}

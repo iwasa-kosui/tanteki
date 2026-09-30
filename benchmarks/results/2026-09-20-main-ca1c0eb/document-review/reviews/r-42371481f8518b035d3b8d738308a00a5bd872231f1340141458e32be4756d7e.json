@@ -1,0 +1,68 @@
+{
+  "reviewId": "r-42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e",
+  "inputHash": "42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番が本番キャッシュ再起動の流れと未完成の範囲を確認するRunbook草稿。",
+        "status": "revision_needed",
+        "summary": "作業の流れと主要な未決定事項は把握できる。ただし、再起動コマンドも未決定であり、現状では本番操作に使えないことを明示する必要がある。",
+        "strengths": [
+          "検知、再起動、復旧確認、未復旧時の連絡という流れを示している。",
+          "実施条件、復旧確認方法、連絡先を創作せず、未決定と明記している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "omission",
+            "basis": "source",
+            "excerpt": "1. 再起動してよい条件を確認する。\n2. キャッシュを再起動する。",
+            "source_excerpt": "再起動コマンド、停止してよい条件、復旧確認方法、連絡先はまだ決まっていない。",
+            "finding": "再起動コマンドの未決定が明示されず、未決定事項が解消されるまでは実行できないという扱いも示されていない。「条件を満たさない場合」の禁止だけでは、条件そのものを判断できない現状の扱いが不明確である。",
+            "impact": "当番が不足部分を自己判断で補い、条件や復旧確認方法が定まらないまま本番再起動へ進むおそれがある。",
+            "suggested_change": "冒頭に、再起動コマンドを含む必要事項が未決定のため現時点では本番実行不可であり、以下は確定後に使用する手順の骨子であると明記する。未決定の具体的内容は創作しない。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "再起動コマンド",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "2. キャッシュを再起動する。",
+            "consequence": "実際の操作を特定できない。本文でも未決定であることを示す必要がある。"
+          },
+          {
+            "missing_information": "停止してよい条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "次の条件は未決定である。",
+            "consequence": "再起動の実施可否を判断できない。"
+          },
+          {
+            "missing_information": "復旧確認方法",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "次の確認方法は未決定である。",
+            "consequence": "再起動後の復旧判定と未復旧時の連絡への分岐を判断できない。"
+          },
+          {
+            "missing_information": "障害時の連絡先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "障害時の連絡先は未決定である。",
+            "consequence": "復旧しない場合の連絡を本書だけでは実行できない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6051,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1303,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 43915,
+      "validationErrors": null
+    }
+  ]
+}

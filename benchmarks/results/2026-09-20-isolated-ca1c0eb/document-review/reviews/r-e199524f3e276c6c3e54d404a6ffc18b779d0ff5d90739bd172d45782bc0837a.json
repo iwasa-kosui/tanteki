@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-e199524f3e276c6c3e54d404a6ffc18b779d0ff5d90739bd172d45782bc0837a",
+  "inputHash": "e199524f3e276c6c3e54d404a6ffc18b779d0ff5d90739bd172d45782bc0837a",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテム",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認の経過、影響、改善行動の担当と期限を把握できる。原因は仮説として明確に区別されており、確定にはログ確認の完了が必要である。",
+        "strengths": [
+          "検知、変更の切り戻し、復旧確認を時刻付きで区別している。",
+          "検索失敗340件と決済への影響なしを明示し、原因を断定していない。",
+          "改善課題OPS-315、実施内容、担当者、期限が明記されている。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の完了結果と、DB接続枯渇の仮説を裏付ける証拠。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "ただし、ログを確認できていないため、原因は未確定である。",
+            "consequence": "原因の確定には使えないが、現時点の経過と改善行動の共有には使える。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6067,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 461,
+        "reasoning_output_tokens": 144
+      },
+      "elapsedMs": 20573,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-e199524f3e276c6c3e54d404a6ffc18b779d0ff5d90739bd172d45782bc0837a.1.json",
+        "sha256": "d71a93e55e0e35d74adcad27146c850fdb55e1f3f17ac6be2b278ff2abb10198",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "e199524f3e276c6c3e54d404a6ffc18b779d0ff5d90739bd172d45782bc0837a",
+        "sessionId": "01a0beb6-5ed4-74d0-a67e-58f4313ed94e"
+      },
+      "validationErrors": null
+    }
+  ]
+}

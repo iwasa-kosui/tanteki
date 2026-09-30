@@ -9,7 +9,7 @@
 [GitHub CLI](https://cli.github.com/) 2.90以降とNode.js 22以降が必要です。
 
 ```sh
-gh skills install iwasa-kosui/tanteki tanteki --scope user
+gh skill install iwasa-kosui/tanteki tanteki --scope user
 ```
 
 対話画面で利用するエージェントを選ぶと、個人用の配置先にインストールされます。`--agent claude-code`、`--agent codex`、`--agent cursor` などで指定することもできます。詳細は[インストールの公式手順](https://cli.github.com/manual/gh_skill_install)を参照してください。
@@ -27,7 +27,7 @@ tanteki を使って、この設計書を開発者向けに短く推敲して。
 （ここに草稿を貼る）
 ```
 
-詳しくは[スキルの手順](SKILL.md)、[CLIでの検査](references/lint.md)、[出力の比較](benchmarks/results/2026-09-06-main-fb6fd0b/document-review/report.md)を参照してください。
+詳しくは[スキルの手順](SKILL.md)、[CLIでの検査](references/lint.md)、[分離環境での比較結果](benchmarks/results/2026-09-21-docker-13f60c3/run-notes.md)を参照してください。
 
 ## 設計の参考
 

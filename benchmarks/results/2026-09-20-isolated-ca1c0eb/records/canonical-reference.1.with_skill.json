@@ -1,0 +1,37 @@
+{
+  "id": "canonical-reference.1.with_skill",
+  "caseId": "canonical-reference",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "## 領収書の提出\n\n経費システムに領収書のPDFを添付してください。経理から原本の提出を個別に求められた場合は、指定に従って原本を提出してください。\n\n詳しくは、[経費の案内](https://example.test/expense)の「領収書の提出」を確認してください。",
+        "notes": "FAQ／トラブルシュートとして、社員が提出方法を判断できる最小構成にしました。正本は指定URLの「領収書の提出」節です。"
+      },
+      "usage": {
+        "input_tokens": 12616,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 188,
+        "reasoning_output_tokens": 43
+      },
+      "elapsedMs": 7244,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/canonical-reference.1.with_skill.0.json",
+        "sha256": "c4554f8bcfac164a2de5342f39155b23a58e1a12a8df7b33c2c615ccc11b264d",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "f5f47cef03659effacf8b399ce124ac86ebf0ecd93ec10a2a6cfbed8b9e6e3ce",
+        "sessionId": "01a0beaf-f972-7b42-91dc-afe796bd356e"
+      },
+      "metrics": {
+        "characters": 138,
+        "headings": 1,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "f5f47cef03659effacf8b399ce124ac86ebf0ecd93ec10a2a6cfbed8b9e6e3ce"
+    }
+  ]
+}

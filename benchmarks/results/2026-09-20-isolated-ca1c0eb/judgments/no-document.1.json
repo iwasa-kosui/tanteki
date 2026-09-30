@@ -1,0 +1,73 @@
+{
+  "caseId": "no-document",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "中止連絡済みと、議論・決定・宿題がないことを不要判断の理由としている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "開催済みの会議や次回予定、具体的な規程を事実として創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "新たな議事録は不要とし、議事録のひな型・本文を作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "冒頭で「新たな議事録は残さなくてよい」と直接結論を示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論・理由に加えて保存に関する条件付き手順を追加しており、一文ではない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "開催前の中止、議論・決定・宿題なし、参加者への連絡済みを理由にしている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "開催済みの会議、次回予定、規程を事実として創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "議事録は不要と判断しており、新規の議事録本文やひな型は作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "「新たな議事録を残す必要はありません」と結論と理由が直接分かる。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論・理由の後に管理欄への記録手順を追加しており、一文ではない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4650,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 909,
+      "reasoning_output_tokens": 516
+    },
+    "elapsedMs": 36427,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/no-document.1.judge.json",
+      "sha256": "e6af27e27ddb2d38ce66b0de223be6690614972193a93fd2da72da83b5c5e56f",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "b3f0e8d7e5a129caa1b2064a6f877feb2e2468951ac08b6df0f164156368a825",
+      "sessionId": "01a0beb2-f407-7383-bcd4-107e016ce469"
+    }
+  },
+  "promptHash": "b3f0e8d7e5a129caa1b2064a6f877feb2e2468951ac08b6df0f164156368a825"
+}

@@ -1,0 +1,55 @@
+{
+  "reviewId": "r-187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c",
+  "inputHash": "187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "将来の保守者が、請求書PDF生成を非同期キュー処理にした採用判断と、その背景・比較対象・影響を再構成するためのADR。",
+        "status": "revision_needed",
+        "summary": "採用日、決定、同期生成を却下した理由、利用者への影響は把握できます。ただし、受付IDによる状況・結果確認を採用済みの仕様として追加しており、決定範囲の修正が必要です。",
+        "strengths": [
+          "同期生成の最大45秒という処理時間と接続切断を、却下理由として明確に結び付けています。",
+          "非同期化しても利用者は完成まで待つ必要があるという不利益を明示しています。",
+          "採用判断と実装進捗を分け、再試行上限も未決定として保持しています。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "利用者は受付IDを使って処理状況や生成結果を確認する。",
+            "source_excerpt": "請求書のPDF生成はキューで処理し、APIは受付IDを返す。",
+            "finding": "原資料が決めているのは受付IDを返すことまでです。受付IDを利用者による状況・結果確認に使うことは記載されていませんが、「決定」節で採用済みの仕様として断定しています。",
+            "impact": "将来の保守者が、受付IDによる照会機能までこのADRで採用されたと誤認し、実装や変更判断の前提にする可能性があります。",
+            "suggested_change": "この断定を削除するか、確認・取得方法は原資料では確定していないと区別してください。「影響」節の取得手段が必要という記述は、今後の検討事項として残せます。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "処理状況の確認方法と完成したPDFの取得方法、および受付IDの具体的な用途。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "利用者は受付IDを使って処理状況や生成結果を確認する。",
+            "consequence": "具体的な利用者向け機能は確定できません。ただし、未確定と区別すれば、非同期キュー処理の採用判断を記録するADRとしては支障ありません。"
+          },
+          {
+            "missing_information": "再試行回数の上限。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "再試行回数の上限は未決定であり、別途決定する必要がある。",
+            "consequence": "再試行の詳細設計には追加決定が必要ですが、このADRの採用判断の理解は妨げません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6207,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1026,
+        "reasoning_output_tokens": 299
+      },
+      "elapsedMs": 35457,
+      "validationErrors": null
+    }
+  ]
+}

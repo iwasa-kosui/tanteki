@@ -1,0 +1,29 @@
+{
+  "id": "runbook-missing.1.with_skill",
+  "caseId": "runbook-missing",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 本番キャッシュ再起動手順（草稿）\n\n## 前提\n監視でキャッシュのエラーを確認した場合に使用する。本番環境で実施するため、再起動前に停止条件を確認する。\n\n## 検知\n監視でキャッシュのエラーを確認したら、本手順を開始する。\n\n## 手順\n1. 再起動してよい条件を確認する。\n2. キャッシュを再起動する。\n3. 復旧を確認する。\n4. 復旧しない場合は、定められた連絡先へ連絡する。\n\n## 復旧確認\n次の確認方法は未決定である。\n\n## 停止条件\n次の条件は未決定である。条件を満たさない場合は再起動しない。\n\n## 連絡先\n障害時の連絡先は未決定である。",
+        "notes": "種別: 運用Runbook／読者: 当番。主題: 監視でキャッシュのエラーを確認した際の再起動判断と復旧確認を定める。構成はRunbookの最小内容に合わせた。再起動コマンド、停止条件、復旧確認方法、連絡先が未決定のため、実行可能な手順としては未完成であり草稿とした。lint検査は未実施。"
+      },
+      "usage": {
+        "input_tokens": 12582,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 442,
+        "reasoning_output_tokens": 93
+      },
+      "elapsedMs": 18228,
+      "metrics": {
+        "characters": 283,
+        "headings": 7,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "cdcc341fb0e8a2e8f572591ea1e7f122768a3d3a6cd3e9a534b85741ee6cf308"
+    }
+  ]
+}

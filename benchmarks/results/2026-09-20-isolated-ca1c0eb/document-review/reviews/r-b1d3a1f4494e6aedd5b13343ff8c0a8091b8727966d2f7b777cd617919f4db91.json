@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-b1d3a1f4494e6aedd5b13343ff8c0a8091b8727966d2f7b777cd617919f4db91",
+  "inputHash": "b1d3a1f4494e6aedd5b13343ff8c0a8091b8727966d2f7b777cd617919f4db91",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チームが障害の経過、影響、原因の確度、改善行動の担当と期限を把握するための短いポストモーテム。",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認、影響、改善行動を正確に把握できます。原因は未確定と明示されており、確定にはログ確認が必要です。",
+        "strengths": [
+          "検知・ロールバック・復旧確認の時刻を区別し、対応者も明記しています。",
+          "検索失敗340件と決済への影響なしを正確に記載しています。",
+          "原因仮説を確定事実と区別し、改善課題の番号・内容・担当・期限を保持しています。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の結果と、DB接続枯渇が原因かどうかの確証。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "DB接続枯渇が原因である可能性がありますが、ログ確認が未完了のため未確定です。",
+            "consequence": "原因の確定はできませんが、現時点の経過と改善行動の共有には利用できます。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6083,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 514,
+        "reasoning_output_tokens": 178
+      },
+      "elapsedMs": 19650,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-b1d3a1f4494e6aedd5b13343ff8c0a8091b8727966d2f7b777cd617919f4db91.1.json",
+        "sha256": "0dae81a746394d02bbac54358cc59d8fd11108dfb972320ff73269bc12444079",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "b1d3a1f4494e6aedd5b13343ff8c0a8091b8727966d2f7b777cd617919f4db91",
+        "sessionId": "01a0beb5-987a-7221-87f1-b148a09ad299"
+      },
+      "validationErrors": null
+    }
+  ]
+}

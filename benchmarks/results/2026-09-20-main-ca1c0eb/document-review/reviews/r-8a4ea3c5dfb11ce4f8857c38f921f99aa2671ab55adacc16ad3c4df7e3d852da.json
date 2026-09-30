@@ -1,0 +1,48 @@
+{
+  "reviewId": "r-8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da",
+  "inputHash": "8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテム",
+        "status": "revision_needed",
+        "summary": "経過、影響、原因の未確定状態、改善課題の担当と期限は把握できます。ただし、概要の復旧所要時間は起点を誤解させるため修正が必要です。",
+        "strengths": [
+          "検知・対応・復旧確認の時刻と対応者を明示しています。",
+          "検索失敗件数と決済への影響の有無を区別しています。",
+          "原因を仮説として扱い、改善課題の番号・担当・期限を明示しています。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "直前の変更をロールバックし、約12分後に復旧を確認しました。",
+            "source_excerpt": "8月19日09:10に請求検索のエラー増加を検知。09:17に当番の加藤が直前の変更を戻し、09:22に復旧を確認。",
+            "finding": "ロールバックから約12分後に復旧確認したと読めますが、実際は5分後です。12分は検知から復旧確認までの時間です。",
+            "impact": "対応後の復旧確認までの所要時間を誤認し、対応の振り返りで誤った評価につながります。",
+            "suggested_change": "12分の起点が検知であることを明記するか、ロールバックから5分後としてください。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の結果と、DB接続枯渇が原因であることの確証",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "ログ確認は未完了で、確定していません。",
+            "consequence": "原因の確定判断はできませんが、未確認であることが明示されており、現時点の経過共有には使えます。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6090,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 715,
+        "reasoning_output_tokens": 191
+      },
+      "elapsedMs": 25655,
+      "validationErrors": null
+    }
+  ]
+}

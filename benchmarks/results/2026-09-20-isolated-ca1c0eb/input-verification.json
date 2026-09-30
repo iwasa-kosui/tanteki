@@ -1,0 +1,12 @@
+{
+  "outputs": 40,
+  "authorCalls": 44,
+  "judgeCalls": 20,
+  "reviewCalls": 38,
+  "uniqueSessions": 102,
+  "contextHashes": {
+    "gpt-5.6-luna": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+    "gpt-5.6-terra": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+    "gpt-6-astra": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc"
+  }
+}

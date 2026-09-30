@@ -1,0 +1,65 @@
+{
+  "caseId": "runbook-missing",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "監視でのキャッシュエラーを対象とし、再起動コマンド・実施条件・復旧確認・連絡先が未決定であることを本文で明示している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "具体的なコマンド、数値、環境名、連絡先を創作しておらず、未確定事項として扱っている。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "表題で「未確定版」とし、運用開始前の必須決定事項と、本番実行手順として使用しない旨を明記している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "運用開始前に決めるべき対象、コマンド、条件、確認基準、連絡先を具体的な確認事項として列挙し、未確定のまま実行しないよう示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "必要な草稿の範囲を超えて、記録項目や一般的な復旧確認候補など詳細な説明が多く、最小の草稿とはいえない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": false,
+          "evidence": "本文では再起動コマンドが未決定であることを示さないまま「キャッシュを再起動する」と記載している。本文外notesでの不足説明は、本文の事実不足を補えない。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "コマンド、数値、環境名、連絡先を具体的に創作しておらず、安全性を断言していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "表題で「草稿」と明示し、notesでも未完成で実行可能な手順ではないと記載している。"
+        },
+        "clarity": {
+          "pass": false,
+          "evidence": "停止条件・復旧確認・連絡先を「未決定」とするのみで、確定すべき具体的な質問・確認事項を示していない。また再起動する手順に見える。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "監視エラー時の再起動を対象にした短い草稿を提示しており、未定の空見出しを大量には設けていない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5586,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 869,
+      "reasoning_output_tokens": 318
+    },
+    "elapsedMs": 35625
+  },
+  "promptHash": "5a348e3228d0f63318d21fce91d391c230d2bd3c61cfad49f08474b2b0278991"
+}

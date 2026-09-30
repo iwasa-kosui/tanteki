@@ -1,0 +1,582 @@
+{
+  "createdAt": "2026-09-20T11:09:26.430Z",
+  "fingerprint": "52bd52ce9299db07fee217b041b1c11ea3c91cc30520fe6b245755d0c733978f",
+  "version": 1,
+  "model": "gpt-6-astra",
+  "effort": "high",
+  "timeout": 300,
+  "maxValidationRepairs": 1,
+  "sourceEvaluation": {
+    "fingerprint": "fb12f9804152845fe34867c7aeeb75008ed1d00688d5f3e9e97882e07917cd6f",
+    "skillRevision": "ca1c0eb501cd5885dde28c6a84a1438dd42232a6"
+  },
+  "sourceHashes": {
+    "manifest.json": "0ac1f82dd7469cf278f666fab3691aaef4e6e9c02858e1ccdeb2dc27693ece66",
+    "cases.json": "e3816b87e3fab5582377de31ca0f70a3029eebdd7485ec242eeb1ab1a62946e9",
+    "records/no-document.1.without_skill.json": "907d696d5985d62e0ede8313bd546b3d678068d12b5c00fcbf2f02e32a780a92",
+    "records/no-document.1.with_skill.json": "f9142219dfae7956fd5463eb679db766571c9a7be8c1b82f0ba2deca3b19c72d",
+    "records/adr-boundary.1.with_skill.json": "50e141126695127201f54ee69e46c20d114cf3e7dcd06e75dd19c485f223826c",
+    "records/adr-boundary.1.without_skill.json": "98d7b61019a78bea291a50500eaf288a3e26c5ddace69d3c5b62e046e23f8a21",
+    "records/runbook-missing.1.without_skill.json": "4d754a5ba33fc5fde970a18180f5b032648cc7c39a7175135568cd998898f8a4",
+    "records/runbook-missing.1.with_skill.json": "10a8523d07f7022cd4e6ca19d8ed23e077d1ed157b589e3a8d022f37afc7451e",
+    "records/canonical-reference.1.with_skill.json": "7a6ada665eb29c97593bcc9dd916524131f5b03aeb8c08018877758044eae54b",
+    "records/canonical-reference.1.without_skill.json": "f0d332cb12f7e4e577290a9bd45e590e450db2247a6b7e2c6147cde8f92ab7a0",
+    "records/comparison-rfc.1.without_skill.json": "182197d426975b4f65295608c8dbcc8cbc3c6727b2d2b2ca49f74b144a6d2620",
+    "records/comparison-rfc.1.with_skill.json": "9f4a6bd0afe25eba1615fe9dea940dbc183f43793c54ceb332e8914dc6dbd834",
+    "records/incident-record.1.with_skill.json": "5c78c74b66638137a4afdd9438cdf633603d9d52256933aee104bdc2b7f11c77",
+    "records/incident-record.1.without_skill.json": "c13fc9f2057737055eb4ca997adb481af391c07c32017a80665f408cd67e33b7",
+    "records/design-tradeoff.1.without_skill.json": "505889775b242186192a96b926f3024a4da5c77f850c9d5f6b7d62c841ea9557",
+    "records/design-tradeoff.1.with_skill.json": "e84d67c2adde6048e8a708f13931168fdac5ed44f58e8098045495e4d3c5aa21",
+    "records/plain-japanese.1.with_skill.json": "128c891c06f68e2f5bbeae4fc8334f19fc08f80be83d3b50ad9c70d431933799",
+    "records/plain-japanese.1.without_skill.json": "a6e93b80cdc9038cfb56e7452377e98de374841412a310ce3fe48e1c7514b3af",
+    "records/progress-retention.1.without_skill.json": "36525ed3edfa7e2a8b4397a09d3ab7cafd8063c37b9878ce3710128b41567101",
+    "records/progress-retention.1.with_skill.json": "553cdbf1875b73e0c7bdbc3419ee523486f14a7537f4c04e8004edb8303488d7",
+    "records/surgical-edit.1.with_skill.json": "9b11214437ecfcdd0915febf16cbea43781be3a245b1d74cf0d88f424fceadc7",
+    "records/surgical-edit.1.without_skill.json": "37e86edbc4f7e0833f022bcc27ba5a503234dede926393faaa7526d0dbb8156d",
+    "records/plain-japanese.2.with_skill.json": "3dd6ef2511508c5ebc796fda35109972f3b19bc7c7f7deb49c4818577c9a1b2f",
+    "records/plain-japanese.2.without_skill.json": "f1ad24238c1c7418157b96af439e792396341c21108b72988783372d05756eb1",
+    "records/surgical-edit.2.without_skill.json": "c80333829b265634de2ebc5cad1c99ed87d98fa7218f4cef97b2056542911145",
+    "records/surgical-edit.2.with_skill.json": "6752ccbf4b74883d167e24f5c79e69661776812a01bb442dc17d6d578ba4d179",
+    "records/comparison-rfc.2.with_skill.json": "410a9e1b8c87e6d067be5b67d25b8effbbc8b94a9ea339a99e36dd4b899ff859",
+    "records/comparison-rfc.2.without_skill.json": "f383d0e3be404a3754ce6d2ad9a4f193c75986cde0924388c43cb03ff0109676",
+    "records/design-tradeoff.2.without_skill.json": "410adee6a6a66facbf7bc1d39d3408f55f88a3c9a5a66a61858288dfd7b647ae",
+    "records/design-tradeoff.2.with_skill.json": "ecc75fc9fbb852e5fc8503db375fffe2b27bab0bde84b2bcf0ebccafb56bbd59",
+    "records/adr-boundary.2.with_skill.json": "5c75e3b43d561ff8c28ef6e80232d85ce8609120566a11e049d9c19ccbe3addd",
+    "records/adr-boundary.2.without_skill.json": "310c5c0153e15b4273f8a963f3d6fc5918090f39e2e930ae2dabfb77b2fa7aff",
+    "records/incident-record.2.without_skill.json": "c9df07b36ed25903bd453e79c773a24300f8c61a4ec06459fe37b5066d427fea",
+    "records/incident-record.2.with_skill.json": "a033d61613cbf2c38defaef4fcc2b09ba4c13b980c20c1de5aa124824f6a9d4e",
+    "records/runbook-missing.2.with_skill.json": "d0daf9e9bab30b9e7307a59373d0b3f66b98c140dc49b1c85301ab39bee79f3c",
+    "records/runbook-missing.2.without_skill.json": "bce48dc3d76804c5a3d5dd47393a9611e275ea655c806a12d3cf87c119cecc0b",
+    "records/canonical-reference.2.without_skill.json": "216d9f70b4940d12c116d61cf9418d58da8d840618a407156ccde19f922641bd",
+    "records/canonical-reference.2.with_skill.json": "5db4488da0bd76081e1b74c746eab72ab9e06e5ed7c6fb006057959399157c19",
+    "records/progress-retention.2.with_skill.json": "6636b88790866dc5453c112e89ca3059be7073e86aedf6b4329dcfb212e29b7e",
+    "records/progress-retention.2.without_skill.json": "45cc9c7efae8ab4d0d994c39ce5714ab49f364747863d4efdf54319d62d529d7",
+    "records/no-document.2.without_skill.json": "4752119293d753d1d086f183968ac82897165fe1c4b733207ea0d910eac1787c",
+    "records/no-document.2.with_skill.json": "e0062ede22d41a831e8e619924972645fa4cf14e43854f7385c10f105b1ef25d"
+  },
+  "harnessHashes": {
+    "benchmarks/document-review.mjs": "ebae4e6f698a14cc373005a15f4546ba56b4f39e50244e91f6cf1507c2a5e4a9",
+    "benchmarks/document-review-instructions.txt": "f046e77b3379c2fbb412c0901537a1e1e515f427abeb41484cf21b7fc4c81ce2",
+    "benchmarks/document-review-profiles.json": "c66827158fc283889d8f6046592b6a4f2355ff2808f52c3fb0f9c035fb62888c",
+    "benchmarks/document-review.schema.json": "2e9a9b49ff287ce83602c3fd554bec90e729d6700eca4d27331c61036600e4d5",
+    "benchmarks/benchmark.mjs": "53a34198504bd051b79c3f009a97aca5ad60ed7f8b20aac0033b4d87e9936ccc"
+  },
+  "entries": [
+    {
+      "recordId": "no-document.1.without_skill",
+      "caseId": "no-document",
+      "title": "文書を作る必要性の判断",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2",
+      "bodyHash": "cb311944d24e255d748c8a5cf83a8f34446b897ce95455a34037c1deaec02a50"
+    },
+    {
+      "recordId": "no-document.1.with_skill",
+      "caseId": "no-document",
+      "title": "文書を作る必要性の判断",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-500792c0d414eba01a1541442510c1a2d2bbf2154538184346aeb2238f09325f",
+      "bodyHash": "3c9d07f373a33c178333da864c3d5876e56dcb262c7f89086d6a32b81be849b7"
+    },
+    {
+      "recordId": "adr-boundary.1.with_skill",
+      "caseId": "adr-boundary",
+      "title": "ADRの判断と作業追跡の分離",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-dc9a1ece64a7564577d80546886a5e43bf3c530d731195151795b86a62203674",
+      "bodyHash": "0cbc459b340793cd6a4c2403005256228a2f2618ddd8c1b6fb5883a10d0d8da7"
+    },
+    {
+      "recordId": "adr-boundary.1.without_skill",
+      "caseId": "adr-boundary",
+      "title": "ADRの判断と作業追跡の分離",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c",
+      "bodyHash": "472fa6c270ecdcf525baa376ae67e9439a05eb10225233364b4ae3d3308a9eab"
+    },
+    {
+      "recordId": "runbook-missing.1.without_skill",
+      "caseId": "runbook-missing",
+      "title": "資料不足の手順を完成扱いしない",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68",
+      "bodyHash": "6405d5a784e2d90795396b4403f45965c5abbda9bc9df6e88b10616ecf3234f1"
+    },
+    {
+      "recordId": "runbook-missing.1.with_skill",
+      "caseId": "runbook-missing",
+      "title": "資料不足の手順を完成扱いしない",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e",
+      "bodyHash": "c4ec6f10b88b152eb14c7ef0072f50cea87995da31a1d16f9f805ff12c724689"
+    },
+    {
+      "recordId": "canonical-reference.1.with_skill",
+      "caseId": "canonical-reference",
+      "title": "正本で済む依頼",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-7d2ba7365f3766c769952bf367cfcefb26282fb9d3e1faab98e88a3bd14c1eac",
+      "bodyHash": "cfeeabdf96a9ad7fae5a13be54d0c000a15ba1f2d5a092c741e17a06251633f2"
+    },
+    {
+      "recordId": "canonical-reference.1.without_skill",
+      "caseId": "canonical-reference",
+      "title": "正本で済む依頼",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-da7bcaaecaad65abf35ff446985d16c80c3973272ac2362c9669739447464855",
+      "bodyHash": "34f812cb66aa9a4396f9d91f458a0ba0df57dbec181d5f0994e3e2fbff6b1f7b"
+    },
+    {
+      "recordId": "comparison-rfc.1.without_skill",
+      "caseId": "comparison-rfc",
+      "title": "RFCで比較と未決定を保つ",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8",
+      "bodyHash": "51c0dd687deb8a48a9a1fc17a0b283614edaf11afe4d4b2fa26596c1b9aef563"
+    },
+    {
+      "recordId": "comparison-rfc.1.with_skill",
+      "caseId": "comparison-rfc",
+      "title": "RFCで比較と未決定を保つ",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7",
+      "bodyHash": "0f26c7b86007068c9ce0e7a150ec1ad738acb8d371b33af423022e0f209e9961"
+    },
+    {
+      "recordId": "incident-record.1.with_skill",
+      "caseId": "incident-record",
+      "title": "障害記録の時系列と仮説",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304",
+      "bodyHash": "995f5420d80f71d771e165244e32687f4ea2f478f87f51fed7aa5f44712d160c"
+    },
+    {
+      "recordId": "incident-record.1.without_skill",
+      "caseId": "incident-record",
+      "title": "障害記録の時系列と仮説",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e",
+      "bodyHash": "c35c15a094f026fd7d7f85483ee2dd8fd29e92508cfa60e363632b60869cf625"
+    },
+    {
+      "recordId": "design-tradeoff.1.without_skill",
+      "caseId": "design-tradeoff",
+      "title": "Design Docの構成・失敗条件・代替案",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943",
+      "bodyHash": "cf860ea761139a084af5af71868f460882be1b77d1e01e0b114c0f12a62583d7"
+    },
+    {
+      "recordId": "design-tradeoff.1.with_skill",
+      "caseId": "design-tradeoff",
+      "title": "Design Docの構成・失敗条件・代替案",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16",
+      "bodyHash": "4169a849889b0ceb53570253b6cf21fdbff621979f5f92a08c408a11f47d3ca6"
+    },
+    {
+      "recordId": "plain-japanese.1.with_skill",
+      "caseId": "plain-japanese",
+      "title": "曖昧な表現を根拠に沿って具体化",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-9e73c63920be39d1e4766d3cafef84c14fa266b8c12c81ad20d8bc1326d3262c",
+      "bodyHash": "b309ea18e33a378288571ff679015d16cd1992de774e5e8f9abd03825a12b561"
+    },
+    {
+      "recordId": "plain-japanese.1.without_skill",
+      "caseId": "plain-japanese",
+      "title": "曖昧な表現を根拠に沿って具体化",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e",
+      "bodyHash": "887c11abd25dc9d6792cc74fb8e5c87b43c03ebb0eb5d9e12d3d2d6244566fdb"
+    },
+    {
+      "recordId": "progress-retention.1.without_skill",
+      "caseId": "progress-retention",
+      "title": "進捗報告で追跡情報を保持",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f",
+      "bodyHash": "4da4cb1d39e39c4d9becb86e7c20d67035b45b929178650a607c14a4db99e4d0"
+    },
+    {
+      "recordId": "progress-retention.1.with_skill",
+      "caseId": "progress-retention",
+      "title": "進捗報告で追跡情報を保持",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8",
+      "bodyHash": "9195a6084617583577d9ac79196a1cbc0baa5525b4ddfe1fada16b318c8d1902"
+    },
+    {
+      "recordId": "surgical-edit.1.with_skill",
+      "caseId": "surgical-edit",
+      "title": "既存文書の一文だけ修正",
+      "repeat": 1,
+      "arm": "with_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c"
+    },
+    {
+      "recordId": "surgical-edit.1.without_skill",
+      "caseId": "surgical-edit",
+      "title": "既存文書の一文だけ修正",
+      "repeat": 1,
+      "arm": "without_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c"
+    },
+    {
+      "recordId": "plain-japanese.2.with_skill",
+      "caseId": "plain-japanese",
+      "title": "曖昧な表現を根拠に沿って具体化",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-a54c3aa8fadffdefaa124be5dbb6ecd19076ee4a7f124db44abe4b92eee6b202",
+      "bodyHash": "c00f5762cd7b14d0b63c343362326d3bf7f48ef8cdee05b21ecee37b856b6fe8"
+    },
+    {
+      "recordId": "plain-japanese.2.without_skill",
+      "caseId": "plain-japanese",
+      "title": "曖昧な表現を根拠に沿って具体化",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-c68f7ac8d468c95eb9b7cfa218aa3c2f72198d667b563dc4e71b2e7e67155fdc",
+      "bodyHash": "00f0f6ee5f82ed2f0e90c150f8fb001a937214b3075c2c8c1307d23550566b50"
+    },
+    {
+      "recordId": "surgical-edit.2.without_skill",
+      "caseId": "surgical-edit",
+      "title": "既存文書の一文だけ修正",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c"
+    },
+    {
+      "recordId": "surgical-edit.2.with_skill",
+      "caseId": "surgical-edit",
+      "title": "既存文書の一文だけ修正",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c"
+    },
+    {
+      "recordId": "comparison-rfc.2.with_skill",
+      "caseId": "comparison-rfc",
+      "title": "RFCで比較と未決定を保つ",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-d34decdeda90a977b8eb017e94803539956153447788299d88f88938589f7d18",
+      "bodyHash": "a01dc579c4985bac6da95bfe0e0cbcff11ccc01579d644f5586a0a64977e8232"
+    },
+    {
+      "recordId": "comparison-rfc.2.without_skill",
+      "caseId": "comparison-rfc",
+      "title": "RFCで比較と未決定を保つ",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-9f821bbedc8002d91534ece595797af4adbf2af940f8cdee0d9217a20857e436",
+      "bodyHash": "436062f7d60d609366469da9e2b27d40e61560f71fa9e705aad4e13123eb8e1d"
+    },
+    {
+      "recordId": "design-tradeoff.2.without_skill",
+      "caseId": "design-tradeoff",
+      "title": "Design Docの構成・失敗条件・代替案",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-236b01901732d20fdbc4e8d446112ec90b3d660e38e8e174703610a36e459cd5",
+      "bodyHash": "d78a987a5aadd515f90f5eb5fa9334e3ffbc075fe21d21afc9092af0be7b2efa"
+    },
+    {
+      "recordId": "design-tradeoff.2.with_skill",
+      "caseId": "design-tradeoff",
+      "title": "Design Docの構成・失敗条件・代替案",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-38854e37665b953627eacd5318e5d9cd49f7782c6331ec84b8183ba49e9a994b",
+      "bodyHash": "8f87178ec9c63c9102b90285eb96341459c7a48c5b2be92c54a142b974229652"
+    },
+    {
+      "recordId": "adr-boundary.2.with_skill",
+      "caseId": "adr-boundary",
+      "title": "ADRの判断と作業追跡の分離",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8",
+      "bodyHash": "1f566549ebaf93276a8658fbf023a7b72c2f70d6945ea33f670c94cc14758978"
+    },
+    {
+      "recordId": "adr-boundary.2.without_skill",
+      "caseId": "adr-boundary",
+      "title": "ADRの判断と作業追跡の分離",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-0f96c12d22dfd06e6980acca7def1de0332961c9eccd8a52dc0a84cd5af5c641",
+      "bodyHash": "7c142fe37e6be985e563f81ab21ceba29801bd3d3ac5537335660e51fe92baea"
+    },
+    {
+      "recordId": "incident-record.2.without_skill",
+      "caseId": "incident-record",
+      "title": "障害記録の時系列と仮説",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da",
+      "bodyHash": "ff7835fd3840f20d234dd72a4c13de05b9e6554548a2e47f285af71c33bfde03"
+    },
+    {
+      "recordId": "incident-record.2.with_skill",
+      "caseId": "incident-record",
+      "title": "障害記録の時系列と仮説",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf",
+      "bodyHash": "d449c6f1fcefef738b6501ace13d64cbd053ee056999c67b5e6694a6912b64d5"
+    },
+    {
+      "recordId": "runbook-missing.2.with_skill",
+      "caseId": "runbook-missing",
+      "title": "資料不足の手順を完成扱いしない",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540",
+      "bodyHash": "790d29a4554fab9c392431028f3884d1fb6b8b7ccaf3a0bbdfa08120ecea91fa"
+    },
+    {
+      "recordId": "runbook-missing.2.without_skill",
+      "caseId": "runbook-missing",
+      "title": "資料不足の手順を完成扱いしない",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae",
+      "bodyHash": "25799a6d942980288a54b8c027f18ae4bc6da47cd3b9d68cd79c803102ce958d"
+    },
+    {
+      "recordId": "canonical-reference.2.without_skill",
+      "caseId": "canonical-reference",
+      "title": "正本で済む依頼",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-20d12fc981ec725ea2a36b186164c17c3d679af0f7a4a052d682a34c2f393699",
+      "bodyHash": "1939c2e5ed0c943713b049d6518d0d66de2853c2c4482c2ece4c2990774805e1"
+    },
+    {
+      "recordId": "canonical-reference.2.with_skill",
+      "caseId": "canonical-reference",
+      "title": "正本で済む依頼",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-54d448b64ea55f108485d8d3d087ad3ace06ca28abfee63a1b6723a5d7acf7ad",
+      "bodyHash": "167b1ec862e4dc25a32de9b61a344336577d54514ba28acefac60638cac52952"
+    },
+    {
+      "recordId": "progress-retention.2.with_skill",
+      "caseId": "progress-retention",
+      "title": "進捗報告で追跡情報を保持",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d",
+      "bodyHash": "ef0ced5819eabce35080488e2311c2020b18eb50e85d2e2b755648bc102cb026"
+    },
+    {
+      "recordId": "progress-retention.2.without_skill",
+      "caseId": "progress-retention",
+      "title": "進捗報告で追跡情報を保持",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-5b0c9413a08fe33895b720e126ca7cc43b453f524069779bbde3e30c4f7e0849",
+      "bodyHash": "69242af77da36a17abab1af77852ef6403f4549c3b53ea4e9fcfd972af134422"
+    },
+    {
+      "recordId": "no-document.2.without_skill",
+      "caseId": "no-document",
+      "title": "文書を作る必要性の判断",
+      "repeat": 2,
+      "arm": "without_skill",
+      "reviewId": "r-c15c99bb39cdf47c0786c92dd0f05c12b04d0c6297169c80dbc869a31d983f24",
+      "bodyHash": "18d20f7acf63603792dd70a4251fbfab557fd2d287fc8103c50e282a2532f34c"
+    },
+    {
+      "recordId": "no-document.2.with_skill",
+      "caseId": "no-document",
+      "title": "文書を作る必要性の判断",
+      "repeat": 2,
+      "arm": "with_skill",
+      "reviewId": "r-a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195",
+      "bodyHash": "8c94fea07a0e6af2b802a52437dc8da0aa2265a72a20dd67d884b32cbfe9ab02"
+    }
+  ],
+  "inputHashes": [
+    {
+      "reviewId": "r-0f96c12d22dfd06e6980acca7def1de0332961c9eccd8a52dc0a84cd5af5c641",
+      "inputHash": "0f96c12d22dfd06e6980acca7def1de0332961c9eccd8a52dc0a84cd5af5c641"
+    },
+    {
+      "reviewId": "r-135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae",
+      "inputHash": "135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae"
+    },
+    {
+      "reviewId": "r-187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c",
+      "inputHash": "187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c"
+    },
+    {
+      "reviewId": "r-1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8",
+      "inputHash": "1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8"
+    },
+    {
+      "reviewId": "r-20d12fc981ec725ea2a36b186164c17c3d679af0f7a4a052d682a34c2f393699",
+      "inputHash": "20d12fc981ec725ea2a36b186164c17c3d679af0f7a4a052d682a34c2f393699"
+    },
+    {
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "inputHash": "2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a"
+    },
+    {
+      "reviewId": "r-236b01901732d20fdbc4e8d446112ec90b3d660e38e8e174703610a36e459cd5",
+      "inputHash": "236b01901732d20fdbc4e8d446112ec90b3d660e38e8e174703610a36e459cd5"
+    },
+    {
+      "reviewId": "r-30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d",
+      "inputHash": "30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d"
+    },
+    {
+      "reviewId": "r-38854e37665b953627eacd5318e5d9cd49f7782c6331ec84b8183ba49e9a994b",
+      "inputHash": "38854e37665b953627eacd5318e5d9cd49f7782c6331ec84b8183ba49e9a994b"
+    },
+    {
+      "reviewId": "r-42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e",
+      "inputHash": "42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e"
+    },
+    {
+      "reviewId": "r-4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e",
+      "inputHash": "4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e"
+    },
+    {
+      "reviewId": "r-500792c0d414eba01a1541442510c1a2d2bbf2154538184346aeb2238f09325f",
+      "inputHash": "500792c0d414eba01a1541442510c1a2d2bbf2154538184346aeb2238f09325f"
+    },
+    {
+      "reviewId": "r-54d448b64ea55f108485d8d3d087ad3ace06ca28abfee63a1b6723a5d7acf7ad",
+      "inputHash": "54d448b64ea55f108485d8d3d087ad3ace06ca28abfee63a1b6723a5d7acf7ad"
+    },
+    {
+      "reviewId": "r-5b0c9413a08fe33895b720e126ca7cc43b453f524069779bbde3e30c4f7e0849",
+      "inputHash": "5b0c9413a08fe33895b720e126ca7cc43b453f524069779bbde3e30c4f7e0849"
+    },
+    {
+      "reviewId": "r-72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16",
+      "inputHash": "72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16"
+    },
+    {
+      "reviewId": "r-7d2ba7365f3766c769952bf367cfcefb26282fb9d3e1faab98e88a3bd14c1eac",
+      "inputHash": "7d2ba7365f3766c769952bf367cfcefb26282fb9d3e1faab98e88a3bd14c1eac"
+    },
+    {
+      "reviewId": "r-7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540",
+      "inputHash": "7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540"
+    },
+    {
+      "reviewId": "r-80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf",
+      "inputHash": "80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf"
+    },
+    {
+      "reviewId": "r-8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e",
+      "inputHash": "8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e"
+    },
+    {
+      "reviewId": "r-89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8",
+      "inputHash": "89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8"
+    },
+    {
+      "reviewId": "r-8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da",
+      "inputHash": "8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da"
+    },
+    {
+      "reviewId": "r-95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2",
+      "inputHash": "95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2"
+    },
+    {
+      "reviewId": "r-9e73c63920be39d1e4766d3cafef84c14fa266b8c12c81ad20d8bc1326d3262c",
+      "inputHash": "9e73c63920be39d1e4766d3cafef84c14fa266b8c12c81ad20d8bc1326d3262c"
+    },
+    {
+      "reviewId": "r-9f821bbedc8002d91534ece595797af4adbf2af940f8cdee0d9217a20857e436",
+      "inputHash": "9f821bbedc8002d91534ece595797af4adbf2af940f8cdee0d9217a20857e436"
+    },
+    {
+      "reviewId": "r-a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195",
+      "inputHash": "a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195"
+    },
+    {
+      "reviewId": "r-a54c3aa8fadffdefaa124be5dbb6ecd19076ee4a7f124db44abe4b92eee6b202",
+      "inputHash": "a54c3aa8fadffdefaa124be5dbb6ecd19076ee4a7f124db44abe4b92eee6b202"
+    },
+    {
+      "reviewId": "r-adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7",
+      "inputHash": "adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7"
+    },
+    {
+      "reviewId": "r-c15c99bb39cdf47c0786c92dd0f05c12b04d0c6297169c80dbc869a31d983f24",
+      "inputHash": "c15c99bb39cdf47c0786c92dd0f05c12b04d0c6297169c80dbc869a31d983f24"
+    },
+    {
+      "reviewId": "r-c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f",
+      "inputHash": "c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f"
+    },
+    {
+      "reviewId": "r-c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304",
+      "inputHash": "c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304"
+    },
+    {
+      "reviewId": "r-c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943",
+      "inputHash": "c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943"
+    },
+    {
+      "reviewId": "r-c68f7ac8d468c95eb9b7cfa218aa3c2f72198d667b563dc4e71b2e7e67155fdc",
+      "inputHash": "c68f7ac8d468c95eb9b7cfa218aa3c2f72198d667b563dc4e71b2e7e67155fdc"
+    },
+    {
+      "reviewId": "r-c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8",
+      "inputHash": "c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8"
+    },
+    {
+      "reviewId": "r-d34decdeda90a977b8eb017e94803539956153447788299d88f88938589f7d18",
+      "inputHash": "d34decdeda90a977b8eb017e94803539956153447788299d88f88938589f7d18"
+    },
+    {
+      "reviewId": "r-d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68",
+      "inputHash": "d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68"
+    },
+    {
+      "reviewId": "r-da7bcaaecaad65abf35ff446985d16c80c3973272ac2362c9669739447464855",
+      "inputHash": "da7bcaaecaad65abf35ff446985d16c80c3973272ac2362c9669739447464855"
+    },
+    {
+      "reviewId": "r-dc9a1ece64a7564577d80546886a5e43bf3c530d731195151795b86a62203674",
+      "inputHash": "dc9a1ece64a7564577d80546886a5e43bf3c530d731195151795b86a62203674"
+    }
+  ],
+  "runtime": {
+    "codexVersion": "codex-cli 0.155.1",
+    "nodeVersion": "v25.4.0"
+  },
+  "jobs": 2,
+  "isolation": "fresh ephemeral session; no tools, user/project instructions, native skills, plugins, history, old judgments, candidate notes, arm names or skill text"
+}

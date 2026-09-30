@@ -1,0 +1,77 @@
+{
+  "reviewId": "r-7a730509cbf0d7e40f2ecd0f199e19c235cb42b6fd327111a4f0bbd6b139529a",
+  "inputHash": "7a730509cbf0d7e40f2ecd0f199e19c235cb42b6fd327111a4f0bbd6b139529a",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番が使う本番キャッシュ再起動Runbookの草稿",
+        "status": "revision_needed",
+        "summary": "未確定事項の整理には使えますが、承認を得れば実施できるように読める記述の修正が必要です。必要な条件・操作・確認方法・連絡先が未決定のため、現状では本番操作には使えません。",
+        "strengths": [
+          "コマンド、停止条件、復旧確認方法、連絡先の未確定を明示している。",
+          "停止条件の決定まで本番キャッシュを停止してはならないと明記している。",
+          "復旧確認や実施記録について、今後具体化すべき項目を整理している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "責任者または当番の承認を得てから実施する。",
+            "source_excerpt": "再起動コマンド、停止してよい条件、復旧確認方法、連絡先はまだ決まっていない。",
+            "finding": "資料にない承認者と承認による実施経路を確定事項として示しています。手順でも承認後にコマンド実行へ進むため、後段の「条件を決定するまで停止禁止」と実施可否が整合していません。",
+            "impact": "当番が、自分または責任者の承認だけで未確定の条件を補えると誤解し、本番操作へ進むおそれがあります。",
+            "suggested_change": "承認者・承認手続きも未確定として扱い、必要事項の確定まではこの草稿による本番操作を実施できないと統一してください。手順中の承認から実行への流れも、確定後に使用する未完成の手順であることを明示してください。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "対象を特定した再起動コマンドと具体的な操作手順",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "【未確定】キャッシュの停止・再起動コマンドを実行する。",
+            "consequence": "当番が実際の再起動操作を行えません。資料側で確定する必要があります。"
+          },
+          {
+            "missing_information": "停止してよい条件と実施判断・承認の体制",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "責任者または当番の承認を得てから実施する。",
+            "consequence": "実施可否を判断できません。未確定の明示はありますが、承認だけで実施可能とも読めるため、限界の示し方が不十分です。"
+          },
+          {
+            "missing_information": "復旧確認の具体的方法、正常判定基準、観察時間",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "確認方法は未定義。少なくとも以下を決定する必要がある。",
+            "consequence": "確認項目の検討には使えますが、復旧完了や対応終了を判断できません。"
+          },
+          {
+            "missing_information": "実際に連絡できる連絡先とエスカレーション先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先は未定義。実施前に、責任者、サービス担当者、インフラ担当者、および障害連絡先を確定すること。",
+            "consequence": "当番が本文だけを頼りに相談やエスカレーションを実行することはできません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6394,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1196,
+        "reasoning_output_tokens": 262
+      },
+      "elapsedMs": 40012,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-7a730509cbf0d7e40f2ecd0f199e19c235cb42b6fd327111a4f0bbd6b139529a.1.json",
+        "sha256": "64240fff7361395fa9680e22444a602c79a2e2a080e25df5ef9434b0d61b8c75",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "7a730509cbf0d7e40f2ecd0f199e19c235cb42b6fd327111a4f0bbd6b139529a",
+        "sessionId": "01a0beb4-69ab-7823-97d5-2c9a30025c41"
+      },
+      "validationErrors": null
+    }
+  ]
+}

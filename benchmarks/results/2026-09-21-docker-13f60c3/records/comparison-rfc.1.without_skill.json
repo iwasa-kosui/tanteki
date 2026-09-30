@@ -1,0 +1,24 @@
+{
+  "promptHash": "08a8fa361e49313b6803f40d88fbe161bffb933d3979e59ac2ef83b65da6718f",
+  "jobHash": "082778836d7196a23cb1179e4955d2f5bcb8823f3d9767af8385a5ace32b9767",
+  "environmentHash": "5213716510cd5cdd4a16acb1e2060fb2af84e238ca796078887df9707affc62d",
+  "containerId": "45a98b8839b8676e4cce09547c992f19b09caef74b9a608cbfa4a7fdb1f6f6f5",
+  "usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "modelCalls": 1,
+  "providerResponses": 0,
+  "elapsedMs": 6663,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "comparison-rfc.1.without_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "execution_failed",
+  "error": "Provider failure: rate_limit_exceeded"
+}

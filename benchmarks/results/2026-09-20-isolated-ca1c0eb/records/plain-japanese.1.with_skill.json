@@ -1,0 +1,37 @@
+{
+  "id": "plain-japanese.1.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 1,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "利用者は、既存の認証が有効であれば再ログインせずに請求画面へ移れます。認証の有効期限が切れている場合は、ログイン画面を表示します。",
+        "notes": "種別：機能仕様。読者：CS担当。主題：既存認証の状態に応じた請求画面への遷移を説明する。出典：依頼文の確定事項。構成と本文は執筆者が検査しました。外部検査は未実施です。"
+      },
+      "usage": {
+        "input_tokens": 12626,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 212,
+        "reasoning_output_tokens": 69
+      },
+      "elapsedMs": 8592,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/plain-japanese.1.with_skill.0.json",
+        "sha256": "e42745d6ade3bab0c0e7fd61f338eb86f79e576fce39ba9d3eda52f331637c31",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "3055aeb262f59f11a8b1d1175269b89a8c0037749ff31822c42ad42e1b5a496a",
+        "sessionId": "01a0beb0-5248-7661-a33a-e8d9d7cf5bd0"
+      },
+      "metrics": {
+        "characters": 65,
+        "headings": 0,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "3055aeb262f59f11a8b1d1175269b89a8c0037749ff31822c42ad42e1b5a496a"
+    }
+  ]
+}

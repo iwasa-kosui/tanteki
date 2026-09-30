@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-571e8aa9872bbfddc7259f5b0054c72ab6c96fec8f9ae9c6fa1ca84ebe12665f",
+  "inputHash": "571e8aa9872bbfddc7259f5b0054c72ab6c96fec8f9ae9c6fa1ca84ebe12665f",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "中止した定例について、新たに議事録を残す必要があるかを判断するための回答。",
+        "status": "usable",
+        "summary": "新たな議事録は不要という判断と、その根拠が資料に即しています。社内規程による例外も条件付きで示されており、記録を増やす必要性の判断に使えます。",
+        "strengths": [
+          "結論を冒頭で明示し、依頼者の問いに直接答えています。",
+          "議論・決定・宿題がないことと、中止連絡が送信済みであることを判断の根拠にしています。",
+          "社内規程の存在を断定せず、追加記録が必要になる場合を区別しています。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "開催実績や中止理由の記録を必須とする社内規程の有無。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "ただし、開催実績や中止理由の記録を社内規程で必須としている場合は、次の最小記録を残します。",
+            "consequence": "規程に基づく追加記録の要否は資料だけでは確定できませんが、本文はその条件を明示しています。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 5979,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 543,
+        "reasoning_output_tokens": 194
+      },
+      "elapsedMs": 20453,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-571e8aa9872bbfddc7259f5b0054c72ab6c96fec8f9ae9c6fa1ca84ebe12665f.1.json",
+        "sha256": "89ae13e4f0d8e2acff03bec2649851b0b30621235b82b14288e71833d35f8455",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "571e8aa9872bbfddc7259f5b0054c72ab6c96fec8f9ae9c6fa1ca84ebe12665f",
+        "sessionId": "01a0beb3-d337-7092-8621-ef842ff7a5ec"
+      },
+      "validationErrors": null
+    }
+  ]
+}

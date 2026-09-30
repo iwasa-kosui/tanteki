@@ -1,0 +1,28 @@
+{
+  "promptHash": "b2d18a668799402aa1c1a1cf34bde0f5885ad0443011e78d6f9f8a8d7ce174be",
+  "jobHash": "0c89e10e2058187cffae937c98ab6b58373a037633fe878f5d32da1fc2b0deb9",
+  "environmentHash": "871e9f10c76ed795ba765f2fa25a0724434069469c76a6c907e2b20d46990994",
+  "containerId": "452b3c8d485a77e4c3839d4a0763bec9829b31f95f8702e4ead93cebcedcc0c2",
+  "usage": {
+    "input_tokens": 5887,
+    "cached_input_tokens": 0,
+    "output_tokens": 139
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 6361,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "canonical-reference.2.without_skill",
+  "caseId": "canonical-reference",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "経費の領収書は、経費システムにPDFで添付して提出してください。\n\n原本の提出が必要なのは、経理から個別に依頼された場合のみです。詳細は、正本の「領収書の提出」節をご確認ください：\nhttps://example.test/expense",
+    "notes": ""
+  },
+  "responseHash": "634ada7a4fbe3ad7183b7f6551c29c5a3981f637224ae3580f811b5c5af0e33b"
+}

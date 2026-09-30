@@ -1,0 +1,28 @@
+{
+  "promptHash": "08a8fa361e49313b6803f40d88fbe161bffb933d3979e59ac2ef83b65da6718f",
+  "jobHash": "082778836d7196a23cb1179e4955d2f5bcb8823f3d9767af8385a5ace32b9767",
+  "environmentHash": "2c138314c6151c4adde6003007ea4026301da5c5a9e3009e3815f55a9f2aaeea",
+  "containerId": "4363d85b986d449a2928f853ebe65189ae3310f04e228cfd78caa99e59e5d60e",
+  "usage": {
+    "input_tokens": 5965,
+    "cached_input_tokens": 0,
+    "output_tokens": 541
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 10641,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "comparison-rfc.1.without_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "# RFC: 商品検索基盤の方式選定\n\n- **参照**: SEARCH-88、PR #71\n- **レビュー期限**: 8月28日\n- **ステータス**: 合意待ち\n\n## 1. 背景・課題\n商品検索が遅く、特に部分一致検索の性能改善が必要である。現時点では計測値・費用の情報はない。\n\n## 2. 比較案\n\n### 方式A: 既存DB索引の追加\n- 既存DB内で完結するため、運用対象は増えない\n- 部分一致検索は速くならない\n\n### 方式B: 検索専用サービスの導入（提案）\n- 部分一致検索の高速化が期待できる\n- 検索専用サービスの運用が新たに必要\n- DBから検索サービスへの反映に遅延が生じる\n\n## 3. 提案\n方式Bを採用する。今回の主な課題である部分一致検索を改善できるためである。\n\n検索結果は最大60秒古くても許容する案とする。ただし、この許容について業務側の承認はまだ得られていないため、実装開始前に確認する。\n\n## 4. 合意が必要な事項\n1. 検索専用サービスを別サービスとして運用すること\n2. DB更新から検索結果への反映が最大60秒遅延することを許容すること（業務側承認が必要）\n\n## 5. 合意後の確認事項\n方式Bの採用後、性能目標、運用費用、監視・障害時の対応、および実測に基づく効果を別途確認する。",
+    "notes": "計測値・費用が未提示のため、RFCでは定量的な効果やコストを断定していません。レビュー期限の年は原資料に記載がないため補っていません。"
+  },
+  "responseHash": "095dff0b24a8bb254fe94b037306574e0b1b97dac36b633fa3207bb603a7c47e"
+}

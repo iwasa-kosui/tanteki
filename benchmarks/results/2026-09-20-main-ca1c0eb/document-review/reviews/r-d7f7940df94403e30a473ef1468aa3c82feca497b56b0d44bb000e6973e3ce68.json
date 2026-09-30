@@ -1,0 +1,58 @@
+{
+  "reviewId": "r-d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68",
+  "inputHash": "d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番向け本番キャッシュ再起動Runbookの草稿",
+        "status": "source_limited",
+        "summary": "運用開始前の決定事項を整理する草稿として使えます。実施条件・コマンド・復旧確認・連絡先が未決定のため本番作業には使えませんが、その制限は明確に示されています。",
+        "strengths": [
+          "エラー検知だけでは再起動しないことと、未決定事項の解消まで本番実行に使用しないことを明示しています。",
+          "復旧確認項目を確定済みの仕様ではなく、今後定義する項目として提示しています。",
+          "復旧を確認できない場合の再起動反復を禁じ、連絡手順や記録の整備につなげています。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "停止・再起動の実施可否を判断する条件、禁止条件、影響範囲",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "現時点では、再起動してよい条件が未決定です。",
+            "consequence": "当番はエラーを検知しても、停止・再起動してよいか判断できません。"
+          },
+          {
+            "missing_information": "再起動対象と環境、具体的な再起動コマンド、必要な権限",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "※再起動コマンドは未決定のため、具体的なコマンドを記載していません。",
+            "consequence": "対象を特定し、安全に再起動操作を実行することはできません。"
+          },
+          {
+            "missing_information": "復旧確認の具体的な方法と合格基準",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "復旧確認方法は未決定です。少なくとも、以下を確認できる手順を定義してください。",
+            "consequence": "確認項目の候補はありますが、当番が復旧完了を判定するには方法と基準の確定が必要です。"
+          },
+          {
+            "missing_information": "連絡先、承認者、エスカレーション条件と手順",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先は未決定です。再起動前後に連絡すべき担当チーム、緊急連絡先、エスカレーション条件を定義してください。",
+            "consequence": "実施判断に迷う場合や復旧を確認できない場合に、具体的な連絡行動へ進めません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6486,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 828,
+        "reasoning_output_tokens": 143
+      },
+      "elapsedMs": 31986,
+      "validationErrors": null
+    }
+  ]
+}

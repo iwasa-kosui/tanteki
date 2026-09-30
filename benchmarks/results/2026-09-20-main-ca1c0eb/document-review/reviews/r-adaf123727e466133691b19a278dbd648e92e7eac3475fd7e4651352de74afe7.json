@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7",
+  "inputHash": "adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "検索基盤の方式選定について、開発チームが合意を判断するための短いRFC。",
+        "status": "usable",
+        "summary": "方式A・Bの違い、Bの提案理由、運用上の影響と合意事項を理解できる。60秒の許容が業務側未承認であることも明確。定量的な性能・費用比較はできないが、提示された論点の合意形成には使える。",
+        "strengths": [
+          "部分一致の改善と運用負担の対応関係が明確で、Bを提案する理由を追える。",
+          "冒頭の「提案中」と未承認条件の明記により、提案と決定済み事項を区別できる。",
+          "別サービスの運用と最大60秒の古さの許容を、合意すべき事項として具体的に示している。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "性能の計測値と費用情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "計測値と費用は未確認である。",
+            "consequence": "改善幅や費用対効果の定量評価はできない。本文は不足を明示しており、定性的な方式比較と合意論点の確認は可能。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6259,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 737,
+        "reasoning_output_tokens": 383
+      },
+      "elapsedMs": 25939,
+      "validationErrors": null
+    }
+  ]
+}

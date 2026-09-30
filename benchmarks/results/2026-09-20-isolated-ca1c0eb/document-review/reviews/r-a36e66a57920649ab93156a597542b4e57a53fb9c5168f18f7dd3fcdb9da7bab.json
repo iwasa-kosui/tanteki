@@ -1,0 +1,76 @@
+{
+  "reviewId": "r-a36e66a57920649ab93156a597542b4e57a53fb9c5168f18f7dd3fcdb9da7bab",
+  "inputHash": "a36e66a57920649ab93156a597542b4e57a53fb9c5168f18f7dd3fcdb9da7bab",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番が本番キャッシュ再起動の前提、実施可否、操作、復旧確認、連絡を確認するRunbookの草稿。",
+        "status": "revision_needed",
+        "summary": "未決定事項を整理する草稿として役立つが、本番で実行できる段階ではない。特に、キャッシュを停止してよい条件が、再起動を中止する条件に置き換わっており、区別が必要。",
+        "strengths": [
+          "再起動コマンドや復旧確認方法を創作せず、未決定と明示している。",
+          "復旧判定基準と連絡窓口を定める必要性を示している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "再起動を停止してよい条件は未決定である。再起動前に、実行を中止する条件を定める必要がある。",
+            "source_excerpt": "再起動コマンド、停止してよい条件、復旧確認方法、連絡先はまだ決まっていない。",
+            "finding": "原資料の「停止してよい条件」を、再起動の実行を中止する条件として扱っている。キャッシュ停止を許容できる条件と、操作を中止する条件は異なる。",
+            "impact": "草稿を補完する際、中止条件だけを決めればよいと読まれ、本番キャッシュを停止してよいかの判断条件が抜け落ちる。",
+            "suggested_change": "キャッシュを停止してよい条件が未決定であることを明記し、実行中止条件とは区別する。具体的な条件は資料で確認するまで補わない。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "再起動コマンド、本番の対象、必要な実行権限。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "本番環境の対象、再起動コマンド、実行権限は未決定である。",
+            "consequence": "実際の再起動操作は実行できない。"
+          },
+          {
+            "missing_information": "キャッシュを停止してよい条件。",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "再起動を停止してよい条件は未決定である。",
+            "consequence": "停止を伴う再起動を実施してよいか判断できない。本文では中止条件との混同もある。"
+          },
+          {
+            "missing_information": "復旧確認方法と正常の判定基準。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "復旧確認の方法は未決定である。",
+            "consequence": "再起動後に復旧したか判断できない。"
+          },
+          {
+            "missing_information": "障害対応の連絡先。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "連絡先は未決定である。",
+            "consequence": "当番が判断や支援を求める相手を特定できない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6072,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1317,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 46262,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-a36e66a57920649ab93156a597542b4e57a53fb9c5168f18f7dd3fcdb9da7bab.1.json",
+        "sha256": "69bd250bac2811484a70730e062cec1f92550fc6bb709e745a75b21799377850",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "a36e66a57920649ab93156a597542b4e57a53fb9c5168f18f7dd3fcdb9da7bab",
+        "sessionId": "01a0beb5-05f1-7232-b7f3-7c7ddcc451f7"
+      },
+      "validationErrors": null
+    }
+  ]
+}

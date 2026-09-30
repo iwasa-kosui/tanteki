@@ -1,0 +1,45 @@
+{
+  "reviewId": "r-06de76771bf3045d9d372729e0916ed6b7518caeb3d5bb124af44270de61698e",
+  "inputHash": "06de76771bf3045d9d372729e0916ed6b7518caeb3d5bb124af44270de61698e",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテム",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認の経過、影響、原因仮説、改善行動の担当と期限を区別できる。原因確定にはログ確認が必要だが、その限界も明示されている。",
+        "strengths": [
+          "各時刻を検知・対応・復旧確認に対応づけ、当番の加藤による操作を明記している。",
+          "検索失敗340件と決済への影響なしを正確に伝え、原因仮説を確定事実と区別している。",
+          "改善課題の番号、実施内容、担当、期限が揃っている。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の結果と、DB接続枯渇という原因仮説の検証結果。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "ログ確認が未完了のため、確定していない。",
+            "consequence": "原因は確定できないが、暫定的なポストモーテムとしての共有には支障がない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6048,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 428,
+        "reasoning_output_tokens": 110
+      },
+      "elapsedMs": 18009,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-06de76771bf3045d9d372729e0916ed6b7518caeb3d5bb124af44270de61698e.1.json",
+        "sha256": "d0a7e911b19d1089b3081680b0e0602c56b57f6543ca3d0fb8f76510286fccef",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "06de76771bf3045d9d372729e0916ed6b7518caeb3d5bb124af44270de61698e",
+        "sessionId": "01a0beb3-282e-7630-ab6e-30d826cba274"
+      },
+      "validationErrors": null
+    }
+  ]
+}

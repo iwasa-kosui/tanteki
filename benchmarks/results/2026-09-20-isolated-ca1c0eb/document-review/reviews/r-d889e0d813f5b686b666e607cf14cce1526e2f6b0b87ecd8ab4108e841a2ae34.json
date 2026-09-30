@@ -1,0 +1,63 @@
+{
+  "reviewId": "r-d889e0d813f5b686b666e607cf14cce1526e2f6b0b87ecd8ab4108e841a2ae34",
+  "inputHash": "d889e0d813f5b686b666e607cf14cce1526e2f6b0b87ecd8ab4108e841a2ae34",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "将来の保守者が、請求書PDF生成を非同期キュー処理にした採用判断、その理由・比較対象・影響・適用範囲を再構成するためのADR。",
+        "status": "revision_needed",
+        "summary": "採用日、同期生成を退けた理由、非同期化の負担は理解できる。ただし、原資料にない状態確認・結果取得方式まで採用済みとしているため、決定範囲の修正が必要。",
+        "strengths": [
+          "採用日と採用ステータスが明示されている。",
+          "同期生成の最大45秒という所要時間と接続切断を、不採用理由として説明している。",
+          "利用者の待ち時間と再試行上限の未決定を明記し、実装進捗70%を採用判断とは分けている。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "APIは生成処理を受け付けた時点で受付IDを返し、クライアントは受付IDを使って処理状況や完成結果を確認する。",
+            "source_excerpt": "請求書のPDF生成はキューで処理し、APIは受付IDを返す。",
+            "finding": "原資料で決まっているのはキュー処理と受付IDの返却までであり、受付IDによる状態確認・結果取得は記載されていない。「影響」でも利用者による状態確認を必須としており、未確認の仕様が採用判断に追加されている。",
+            "impact": "将来の保守者が、クライアントによる状態照会や受付IDを用いた結果取得まで採用済みの制約と誤認する。",
+            "suggested_change": "決定をキュー処理と受付IDの返却に限定し、「影響」の対応する断定も削除する。確認・取得方式に言及する場合は、原資料では確認できない詳細として区別する。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "処理状況の確認方式と完成したPDFの提供方式。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "API利用者は、受付IDを保持して完成までの状態確認を行う必要がある。",
+            "consequence": "具体的なクライアント動作は確定できない。ただし、その方式を採用済みと扱わなければ、今回のADRの判断理解は妨げない。"
+          },
+          {
+            "missing_information": "再試行回数の上限。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "再試行回数の上限は未決定であり、別途決定する必要がある。",
+            "consequence": "再試行の詳細設計には追加決定が必要だが、非同期キュー処理の採用判断を理解するうえでは支障がない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6253,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1181,
+        "reasoning_output_tokens": 429
+      },
+      "elapsedMs": 40299,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-d889e0d813f5b686b666e607cf14cce1526e2f6b0b87ecd8ab4108e841a2ae34.1.json",
+        "sha256": "b8b956bedae070fbccdc35bd3c5060586581e721972d7b2e3b8e078a35538aa8",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "d889e0d813f5b686b666e607cf14cce1526e2f6b0b87ecd8ab4108e841a2ae34",
+        "sessionId": "01a0beb6-5403-7c50-a4f4-df9c541e06de"
+      },
+      "validationErrors": null
+    }
+  ]
+}

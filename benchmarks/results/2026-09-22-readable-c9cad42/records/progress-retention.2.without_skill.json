@@ -1,0 +1,28 @@
+{
+  "promptHash": "c861cb7b6edd708d2bc58c44d3531541943217c95b164382058dc6b42b217d83",
+  "jobHash": "3c42f65a92ac798e4de81e1d5fbd677b0be71237d1e68b852f01f9991e63984a",
+  "environmentHash": "4483022600ea644edb8cffa2356fd10be4b8bd3d4177dc997007a3b950d4022b",
+  "containerId": "956d752fc7bd375543e573a15d719fc22cdd7c55de996dc2172ee031cf917cb1",
+  "usage": {
+    "input_tokens": 5886,
+    "cached_input_tokens": 0,
+    "output_tokens": 155
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 6441,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "progress-retention.2.without_skill",
+  "caseId": "progress-retention",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "【進捗報告｜2026/08/17〜08/21】\n担当：鈴木\n\n- BILL-218：受付APIを実装済み。PR #106はレビュー待ち。\n- 次タスク：再試行処理の実装。\n- 課題：再試行の最大回数が未決定のため、作業停止中。\n- 依頼：PdMに対し、8月24日までに最大回数の判断をお願いします。",
+    "notes": ""
+  },
+  "responseHash": "6086a2d9371cfcc20c22e4c8dd00a1b1bfd0de0062de13114dd486428cad3a0e"
+}

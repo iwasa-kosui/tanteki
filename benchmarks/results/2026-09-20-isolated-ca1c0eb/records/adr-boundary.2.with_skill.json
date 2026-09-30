@@ -1,0 +1,37 @@
+{
+  "id": "adr-boundary.2.with_skill",
+  "caseId": "adr-boundary",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 請求書PDF生成をキューで処理する\n\n- **状態**: 採用\n- **判断日**: 2026-08-20\n\n## 背景\n\n請求書のPDF生成には最大45秒かかり、同期処理ではAPI接続が切れる。そのため、生成処理とAPIの応答を分離する必要がある。\n\n## 決定\n\n請求書のPDF生成はキューで非同期に処理する。APIは生成完了を待たず、受付IDを返す。\n\n## 理由と代替案\n\n同期生成は、最大45秒の処理中に接続が切れるため採用しない。非同期処理ならAPIは生成処理の完了を待たずに応答できる。\n\n## 結果\n\n利用者は受付IDを使って、請求書PDFの完成を確認する必要がある。一方、請求書PDFの生成処理がAPI接続の維持時間に依存しなくなる。\n\n再試行の上限は未決定である。",
+        "notes": "種別: ADR（stock）。読者: 将来の保守者。構成: 「背景」「決定」「理由と代替案」「結果」の並列節。原資料の作業追跡情報（BILL-218、PR #106、進捗70%）はADRの正本情報ではないため本文から除外した。lint検査は外部実行系に委ねる。"
+      },
+      "usage": {
+        "input_tokens": 18539,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 470,
+        "reasoning_output_tokens": 101
+      },
+      "elapsedMs": 12883,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/adr-boundary.2.with_skill.0.json",
+        "sha256": "98565da555d72f2e8b59e76bde17104eb3adf95379673fae07a16288cd959c67",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "feaff817156b01896762cbbad8bf580c12aecf0879e270844e9f25275fa4ec11",
+        "sessionId": "01a0beb1-2d3e-7711-ba4f-6c091de589d4"
+      },
+      "metrics": {
+        "characters": 344,
+        "headings": 5,
+        "lint": [],
+        "exactEdit": null
+      },
+      "promptHash": "feaff817156b01896762cbbad8bf580c12aecf0879e270844e9f25275fa4ec11"
+    }
+  ]
+}

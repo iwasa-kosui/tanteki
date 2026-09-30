@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-184da4ce3ef2fafec4526ab2406d457ffea9946dc2d4054b773c7be9238cd70f",
+  "inputHash": "184da4ce3ef2fafec4526ab2406d457ffea9946dc2d4054b773c7be9238cd70f",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "社員に領収書の通常の提出方法と例外条件を伝え、既存の正本へ案内する。",
+        "status": "usable",
+        "summary": "通常は経費システムへPDFを添付し、経理から個別に求められた場合だけ原本を提出することが明確です。正本のURLと参照節も示されており、そのまま案内に使えます。",
+        "strengths": [
+          "通常の提出方法と原本提出が必要な例外条件を、原資料どおりに区別しています。",
+          "正本のURLと「領収書の提出」節を示し、参照先を特定できます。",
+          "新しいFAQや未確認の操作手順を追加せず、簡潔な案内に収めています。"
+        ],
+        "findings": [],
+        "source_gaps": []
+      },
+      "usage": {
+        "input_tokens": 5934,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 281,
+        "reasoning_output_tokens": 54
+      },
+      "elapsedMs": 13822,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-184da4ce3ef2fafec4526ab2406d457ffea9946dc2d4054b773c7be9238cd70f.1.json",
+        "sha256": "2c77cd9486d86a25cd6a31a7ac08b5eff30c5128ad0b174e0fcc44868fc5791a",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "184da4ce3ef2fafec4526ab2406d457ffea9946dc2d4054b773c7be9238cd70f",
+        "sessionId": "01a0beb3-2838-78a1-ae9b-9a02ad7c3d01"
+      },
+      "validationErrors": null
+    }
+  ]
+}

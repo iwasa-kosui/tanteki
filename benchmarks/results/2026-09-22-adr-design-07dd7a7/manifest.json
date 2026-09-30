@@ -1,0 +1,71 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "createdAt": "2026-09-22T06:26:04.493Z",
+  "runtimeLockHash": "16a6c55151639f01cec6d03c75793a0dbc10dafff2cc96062365b0c5128cf180",
+  "casesHash": "41b9e065bcfff99ea2bc334ca2b0dc2f981089c29fcdfd509c107685917342ff",
+  "settings": {
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "repeats": 2,
+    "seed": "isolated-v1",
+    "timeout": 600,
+    "maxCalls": 24
+  },
+  "plan": [
+    {
+      "id": "adr-boundary.1.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "adr-boundary.1.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "design-tradeoff.1.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "design-tradeoff.1.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "adr-boundary.2.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.2.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "with_skill"
+    }
+  ],
+  "sealed": true,
+  "evidence": {
+    "records": "495a87db039771a3f4b685b39423c83b39b07043fe23b22267ab46caaf58d7f2",
+    "calls": "554f2efb7153b24d413798026bc789ece5813713534f338bb48952bf3de2cab0"
+  },
+  "completedAt": "2026-09-22T06:31:35.165Z",
+  "fingerprint": "a3cca61f940d17da296bc5fa994d24f304b8c3d952dd57023b5d61987dca52b4"
+}

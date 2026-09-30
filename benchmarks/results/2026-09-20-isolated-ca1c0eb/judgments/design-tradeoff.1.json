@@ -1,0 +1,73 @@
+{
+  "caseId": "design-tradeoff",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "API→オブジェクトストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503とキュー未登録、キュー登録失敗時の回復未決定、10MBと1MB制限、結果提示の遅延を本文に記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "キュー登録失敗時の回復は未決定と明記し、再送・削除・通知・状態取得API等を確定仕様として補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "本文にDATA-64、PR #203、今週の作業、担当佐藤は記載されていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "ストレージ保存失敗時の503・未登録と、キュー登録失敗時の回復未決定を明確に区別している。ファイル本体を載せない理由も1MB制限と10MBファイルにより説明している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "同じ処理フロー、保存失敗時の扱い、キュー登録失敗時の未決定事項を複数節で反復し、「到達範囲」「可逆性」など依頼に不要な節も追加している。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "必要な処理フロー、保存失敗時のHTTP 503およびキュー未登録、回復方法未決定、最大10MBとキュー1MB制限、非同期化による結果提示遅延を記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "受付ID・状態追跡識別子、再試行・バックオフ、未登録検出、再処理、状態取得API、完了通知、削除タイミングなど、資料にない仕様・回復論点を本文へ具体的に追加している。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "「実装計画」にDATA-64、PR #203、今週のAPI実装、担当佐藤を本文へ記載している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "ストレージ保存失敗時は503かつ未登録、保存後のキュー登録失敗時は回復未決定として区別し、不採用案の理由もサイズ制限で明示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "依頼外の詳細なAPI仕様、ワーカー障害対応、状態・通知・削除の論点、実装計画を追加しており、必要な設計論点に絞れていない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 6744,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 859,
+      "reasoning_output_tokens": 222
+    },
+    "elapsedMs": 35147,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/design-tradeoff.1.judge.json",
+      "sha256": "3aaa4b735f602c0174a1c76ebbd8ca44f5ea4ffcb31b7583521876cc0ef52d42",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "16242f63c46b0124b89706c1926d4331893ef126b36f85c7d6c32e84a48faa27",
+      "sessionId": "01a0beb2-6ce7-7951-9abb-c43c495b0c31"
+    }
+  },
+  "promptHash": "16242f63c46b0124b89706c1926d4331893ef126b36f85c7d6c32e84a48faa27"
+}

@@ -13,11 +13,12 @@ test("skill packaging detects stale, missing and obsolete resources without rewr
     writeFileSync(join(root, file), content);
   };
   try {
-    for (const file of ["SKILL.md", "LICENSE", ".textlintrc.json", "package-lock.json",
+    for (const file of ["SKILL.md", "LICENSE", ".textlintrc.json",
       "agents/openai.yaml", "references/example.md", "rules/lib/example.mjs", "scripts/lint.mjs"]) {
       write(file, `fixture: ${file}\n`);
     }
-    write("package.json", JSON.stringify({ name: "test-skill", scripts: { test: "repo-only" }, dependencies: { example: "1.0.0" } }));
+    write("package.json", JSON.stringify({ name: "test-skill", scripts: { test: "repo-only" }, dependencies: { example: "1.0.0" }, devDependencies: { typescript: "7.0.2" } }));
+    write("package-lock.json", JSON.stringify({ lockfileVersion: 3, packages: { "": { dependencies: { example: "1.0.0" }, devDependencies: { typescript: "7.0.2" } }, "node_modules/example": { version: "1.0.0" }, "node_modules/typescript": { version: "7.0.2", dev: true } } }));
     cpSync(fileURLToPath(new URL("../scripts/package-skill.mjs", import.meta.url)), join(root, "scripts/package-skill.mjs"));
     const run = (...args) => spawnSync(process.execPath, [join(root, "scripts/package-skill.mjs"), ...args], { cwd: tmpdir(), encoding: "utf8" });
     const output = "skills/tanteki/";
@@ -27,6 +28,11 @@ test("skill packaging detects stale, missing and obsolete resources without rewr
     assert.equal(run("--check").status, 0);
     const manifest = JSON.parse(readFileSync(join(root, output, "package.json"), "utf8"));
     assert.equal(manifest.scripts, undefined);
+    assert.equal(manifest.devDependencies, undefined);
+    const lock = JSON.parse(readFileSync(join(root, output, "package-lock.json"), "utf8"));
+    assert.equal(lock.packages[""].devDependencies, undefined);
+    assert.equal(lock.packages["node_modules/typescript"], undefined);
+    assert.equal(lock.packages["node_modules/example"].version, "1.0.0");
     assert.deepEqual(manifest.dependencies, { example: "1.0.0" });
 
     write("references/example.md", "updated reference\n");

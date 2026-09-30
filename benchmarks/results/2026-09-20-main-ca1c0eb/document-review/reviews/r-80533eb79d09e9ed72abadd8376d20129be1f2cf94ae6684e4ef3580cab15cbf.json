@@ -1,0 +1,48 @@
+{
+  "reviewId": "r-80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf",
+  "inputHash": "80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテム",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認、影響、原因の確度、改善担当と期限を区別できる。検知主体に小さな補足断定があるが、用途は果たしている。原因の確定にはログ確認が必要。",
+        "strengths": [
+          "検知、変更の差し戻し、復旧確認を時刻とともに区別している。",
+          "検索失敗340件と決済への影響なしを明示し、原因仮説と確認済み事実を混同していない。",
+          "改善課題番号、実施内容、担当者、期限が明確である。"
+        ],
+        "findings": [
+          {
+            "severity": "minor",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "運用チームがエラー増加を検知した。",
+            "source_excerpt": "8月19日09:10に請求検索のエラー増加を検知。",
+            "finding": "原資料には検知主体が記載されていない。「運用チーム向け」という読者指定から、検知した主体まで確定することはできない。",
+            "impact": "検知を行った主体について、未確認の情報が対応記録として残る。",
+            "suggested_change": "検知主体を確認できない場合は「運用チームが」を削除する。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "ログ確認の結果と、DB接続枯渇が原因かどうかの確定情報。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "ただし、ログ確認は未完了で、原因は確定していない。",
+            "consequence": "原因確定の記録としては使えないが、現時点の経過と改善行動を共有する用途には使える。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6066,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 890,
+        "reasoning_output_tokens": 396
+      },
+      "elapsedMs": 30721,
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "promptHash": "c3820a536d23882a4167f48baaada8114747d86c43bbb0eeb99e5151f8b49372",
+  "jobHash": "04d423f3ddd2859ed847c04d4698e59e073b81330df2a2158ba54bdbd34952e7",
+  "environmentHash": "bab191e03574740866739ec3ae19144d58411ef582561627e7a346cf55dd3b1e",
+  "containerId": "a18e484cfcf02807767d9dab74c607d6bb82965dd1e890648f496c8e0de343fd",
+  "usage": {
+    "input_tokens": 46026,
+    "cached_input_tokens": 34938,
+    "output_tokens": 1012
+  },
+  "modelCalls": 5,
+  "providerResponses": 5,
+  "elapsedMs": 35802,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": true
+  },
+  "id": "plain-japanese.2.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 2,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "利用者は、既存の認証状態を引き継いで請求画面へ移動できます。再ログインは不要です。ただし、認証の有効期限が切れている場合は、ログイン画面が表示されます。",
+    "notes": "CS担当が通常時と例外条件を理解できるよう整理しました。正式名称でない造語は削除しています。内容確認とtextlint検査（stock）を実施済みです。"
+  },
+  "responseHash": "4f5e59518c64885c6f0935ff9c239eaf633fc8b3f6a8d21784bdbb4d06a5812d"
+}

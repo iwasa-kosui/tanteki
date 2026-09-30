@@ -1,0 +1,325 @@
+{
+  "createdAt": "2026-09-20T11:59:47.232Z",
+  "fingerprint": "b112d776b1d95d05949cb759122f5dcb64c2d3f1f9ba90ae7b2c27fa361ebd28",
+  "settings": {
+    "model": "gpt-5.6-luna",
+    "judgeModel": "gpt-5.6-terra",
+    "effort": "low",
+    "repeats": 2,
+    "seed": "20260906",
+    "jobs": 4,
+    "timeout": 180,
+    "maxLintRevisions": {
+      "without_skill": 0,
+      "with_skill": 1
+    }
+  },
+  "sourceHashes": {
+    "SKILL.md": "2c31100c3b481fc728efeea6b5d11d1295a2700c5fdb9d890debde5efe1d2989",
+    "references/delegation.md": "62707371480d268db3a314cec420115ae07b6a9f9e2a538eb46d758a9acdf3f2",
+    "references/japanese.md": "34afb9aec0612673034022743dcfc57cb3bf3a1224103d1149be132ed22b92c2",
+    "references/structure.md": "18db746265cd9cce71abb984d30aa9c9348f5dbba9b606f2fb084f3ef53ffa7e",
+    "references/document-types.md": "daa5a1f9b617e30f0091a89369d7d029bd2e8b7fbc42d13d28260bb088171991",
+    "references/types/design.md": "df9dbadc504de26ecee5ecede0d1dfe2e235340049e8613b7a09f91230b93a5a",
+    "references/types/knowledge.md": "3a87339bd3549a57d3ea2a7342bd589be177c152ae08b11246d4a48c9936dc52",
+    "references/types/operations.md": "7f6c3b28acff47a2d21afb4591ebf2d541a1e37776c1d027f08f6e9ca5b242c3",
+    "references/types/qa-release.md": "2a017ea04e07fa54e61ced399f5155771e1449a66e7d7e0120c6e32424cf4085",
+    "references/types/requirements.md": "05a202f38287feb2ca99320d84712080c15dbd4563d2e11a0b127a8657999f75",
+    "references/types/research.md": "1f31fd12010d91a3c5dfb0f41611a4615a1a99a110ec22930e2ed84c9384bee2",
+    "references/types/strategy.md": "963477e2bb40615b2db189c86e647538df6e0358d1283fc255b18670ccb71b26",
+    "package-lock.json": "f80f3225314e75d671297054206f9e6ab0eb73678cd2490a0e3e04a7477e8488",
+    ".textlintrc.json": "c5615fdc763b0c6ddbd605948fb2ae2839adbcf9d24b3eebb33e67882b7766df",
+    "scripts/lint.mjs": "c7e20e0325f652f1cdcef5b804da91cf16cc0bbcff0bbef0832531a0cea60295",
+    "benchmarks/benchmark.mjs": "1118686d54b81a631f7a5407384bb16adbbc9e280136f5ce00e0f1a0d97093dd",
+    "benchmarks/input-audit.mjs": "575166cca43493e7d456c286ceb93344beeec6bcbeb80401339a9434f6598a01",
+    "benchmarks/runtime-context.json": "285efd8984106849799e63e70e2361917eee3fdf157f099d650aa5885528d057",
+    "benchmarks/readable-report.mjs": "70cde0864f1ef65a4c5f7a6f6fedb9f2685258e5fbd753a8c23ea70ff71e69a6",
+    "benchmarks/comparison.css": "bd205e2599f675c136fae56ba9f2f819d33caa86d46a6720737f743d5f390fcf",
+    "benchmarks/comparison.js": "ba93dd7e251d3d76063d4e90d1b2c71b5621c1306e74d8e2476ea38be8b6873c",
+    "benchmarks/cases.json": "0fb0e2f55ddbe2b793657ff24f621f29f7f78b3ff5a56416c158fe773109643e",
+    "benchmarks/author-instructions.txt": "9e3721108a25f78db84676897e857502f4e57ba1ce3af3dab684b1b5b072e091",
+    "benchmarks/judge-instructions.txt": "f3743b02fec66bafe187a1b8e93296519958204b1da63394bf0025dd75180f9e",
+    "benchmarks/author.schema.json": "8fc21959e9eebc8fdf2714d062ec855250354b43b6abf1165ce54314d347619b",
+    "rules/lib/japanese-rule.mjs": "69c72427123eb5ff244498c6bccc557fd241c4081691539f1488de7141d9408c",
+    "rules/no-ai-jargon.mjs": "0b44a85e8f1b36916c2604185c45a35347711b9db6220ae6430a36716e6b4021",
+    "rules/no-opaque-compound.mjs": "1f87253be2f922ca100363f1ac2e8ae0b1b09df1eb93a34bf71197053ac8cdc1",
+    "rules/no-vague-action.mjs": "65b62f75dedbd7c029acce737124e0e536815bef1f1cbb3515358e361b127b37",
+    "rules/stock-boundary.mjs": "14717365c86d5b2b22d672fe23abcd43755b7325f54aeb739657dda811d4843f",
+    "rules/table-cell-length.mjs": "e2868ed7aac5e4082595eefbdc20b80714ed8fcdcc337344d1efa578041ae0ac"
+  },
+  "sourceRef": "origin/main",
+  "sourceRevision": "ca1c0eb501cd5885dde28c6a84a1438dd42232a6",
+  "caseIds": [
+    "adr-boundary",
+    "design-tradeoff",
+    "progress-retention",
+    "incident-record",
+    "runbook-missing",
+    "surgical-edit",
+    "canonical-reference",
+    "no-document",
+    "comparison-rfc",
+    "plain-japanese"
+  ],
+  "plan": [
+    {
+      "id": "no-document.1.without_skill",
+      "caseId": "no-document",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "no-document.1.with_skill",
+      "caseId": "no-document",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.1.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.1.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "runbook-missing.1.without_skill",
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "runbook-missing.1.with_skill",
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "canonical-reference.1.with_skill",
+      "caseId": "canonical-reference",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "canonical-reference.1.without_skill",
+      "caseId": "canonical-reference",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "comparison-rfc.1.without_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "comparison-rfc.1.with_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "incident-record.1.with_skill",
+      "caseId": "incident-record",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "incident-record.1.without_skill",
+      "caseId": "incident-record",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.1.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.1.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "plain-japanese.1.with_skill",
+      "caseId": "plain-japanese",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "plain-japanese.1.without_skill",
+      "caseId": "plain-japanese",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "progress-retention.1.without_skill",
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "progress-retention.1.with_skill",
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "surgical-edit.1.with_skill",
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "surgical-edit.1.without_skill",
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "plain-japanese.2.with_skill",
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "plain-japanese.2.without_skill",
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "surgical-edit.2.without_skill",
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "surgical-edit.2.with_skill",
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "comparison-rfc.2.with_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "comparison-rfc.2.without_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.2.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.2.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "incident-record.2.without_skill",
+      "caseId": "incident-record",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "incident-record.2.with_skill",
+      "caseId": "incident-record",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "runbook-missing.2.with_skill",
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "runbook-missing.2.without_skill",
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "canonical-reference.2.without_skill",
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "canonical-reference.2.with_skill",
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "progress-retention.2.with_skill",
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "progress-retention.2.without_skill",
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "no-document.2.without_skill",
+      "caseId": "no-document",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "no-document.2.with_skill",
+      "caseId": "no-document",
+      "repeat": 2,
+      "arm": "with_skill"
+    }
+  ],
+  "skillRevision": "ca1c0eb501cd5885dde28c6a84a1438dd42232a6",
+  "checkoutRevision": "db7d9c88f389f4b5a75bb12be1a4f49406cd8228",
+  "skillWorktreeDirty": false,
+  "codexVersion": "codex-cli 0.155.1",
+  "nodeVersion": "v25.4.0",
+  "disabledSkillPaths": 96,
+  "isolation": {
+    "verification": "per-response saved-session input audit",
+    "requested": {
+      "userConfig": false,
+      "projectInstructions": "fixed shared AGENTS instructions pinned in runtime-context.json",
+      "nativeSkills": false,
+      "plugins": false,
+      "tools": false,
+      "history": "new saved session per call; never resume model conversations",
+      "builtInInstructions": "replaced by checked-in instruction file"
+    },
+    "evidence": "Every accepted response has a saved-session input audit in call-inputs; unexpected context or prompt fails the run"
+  }
+}

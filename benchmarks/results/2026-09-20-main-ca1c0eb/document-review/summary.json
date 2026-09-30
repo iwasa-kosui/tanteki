@@ -1,0 +1,428 @@
+{
+  "fingerprint": "52bd52ce9299db07fee217b041b1c11ea3c91cc30520fe6b245755d0c733978f",
+  "model": "gpt-6-astra",
+  "effort": "high",
+  "outputs": 40,
+  "uniqueReviews": 37,
+  "calls": 38,
+  "counts": {
+    "without_skill": {
+      "usable": 12,
+      "revision_needed": 7,
+      "source_limited": 1
+    },
+    "with_skill": {
+      "usable": 15,
+      "revision_needed": 3,
+      "source_limited": 2
+    }
+  },
+  "usage": {
+    "input_tokens": 234502,
+    "cached_input_tokens": 29440,
+    "output_tokens": 28536
+  },
+  "elapsedMsSum": 1036309,
+  "rows": [
+    {
+      "recordId": "no-document.1.without_skill",
+      "reviewId": "r-95482d7cb8ba63f795f63b3f02af8bae495ae2159d777bb8f64e645467a493e2",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "no-document.1.with_skill",
+      "reviewId": "r-500792c0d414eba01a1541442510c1a2d2bbf2154538184346aeb2238f09325f",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "adr-boundary.1.with_skill",
+      "reviewId": "r-dc9a1ece64a7564577d80546886a5e43bf3c530d731195151795b86a62203674",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "adr-boundary.1.without_skill",
+      "reviewId": "r-187f991eb784821e1c85cc6d22048353da78eee4ddba88beff30e23e9ce7796c",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "runbook-missing.1.without_skill",
+      "reviewId": "r-d7f7940df94403e30a473ef1468aa3c82feca497b56b0d44bb000e6973e3ce68",
+      "status": "source_limited",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "runbook-missing.1.with_skill",
+      "reviewId": "r-42371481f8518b035d3b8d738308a00a5bd872231f1340141458e32be4756d7e",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "canonical-reference.1.with_skill",
+      "reviewId": "r-7d2ba7365f3766c769952bf367cfcefb26282fb9d3e1faab98e88a3bd14c1eac",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "canonical-reference.1.without_skill",
+      "reviewId": "r-da7bcaaecaad65abf35ff446985d16c80c3973272ac2362c9669739447464855",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "comparison-rfc.1.without_skill",
+      "reviewId": "r-c7c8338f5e88b745059cd4c7c071fd3bf2959a0d05f96b993c231e4516d8aed8",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "comparison-rfc.1.with_skill",
+      "reviewId": "r-adaf123727e466133691b19a278dbd648e92e7eac3475fd7e4651352de74afe7",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "incident-record.1.with_skill",
+      "reviewId": "r-c1d4b0afccdc672535db0ed5c7594afb3eb1beeded1edabb7596a28ad5e31304",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 1
+      }
+    },
+    {
+      "recordId": "incident-record.1.without_skill",
+      "reviewId": "r-4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "design-tradeoff.1.without_skill",
+      "reviewId": "r-c610aa0a06f1ebeb53a3b38b36cb6b311259774cff54193f69d922ecbeffd943",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "design-tradeoff.1.with_skill",
+      "reviewId": "r-72ab05639f518a1ec0eec197ee39fb056b4ee134ce39394ab23bf58d2cba2c16",
+      "status": "source_limited",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "plain-japanese.1.with_skill",
+      "reviewId": "r-9e73c63920be39d1e4766d3cafef84c14fa266b8c12c81ad20d8bc1326d3262c",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "plain-japanese.1.without_skill",
+      "reviewId": "r-8747a516399ef2e9441aed5b12128f4a04c5e02a2a75ea1588bfb30b7ec82d3e",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "progress-retention.1.without_skill",
+      "reviewId": "r-c18a6272a620394e085df0c7d110912a7dc68422c3bb3c3587ca24d324052c0f",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "progress-retention.1.with_skill",
+      "reviewId": "r-1e7d7437b9c616d21ba34ffc3c1b3c125d2c529bb4e7e62741ab026a053702c8",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 1
+      }
+    },
+    {
+      "recordId": "surgical-edit.1.with_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "surgical-edit.1.without_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "plain-japanese.2.with_skill",
+      "reviewId": "r-a54c3aa8fadffdefaa124be5dbb6ecd19076ee4a7f124db44abe4b92eee6b202",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "plain-japanese.2.without_skill",
+      "reviewId": "r-c68f7ac8d468c95eb9b7cfa218aa3c2f72198d667b563dc4e71b2e7e67155fdc",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "surgical-edit.2.without_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "surgical-edit.2.with_skill",
+      "reviewId": "r-2108638be50f40c7227ec5328712af0ba0e5f8afa08a4a027060a3feab34196a",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "comparison-rfc.2.with_skill",
+      "reviewId": "r-d34decdeda90a977b8eb017e94803539956153447788299d88f88938589f7d18",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "comparison-rfc.2.without_skill",
+      "reviewId": "r-9f821bbedc8002d91534ece595797af4adbf2af940f8cdee0d9217a20857e436",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "design-tradeoff.2.without_skill",
+      "reviewId": "r-236b01901732d20fdbc4e8d446112ec90b3d660e38e8e174703610a36e459cd5",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "design-tradeoff.2.with_skill",
+      "reviewId": "r-38854e37665b953627eacd5318e5d9cd49f7782c6331ec84b8183ba49e9a994b",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 2,
+        "minor": 1
+      }
+    },
+    {
+      "recordId": "adr-boundary.2.with_skill",
+      "reviewId": "r-89303258eeacb2b40b33ac7612941620ce57d37d8c9db51cf91fab3eeb2255b8",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "adr-boundary.2.without_skill",
+      "reviewId": "r-0f96c12d22dfd06e6980acca7def1de0332961c9eccd8a52dc0a84cd5af5c641",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "incident-record.2.without_skill",
+      "reviewId": "r-8a4ea3c5dfb11ce4f8857c38f921f99aa2671ab55adacc16ad3c4df7e3d852da",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "incident-record.2.with_skill",
+      "reviewId": "r-80533eb79d09e9ed72abadd8376d20129be1f2cf94ae6684e4ef3580cab15cbf",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 1
+      }
+    },
+    {
+      "recordId": "runbook-missing.2.with_skill",
+      "reviewId": "r-7ffec4cea8feac09b9d8aa1b1d8fdc6cacd6566039e028c1133be811cfda5540",
+      "status": "source_limited",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "runbook-missing.2.without_skill",
+      "reviewId": "r-135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae",
+      "status": "revision_needed",
+      "findings": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "canonical-reference.2.without_skill",
+      "reviewId": "r-20d12fc981ec725ea2a36b186164c17c3d679af0f7a4a052d682a34c2f393699",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "canonical-reference.2.with_skill",
+      "reviewId": "r-54d448b64ea55f108485d8d3d087ad3ace06ca28abfee63a1b6723a5d7acf7ad",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "progress-retention.2.with_skill",
+      "reviewId": "r-30f027478a5bf0742326882c7e75b453797180c1851b50da4c6f7a1191ccbd2d",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "progress-retention.2.without_skill",
+      "reviewId": "r-5b0c9413a08fe33895b720e126ca7cc43b453f524069779bbde3e30c4f7e0849",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "no-document.2.without_skill",
+      "reviewId": "r-c15c99bb39cdf47c0786c92dd0f05c12b04d0c6297169c80dbc869a31d983f24",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    },
+    {
+      "recordId": "no-document.2.with_skill",
+      "reviewId": "r-a202a4dc16f460faf3c69c00137e82864c4f5482438f14e37ce0530a6be5e195",
+      "status": "usable",
+      "findings": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0
+      }
+    }
+  ]
+}

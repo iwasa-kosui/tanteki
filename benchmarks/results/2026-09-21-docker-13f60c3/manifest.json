@@ -1,0 +1,263 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "createdAt": "2026-09-20T15:05:34.193Z",
+  "runtimeLockHash": "9757284d5fb8af6a91da32d7f1ae20a4554de590e7dd9b435f69814a4b9b3820",
+  "casesHash": "678e5d765712b34367432fafe6046e9ba74c0990ebe712867419e61f6fca3e37",
+  "settings": {
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "repeats": 2,
+    "seed": "isolated-v1",
+    "timeout": 600,
+    "maxCalls": 24
+  },
+  "plan": [
+    {
+      "id": "plain-japanese.1.with_skill",
+      "caseId": "plain-japanese",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "plain-japanese.1.without_skill",
+      "caseId": "plain-japanese",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "no-document.1.with_skill",
+      "caseId": "no-document",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "no-document.1.without_skill",
+      "caseId": "no-document",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "canonical-reference.1.without_skill",
+      "caseId": "canonical-reference",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "canonical-reference.1.with_skill",
+      "caseId": "canonical-reference",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "comparison-rfc.1.without_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "comparison-rfc.1.with_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.1.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "adr-boundary.1.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "surgical-edit.1.with_skill",
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "surgical-edit.1.without_skill",
+      "caseId": "surgical-edit",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "incident-record.1.with_skill",
+      "caseId": "incident-record",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "incident-record.1.without_skill",
+      "caseId": "incident-record",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.1.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "design-tradeoff.1.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "progress-retention.1.without_skill",
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "progress-retention.1.with_skill",
+      "caseId": "progress-retention",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "runbook-missing.1.without_skill",
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "arm": "without_skill"
+    },
+    {
+      "id": "runbook-missing.1.with_skill",
+      "caseId": "runbook-missing",
+      "repeat": 1,
+      "arm": "with_skill"
+    },
+    {
+      "id": "canonical-reference.2.with_skill",
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "canonical-reference.2.without_skill",
+      "caseId": "canonical-reference",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "plain-japanese.2.without_skill",
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "plain-japanese.2.with_skill",
+      "caseId": "plain-japanese",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.2.with_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "adr-boundary.2.without_skill",
+      "caseId": "adr-boundary",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "surgical-edit.2.without_skill",
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "surgical-edit.2.with_skill",
+      "caseId": "surgical-edit",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "comparison-rfc.2.with_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "comparison-rfc.2.without_skill",
+      "caseId": "comparison-rfc",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "incident-record.2.without_skill",
+      "caseId": "incident-record",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "incident-record.2.with_skill",
+      "caseId": "incident-record",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "no-document.2.without_skill",
+      "caseId": "no-document",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "no-document.2.with_skill",
+      "caseId": "no-document",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "runbook-missing.2.with_skill",
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "runbook-missing.2.without_skill",
+      "caseId": "runbook-missing",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "progress-retention.2.with_skill",
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "arm": "with_skill"
+    },
+    {
+      "id": "progress-retention.2.without_skill",
+      "caseId": "progress-retention",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.without_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "without_skill"
+    },
+    {
+      "id": "design-tradeoff.2.with_skill",
+      "caseId": "design-tradeoff",
+      "repeat": 2,
+      "arm": "with_skill"
+    }
+  ],
+  "sealed": true,
+  "evidence": {
+    "records": "d2abeb9731ab320869bed3314ce4f318f99bb217813770d001cd7debff20da79",
+    "calls": "0b63d23b1f1b32ebc5a84c9820e97041c0c3c6a28430a42895cbdf2339285ce2"
+  },
+  "completedAt": "2026-09-20T15:19:47.603Z",
+  "fingerprint": "65df0cfb40bdf03fea5fbfe167f2ac765d7241384b521d334bbcf7d434434f4b"
+}

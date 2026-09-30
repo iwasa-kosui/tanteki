@@ -1,0 +1,1470 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "runFingerprint": "a68dfdc9e57101f7874bca466ca08d09d64c3e63b76a70f3e28bd66a30b90d93",
+  "model": "gpt-5.6-terra",
+  "effort": "low",
+  "instructionsHash": "f3743b02fec66bafe187a1b8e93296519958204b1da63394bf0025dd75180f9e",
+  "createdAt": "2026-09-22T05:41:29.210Z",
+  "lint": {
+    "plain-japanese.1.without_skill": {
+      "bodyHash": "35e86ce8bcdfba6357f5217921030cfeaaef9705f235c1f550c35cd060f2e4a3",
+      "lint": []
+    },
+    "plain-japanese.1.with_skill": {
+      "bodyHash": "a77f7d0d57688ab43b66dc1cd3570f1b0698f3243b13cedc55588bfe64a95477",
+      "lint": []
+    },
+    "no-document.1.without_skill": {
+      "bodyHash": "6135801c290910ed5eee0ed603d133ab3ddb93685c5cd94db017a473fe7b1ae9",
+      "lint": []
+    },
+    "no-document.1.with_skill": {
+      "bodyHash": "ee6bdfd4d41b9846333e0d5aaca6744cf42db3c1c7dc31a8003883f03c88be9b",
+      "lint": []
+    },
+    "canonical-reference.1.without_skill": {
+      "bodyHash": "fd8b5ee7fb13468f148d7e80dadc21fac0aa5cf123cefc18a38d892e7e3d9323",
+      "lint": []
+    },
+    "canonical-reference.1.with_skill": {
+      "bodyHash": "8dd1532cf311ff2847584a22979b9cdbcb158f28704706d881b9e195c518be79",
+      "lint": []
+    },
+    "comparison-rfc.1.without_skill": {
+      "bodyHash": "d009c5a465db59fc2b02acbc1c496415f6c6b1d032f82fab7b0087cadf9c4543",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 3,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 3,
+          "column": 21,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "comparison-rfc.1.with_skill": {
+      "bodyHash": "6f9124cae82444e13159444b2c072a790c4c9b895e4a250de9d6293bdce48b6b",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 31,
+          "column": 6,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 32,
+          "column": 8,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "adr-boundary.1.without_skill": {
+      "bodyHash": "4d9c95efc699dc11d0e0bd552edd825e66fc4e0631d479807218f2cf911a7838",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 20,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 9,
+          "column": 55,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 19,
+          "column": 36,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 46,
+          "column": 22,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 46,
+          "column": 35,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "adr-boundary.1.with_skill": {
+      "bodyHash": "548913698aa4bd8fd124d31e4652ae13cda5016870012a6609b3f4fe869939b9",
+      "lint": []
+    },
+    "surgical-edit.1.without_skill": {
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c",
+      "lint": []
+    },
+    "surgical-edit.1.with_skill": {
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c",
+      "lint": []
+    },
+    "incident-record.1.without_skill": {
+      "bodyHash": "7c2e59b587216da9fab76fd095e9ab0055889e5a156af4557803a22bca6cc37f",
+      "lint": []
+    },
+    "incident-record.1.with_skill": {
+      "bodyHash": "917c29e3c7d7d30b3d2d9255646536b2733ad9fb7f8ba0b4154d41640649ee03",
+      "lint": []
+    },
+    "design-tradeoff.1.without_skill": {
+      "bodyHash": "4a326f323347b9883a59affa6462d8f92e0f7cb457f9f5a83b7391534c9f3db7",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 231,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "design-tradeoff.1.with_skill": {
+      "bodyHash": "43a71d34a96b1eeb6870940f87ad21e82a144d46a44495a37acd3a3c22b90ed8",
+      "lint": []
+    },
+    "progress-retention.1.without_skill": {
+      "bodyHash": "b402eb32906b8e7c53ee772d0f7acd868e017567e0e869c8e6310a4d6e57dbaa",
+      "lint": []
+    },
+    "progress-retention.1.with_skill": {
+      "bodyHash": "1edc3260b4e62c100742dc2ca8f7f9a1fe9d871119280dcc07a9d7126fa9b08f",
+      "lint": []
+    },
+    "runbook-missing.1.without_skill": {
+      "bodyHash": "74e821da1e2480341716a969d861310020abb4b22fdee9a87b628f73f9ee7d5a",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 22,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 23,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 24,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-vague-action",
+          "line": 24,
+          "column": 16,
+          "message": "曖昧な動作の候補です。程度や方法を判断する基準と、実際に行うことを確認してください。否定・条件を保って見直してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 25,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 26,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 27,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 28,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 60,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 61,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 62,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 63,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 64,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 65,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 66,
+          "column": 1,
+          "message": "文書に未完了または完了済みタスクのチェックボックスが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 98,
+          "column": 16,
+          "message": "一文に二回以上利用されている助詞 \"に\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"に\"\n- \"に\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        }
+      ]
+    },
+    "runbook-missing.1.with_skill": {
+      "bodyHash": "862b19b7e4972548458167ba724060f5ca65d8c9ecc309cd5fb5cff05216c349",
+      "lint": []
+    },
+    "canonical-reference.2.without_skill": {
+      "bodyHash": "ab99c5fbef081e50e456800e153413541d5f2fadc96ce977567c9803b472107e",
+      "lint": []
+    },
+    "canonical-reference.2.with_skill": {
+      "bodyHash": "13b28dc2855ee413539ac96d3a6c8932c0822868462672cf42b392fa7a0f43e9",
+      "lint": []
+    },
+    "plain-japanese.2.without_skill": {
+      "bodyHash": "916cdb9ebdcd28fc12850500d1fa3dce1798473ee7d23cf301d8b7033dff63b1",
+      "lint": []
+    },
+    "plain-japanese.2.with_skill": {
+      "bodyHash": "845aad16b5e193f465696e1a98c4a35baf3ff6113039c4dbe12ce4bc4915097f",
+      "lint": []
+    },
+    "adr-boundary.2.without_skill": {
+      "bodyHash": "39cced47c723d7d2507639f3adebef96ef85a322038cb2fa8962d2e14d14d865",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 5,
+          "column": 20,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 19,
+          "column": 40,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 53,
+          "column": 1,
+          "message": "文書に進捗見出しが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 55,
+          "column": 40,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 55,
+          "column": 51,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "adr-boundary.2.with_skill": {
+      "bodyHash": "9c26610f56b212113206247b9e84a11f8969cbcc21ad1721d23d1fea55fab2f6",
+      "lint": []
+    },
+    "surgical-edit.2.without_skill": {
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c",
+      "lint": []
+    },
+    "surgical-edit.2.with_skill": {
+      "bodyHash": "a84e7b44ecc1aa33dca76535f0fa46d4120a5f886b02e32012ca06d98f31578c",
+      "lint": []
+    },
+    "comparison-rfc.2.without_skill": {
+      "bodyHash": "3138363188f1c45967b7ee8001457007550f332947d67da7f08a10cb3d75b3ad",
+      "lint": [
+        {
+          "ruleId": "stock-boundary",
+          "line": 3,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 3,
+          "column": 21,
+          "message": "文書にPR番号が含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        }
+      ]
+    },
+    "comparison-rfc.2.with_skill": {
+      "bodyHash": "37b06b42cac3f87168ac2c00996007a0162cec5879d2adec5eb212fd4b659684",
+      "lint": []
+    },
+    "incident-record.2.without_skill": {
+      "bodyHash": "1d975e91704c011ee669f7786815778cbe12678c0d4d8f09293c9209a2987edb",
+      "lint": []
+    },
+    "incident-record.2.with_skill": {
+      "bodyHash": "3880a6f20946ab2305d00aadd0c8e790c733f670455b24d5e3cf603fbd5ebc0e",
+      "lint": []
+    },
+    "no-document.2.without_skill": {
+      "bodyHash": "51a53ddf60b5c878e752d0929cec1cd58ac6fb00abc439bfdcc4834dca6f870f",
+      "lint": []
+    },
+    "no-document.2.with_skill": {
+      "bodyHash": "1ce0d61bda9085297bb7a35974b9a6587db82db1f4e16bb5d4278d3643c80634",
+      "lint": []
+    },
+    "runbook-missing.2.without_skill": {
+      "bodyHash": "4f00ee4443cdf852150519ac69e8d86760f632e1dd4ad947a5d41b66f03c07d2",
+      "lint": []
+    },
+    "runbook-missing.2.with_skill": {
+      "bodyHash": "cbe4712c9805cf3c60c3c27272e46ca9c6db1bb82b3df1ed1859f510efc01174",
+      "lint": []
+    },
+    "progress-retention.2.without_skill": {
+      "bodyHash": "f08153992828cd6b3ab64df1c143dfb9195c20588063fdf21543c2866a176afb",
+      "lint": []
+    },
+    "progress-retention.2.with_skill": {
+      "bodyHash": "2dc0609dc37b8bb675affa15bbbbd8a6e4cbc3be1a31400479dd8464dc177daf",
+      "lint": []
+    },
+    "design-tradeoff.2.without_skill": {
+      "bodyHash": "3df43c4bb26d11a621010bf4116d3fcbe7a71682f095a9433ffa94eb979120cf",
+      "lint": [
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 93,
+          "column": 60,
+          "message": "一文に二回以上利用されている助詞 \"が\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"が\"\n- \"が\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        },
+        {
+          "ruleId": "stock-boundary",
+          "line": 112,
+          "column": 11,
+          "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+        },
+        {
+          "ruleId": "no-doubled-joshi",
+          "line": 120,
+          "column": 95,
+          "message": "一文に二回以上利用されている助詞 \"に\" がみつかりました。\n\n次の助詞が連続しているため、文を読みにくくしています。\n\n- \"に\"\n- \"に\"\n\n同じ助詞を連続して利用しない、文の中で順番を入れ替える、文を分割するなどを検討してください。\n"
+        }
+      ]
+    },
+    "design-tradeoff.2.with_skill": {
+      "bodyHash": "278fc48b36489110e70557d0102ce98813333a66b846663e5c8934b160c31338",
+      "lint": []
+    }
+  },
+  "pairs": {
+    "plain-japanese.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "既存認証で請求画面へ移動できること、認証が有効なら再ログイン不要であること、有効期限切れの場合に限りログイン画面を表示することを全て記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "自動更新、認証方式、追加のエラー時挙動など、資料にない仕様を追加していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "CSが利用者に説明できる仕様本文であり、書き換え手順は本文に含まれていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "抽象表現を、認証状態の引継ぎ・再ログイン不要・有効期限切れ時のみログイン画面表示という具体的動作に置き換えている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "見出しは1つのみで、本文は短く、同一内容の反復もない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "既存の認証情報で請求画面へ移動すること、再ログイン不要であること、有効期限切れ時はログイン画面を表示することを全て含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "資料にない認証方式、自動更新、その他のエラー処理は記載していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "利用者向けに説明可能な仕様本文であり、本文中に推敲手順の解説を混在させていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "抽象語や造語を用いず、認証情報を使った遷移、再ログイン不要、有効期限切れ時の表示を具体的に示している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "短い一段落で必要な仕様のみを伝えており、見出しの列挙や重複がない。"
+          }
+        }
+      }
+    },
+    "no-document.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "開催前に中止され、議論・決定・宿題がなく、参加者への連絡が済んでいる事実を不要判断の理由にしている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "開催済みの会議、参加者、次回予定、規程を創作していない。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "不要と判断している一方で、カレンダーや管理表へ残す追加の管理手順を提示している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「新たに議事録を残す必要はありません」と結論を明示し、開催前の中止、議論・決定・宿題なし、連絡済みを理由として直接示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "結論と理由に加え、予定管理・監査時の記録方法という追加手順を記載しており、一文にも収まっていない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "開催前の中止、議論・決定・宿題がないこと、中止連絡済みという与えられた事実に基づいている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "開催された会議、参加者、次回予定、規程を新たに作っていない。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "不要と判断しているが、会議予定の更新や既存欄への記録という追加の管理手順を提示している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「新たな議事録は残さなくてよい」と結論を明示し、中止済みで議論・決定・宿題がないことを理由として示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "箇条書きと、予定更新・記録の追加手順を含み、結論と理由を一文だけで伝えていない。"
+          }
+        }
+      }
+    },
+    "canonical-reference.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "正本URL、正本の「領収書の提出」節、経費システムへのPDF添付、経理から個別に求められた場合だけの原本提出をすべて本文に記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "提出期限、ファイルサイズ、システム名などの未提示情報を追加していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "新規FAQや別の正本を作成せず、既存正本の該当節への確認を案内している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "通常は経費システムへPDF添付、例外は経理から個別に原本提出を求められた場合、と明確に区別している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "短い案内文であり、章立て・FAQ一覧・依頼外の操作手順を含まない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "https://example.test/expense を「領収書の提出」として参照し、経費システムへのPDF添付と、個別要請時に限る原本提出を記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "提出期限、ファイルサイズ、システム名等の根拠のない詳細を創作していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "既存の正本への参照を中心とした案内であり、新規FAQや別の正本を作っていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "通常はPDF添付で提出し、原本提出は経理から個別に求められた場合に限ると一文で明確に示している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "簡潔な案内のみで、章立て・FAQ一覧・依頼外の操作手順を含まない。"
+          }
+        }
+      }
+    },
+    "comparison-rfc.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "商品検索の遅さ、Aの運用対象が増えない点と部分一致が速くならない制限、Bの部分一致高速化と別サービス運用・反映遅延の代償、Bを提案する点を本文に含む。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "計測値・費用がないことは明記しているが、「方式Bを採用する」と断定しており、原資料で合意待ちの採用決定を補っている。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "合意事項として別サービス運用と最大60秒の許容を挙げている一方、本文冒頭にSEARCH-88、PR #71、レビュー期限8月28日を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "方式A・Bの利点と制限は箇条書きで対応しており、提案・業務側未承認・合意事項も見出しで区別されている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "「合意後の確認事項」で性能目標、運用費用、監視、障害対応、実測確認を追加しており、比較・合意論点に必要な範囲を超える実装後の計画がある。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "商品検索の遅さ、Aの運用利点と部分一致の制限、Bの部分一致高速化、別サービス運用とDBからの反映遅延、Bの提案を本文に含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "60秒は業務側承認前・未決定の案として扱い、計測値・費用は未取得とするに留め、速度の数値、費用、採用決定を追加していない。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "別サービス運用と60秒許容を合意事項としているが、本文の「参考」にSEARCH-88、PR #71、レビュー期限8月28日を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "方式比較表でAとBの利点・懸念を対応させ、提案と、業務側承認前で未決定の60秒案、合意事項を明確に区別している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "方式比較と合意事項に必要な内容に留まり、比較の別途反復や実装計画を付けていない。"
+          }
+        }
+      }
+    },
+    "adr-boundary.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用、2026-08-20、キュー処理、受付ID、同期で最大45秒かかり接続が切れること、完成待ち、再試行上限が未決定であることを本文に含む。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "受付IDで生成状況や完成PDFを確認すること、生成失敗時の通知・再処理方針、ポーリングまたは通知方式を記載しており、原資料にない結果確認API・通知方法を創作している。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文に「BILL-218」「PR #106」および進捗「70%」を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "採用判断、同期生成を採らない理由（最大45秒で接続切断）、非同期化の代償（完成待ち）の関係は明確である。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "多数の章見出しと詳細な追加検討事項・利点を含み、一段落または短い箇条書きの範囲を超える。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用、2026-08-20、キュー、受付ID、同期生成で最大45秒かかり接続が切れること、利用者の完成待ち、再試行上限未決定を本文に含む。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "「利用者は受付IDを使って、PDFの完成を確認する」としており、原資料にない結果確認APIまたは確認方法を本文で定めている。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にBILL-218、PR #106、進捗70%は含まれず、除外説明としても再掲していない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "キューによる非同期処理という判断、同期生成を除外する45秒・接続切断の理由、利用者が完成まで待つ代償が明確に対応している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "タイトル以外にも状態、背景、決定、判断理由、影響、未決定事項、根拠という章見出しを並べ、理由と結論も反復している。"
+          }
+        }
+      }
+    },
+    "surgical-edit.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "「失敗率が7%を超えたら」「当番」「配信を停止する」を正しく保持している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "本文に新しい監視条件、復旧手順、通知先は追加されていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "タイトル、前2文、改行を維持し、末尾の対象文だけを指定文へ置換している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "本文から「必要に応じて対応する。」は除かれ、「失敗率が7%を超えたら当番が配信を停止する。」により、担当者・条件・行動が明確である。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "本文は要求された改稿後の全文のみであり、章や補足を追加していない。注記は本文ではない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "「失敗率が7%を超えたら」「当番」「配信を停止する」を正しく保持している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "本文に新しい監視条件、復旧手順、通知先は追加されていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "タイトル、前2文、改行を維持し、末尾の対象文だけを指定文へ置換している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "本文から「必要に応じて対応する。」は除かれ、「失敗率が7%を超えたら当番が配信を停止する。」により、担当者・条件・行動が明確である。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "本文は要求された改稿後の全文のみであり、章や補足を追加していない。"
+          }
+        }
+      }
+    },
+    "incident-record.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "8月19日、09:10検知、09:17に加藤が直前変更を戻す、09:22復旧、検索失敗340件、決済影響なしをすべて記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "DB接続枯渇を仮説として示し、ログ確認未完了および原因未確定を明記している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "OPS-315、接続数の記録追加、担当者の加藤、8月26日の期限をすべて保持している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "検知・変更差し戻し・復旧が時刻順に記載され、原因欄と課題欄も分離されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な概要・原因・課題のみで構成され、同一事象の重複や架空の対策はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "8月19日、09:10の検知、09:17に加藤が直前変更をロールバック、09:22復旧、検索失敗340件、決済影響なしをすべて記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "DB接続枯渇を有力な仮説とし、ログ確認が未完了で確定していないことを明記している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "OPS-315、DB接続数の記録追加、担当の加藤、期限の8月26日をすべて記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "発生時刻、検知、対応、影響、原因、改善課題が箇条書きで区別され、対応の時系列も追える。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要事項だけを簡潔に列挙しており、重複した要約や資料にない再発防止項目はない。"
+          }
+        }
+      }
+    },
+    "design-tradeoff.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "API→オブジェクトストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503とキュー未登録、キュー登録失敗時の回復未決定、10MB対1MB制限、非同期化による結果提示の遅れを本文に含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "キュー登録失敗後の再登録や保存済みファイルの扱いは「未決定」「確定しない」としており、資料にない回復仕様を確定事項として補っていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にDATA-64、PR #203、今週のAPI実装、担当の佐藤は含まれていない。これらは注記で進行管理情報として本文外に置かれている。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "ストレージ保存失敗時の503・キュー未登録と、キュー登録失敗時の回復方法未決定を別節で明確に区別している。10MBがキューの1MB制限を超えるため本体を載せない理由も示す。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な処理フロー、失敗時の扱い、代替案、影響、未決定事項に収めており、空の節や依頼外の実装計画はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "必須の処理順、保存失敗時の503・未登録、回復方法未決定、10MB対1MB、非同期化による結果提示遅延はいずれも本文にある。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "取込IDの発行・返却、202、状態取得API、通知、ポーリング、冪等性、再試行、DLQ、状態管理、送信ログやアウトボックス等、資料にない仕様や回復策を本文で具体的に提示・実装対象化している。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の「実装計画」に「今週: API実装」「担当: 佐藤」「関連チケット: DATA-64」「関連PR: #203」を記載しており、追跡情報を本文へ入れない要件に反する。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "ストレージ保存失敗は503・キュー未登録、キュー登録失敗は回復方法未決定として区別している。ファイル本体をキューに載せない理由も10MBと1MB制限で明示する。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "依頼資料にないAPI詳細、メッセージ形式、データモデル、セキュリティ、テスト、実装計画、決定タスクまで大幅に追加しており、必要なDesign Docの範囲を超える。"
+          }
+        }
+      }
+    },
+    "progress-retention.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "対象期間の両端、鈴木、BILL-218、受付API実装済み、PR #106のレビュー待ち、次の再試行処理がすべて記載されている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "PRをレビュー完了・マージ済みとは記載せず、未提示の回数・仕様・担当も補っていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "課題IDとPR番号を残し、作業状況、停止要因、PdMへの判断依頼を報告している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "最大再試行回数が未決定で作業停止中であることと、PdMに8月24日までの判断を依頼することが明記されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "箇条書きで簡潔に整理され、同一内容の重複がない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "対象期間の両端、鈴木、BILL-218、受付API実装済み、PR #106のレビュー待ち、次の再試行処理がすべて記載されている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "レビュー完了・マージ済みとは誤記せず、提示されていない回数・仕様・担当を追加していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "課題IDとPR番号を維持し、進捗、課題、PdMへの期限付き判断依頼を報告している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "再試行の最大回数が未決定で作業停止中であることと、PdMへの2026年8月24日までの判断依頼が明確に結び付いている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "箇条書きで短く、概要と詳細の重複がない。"
+          }
+        }
+      }
+    },
+    "runbook-missing.1": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "監視でのキャッシュ関連エラーを対象にし、再起動コマンド、停止条件、復旧確認、連絡先が未確定であることを本文中に残している。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "資料にない「エラーが継続または再発していること」「必要な承認・連絡の完了」等を再起動の必須条件として定めている。また「安全に再起動」と表現している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文で「暫定版」「未確定項目を含む」と明示し、本番実行不可としている。完成済み・検証済みとは報告していない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "再起動前に確定すべき対象・コマンド・停止条件・連絡先等を具体的に列挙し、未確定の間は本番で実行してはいけないと明示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "最小草稿の範囲を超え、資料にない記録項目、詳細なチェックリスト、完了報告項目などを多数追加しており、未確定の空見出しも多い。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "「監視でエラーを見たらキャッシュを再起動する」を根拠として示し、コマンド・停止条件・復旧確認方法・連絡先が未決定であることを残している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "コマンド、数値のエラー基準、待機時間、環境名、具体的連絡先を創作していない。停止・起動コマンドはいずれも承認済みとなった後の枠組みとしている。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文は草稿・実施不可と明示しているが、注記で「内容確認とtextlintは通過済み」と検証済みである旨を報告している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "コマンド、対象、停止条件、復旧判定、連絡先など、実施前に決めるべき事項を具体的に示し、未決定の間は実施してはならないと明示している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "資料から書ける範囲で草稿を提示し、未確定事項を簡潔に集約している。過度な空見出しや詳細の創作はない。"
+          }
+        }
+      }
+    },
+    "canonical-reference.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "正本URL、「領収書の提出」節、PDF添付による提出、および経理から個別に求められた場合のみの原本提出を記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "提出期限、ファイルサイズ、システム名などの未提示情報を創作していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "新規FAQを本文として作成せず、既存の正本とその節への参照を中心に案内している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "通常は経費システムへPDFを添付し、経理から個別に求められた場合のみ原本を提出する、と明確に区別されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "短い案内であり、章立て・FAQ一覧・依頼外の操作手順はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "正本URL、「領収書の提出」節、経費システムへのPDF添付、および個別依頼時のみの原本提出を記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "提出期限、ファイルサイズ、システム名などの根拠のない追加情報を含まない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "新規FAQや別の正本を設けず、既存の正本への参照を添えて案内している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "通常は経費システムへPDF添付、例外は経理から個別に依頼された場合のみ原本提出と、条件が区別されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "簡潔な案内であり、章立て・FAQ一覧・依頼外の操作手順はない。"
+          }
+        }
+      }
+    },
+    "plain-japanese.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "既存認証で請求画面へ移動できること、通常は再ログイン不要であること、有効期限切れの場合に限りログイン画面を表示することをすべて本文に含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "自動更新、認証方式名、追加のエラー時動作など、資料にない仕様を加えていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "CSが利用者へ説明できる仕様本文のみで構成され、書き換え手順は本文に混在していない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「既存の認証情報」「再ログインは必要ありません」「有効期限が切れている場合に限りログイン画面」と、曖昧な草稿表現を条件と動作に具体化している。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "3文の短い段落で必要事項のみを伝えており、見出しや重複がない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "既存認証による請求画面への移動、再ログイン不要、有効期限切れ時のログイン画面表示をすべて本文に明記している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "資料にない認証方式、自動更新、別エラー時の挙動は記載していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "CSが利用者にそのまま説明できる仕様本文であり、書き換え手順を本文へ混ぜていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「認証状態を引き継いで」「再ログインは不要」「有効期限が切れている場合はログイン画面」と、草稿の曖昧語を具体的な動作と条件に置き換えている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "3文で通常時と例外時を簡潔に示しており、見出しの列挙や内容の反復がない。"
+          }
+        }
+      }
+    },
+    "adr-boundary.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "採用、2026-08-20、キュー処理、受付ID、同期生成で最大45秒かかり接続が切れること、利用者の完成待ち、再試行上限が未決定であることを本文にすべて含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "結果確認APIや通知方法は定めないと明記し、再試行上限も未決定としている。原資料にない具体的な方式・回数を確定していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にBILL-218、PR #106、進捗70%を含めていない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "採用判断（キューによる非同期処理と受付ID返却）、不採用理由（同期では最大45秒中に接続切断）、代償（利用者が完成待ち）が明確に対応している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "章見出しが多数あり、同期不採用理由や完成待ちに関する説明も複数箇所で繰り返しているため、一段落または短い箇条書きという条件を満たさない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": false,
+            "evidence": "最大45秒について「接続切断される」とは断定せず、「接続切断されるリスク」「可能性」としている。原資料の同期45秒による接続切断をそのまま残していない。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "原資料にない状態確認API、処理状態、完了通知、受付IDからのPDF取得、状態種別、監視項目などを実装・運用方針として創作している。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の関連欄にBILL-218とPR #106を含め、進捗欄に進捗70%を再掲している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "キューによる非同期化、同期を採らない理由、利用者が完成まで待つ代償の関係自体は本文から把握できる。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "多数の章・小見出し、利点、運用方針、未決事項を並べており、短い箇条書きまたは一段落で済ませるという条件を満たさない。"
+          }
+        }
+      }
+    },
+    "surgical-edit.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "失敗率「7%を超えたら」、担当者「当番」、行為「配信を停止する」がいずれも確定事項どおりである。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "新しい監視条件、復旧手順、通知先は補われていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "タイトル、前2文、改行を維持し、末尾文だけを指定文に置き換えている。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「必要に応じて対応する」は残っておらず、「失敗率が7%を超えたら当番が配信を停止する」として担当者・条件・行為が明確である。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "本文には改稿後の運用手順全文のみがあり、章や補足は追加されていない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "本文は失敗率「7%を超えたら」、担当者「当番」、行為「配信を停止する」を正確に保持している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "本文・注記ともに新しい監視条件、復旧手順、通知先を補っていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文はタイトル、前2文、改行を維持し、末尾文だけを置き換えている。注記は本文外の補足であり、この本文変更条件自体には抵触しない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "本文では「必要に応じて対応する」は残っておらず、担当者・条件・行為は明確である。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "本文自体は改稿後全文のみだが、注記に「指定された末尾の一文のみを置き換えました。」という補足が追加されており、要求された本文だけを返す条件を満たさない。"
+          }
+        }
+      }
+    },
+    "comparison-rfc.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "商品検索の遅さ、Aの運用対象を増やさない利点と部分一致が速くならない制限、Bの部分一致高速化と別サービス運用・反映遅延の代償、Bを提案する点をすべて本文に記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "60秒は業務側承認前の案・未決定条件としている。速度の計測値や費用を補わず、方式Bも「提案」として扱っている。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "別サービス運用と60秒許容を合意事項にしている。SEARCH-88、PR #71、レビュー期限は本文ではなく注記のみにある。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "A/Bを同一の表で「利点」「負担・制約」として対応させ、方式Bの提案と60秒許容が未決定であることを分けている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "比較、提案、合意論点に絞られており、比較内容の別途反復や実装計画を付けていない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "商品検索の遅さ、Aの運用上の利点と部分一致の制限、Bの部分一致高速化と運用・反映遅延の代償、Bの提案を本文に含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "計測値・費用を未取得としており、60秒は業務側承認前の案としている。合意後に計画を確定するとしており、採用済みの決定とは扱っていない。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "合意事項には別サービス運用と60秒許容を置いているが、本文冒頭に「SEARCH-88、PR #71」と「レビュー期限: 8月28日」を記載している。これらは本文に入れないという要件に反する。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "A/Bを同じ箇条書きの選択肢として示し、方式Bの提案と業務側承認前の60秒案を明確に区別している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "「リスク・確認事項」で監視方法・障害対応など原資料にない実装寄りの検討を追加し、「実装・導入計画を確定する」としている。比較と合意論点に必要な範囲を超え、実装計画も付している。"
+          }
+        }
+      }
+    },
+    "incident-record.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "8月19日、09:10検知、09:17に加藤が直前変更をロールバック、09:22復旧、検索失敗340件、決済影響なしをすべて記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "DB接続枯渇を「原因と推定」とし、ログ確認が未完了であることを明記しており、原因を確定扱いしていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "OPS-315、接続数の記録追加、担当の加藤、8月26日の期限をすべて記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "検知・対応・復旧が時刻順に並び、影響・原因推定・改善課題も別項目で区別されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な事実のみを箇条書きで記載し、同一内容の反復や架空の再発防止項目はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "8月19日、09:10検知、09:17に加藤が直前変更をロールバック、09:22復旧、検索失敗340件、決済影響なしをすべて記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "DB接続枯渇を「原因と考えている」と仮説として述べ、ログ確認未完了のため未確定と明記している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "OPS-315、DB接続数の記録追加、担当の加藤、8月26日の期限をすべて記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "概要、時系列の経過、原因、課題に分かれており、観測事実・原因仮説・改善予定を明確に区別できる。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "概要と経過には必要な情報のみがあり、事象の不必要な反復や架空の改善項目の追加はない。"
+          }
+        }
+      }
+    },
+    "no-document.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "開催前の中止、議論・決定・宿題なし、中止連絡済みを理由にしている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "開催済みの会議や次回予定、規程を事実として創作していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "議事録は不要と判断しており、議事録のひな型・本文を新規作成していない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「新たな議事録は残さなくてよい」と結論を明示し、中止・議論等なしを理由としている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "結論と理由が一文ではなく、予定表・管理欄への追加記録という管理手順も加えている。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "開催前の中止、議論・決定・宿題なし、中止連絡済みを理由にしている。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "開催済みの会議、次回予定、規程を事実として創作していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "議事録は不要と判断しており、議事録のひな型・本文を新規作成していない。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "「新たな議事録は残さなくてよい」という結論と、中止・議論等なし・連絡済みという理由が直接示されている。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "結論と理由が一文ではなく、「ただし」以下で追加の管理手順を示している。"
+          }
+        }
+      }
+    },
+    "runbook-missing.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "監視でキャッシュのエラーを確認した場合を対象とし、再起動コマンド、停止条件、復旧確認、連絡先を未確定として残している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "具体的なコマンド、閾値、待機時間、環境名、連絡先は記載せず、根拠資料外の事項は未確定と明示している。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文冒頭と注記で「草稿」「未完成」と明示し、本番適用前に確定が必要としている。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "再起動前に確定すべき対象、コマンド、停止条件、復旧確認、連絡先を具体的に列挙し、未確定なら実施しないと示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "草稿自体は提示しているが、資料にない承認、記録先、禁止条件なども含む多数の詳細見出し・空欄を設けており、最小の草稿としては冗長である。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "監視上のキャッシュエラーを起点とし、コマンド、停止条件、連絡先および具体的な復旧確認方法・基準を未決定としている。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "資料にない「キャッシュ消失、遅延、接続断」「アプリケーションのエラー解消」「代表的な業務処理」「負荷上昇・性能劣化」等を確認対象・影響として具体化しており、根拠なく補っている。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文で「ドラフト」「このまま本番作業には使用しない」と明示し、注記でも未決定事項を示している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "対象、コマンド、停止条件、承認・連絡先など、開始前に確定すべき事項を具体的に挙げ、このまま本番作業に使わないと明示している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "草稿は提示しているが、未確定の資料に対して詳細な復旧チェック、作業記録欄、発行前項目などを広く追加しており、最小の草稿とはいえない。"
+          }
+        }
+      }
+    },
+    "progress-retention.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "with_skill",
+        "B": "without_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "対象期間の両端、担当の鈴木、BILL-218、受付API実装済み、PR #106のレビュー待ち、次作業の再試行処理をすべて含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "PRをレビュー完了・マージ済みとはしておらず、再試行回数・仕様・担当を追加で推測していない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "BILL-218とPR #106の追跡情報、作業状況、停止課題、およびPdMへの判断依頼を保持している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "再試行の最大回数が未決定で作業停止中であることと、PdMへ2026年8月24日までの判断を依頼することが明記されている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "箇条書きで簡潔に整理され、同一内容の重複はない。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "対象期間の両端、担当の鈴木、BILL-218、受付API実装済み、PR #106のレビュー待ち、次タスクの再試行処理をすべて含む。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "PR #106をレビュー待ちと正しく記載し、回数・仕様・担当に根拠のない補足をしていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "課題・PRの追跡情報を残し、実装状況、作業停止の理由、PdMへの期限付き判断依頼を報告している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "再試行の最大回数が未決定のため作業停止中であることと、PdMへの8月24日までの判断依頼が明確に結び付いている。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "短い箇条書きで要点のみを示し、状況の重複がない。"
+          }
+        }
+      }
+    },
+    "design-tradeoff.2": {
+      "status": "valid",
+      "mapping": {
+        "A": "without_skill",
+        "B": "with_skill"
+      },
+      "response": {
+        "A": {
+          "facts": {
+            "pass": true,
+            "evidence": "API→オブジェクトストレージ→保存先をキュー→ワーカー→DBの流れ、保存失敗時の503とキュー未登録、キュー登録失敗時の回復未決定、10MBと1MB、不同期の結果提示遅延を記載している。"
+          },
+          "grounding": {
+            "pass": false,
+            "evidence": "未決定のキュー登録失敗回復について、リトライ、再登録、検知、状態追跡、クリーンアップ、冪等性、処理IDなどの具体的な実装・仕様を本文で補っている。"
+          },
+          "role": {
+            "pass": false,
+            "evidence": "本文の「実装スコープ」にDATA-64、PR #203、今週のAPI実装、担当佐藤を記載している。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗時の503・キュー未登録と、保存成功後のキュー登録失敗を別節で区別し、不採用理由も10MB対1MBとして明記している。"
+          },
+          "economy": {
+            "pass": false,
+            "evidence": "同じ処理・条件を概要、フロー、仕様、受け入れ条件で繰り返し、依頼外の実装スコープ・担当・別タスク計画も本文に含む。"
+          }
+        },
+        "B": {
+          "facts": {
+            "pass": true,
+            "evidence": "要求された処理順、保存失敗時の503・キュー未登録、キュー登録失敗回復の未決定、10MB対1MB、不同期による結果確認の遅れをすべて記載している。"
+          },
+          "grounding": {
+            "pass": true,
+            "evidence": "再登録・削除・状態記録は具体方式として確定せず「確定対象外」とし、通知・状態定義も未定義としている。未記載仕様を確定事項として補っていない。"
+          },
+          "role": {
+            "pass": true,
+            "evidence": "本文にはDATA-64、PR #203、今週の作業、担当佐藤の追跡情報を含まない。これらは注記のみにある。"
+          },
+          "clarity": {
+            "pass": true,
+            "evidence": "保存失敗時は503かつキュー未登録、キュー登録失敗時は回復未決定として表と本文で区別し、ファイル本体を載せない理由も10MB対1MBで明確である。"
+          },
+          "economy": {
+            "pass": true,
+            "evidence": "必要な構成、失敗時の扱い、不採用理由、利用者影響、未決事項に絞られており、依頼外の実装計画や空の節はない。"
+          }
+        }
+      }
+    }
+  },
+  "sealed": true,
+  "fingerprint": "f6b60979f28112c27747a217ec7190e1f423aecd2e28b8be6d8e2e04c7d27e8d"
+}

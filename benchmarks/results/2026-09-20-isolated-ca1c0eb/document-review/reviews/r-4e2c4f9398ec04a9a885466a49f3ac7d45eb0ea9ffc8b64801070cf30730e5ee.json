@@ -1,0 +1,107 @@
+{
+  "reviewId": "r-4e2c4f9398ec04a9a885466a49f3ac7d45eb0ea9ffc8b64801070cf30730e5ee",
+  "inputHash": "4e2c4f9398ec04a9a885466a49f3ac7d45eb0ea9ffc8b64801070cf30730e5ee",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "実装者がファイル取込の構成、処理・データの流れ、失敗条件、制約、不採用理由、未決定事項を理解するためのDesign Doc。",
+        "status": "revision_needed",
+        "summary": "基本フローと保存失敗時の動作は把握できる。一方、10MBを上限とする誤読や、資料にないデータ構造・障害対策・結果取得仕様の確定扱いがあり、そのまま実装の合意事項として使う前に修正が必要。",
+        "strengths": [
+          "API、オブジェクトストレージ、キュー、ワーカー、DBの処理順序が明確。",
+          "保存失敗時の503応答とキュー未登録を正しく示している。",
+          "キュー登録失敗時の回復方法が未決定であることと、非同期化による結果提示の遅延を明記している。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "ファイルサイズ上限は10MBとする。",
+            "source_excerpt": "ファイル本体をキューに載せる案は、10MBのファイルがキューの1MB制限を超えるため不採用。",
+            "finding": "不採用理由に使われた10MBというファイルサイズを、受付可能なファイルの上限に変えている。概要の「最大10MB」も同じ誤読。",
+            "impact": "実装者が根拠のない10MB制限を設け、それを超えるファイルを拒否する可能性がある。",
+            "suggested_change": "10MBは直接キューへ載せられないファイルの例として扱い、受付サイズ上限は資料で未確認とする。"
+          },
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "レスポンスには、取込処理を追跡するための取込IDを含める。",
+            "source_excerpt": "APIはファイルをオブジェクトストレージへ保存し、その保存先をキューへ登録する。",
+            "finding": "取込IDの導入とレスポンスへの収載に加え、ストレージの管理項目、一意なキーの生成方針、キューメッセージの具体的な項目を確定仕様として追加している。資料で決まっているのはファイルの保存と保存先のキュー登録まで。",
+            "impact": "APIとワーカーの間のデータ契約や保存形式が、未合意のまま実装される。",
+            "suggested_change": "確定事項は保存先を受け渡すことまでとし、取込ID、レスポンス、管理項目、メッセージ形式は設計案または確認事項として区別する。"
+          },
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "読み込み、解析、DB保存のいずれかに失敗した場合は、再実行可能な設計とする。解析結果の重複保存を防ぐため、取込IDをキーとした冪等性を確保する。",
+            "source_excerpt": "ワーカーは保存先から読み、解析結果をDBへ保存する。キューへの登録失敗時の回復方法は未決定。",
+            "finding": "ワーカーの再実行方針、取込IDによる冪等性、キューメッセージの完了処理を採用済みとしている。また、キュー登録失敗時のログ・監視・回復方式を差し替える構造も、未決定の回復方法とは別に確定事項として追加している。",
+            "impact": "障害時の再処理や重複防止、監視の実装要件について、合意済みの範囲を誤認させる。",
+            "suggested_change": "追加した障害対策は提案と明示し、確定している保存失敗時の動作と、未決定の回復方法から分離する。"
+          },
+          {
+            "severity": "major",
+            "kind": "claim",
+            "basis": "source",
+            "excerpt": "解析結果は取込IDと関連付けて保存する。利用者が非同期処理の進捗および結果を確認できるよう、状態取得方法は既存API設計に合わせて実装する。",
+            "source_excerpt": "ワーカーは保存先から読み、解析結果をDBへ保存する。",
+            "finding": "資料にあるDBへの解析結果保存を超えて、6種類の取込状態の管理、取込IDとの関連付け、進捗取得、既存API設計の存在を前提化している。UIまたは結果取得APIで処理中状態を提示する仕様も資料にはない。",
+            "impact": "実装者が状態管理や進捗表示を必須範囲と誤認し、参照先のない既存API設計に依存して作業を進めることになる。",
+            "suggested_change": "結果提示が遅れるという確定した影響を残し、状態モデルと進捗・結果の取得方法は提案または確認事項にする。既存API設計への言及は存在が確認できるまで断定しない。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "受付可能なファイルサイズの上限。",
+            "blocks_use": false,
+            "handled_appropriately": false,
+            "excerpt": "ファイルサイズ上限は10MBとする。",
+            "consequence": "全体構成は理解できるが、サイズによる受付可否は資料から決められない。"
+          },
+          {
+            "missing_information": "APIレスポンス、保存先情報の形式、管理するメタデータ、状態管理および結果取得方法。",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "状態取得方法は既存API設計に合わせて実装する。",
+            "consequence": "コンポーネント間の具体的な契約と利用者への結果提示を、確定仕様として実装できない。"
+          },
+          {
+            "missing_information": "ワーカーの読込・解析・DB保存失敗時の扱い、再試行と重複処理への対応方針。",
+            "blocks_use": true,
+            "handled_appropriately": false,
+            "excerpt": "解析結果の重複保存を防ぐため、取込IDをキーとした冪等性を確保する。",
+            "consequence": "障害時の処理仕様を確定するには追加確認が必要。本文の方式は資料で承認されたものではない。"
+          },
+          {
+            "missing_information": "キュー登録失敗時の回復方法。",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "オブジェクトストレージへの保存後にキュー登録が失敗した場合の回復方法は未決定である。",
+            "consequence": "正常系と保存失敗時の実装検討には使えるが、保存済みファイルをキュー登録失敗から回復させる処理は確定できない。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 7223,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2494,
+        "reasoning_output_tokens": 731
+      },
+      "elapsedMs": 78950,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/r-4e2c4f9398ec04a9a885466a49f3ac7d45eb0ea9ffc8b64801070cf30730e5ee.1.json",
+        "sha256": "2a772a6c1400d4d5bf5912d79f8b4d02bfb9ac8b9d49dcdc6ba4d305ad0208c3",
+        "contextHash": "b342c12a31230256cc67c1fec2d1501d5b0a63bf83519a2b6da4117d14e251cc",
+        "promptHash": "4e2c4f9398ec04a9a885466a49f3ac7d45eb0ea9ffc8b64801070cf30730e5ee",
+        "sessionId": "01a0beb3-bb4d-79f0-a276-3b3134f99120"
+      },
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "comparison-rfc.2.without_skill",
+  "caseId": "comparison-rfc",
+  "repeat": 2,
+  "arm": "without_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# RFC: 商品検索基盤の方式\n\n## 背景・課題\n商品検索が遅く、検索性能の改善が必要である。現時点では計測値・費用の情報はない。\n\n## 選択肢\n- **方式A：既存DB索引を追加**\n  - 利点：運用対象を増やさずに済む。\n  - 制約：部分一致検索は高速化されない。\n- **方式B：検索専用サービスを導入**\n  - 利点：部分一致検索の高速化が期待できる。\n  - 制約：別サービスの運用が必要で、DBから検索基盤への反映に遅延が生じる。\n\n## 提案\n方式Bを採用する。検索結果は最大60秒古くても許容する案とする。\n\n## 合意が必要な事項\n1. 検索専用の別サービスを運用するか。\n2. 検索結果の最大60秒の反映遅延を許容するか。\n\n特に2については業務側の承認が未了のため、採用決定前に確認する。承認されない場合は、方式Bの前提または方式自体を再検討する。\n\n## 関連\n- 作業項目：SEARCH-88\n- PR：#71\n- レビュー期限：8月28日",
+        "notes": "計測値、費用、運用体制の詳細は原資料にないため、合意前に必要に応じて補足する。"
+      },
+      "usage": {
+        "input_tokens": 2611,
+        "cached_input_tokens": 1792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 435,
+        "reasoning_output_tokens": 50
+      },
+      "elapsedMs": 11595,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/comparison-rfc.2.without_skill.0.json",
+        "sha256": "6a274dac06aeaf5de45b126c8ca8d86a3eab0c127a7e6e73a32862a1b11cd165",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "b0e0e3ef524bdd1cddc1cb026f8a663e16b1706b49e6dea490d01ef316991179",
+        "sessionId": "01a0beb0-edb9-79e1-acbb-a3dcc55d22f2"
+      },
+      "metrics": {
+        "characters": 439,
+        "headings": 6,
+        "lint": [
+          {
+            "ruleId": "stock-boundary",
+            "line": 24,
+            "column": 8,
+            "message": "文書にJira課題IDが含まれています。作業追跡はチケットまたは進捗文書へ移してください。"
+          }
+        ],
+        "exactEdit": null
+      },
+      "promptHash": "b0e0e3ef524bdd1cddc1cb026f8a663e16b1706b49e6dea490d01ef316991179"
+    }
+  ]
+}

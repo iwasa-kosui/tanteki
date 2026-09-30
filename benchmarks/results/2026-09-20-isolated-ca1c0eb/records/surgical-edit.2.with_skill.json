@@ -1,0 +1,37 @@
+{
+  "id": "surgical-edit.2.with_skill",
+  "caseId": "surgical-edit",
+  "repeat": 2,
+  "arm": "with_skill",
+  "attempts": [
+    {
+      "response": {
+        "body": "# 配信の確認\n\n当番は監視画面を開く。\n成功件数と失敗件数を確認する。\n失敗率が7%を超えたら当番が配信を停止する。",
+        "notes": "型: 運用Runbook。主題: 当番が配信状況を確認し、失敗率が7%を超えたら配信を停止する。指定箇所のみを改稿しました。"
+      },
+      "usage": {
+        "input_tokens": 12617,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 118,
+        "reasoning_output_tokens": 0
+      },
+      "elapsedMs": 7977,
+      "inputAudit": {
+        "verified": true,
+        "file": "call-inputs/surgical-edit.2.with_skill.0.json",
+        "sha256": "31e905a9dc5a18d08785bd709798c6114f31db0948046927c9295a3ee6685030",
+        "contextHash": "13c4557be4875919e9499b5808f7f700af011899aeed6cc5a83fdb45057309ec",
+        "promptHash": "14f9bc0e5a27c76835273798e808c62a060b6752a637341d9cb29ebe781684d9",
+        "sessionId": "01a0beb0-e44b-75b3-8263-b34e3a1c9a3c"
+      },
+      "metrics": {
+        "characters": 59,
+        "headings": 1,
+        "lint": [],
+        "exactEdit": true
+      },
+      "promptHash": "14f9bc0e5a27c76835273798e808c62a060b6752a637341d9cb29ebe781684d9"
+    }
+  ]
+}

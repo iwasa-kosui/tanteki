@@ -1,0 +1,118 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>分離スキルベンチマーク</title><style>:root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; color: #223239; background: #f5f5f0; font-synthesis: none; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; line-height: 1.75; }
+a { color: #28655f; text-underline-offset: 3px; overflow-wrap: anywhere; }
+button, select { font: inherit; color: inherit; }
+button, select, summary, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #c57325; outline-offset: 3px; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .4; }
+.shell { max-width: 1460px; padding: 24px 28px; margin: 0 auto; }
+.page-header { margin-bottom: 18px; }
+.eyebrow { font: 700 11px/1.4 ui-monospace, monospace; letter-spacing: .16em; color: #617474; margin: 0 0 8px; }
+h1 { font-size: clamp(24px, 3vw, 30px); letter-spacing: -.03em; line-height: 1.3; margin: 0 0 8px; }
+.page-header p { margin: 4px 0; }
+.provenance { color: #5e7175; font-size: 12px; }
+.page-header nav { display: flex; gap: 20px; font-size: 13px; }
+.controls { display: flex; align-items: end; flex-wrap: wrap; gap: 18px; padding: 14px 16px; background: #e8eeeb; border: 1px solid #d5dfda; border-radius: 12px; }
+.controls label, .stage-control { display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 600; }
+.case-control { flex: 1 1 320px; min-width: 0; }
+select { height: 44px; max-width: 100%; padding: 0 36px 0 12px; background: #fff; border: 1px solid #b9c7c1; border-radius: 6px; font-size: 14px; }
+.segmented { display: flex; padding: 3px; gap: 3px; border-radius: 7px; background: #d6e0dc; }
+.segmented button { min-width: 75px; height: 38px; padding: 0 16px; background: transparent; border: 0; border-radius: 5px; font-size: 14px; }
+.segmented [aria-pressed="true"] { color: white; background: #315c54; }
+.pagination { display: flex; gap: 20px; align-items: center; justify-content: space-between; margin: 8px 0 18px; color: #627570; font-size: 12px; }
+.pagination button { background: transparent; border: 0; padding: 5px 12px 5px 0; font-size: 12px; }
+.pair { margin-bottom: 36px; }
+.pair-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+.pair-heading h2 { font-size: 20px; margin: 0 0 12px; line-height: 1.6; }
+.pair-heading h2 small { display: inline-block; font-size: 13px; font-weight: 500; color: #687b75; margin-left: 8px; }
+.pair-heading > a { font-size: 12px; white-space: nowrap; }
+summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+details > summary { padding: 9px 0; }
+.prompt { border-top: 1px solid #dce2dd; border-bottom: 1px solid #dce2dd; margin-bottom: 14px; }
+.prompt > div { max-width: 1000px; padding: 0 14px 10px; font-size: 14px; }
+.stage-label { color: #60706e; font-size: 12px; margin: 10px 0; }
+.columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.candidate { background: #fff; border: 1px solid #d7ded8; border-radius: 9px; overflow: hidden; }
+.candidate-header { display: flex; gap: 14px; justify-content: space-between; padding: 12px 20px; background: #f3f3ef; border-top: 4px solid #88908d; border-bottom: 1px solid #e5e8e3; }
+.with_skill .candidate-header { background: #edf5f0; border-top-color: #477a66; }
+.candidate-header h3 { margin: 0; font-size: 17px; }
+.candidate-header span { font-size: 11px; color: #63716b; }
+.metrics { font-size: 11px; line-height: 1.8; text-align: right; color: #5c6a64; }
+.document { padding: 24px 28px 28px; font-size: 15px; line-height: 1.95; overflow-wrap: anywhere; }
+.document > :first-child { margin-top: 0; }
+.document > :last-child { margin-bottom: 0; }
+.document h3 { font-size: 21px; line-height: 1.65; margin: 1.5em 0 .8em; }
+.document h4 { font-size: 17px; margin: 1.6em 0 .65em; }
+.document h5, .document h6 { font-size: 15px; margin: 1.4em 0 .5em; }
+.document p { margin: .9em 0; }
+.document ul, .document ol { padding-left: 1.5em; }
+.document li + li { margin-top: .4em; }
+.document li > p { margin: .2em 0; }
+blockquote { border-left: 3px solid #ced9d2; padding-left: 16px; margin-left: 0; color: #566b60; }
+code { font-family: ui-monospace, monospace; font-size: .9em; background: #f1f3ee; border-radius: 3px; padding: 2px 4px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+pre code { display: block; padding: 16px; }
+.literal { white-space: pre-wrap; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.7; }
+th, td { text-align: left; border: 1px solid #dce2dd; padding: 8px 10px; }
+th { background: #f0f4ee; }
+.candidate-footer { border-top: 1px solid #e4e8e1; padding: 12px 24px; font-size: 12px; color: #57675e; }
+.candidate-footer > a { display: inline-block; margin-bottom: 8px; }
+.candidate-footer details + details { border-top: 1px solid #edf0ea; }
+.candidate-footer summary { font-size: 12px; }
+.candidate-footer p { overflow-wrap: anywhere; }
+.lint-message { margin: 10px 0 18px; font-size: 12px; }
+.lint-message pre { font: inherit; }
+.judgments { margin-top: 24px; padding: 10px 24px; background: #edf0e9; border: 1px solid #d8e0d2; border-radius: 9px; }
+.judgments > summary { font-size: 15px; }
+.caveat { font-size: 12px; color: #6d6a52; }
+.criterion { border-top: 1px solid #d7dfd0; padding: 12px 0 20px; }
+.criterion h3 { font-size: 15px; margin: 4px 0; }
+.criterion h3 small { font-size: 11px; font-weight: 400; color: #6d7b6d; margin-left: 5px; }
+.criterion-source { font-size: 13px; margin: 6px 0 15px; }
+.judgment { padding: 15px 18px; background: #fff; border-radius: 6px; font-size: 13px; }
+.judgment p { margin-bottom: 0; }
+.pass, .fail { font-size: 11px; border-radius: 4px; padding: 3px 6px; margin-left: 5px; }
+.pass { background: #e6f2e9; color: #25533d; }
+.fail { background: #f9e8dc; color: #80441c; }
+.page-footer { padding: 20px 0; border-top: 1px solid #dce2dd; font-size: 12px; color: #738077; }
+@media (max-width: 760px) {
+  .shell { padding: 24px 16px; }
+  .columns { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .controls { gap: 12px; padding: 14px; }
+  .case-control { flex-basis: 100%; }
+  .pair-heading { display: block; }
+  .pair-heading > a { display: inline-block; margin-bottom: 12px; }
+  .pagination { gap: 8px; flex-wrap: wrap; }
+  .document { padding: 22px; }
+  .candidate-header { padding: 14px 18px; }
+  .judgments { padding: 8px 16px; }
+}
+@media print {
+  .controls, .pagination, .page-header nav, .candidate-footer > a { display: none !important; }
+  .shell { max-width: none; padding: 0; }
+  .columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+body{max-width:1440px;margin:auto;padding:24px}section{margin:32px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}article{min-width:0}table{border-collapse:collapse}td,th{padding:8px;border:1px solid #aaa}@media(max-width:760px){.columns{display:block}}</style><h1>分離スキルベンチマーク</h1><p>同じユーザー入力でtanteki一式の導入効果を比較する。生成中にスキルが行った検査・改稿は含む。採点のtextlint結果は生成へ返さない。未発火も集計に残し、品質は両側が有効なペアで評価する。取得・コマンドの観測はログからの推定であり、スキルの遵守や全ファイルアクセスの証明ではない。失敗時にプロバイダーが利用量を返さなかった呼び出しのトークン数は不明。</p><p>有効ペア 1/1、採点済みペア 1</p><table><thead><tr><th>指標</th><th>スキルなし</th><th>スキルあり</th></tr></thead><tbody><tr><td>計画した実行</td><td>1</td><td>1</td></tr><tr><td>環境検証済み</td><td>1</td><td>1</td></tr><tr><td>環境無効</td><td>0</td><td>0</td></tr><tr><td>実行失敗</td><td>0</td><td>0</td></tr><tr><td>本文取得をログで観測</td><td>0</td><td>1</td></tr><tr><td>lintコマンドをログで観測</td><td>0</td><td>0</td></tr><tr><td>採点対象</td><td>1</td><td>1</td></tr><tr><td>採点用lint合格</td><td>1</td><td>0</td></tr><tr><td>モデル呼び出し（失敗含む）</td><td>1</td><td>3</td></tr><tr><td>入力トークン（報告された全実行分）</td><td>6607</td><td>28728</td></tr><tr><td>出力トークン（報告された全実行分）</td><td>1294</td><td>2897</td></tr><tr><td>意味基準合格</td><td>4/5</td><td>4/5</td></tr></tbody></table><section id="runbook-export.1"><h2>条件が揃った月次請求CSVの出力手順 · 1回目</h2><details><summary>共通の原依頼</summary><pre>当番向けに、月次請求CSVを出力して経理へ渡す手順書を書いて。次は架空の請求サービスで確定した運用資料です。画面名、ボタン名、条件は変えず、この資料だけで手順を作成して。
+
+作業は毎月第1営業日に当番が行う。対象は前月分。事前に経理が締め処理を終え、当番へ対象月を連絡する。当番には請求管理画面の出力権限と、社内共有フォルダ『経理受け渡し』への書き込み権限が必要。社内端末で請求管理画面にログイン済みの状態から始める。
+
+請求管理画面の『月次請求』を開き、経理から連絡された対象月を選ぶ。対象月が前月と一致し、画面の状態が『締め済み』であることを確かめる。一致しない、または『締め済み』でなければその場で中止し、以降の操作は行わない。両方の確認を通過した場合だけ、画面に表示された請求件数を控える。『CSVを生成』を1回押す。状態が『生成完了』になったら『ダウンロード』を押す。状態が『生成失敗』になった場合、またはボタンを押してから5分経っても『生成完了』にならない場合は中止する。再生成はしない。
+
+ダウンロードしたCSVを表計算ソフトで開く。列は『対象月』『請求先ID』『金額』の3列。ヘッダーを除く行数が控えた請求件数と一致し、全行の『対象月』が選んだ対象月と一致することを確認する。請求件数が0件ならヘッダーだけでよい。列、行数、対象月のどれかが違う場合や、ダウンロードまたはファイルを開く操作に失敗した場合は中止し、経理へ渡さない。
+
+保存先は共有フォルダ『経理受け渡し』、ファイル名は請求-YYYY-MM.csvとする。YYYY-MMには対象月を入れる。対象月が2026年8月なら請求-2026-08.csv。保存する前に、共有フォルダに同名ファイルがあるか確認する。同名ファイルがあれば、その場で中止して保存しない。上書きはしない。同名ファイルがないことを確認してから、検査済みのCSVを指定した名前で1回だけ保存する。保存に失敗した場合もその場で中止する。保存できたファイルを共有フォルダから開き直し、先ほどと同じ3列、行数、全行の対象月を確認する。開き直せない場合や確認結果が違う場合は、その場で中止し、経理へ完了連絡をしない。この確認を通過した場合だけ、社内チャット『#経理連携』に対象月、請求件数、保存先を投稿して完了とする。
+
+中止した場合は社内チャット『#請求運用』で運用担当へ連絡する。対象月、止まった操作、画面の状態または表示されたエラーを伝え、再実行せず運用担当の指示を待つ。請求先IDや金額の明細はチャットに貼らない。</pre></details><div class="columns"><article class="candidate without_skill"><header class="candidate-header"><h3>スキルなし</h3><strong>valid</strong></header><div class="document"><h3>月次請求CSV出力・経理受け渡し手順書（当番向け）</h3><h4>1. 実施条件</h4><ul><li><p>実施日：毎月第1営業日</p></li><li><p>対象：前月分</p></li><li><p>開始状態：社内端末で請求管理画面にログイン済み</p></li><li><p>事前条件：経理が締め処理を終え、当番へ対象月を連絡済み</p></li><li><p>必要な権限：</p><ul><li><p>請求管理画面の出力権限</p></li><li><p>社内共有フォルダ『経理受け渡し』への書き込み権限</p></li></ul></li></ul><h4>2. 請求CSVの生成とダウンロード</h4><ol start="1"><li><p>請求管理画面の『月次請求』を開く。</p></li><li><p>経理から連絡された対象月を選ぶ。</p></li><li><p>次の2点を確認する。</p><ul><li><p>選んだ対象月が前月と一致している。</p></li><li><p>画面の状態が『締め済み』である。</p></li></ul></li><li><p>対象月が前月と一致しない、または状態が『締め済み』でない場合は、その場で中止する。以降の操作は行わない。</p></li><li><p>両方の確認を通過した場合だけ、画面に表示された請求件数を控える。</p></li><li><p>『CSVを生成』を1回押す。</p></li><li><p>状態が『生成完了』になったら、『ダウンロード』を押す。</p></li><li><p>次の場合は中止する。再生成はしない。</p><ul><li><p>状態が『生成失敗』になった。</p></li><li><p>『CSVを生成』を押してから5分経っても『生成完了』にならない。</p></li></ul></li></ol><h4>3. ダウンロードしたCSVの検査</h4><ol start="1"><li><p>ダウンロードしたCSVを表計算ソフトで開く。</p></li><li><p>列が次の3列であることを確認する。</p><ul><li><p>『対象月』</p></li><li><p>『請求先ID』</p></li><li><p>『金額』</p></li></ul></li><li><p>ヘッダーを除く行数が、控えた請求件数と一致することを確認する。</p></li><li><p>全行の『対象月』が、選んだ対象月と一致することを確認する。</p></li><li><p>請求件数が0件の場合は、ヘッダーだけでよい。</p></li><li><p>次の場合は中止し、経理へ渡さない。</p><ul><li><p>列が違う。</p></li><li><p>行数が違う。</p></li><li><p>『対象月』が違う。</p></li><li><p>ダウンロードに失敗した。</p></li><li><p>ファイルを開く操作に失敗した。</p></li></ul></li></ol><h4>4. 共有フォルダへの保存</h4><ol start="1"><li><p>保存先を社内共有フォルダ『経理受け渡し』にする。</p></li><li><p>ファイル名を <code>請求-YYYY-MM.csv</code> とする。<code>YYYY-MM</code> には対象月を入れる。</p><ul><li><p>例：対象月が2026年8月の場合は <code>請求-2026-08.csv</code></p></li></ul></li><li><p>保存する前に、共有フォルダ『経理受け渡し』に同名ファイルがあるか確認する。</p></li><li><p>同名ファイルがある場合は、その場で中止して保存しない。上書きはしない。</p></li><li><p>同名ファイルがないことを確認したら、検査済みのCSVを指定した名前で1回だけ保存する。</p></li><li><p>保存に失敗した場合は、その場で中止する。</p></li></ol><h4>5. 保存後の確認</h4><ol start="1"><li><p>保存できたファイルを共有フォルダ『経理受け渡し』から開き直す。</p></li><li><p>次の内容を確認する。</p><ul><li><p>列が『対象月』『請求先ID』『金額』の3列である。</p></li><li><p>ヘッダーを除く行数が、控えた請求件数と一致する。</p></li><li><p>全行の『対象月』が、選んだ対象月と一致する。</p></li><li><p>請求件数が0件の場合は、ヘッダーだけである。</p></li></ul></li><li><p>開き直せない場合、または確認結果が違う場合は、その場で中止する。この場合、経理へ完了連絡をしない。</p></li><li><p>確認を通過した場合だけ、社内チャット『#経理連携』に次の内容を投稿して完了とする。</p><ul><li><p>対象月</p></li><li><p>請求件数</p></li><li><p>保存先</p></li></ul></li></ol><h4>6. 中止時の連絡</h4><ol start="1"><li><p>中止した場合は、社内チャット『#請求運用』で運用担当へ連絡する。</p></li><li><p>次の内容を伝える。</p><ul><li><p>対象月</p></li><li><p>止まった操作</p></li><li><p>画面の状態または表示されたエラー</p></li></ul></li><li><p>再実行せず、運用担当の指示を待つ。</p></li><li><p>請求先IDや金額の明細はチャットに貼らない。</p></li></ol></div><details><summary>本文外の注記</summary></details><p>生成中の観測: スキル本文 なし／lintコマンド なし</p><p>完了後の採点用lint: 0件</p><details><summary>採点用lintの指摘</summary><pre>[]</pre></details><details><summary>意味の採点と根拠</summary><p><strong>facts: 合格</strong> 実施条件から対象月・締め済み確認、件数記録、1回生成、検査、同名確認後の1回保存、開き直し確認、完了連絡までの必要事項を含む。3列、行数、対象月、0件時ヘッダーのみ、保存先・ファイル名も保持している。</p><p><strong>grounding: 合格</strong> 『月次請求』『CSVを生成』『ダウンロード』、5分、チャット名、保存先、ファイル名を原資料どおりに記載し、再生成・上書き・独自の復旧手順を加えていない。</p><p><strong>role: 合格</strong> 当番向けの前提、開始条件、操作、完了確認、中止条件および連絡先がそろった手順書全文である。</p><p><strong>clarity: 不合格</strong> 生成失敗・5分未完了時の中止条件が『ダウンロード』の手順の後に置かれており、生成完了を待つ間に判断して次操作へ進まない順序が明確ではない。その他の中止時連絡、完了連絡の条件は明記されている。</p><p><strong>economy: 合格</strong> 前提、操作、中止時対応を必要な節と番号付き手順で示し、不要な背景説明や重複はない。</p></details></article><article class="candidate with_skill"><header class="candidate-header"><h3>スキルあり</h3><strong>valid</strong></header><div class="document"><h3>月次請求CSVの出力・経理受け渡し手順書</h3><h4>1. 概要</h4><p>毎月第1営業日に、当番が前月分の月次請求CSVを出力し、検査済みファイルを共有フォルダ『経理受け渡し』へ保存して経理へ連絡する。</p><h4>2. 作業前の確認</h4><p>次の条件を満たしてから開始する。</p><ul><li><p>経理が締め処理を終えている。</p></li><li><p>経理から対象月の連絡を受けている。</p></li><li><p>請求管理画面の出力権限がある。</p></li><li><p>社内共有フォルダ『経理受け渡し』への書き込み権限がある。</p></li><li><p>社内端末で請求管理画面にログイン済みである。</p></li></ul><p>対象は前月分である。</p><h4>3. 請求CSVの生成とダウンロード</h4><ol start="1"><li><p>請求管理画面の『月次請求』を開く。</p></li><li><p>経理から連絡された対象月を選ぶ。</p></li><li><p>次の2点を確認する。</p><ul><li><p>対象月が前月と一致している。</p></li><li><p>画面の状態が『締め済み』である。</p></li></ul></li><li><p>2点とも確認できた場合だけ、画面に表示された請求件数を控える。</p></li><li><p>『CSVを生成』を1回押す。</p></li><li><p>状態が『生成完了』になったら『ダウンロード』を押す。</p></li></ol><p>対象月が前月と一致しない場合、または状態が『締め済み』でない場合は、その場で中止する。『生成失敗』になった場合、または『CSVを生成』を押してから5分経っても『生成完了』にならない場合も中止する。再生成はしない。</p><h4>4. ダウンロードしたCSVの検査</h4><ol start="1"><li><p>ダウンロードしたCSVを表計算ソフトで開く。</p></li><li><p>列が次の3列であることを確認する。</p><ul><li><p>『対象月』</p></li><li><p>『請求先ID』</p></li><li><p>『金額』</p></li></ul></li><li><p>ヘッダーを除く行数が、控えた請求件数と一致することを確認する。</p></li><li><p>全行の『対象月』が、選んだ対象月と一致することを確認する。</p></li></ol><p>請求件数が0件の場合は、ヘッダーだけでよい。</p><p>列、行数、対象月のいずれかが違う場合、またはダウンロードもしくはファイルを開く操作に失敗した場合は、その場で中止し、経理へ渡さない。</p><h4>5. 共有フォルダへの保存</h4><ol start="1"><li><p>保存先を共有フォルダ『経理受け渡し』にする。</p></li><li><p>ファイル名を <code>請求-YYYY-MM.csv</code> とする。<code>YYYY-MM</code> には対象月を入れる。対象月が2026年8月の場合は <code>請求-2026-08.csv</code> とする。</p></li><li><p>保存前に、共有フォルダに同名ファイルがないことを確認する。</p></li><li><p>同名ファイルがないことを確認できたら、検査済みのCSVを指定した名前で1回だけ保存する。</p></li></ol><p>同名ファイルがある場合は、その場で中止して保存しない。上書きはしない。保存に失敗した場合も、その場で中止する。</p><h4>6. 保存後の確認と完了連絡</h4><ol start="1"><li><p>保存できたファイルを共有フォルダから開き直す。</p></li><li><p>次の3点を確認する。</p><ul><li><p>列が『対象月』『請求先ID』『金額』の3列である。</p></li><li><p>ヘッダーを除く行数が、控えた請求件数と一致する。</p></li><li><p>全行の『対象月』が、選んだ対象月と一致する。</p></li></ul></li><li><p>3点を確認できた場合だけ、社内チャット『#経理連携』に対象月、請求件数、保存先を投稿する。</p></li></ol><p>ファイルを開き直せない場合、または確認結果が違う場合は、その場で中止し、経理へ完了連絡をしない。</p><h4>7. 中止時の連絡</h4><p>中止した場合は、社内チャット『#請求運用』で運用担当へ連絡する。次の内容を伝える。</p><ul><li><p>対象月</p></li><li><p>止まった操作</p></li><li><p>画面の状態または表示されたエラー</p></li></ul><p>再実行せず、運用担当の指示を待つ。請求先IDや金額の明細はチャットに貼らない。</p></div><details><summary>本文外の注記</summary><p>運用手順書（flow）として構成・条件・中止基準を整理しました。原資料の画面名、ボタン名、条件は変更していません。</p></details><p>生成中の観測: スキル本文 あり／lintコマンド なし</p><p>完了後の採点用lint: 1件</p><details><summary>採点用lintの指摘</summary><pre>[
+  {
+    &quot;ruleId&quot;: &quot;no-doubled-conjunction&quot;,
+    &quot;line&quot;: 30,
+    &quot;column&quot;: 57,
+    &quot;message&quot;: &quot;同じ接続詞（または）が連続して使われています。&quot;
+  }
+]</pre></details><details><summary>意味の採点と根拠</summary><p><strong>facts: 合格</strong> 毎月第1営業日の当番作業、前月対象、事前条件・権限、生成から保存後確認・連絡までの順序、CSVの3列・行数・対象月確認、0件時の扱い、保存先と命名規則を含む。</p><p><strong>grounding: 合格</strong> 画面名、ボタン名、5分、中止先・完了連絡先、保存先およびファイル名を変更せず、資料外のコマンド、再生成、上書き、復旧策、承認を追加していない。注記も本文の不足を補うものではない。</p><p><strong>role: 合格</strong> 当番が前提、操作、確認、中止時の対応、連絡先を追える完成した手順書であり、質問や草稿だけで終わっていない。</p><p><strong>clarity: 不合格</strong> 前月不一致・『締め済み』でない場合の中止条件が、生成・ダウンロード手順の後に置かれている。また、生成失敗・5分未完了の判断も『ダウンロード』指示の後であり、中止判断を次操作より先に行う順序として明確でない。</p><p><strong>economy: 合格</strong> 必要な節と番号付き手順で簡潔に構成され、概要も作業内容の範囲にとどまる。詳細の重複や資料外の説明はない。</p></details></article></div></section></html>

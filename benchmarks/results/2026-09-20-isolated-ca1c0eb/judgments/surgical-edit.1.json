@@ -1,0 +1,73 @@
+{
+  "caseId": "surgical-edit",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "失敗率が7%を超えた場合に、当番が配信を停止すると明記している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "新たな監視条件、復旧手順、通知先は追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "タイトル、前2文、改行を維持し、末尾文のみ置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "旧文は残らず、当番が失敗率7%超で配信を停止することが明確である。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "本文外notesに改稿作業の補足があり、要求された改稿後全文だけの返答ではない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "失敗率が7%を超えた場合に、当番が配信を停止すると明記している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "新たな監視条件、復旧手順、通知先は追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "タイトル、前2文、改行を維持し、末尾文のみ置換している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "旧文は残らず、当番が失敗率7%超で配信を停止することが明確である。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "改稿後の全文だけを返しており、章や補足を追加していない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4625,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 449,
+      "reasoning_output_tokens": 73
+    },
+    "elapsedMs": 21216,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/surgical-edit.1.judge.json",
+      "sha256": "52bf56b414b9904bfc0e365667eedad58230d90281a27145ff6953347dcf910d",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "10fbf15eeb71bf05638d898b69026e7a145e4ed6bae9d674579195b9887f2ef4",
+      "sessionId": "01a0beb2-cdb1-7a90-be97-dd77b13d3dfd"
+    }
+  },
+  "promptHash": "10fbf15eeb71bf05638d898b69026e7a145e4ed6bae9d674579195b9887f2ef4"
+}

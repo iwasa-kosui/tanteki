@@ -1,0 +1,49 @@
+{
+  "protocol": "tanteki-isolated-v1",
+  "plannedPairs": 1,
+  "validPairs": 1,
+  "gradedPairs": 1,
+  "pairedScoreDifferences": [
+    {
+      "caseId": "runbook-export",
+      "repeat": 1,
+      "difference": -2
+    }
+  ],
+  "arms": {
+    "without_skill": {
+      "planned": 1,
+      "valid": 1,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 6524,
+      "outputTokens": 1193,
+      "cachedInputTokens": 0,
+      "modelCalls": 1,
+      "elapsedMs": 10367,
+      "skillTextSeen": 0,
+      "lintCommandSeen": 0,
+      "assessed": 1,
+      "rubricPasses": 5,
+      "rubricTotal": 5,
+      "lintPasses": 1
+    },
+    "with_skill": {
+      "planned": 1,
+      "valid": 1,
+      "invalid_environment": 0,
+      "execution_failed": 0,
+      "inputTokens": 95279,
+      "outputTokens": 5372,
+      "cachedInputTokens": 77221,
+      "modelCalls": 7,
+      "elapsedMs": 67733,
+      "skillTextSeen": 1,
+      "lintCommandSeen": 1,
+      "assessed": 1,
+      "rubricPasses": 3,
+      "rubricTotal": 5,
+      "lintPasses": 1
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "promptHash": "09e1dfc47b705ba318b4438fd2e2f78bb270888971aa30b753dc8339c6b3032e",
+  "jobHash": "562a438c2a3d0e7ca75def60cb3f0aa607869244a1f76e7615d2c812587adf5a",
+  "environmentHash": "474c70163c2e1554f5b61503113cd27d82fdbba08b7f0cb1becc7b4cafe9d191",
+  "containerId": "8953f85e50ac882dcf0a8e2b5422b474f6498d8179d9ba719645e24c5ab0e86c",
+  "usage": {
+    "input_tokens": 5850,
+    "cached_input_tokens": 0,
+    "output_tokens": 135
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 5180,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "no-document.2.without_skill",
+  "caseId": "no-document",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "新たな議事録は残さなくてよいです。\n\n議論・決定・宿題がなく、開催前に中止され、中止連絡も参加者へ送信済みのため、議事録を作成しても新たな情報はありません。必要であれば、予定表や定例管理欄に「本日は開催前に中止（議論・決定・宿題なし／参加者へ連絡済み）」と簡潔に記録する程度で十分です。",
+    "notes": ""
+  },
+  "responseHash": "07566aaa881a26c844c73e5cb8f200607ca32448f04aaa931818d285d95fcf60"
+}

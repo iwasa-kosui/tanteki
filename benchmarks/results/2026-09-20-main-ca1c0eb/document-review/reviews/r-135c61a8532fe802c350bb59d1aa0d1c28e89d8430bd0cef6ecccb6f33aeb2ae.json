@@ -1,0 +1,76 @@
+{
+  "reviewId": "r-135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae",
+  "inputHash": "135c61a8532fe802c350bb59d1aa0d1c28e89d8430bd0cef6ecccb6f33aeb2ae",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "当番向け本番キャッシュ再起動Runbookの草稿",
+        "status": "revision_needed",
+        "summary": "未確定事項と本番実行不可を明示した草稿ですが、実施可否の条件表現に矛盾があります。そこを修正しても、コマンド・許可条件・復旧確認方法・連絡先の確定までは実行できません。",
+        "strengths": [
+          "資料で確定している情報を限定し、この手順だけで本番操作を実施してはいけないと明示しています。",
+          "未確定のコマンドや連絡先を創作せず、プレースホルダーと事前確認事項に分けています。",
+          "操作前の確認から実行記録、復旧確認、異常時の連絡までの流れを示しています。"
+        ],
+        "findings": [
+          {
+            "severity": "major",
+            "kind": "structure",
+            "basis": "document_purpose",
+            "excerpt": "3. 次の停止条件に該当しないことを確認する。\n   - [停止してよい条件]\n   - [停止してはいけない条件]",
+            "source_excerpt": "",
+            "finding": "許可条件と禁止条件の両方について「該当しないこと」を求めており、許可条件の確認方向が逆になっています。また、「停止」がキャッシュ停止か作業中止かも曖昧です。",
+            "impact": "条件を確定して埋めても、当番が実施可否を一貫して判定できず、許可条件を満たさない状態で進むおそれがあります。",
+            "suggested_change": "再起動の許可条件を満たし、禁止条件には該当しないことを確認する表現に変更してください。条件の具体的内容は未確定のまま保持してください。"
+          }
+        ],
+        "source_gaps": [
+          {
+            "missing_information": "対象環境・対象キャッシュの特定方法と再起動コマンド",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- 再起動コマンドと対象環境",
+            "consequence": "本番で操作対象を特定し、安全に再起動することはまだできません。"
+          },
+          {
+            "missing_information": "停止・再起動を許可する条件と禁止する条件",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- 再起動を許可する条件・禁止する条件",
+            "consequence": "監視エラーを検知しても、再起動してよいかは判断できません。未確定であること自体は適切に示されています。"
+          },
+          {
+            "missing_information": "復旧確認方法、具体的な監視項目と確認時間",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- 復旧確認の具体的な監視項目・確認時間",
+            "consequence": "再起動後に正常化や対応完了を判断できません。"
+          },
+          {
+            "missing_information": "連絡先、承認の要否・承認者、障害時のエスカレーション先",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- 承認者、当番連絡先、障害時のエスカレーション先",
+            "consequence": "実施可否の相談や異常時の引き継ぎを、この草稿だけでは行えません。承認手続きも運用として確認が必要です。"
+          },
+          {
+            "missing_information": "再起動失敗時の中止条件と次の対応",
+            "blocks_use": true,
+            "handled_appropriately": true,
+            "excerpt": "- 再起動失敗時の中止条件と次の対応",
+            "consequence": "再試行せず連絡する流れは示されていますが、具体的な中止判断とその後の対応は確定していません。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6321,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1498,
+        "reasoning_output_tokens": 516
+      },
+      "elapsedMs": 49543,
+      "validationErrors": null
+    }
+  ]
+}

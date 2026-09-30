@@ -1,0 +1,73 @@
+{
+  "caseId": "no-document",
+  "repeat": 2,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "「開催前に中止され、議論・決定・宿題がなく」と、必要な事実を理由にしている。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "開催済みの会議や次回予定、規程を創作していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "「新たな議事録は残す必要ありません」と判断し、議事録本文・ひな型を作成していない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "新規議事録は不要との結論と、その理由が直接示されている。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "結論と理由の後に「予定表や中止連絡の記録だけを保持」という追加手順があり、一文ではない。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": false,
+          "evidence": "議論・決定・宿題がないことは述べるが、開催前に中止済みである事実を、不要判断の理由として明確に示していない。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "資料にない社内規程を前提にした条件分岐と、開催実績・中止理由の記録を追加している。"
+        },
+        "role": {
+          "pass": false,
+          "evidence": "不要としつつ、「次の最小記録」として中止記録のひな型を新規に提示している。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "冒頭で「新たな議事録は残さなくてよい」と結論を直接示している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "複数段落と箇条書きで追加の管理手順・例示を加えており、一文ではない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4734,
+      "cached_input_tokens": 1792,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 669,
+      "reasoning_output_tokens": 241
+    },
+    "elapsedMs": 28110,
+    "inputAudit": {
+      "verified": true,
+      "file": "call-inputs/no-document.2.judge.json",
+      "sha256": "d747bef5577ca222057befeff814d0429989178e0aeec9ba1f5f2ed23c33e19a",
+      "contextHash": "4faa29d378ff62c7fed84b14d9d70e65b738fe4ddda06419c97df42b830d2845",
+      "promptHash": "2f49d54fa00f5b370f9c81a53a49653eb5388f00f4eea0aa8fc8c89eca2b9aa6",
+      "sessionId": "01a0beb4-1736-7c72-9975-e5b85954df42"
+    }
+  },
+  "promptHash": "2f49d54fa00f5b370f9c81a53a49653eb5388f00f4eea0aa8fc8c89eca2b9aa6"
+}

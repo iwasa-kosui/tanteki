@@ -1,0 +1,28 @@
+{
+  "promptHash": "c3820a536d23882a4167f48baaada8114747d86c43bbb0eeb99e5151f8b49372",
+  "jobHash": "04d423f3ddd2859ed847c04d4698e59e073b81330df2a2158ba54bdbd34952e7",
+  "environmentHash": "bab191e03574740866739ec3ae19144d58411ef582561627e7a346cf55dd3b1e",
+  "containerId": "09a1e02b5a01ed0a96336de0104013599bcefb1f863e203f89399190a3747fa5",
+  "usage": {
+    "input_tokens": 62174,
+    "cached_input_tokens": 45931,
+    "output_tokens": 1074
+  },
+  "modelCalls": 5,
+  "providerResponses": 5,
+  "elapsedMs": 37877,
+  "observations": {
+    "skillTextSeen": true,
+    "lintCommandSeen": true
+  },
+  "id": "plain-japanese.1.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 1,
+  "arm": "with_skill",
+  "status": "valid",
+  "response": {
+    "body": "### 請求画面への遷移\n利用者は、既存の認証状態を引き継いで請求画面へ移動できます。認証が有効な場合、再ログインは必要ありません。\n\n認証の有効期限が切れている場合に限り、ログイン画面を表示します。",
+    "notes": "確定事項に基づき、造語と抽象表現を削除して推敲しました。textlint検査済みです。"
+  },
+  "responseHash": "d28345916c144004cf8adfeb645c6f8770012d120601becd244a02731860a62f"
+}

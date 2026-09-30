@@ -1,0 +1,28 @@
+{
+  "promptHash": "61c432b8cff0ca17afca43f6f45e9d12dac1b94370adecf33b52b5a8bbc3cb76",
+  "jobHash": "9e75b7f615b49503ce861b3b2bd9f74ac8cfd0be511ca61a9c92828067a645d4",
+  "environmentHash": "bd10131995100a382416063e10f00eaa00a3cff4a14c4b2e6490019699f35124",
+  "containerId": "7c0e29e3d2a43961f0ee105c2e2f6a8edf50219d362bf1039a94e51a6962555d",
+  "usage": {
+    "input_tokens": 5916,
+    "cached_input_tokens": 0,
+    "output_tokens": 298
+  },
+  "modelCalls": 1,
+  "providerResponses": 1,
+  "elapsedMs": 4884,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "incident-record.2.without_skill",
+  "caseId": "incident-record",
+  "repeat": 2,
+  "arm": "without_skill",
+  "status": "valid",
+  "response": {
+    "body": "# 請求検索エラー増加 ポストモーテム\n\n## 概要\n8月19日、請求検索でエラーが増加しました。直前の変更をロールバックし、検知から12分後の09:22に復旧を確認しました。\n\n## 影響\n- 検索失敗：340件\n- 決済への影響：なし\n\n## タイムライン\n- 09:10：請求検索のエラー増加を検知\n- 09:17：当番の加藤が直前の変更をロールバック\n- 09:22：復旧を確認\n\n## 原因\nDB接続枯渇が原因である可能性があります。ただし、ログ確認が未完了のため、根本原因は未確定です。\n\n## 改善課題\n- OPS-315：接続数の記録を追加（担当：加藤、期限：8月26日）\n- ログを確認し、原因を確定する",
+    "notes": ""
+  },
+  "responseHash": "f81cc354e3518bbcba2265e9fcd5044da0e427948efacb1bf711be6f584f4ae7"
+}

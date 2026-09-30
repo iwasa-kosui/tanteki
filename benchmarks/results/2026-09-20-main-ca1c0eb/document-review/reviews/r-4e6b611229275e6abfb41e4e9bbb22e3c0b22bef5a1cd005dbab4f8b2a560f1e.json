@@ -1,0 +1,37 @@
+{
+  "reviewId": "r-4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e",
+  "inputHash": "4e6b611229275e6abfb41e4e9bbb22e3c0b22bef5a1cd005dbab4f8b2a560f1e",
+  "attempts": [
+    {
+      "response": {
+        "intended_use": "運用チーム向けの短いポストモーテムとして、対応経過、影響、原因の確度、改善行動の担当と期限を共有する。",
+        "status": "usable",
+        "summary": "検知・対応・復旧確認の時刻、影響、改善行動を正確に把握できる。原因は仮説として明確に区別されており、確定にはログ確認が必要。",
+        "strengths": [
+          "検知、ロールバック、復旧確認を時刻とともに区別し、対応者も明示している。",
+          "検索失敗340件と決済への影響なしを正確に伝え、原因を確定事項として扱っていない。",
+          "改善課題の番号、実施内容、担当、期限が揃っている。"
+        ],
+        "findings": [],
+        "source_gaps": [
+          {
+            "missing_information": "原因仮説を検証するログ確認の結果。",
+            "blocks_use": false,
+            "handled_appropriately": true,
+            "excerpt": "DB接続枯渇が仮説として挙がっているが、ログ確認は未完了で未確定",
+            "consequence": "DB接続枯渇を確定原因とは判断できないが、現時点の経過と改善行動の共有には使える。"
+          }
+        ]
+      },
+      "usage": {
+        "input_tokens": 6036,
+        "cached_input_tokens": 2944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 481,
+        "reasoning_output_tokens": 137
+      },
+      "elapsedMs": 19816,
+      "validationErrors": null
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "caseId": "comparison-rfc",
+  "repeat": 1,
+  "mapping": {
+    "A": "without_skill",
+    "B": "with_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "商品検索の遅さ、Aの運用対象を増やさない利点と部分一致が速くならない制限、Bの部分一致高速化・別サービス運用・反映遅延、Bの提案が本文にある。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "60秒は業務承認前と明記し計測値・費用も未取得としているが、「方式Bを採用する」と採用決定のように記している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "別サービス運用と60秒許容を合意事項にし、本文にSEARCH-88、PR #71、レビュー期限を含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "A・Bを長所／短所の対応する箇条書きで比較し、Bの提案と60秒承認待ちを区別している。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "比較・合意論点に加え、計測、見積り、詳細設計決定などの次のステップ（実装計画）を付けている。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "問題、Aの運用利点と部分一致制限、Bの部分一致高速化と運用・反映遅延の代償、およびBの提案を記載している。"
+        },
+        "grounding": {
+          "pass": false,
+          "evidence": "60秒案が業務側未承認であり、計測値・費用も未確認としている一方、「方式Bを採用する」と採用決定のように記している。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "別サービス運用と60秒許容を合意事項として示し、本文にはSEARCH-88、PR #71、レビュー期限を入れていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "方式Bの提案、方式Aの代替案、60秒条件の未決定を見出しと箇条書きで明確に分けている。"
+        },
+        "economy": {
+          "pass": false,
+          "evidence": "方式Bの部分一致高速化、別サービス運用、反映遅延という比較内容を「提案」と「影響」で反復している。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 5455,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 714,
+      "reasoning_output_tokens": 168
+    },
+    "elapsedMs": 30061
+  },
+  "promptHash": "810bc14859def4c7ccddd8b6c4923b6a61cb578f681fb980b5226ec8873a0755"
+}

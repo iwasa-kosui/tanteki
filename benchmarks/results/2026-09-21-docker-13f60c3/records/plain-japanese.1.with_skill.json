@@ -1,0 +1,24 @@
+{
+  "promptHash": "c3820a536d23882a4167f48baaada8114747d86c43bbb0eeb99e5151f8b49372",
+  "jobHash": "04d423f3ddd2859ed847c04d4698e59e073b81330df2a2158ba54bdbd34952e7",
+  "environmentHash": "bd8e1595af39b392a9244d3a656883790cb14d6772b0be0ba44b43e49e739f74",
+  "containerId": "3cc3c154cf015e191c4813d2bb660fd5de80913e9afeacda3bb2b81657c5648f",
+  "usage": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "output_tokens": 0
+  },
+  "modelCalls": 1,
+  "providerResponses": 0,
+  "elapsedMs": 6708,
+  "observations": {
+    "skillTextSeen": false,
+    "lintCommandSeen": false
+  },
+  "id": "plain-japanese.1.with_skill",
+  "caseId": "plain-japanese",
+  "repeat": 1,
+  "arm": "with_skill",
+  "status": "execution_failed",
+  "error": "Provider failure: rate_limit_exceeded"
+}

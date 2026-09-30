@@ -1,0 +1,65 @@
+{
+  "caseId": "plain-japanese",
+  "repeat": 1,
+  "mapping": {
+    "A": "with_skill",
+    "B": "without_skill"
+  },
+  "result": {
+    "response": {
+      "A": {
+        "facts": {
+          "pass": true,
+          "evidence": "既存の認証情報で請求画面へ移れ、再ログイン不要であり、有効期限切れの場合はログイン画面を表示すると記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "資料にない自動更新、認証方式、別エラー時の動作を追加していない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "CS担当者が利用者へ説明できる仕様本文のみであり、書き換え手順を本文に含めていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "草稿の抽象表現・造語を、認証の有効性と有効期限切れ時の画面表示という具体的な条件・動作に置き換えている。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "短い一段落で、見出しや重複なく要点を伝えている。"
+        }
+      },
+      "B": {
+        "facts": {
+          "pass": true,
+          "evidence": "現在利用中の認証情報のまま請求画面へ移動でき、再ログイン不要で、有効期限切れの場合に限りログイン画面を表示すると記載している。"
+        },
+        "grounding": {
+          "pass": true,
+          "evidence": "確定事項以外の認証仕様やエラー動作を補っていない。"
+        },
+        "role": {
+          "pass": true,
+          "evidence": "CSが利用者にそのまま説明できる仕様本文であり、修正方法の解説を混在させていない。"
+        },
+        "clarity": {
+          "pass": true,
+          "evidence": "抽象語・造語を使わず、認証状態に応じた具体的な利用者動作と画面表示を明示している。"
+        },
+        "economy": {
+          "pass": true,
+          "evidence": "簡潔な一段落であり、見出しの列挙や内容の反復がない。"
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 4754,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 80
+    },
+    "elapsedMs": 24297
+  },
+  "promptHash": "d6a3e2e1f656de6504e2d2489073a9aba5539a47bb4461dacc0ac985c665ea00"
+}

@@ -1,0 +1,439 @@
+{
+  "summary": {
+    "without_skill": {
+      "n": 20,
+      "criterionPasses": {
+        "facts": 20,
+        "grounding": 14,
+        "role": 16,
+        "clarity": 20,
+        "economy": 11
+      },
+      "rubricPasses": 81,
+      "rubricTotal": 100,
+      "allCriteriaPass": 10,
+      "initialLintPass": 12,
+      "finalLintPass": 17,
+      "finalLintMessages": 4,
+      "finalCharacters": 8272,
+      "calls": 28,
+      "inputTokens": 77990,
+      "cachedInputTokens": 16128,
+      "outputTokens": 13123,
+      "elapsedMs": 385565
+    },
+    "with_skill": {
+      "n": 20,
+      "criterionPasses": {
+        "facts": 18,
+        "grounding": 16,
+        "role": 18,
+        "clarity": 15,
+        "economy": 12
+      },
+      "rubricPasses": 79,
+      "rubricTotal": 100,
+      "allCriteriaPass": 6,
+      "initialLintPass": 18,
+      "finalLintPass": 19,
+      "finalLintMessages": 1,
+      "finalCharacters": 5782,
+      "calls": 22,
+      "inputTokens": 314424,
+      "cachedInputTokens": 8960,
+      "outputTokens": 8243,
+      "elapsedMs": 294944
+    }
+  },
+  "perCase": [
+    {
+      "id": "adr-boundary",
+      "title": "ADRの判断と作業追跡の分離",
+      "without_skill": [
+        {
+          "id": "adr-boundary.1.without_skill",
+          "score": 2,
+          "failures": [
+            "grounding",
+            "role",
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "adr-boundary.2.without_skill",
+          "score": 3,
+          "failures": [
+            "grounding",
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "adr-boundary.1.with_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "adr-boundary.2.with_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "design-tradeoff",
+      "title": "Design Docの構成・失敗条件・代替案",
+      "without_skill": [
+        {
+          "id": "design-tradeoff.1.without_skill",
+          "score": 2,
+          "failures": [
+            "grounding",
+            "role",
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "design-tradeoff.2.without_skill",
+          "score": 2,
+          "failures": [
+            "grounding",
+            "role",
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "design-tradeoff.1.with_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "design-tradeoff.2.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "progress-retention",
+      "title": "進捗報告で追跡情報を保持",
+      "without_skill": [
+        {
+          "id": "progress-retention.1.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "progress-retention.2.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "progress-retention.1.with_skill",
+          "score": 2,
+          "failures": [
+            "grounding",
+            "role",
+            "clarity"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "progress-retention.2.with_skill",
+          "score": 4,
+          "failures": [
+            "clarity"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "incident-record",
+      "title": "障害記録の時系列と仮説",
+      "without_skill": [
+        {
+          "id": "incident-record.1.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "incident-record.2.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "incident-record.1.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "incident-record.2.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "runbook-missing",
+      "title": "資料不足の手順を完成扱いしない",
+      "without_skill": [
+        {
+          "id": "runbook-missing.1.without_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "runbook-missing.2.without_skill",
+          "score": 4,
+          "failures": [
+            "grounding"
+          ],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "runbook-missing.1.with_skill",
+          "score": 3,
+          "failures": [
+            "facts",
+            "clarity"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "runbook-missing.2.with_skill",
+          "score": 4,
+          "failures": [
+            "clarity"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "surgical-edit",
+      "title": "既存文書の一文だけ修正",
+      "without_skill": [
+        {
+          "id": "surgical-edit.1.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": true
+        },
+        {
+          "id": "surgical-edit.2.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": true
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "surgical-edit.1.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": true
+        },
+        {
+          "id": "surgical-edit.2.with_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": true
+        }
+      ]
+    },
+    {
+      "id": "canonical-reference",
+      "title": "正本で済む依頼",
+      "without_skill": [
+        {
+          "id": "canonical-reference.1.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "canonical-reference.2.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "canonical-reference.1.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "canonical-reference.2.with_skill",
+          "score": 4,
+          "failures": [
+            "role"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "no-document",
+      "title": "文書を作る必要性の判断",
+      "without_skill": [
+        {
+          "id": "no-document.1.without_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "no-document.2.without_skill",
+          "score": 4,
+          "failures": [
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "no-document.1.with_skill",
+          "score": 3,
+          "failures": [
+            "grounding",
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "no-document.2.with_skill",
+          "score": 3,
+          "failures": [
+            "grounding",
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "comparison-rfc",
+      "title": "RFCで比較と未決定を保つ",
+      "without_skill": [
+        {
+          "id": "comparison-rfc.1.without_skill",
+          "score": 3,
+          "failures": [
+            "grounding",
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "comparison-rfc.2.without_skill",
+          "score": 3,
+          "failures": [
+            "role",
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "comparison-rfc.1.with_skill",
+          "score": 3,
+          "failures": [
+            "grounding",
+            "economy"
+          ],
+          "exactEdit": null
+        },
+        {
+          "id": "comparison-rfc.2.with_skill",
+          "score": 3,
+          "failures": [
+            "clarity",
+            "economy"
+          ],
+          "exactEdit": null
+        }
+      ]
+    },
+    {
+      "id": "plain-japanese",
+      "title": "曖昧な表現を根拠に沿って具体化",
+      "without_skill": [
+        {
+          "id": "plain-japanese.1.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "plain-japanese.2.without_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        }
+      ],
+      "with_skill": [
+        {
+          "id": "plain-japanese.1.with_skill",
+          "score": 5,
+          "failures": [],
+          "exactEdit": null
+        },
+        {
+          "id": "plain-japanese.2.with_skill",
+          "score": 4,
+          "failures": [
+            "facts"
+          ],
+          "exactEdit": null
+        }
+      ]
+    }
+  ],
+  "judgeUsage": {
+    "input_tokens": 103197,
+    "cached_input_tokens": 32000,
+    "output_tokens": 13784
+  }
+}
