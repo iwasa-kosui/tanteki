@@ -9,20 +9,25 @@ import * as zlib from "node:zlib";
 import { z } from "zod";
 import { decode, messageOf } from "./validation.ts";
 import { WorkerMessage } from "./worker-message.ts";
-import { sawLintCommand } from "./observations.ts";
+import { claudeObserver, sawLintCommand } from "./observations.ts";
 import type { NativeEvidence } from "./native-evidence.ts";
 import type { Job } from "./job.ts";
 import { emptyUsage, type ModelRun, type ExecutionMetrics } from "./execution.ts";
 import { Evaluation } from "./evaluation.ts";
 import type { Inventory, Mount } from "./protocol.ts";
 
-export type Transport = (body: Buffer, signal: AbortSignal) => Promise<Response>;
+// meta is set only for providers whose relay forwards the client's path and selected headers (Claude Code).
+export type RelayedRequest = Readonly<{ path?: string; headers?: Record<string, string> }>;
+export type Transport = (body: Buffer, signal: AbortSignal, meta?: RelayedRequest) => Promise<Response>;
+export type Provider = "codex" | "claude";
 type CommandOptions = { timeout?: number; input?: string; maxBytes?: number; env?: NodeJS.ProcessEnv };
 export type ModelOptions<S extends z.ZodType> = {
   image: string; bundle: Inventory | null; bundlePath: string | null; job: Job; directory: string;
   timeout: number; maxCalls: number; transport: Transport; responseSchema: S; signal?: AbortSignal;
+  provider?: Provider; claudeVersion?: string;
 };
 import { checkContainer, checkRequest, comparableRequest, validatePreflight, digest, sha256, invariant, inventory, canonical } from "./protocol.ts";
+import { checkAnthropicRequest, comparableAnthropicRequest, validateClaudePreflight, type ClaudeEvidence } from "./claude-config.ts";
 
 export function command(bin: string, args: string[], { timeout = 120000, input, maxBytes = 32 * 1024 * 1024, env = process.env }: CommandOptions = {}): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -83,7 +88,7 @@ export function apiTransport(apiKey: string | undefined): Transport {
 export function paceTransport(transport: Transport, intervalMs = 7000): Transport {
   let lastStartedAt = -Infinity;
   let queue = Promise.resolve();
-  return async (body, signal) => {
+  return async (body, signal, meta) => {
     const turn = queue.then(async () => {
       signal.throwIfAborted();
       const remaining = lastStartedAt + intervalMs - Date.now();
@@ -94,8 +99,20 @@ export function paceTransport(transport: Transport, intervalMs = 7000): Transpor
     // A cancelled turn must not reject the following request's queue.
     queue = turn.catch(() => {});
     await turn;
-    return transport(body, signal);
+    return transport(body, signal, meta);
   };
+}
+
+// One fixed origin and one path; the relayed path may only add a query string.
+export function anthropicTransport(apiKey: string | undefined): Transport {
+  invariant(typeof apiKey === "string" && apiKey.length > 0, "Set ANTHROPIC_API_KEY on the host; credentials are never copied into containers");
+  return paceTransport(async (body, signal, meta) => {
+    const path = meta?.path ?? "";
+    invariant(/^\/v1\/messages(?:\?[^#\s]*)?$/.test(path), `Unapproved Anthropic path: ${path}`);
+    const headers: Record<string, string> = { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": meta?.headers?.["anthropic-version"] ?? "2023-06-01" };
+    if (meta?.headers?.["anthropic-beta"]) headers["anthropic-beta"] = meta.headers["anthropic-beta"];
+    return fetch(`https://api.anthropic.com${path}`, { method: "POST", headers, body: body.toString("utf8"), signal, redirect: "error" });
+  });
 }
 
 export class SSEUsage {
@@ -128,7 +145,54 @@ export class SSEUsage {
   }
 }
 
-export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath, job, directory, timeout, maxCalls, transport, responseSchema, signal }: ModelOptions<S>): Promise<ModelRun<z.output<S>>> {
+// Anthropic Messages stream: usage arrives in message_start/message_delta; message_stop completes one response.
+// input_tokens counts the whole prompt (uncached + cache reads + cache writes) to match the Responses API meaning; cached_input_tokens is the cache-read part.
+export class AnthropicSSEUsage {
+  buffer = "";
+  usage = { input_tokens: 0, cached_input_tokens: 0, output_tokens: 0 };
+  completed = 0;
+  failureCode: string | undefined;
+  #current: { input: number; cached: number; output: number } | undefined;
+  push(chunk: string) {
+    this.buffer += chunk;
+    invariant(this.buffer.length < 20 * 1024 * 1024, "Oversized SSE event");
+    const lines = this.buffer.split("\n");
+    this.buffer = lines.pop() ?? "";
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      const raw: unknown = JSON.parse(line.slice(6));
+      const event = decode(z.looseObject({ type: z.string() }), raw);
+      if (event.type === "error") this.failureCode = decode(z.object({ error: z.looseObject({ type: z.string() }) }), raw).error.type;
+      if (event.type === "message_start") {
+        const usage = decode(z.object({ message: z.object({ usage: z.looseObject({ input_tokens: z.number(), cache_read_input_tokens: z.number().optional(), cache_creation_input_tokens: z.number().optional(), output_tokens: z.number().optional() }) }) }), raw).message.usage;
+        const cached = usage.cache_read_input_tokens ?? 0;
+        this.#current = { input: usage.input_tokens + cached + (usage.cache_creation_input_tokens ?? 0), cached, output: usage.output_tokens ?? 0 };
+      }
+      if (event.type === "message_delta") {
+        invariant(this.#current, "message_delta before message_start");
+        this.#current.output = decode(z.object({ usage: z.looseObject({ output_tokens: z.number() }) }), raw).usage.output_tokens;
+      }
+      if (event.type === "message_stop") {
+        invariant(this.#current, "message_stop before message_start");
+        this.usage.input_tokens += this.#current.input;
+        this.usage.cached_input_tokens += this.#current.cached;
+        this.usage.output_tokens += this.#current.output;
+        this.completed++;
+        this.#current = undefined;
+      }
+    }
+  }
+}
+
+// The catalog carries only the description; a line from the SKILL.md body reaching a request means the skill text itself was loaded.
+export async function skillBodyMarker(bundlePath: string): Promise<string> {
+  const body = (await readFile(join(bundlePath, "SKILL.md"), "utf8")).replace(/^---\n[\s\S]*?\n---\n/, "");
+  const line = body.split("\n").find((candidate) => candidate.trim().length >= 20);
+  invariant(line, "SKILL.md has no body line to observe");
+  return line.trim();
+}
+
+export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath, job, directory, timeout, maxCalls, transport, responseSchema, signal, provider = "codex", claudeVersion }: ModelOptions<S>): Promise<ModelRun<z.output<S>>> {
   await mkdir(directory, { recursive: true });
   const staging = await temporaryDirectory();
   const input = join(staging, "input");
@@ -140,7 +204,10 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
   const metrics: ExecutionMetrics = { promptHash: sha256(job.prompt), jobHash: digest(job), usage: emptyUsage(), modelCalls: 0, providerResponses: 0, elapsedMs: 0, observations: { skillTextSeen: false, lintCommandSeen: false } };
   let child: ChildProcessWithoutNullStreams | undefined;
   let timer: NodeJS.Timeout | undefined;
-  let preflight: NativeEvidence | undefined;
+  const claude = provider === "claude";
+  const claudeSeen = claudeObserver();
+  const skillMarker = claude && bundlePath ? await skillBodyMarker(bundlePath) : undefined;
+  let preflight: NativeEvidence | ClaudeEvidence | undefined;
   let gotInput = false;
   let response: unknown;
   let violation: string | undefined;
@@ -166,19 +233,32 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
     const bytes = decodeRequest(message);
     // Preserve rejected requests as evidence too; validation still precedes API access.
     await writeFile(join(directory, `request-${index}.json`), bytes);
-    const body = checkRequest(JSON.parse(bytes.toString("utf8")), job);
-    if (index === 1) {
-      invariant(body.input.some((item) => { const parsed = userMessage.safeParse(item); return parsed.success && parsed.data.content.some((part) => part.text === job.prompt); }), "Prompt missing from actual model request");
-      metrics.environmentHash = digest({ runtime: metrics.environmentHash, request: comparableRequest(body, job, bundle !== null) });
+    if (claude) {
+      await writeFile(join(directory, `request-${index}.meta.json`), JSON.stringify({ path: message.path, headers: message.headers }, null, 2));
+      invariant(message.path === "/v1/messages" || message.path?.startsWith("/v1/messages?"), `Unapproved relayed path: ${message.path}`);
+      const raw: unknown = JSON.parse(bytes.toString("utf8"));
+      checkAnthropicRequest(raw, job, { first: index === 1 });
+      if (index === 1) metrics.environmentHash = digest({ runtime: metrics.environmentHash, request: comparableAnthropicRequest(raw, job, bundle !== null) });
+      if (skillMarker && bytes.includes(Buffer.from(skillMarker))) metrics.observations.skillTextSeen = true;
+    } else {
+      const body = checkRequest(JSON.parse(bytes.toString("utf8")), job);
+      if (index === 1) {
+        invariant(body.input.some((item) => { const parsed = userMessage.safeParse(item); return parsed.success && parsed.data.content.some((part) => part.text === job.prompt); }), "Prompt missing from actual model request");
+        metrics.environmentHash = digest({ runtime: metrics.environmentHash, request: comparableRequest(body, job, bundle !== null) });
+      }
     }
     if (bytes.includes(Buffer.from("name: tanteki\\n"))) metrics.observations.skillTextSeen = true;
     const controller = new AbortController();
     controllers.add(controller);
-    const usage = new SSEUsage();
+    const usage = claude ? new AnthropicSSEUsage() : new SSEUsage();
     try {
-      const upstream = await transport(bytes, controller.signal);
+      const upstream = await transport(bytes, controller.signal, claude ? { path: message.path, headers: message.headers } : undefined);
       send({ type: "response", id: message.id, status: upstream.status, contentType: upstream.headers.get("content-type") ?? "text/event-stream" });
-      if (!upstream.ok) failure ??= `Provider HTTP ${upstream.status}`;
+      if (!upstream.ok) {
+        failure ??= `Provider HTTP ${upstream.status}`;
+        // Claude Code retries by itself; like Codex's request_max_retries=0, no further request may reach the API.
+        if (claude) { stop(failure); return; }
+      }
       invariant(upstream.body, "Provider returned no response body");
       const decoder = new TextDecoder();
       for await (const chunk of upstream.body) {
@@ -201,10 +281,21 @@ export async function runModel<S extends z.ZodType>({ image, bundle, bundlePath,
     log(message);
     switch (message.type) {
       case "preflight":
-        invariant(!preflight, "Duplicate preflight");
+        invariant(!claude && !preflight, "Unexpected or duplicate preflight");
         preflight = validatePreflight(message.value, job, bundle);
         metrics.environmentHash = digest({ container: metrics.environmentHash, config: preflight.config.config });
         await writeFile(join(directory, "preflight.json"), JSON.stringify(preflight, null, 2));
+        break;
+      case "claudePreflight":
+        invariant(claude && !preflight, "Unexpected or duplicate Claude preflight");
+        invariant(claudeVersion, "Claude runs need the locked Claude Code version");
+        preflight = validateClaudePreflight(message.value, job, bundle, claudeVersion);
+        // The init event carries per-session identifiers; only the command line and environment are comparable.
+        metrics.environmentHash = digest({ container: metrics.environmentHash, command: preflight.configTextHash });
+        await writeFile(join(directory, "preflight.json"), JSON.stringify(preflight, null, 2));
+        break;
+      case "claudeEvent":
+        if (claudeSeen.lintCommandSeen(message.event)) metrics.observations.lintCommandSeen = true;
         break;
       case "turnInput":
         invariant(!gotInput && preflight, "Unexpected turn input");

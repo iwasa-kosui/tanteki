@@ -1,12 +1,14 @@
 /** Real Docker + Codex, scripted Responses API. No credentials or paid model calls. */
 import assert from "node:assert/strict";
 import { readFile, writeFile, rm } from "node:fs/promises";
-import { resolve, join } from "node:path";
+import { resolve, join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { generate, grade, report, loadLock, readRun } from "./cli.ts";
 import { decode } from "./validation.ts";
 import { options } from "./options.ts";
-import { docker, runModel, exportBundle, type Transport } from "./docker.ts";
+import { command, docker, runModel, exportBundle, type Transport } from "./docker.ts";
+import { readPublication } from "./publication.ts";
 import { publicJob } from "./protocol.ts";
 import { AuthorResponse } from "./job.ts";
 
@@ -87,6 +89,11 @@ assert.ok(evaluation.sealed);
 assert.equal(Object.keys(evaluation.lint).length, 2);
 for (const pair of Object.values(evaluation.pairs)) assert.equal(pair.status, "valid", JSON.stringify(pair));
 await report({ action: "report", run: join(out, "generation"), evaluation: join(out, "grade"), out: join(out, "report") });
+
+// The publication verifier must keep accepting what the harness produced.
+const published = join(out, "publication");
+await command(process.execPath, ["--import", "tsx", join(dirname(fileURLToPath(import.meta.url)), "../../scripts/publish-benchmark.ts"), "--run", join(out, "generation"), "--evaluation", join(out, "grade"), "--out", published], { timeout: 120000 });
+assert.equal((await readPublication(published)).manifest.protocol, "tanteki-isolated-v1");
 
 const failed = await runModel({ image: lock.runtimeImage, bundle: null, bundlePath: null, job: publicJob({ prompt: "テスト" }, { model: "gpt-5.4", effort: "low" }), directory: join(out, "provider-failure"), timeout: 30, maxCalls: 1, transport: async () => new Response("Provider deliberately unavailable", { status: 503 }), responseSchema: AuthorResponse.schema });
 assert.equal(failed.status, "execution_failed", JSON.stringify(failed));

@@ -9,6 +9,8 @@ import { Evaluation } from "./evaluation.ts";
 import { decode } from "./validation.ts";
 import { checkContainer, comparableRequest, digest, inventory, inventorySchema, invariant, pairedRecords, publicJob, sha256, validatePreflight } from "./protocol.ts";
 import { summarize } from "./report.ts";
+import { comparableAnthropicRequest, validateClaudePreflight } from "./claude-config.ts";
+import { providerOf } from "./provider.ts";
 
 export const auditFiles = ["container.json", "preflight.json", "request-1.json"] as const;
 const json = async (path: string): Promise<unknown> => JSON.parse(await readFile(path, "utf8"));
@@ -22,6 +24,8 @@ export async function readPublication(directory: string) {
   const lock = decode(RuntimeLock.schema, await json(join(directory, "runtime-lock.json")));
   const { fingerprint: lockFingerprint, ...lockUnsigned } = lock;
   invariant(lockFingerprint === digest(lockUnsigned) && digest(lock) === manifest.runtimeLockHash, "Published runtime lock changed");
+  invariant(lock.protocol === manifest.protocol, "Published lock and manifest use different protocols");
+  const provider = providerOf(manifest.protocol);
   const cases = decode(BenchmarkCase.suiteSchema, await json(join(directory, "cases.json")));
   invariant(digest(cases) === manifest.casesHash, "Published cases changed");
   invariant((await inventory(join(directory, "records"))).digest === manifest.evidence.records, "Published records changed");
@@ -32,7 +36,7 @@ export async function readPublication(directory: string) {
   for (const r of records) {
     const c = cases.find((c) => c.id === r.caseId);
     invariant(c, "Unknown published case");
-    const job = publicJob(c, manifest.settings);
+    const job = publicJob(c, manifest.settings, provider);
     invariant(r.promptHash === sha256(c.prompt) && r.jobHash === digest(job), "Published job differs from original prompt");
     for (const file of auditFiles) {
       const expected = evidence.files[`${r.id}/${file}`];
@@ -53,8 +57,17 @@ export async function readPublication(directory: string) {
     invariant(mounts.map((m) => m.target).sort().join() === (withSkill ? "/input,/opt/skill" : "/input"), "Unexpected published mounts");
     invariant(container.Id === r.containerId, "Published container ID changed");
     const environment = checkContainer(rawContainer, lock.runtimeImage, mounts);
-    const preflight = validatePreflight(await json(join(directory, "input-audits", r.id, "preflight.json")), job, withSkill ? lock.bundleInventory : null);
+    const rawPreflight = await json(join(directory, "input-audits", r.id, "preflight.json"));
     const rawRequest = await json(join(directory, "input-audits", r.id, "request-1.json"));
+    if (provider === "claude") {
+      invariant(lock.claudeVersion, "Published Claude lock has no version");
+      const claudePreflight = validateClaudePreflight(rawPreflight, job, withSkill ? lock.bundleInventory : null, lock.claudeVersion);
+      // The comparable form checks the exact prompt, so no separate prompt search is needed.
+      const claudeRequest = comparableAnthropicRequest(rawRequest, job, withSkill);
+      invariant(digest({ runtime: digest({ container: digest(environment), command: claudePreflight.configTextHash }), request: claudeRequest }) === r.environmentHash, "Published environment differs from original execution");
+      continue;
+    }
+    const preflight = validatePreflight(rawPreflight, job, withSkill ? lock.bundleInventory : null);
     const request = comparableRequest(rawRequest, job, withSkill);
     const input = decode(z.object({ input: z.array(z.record(z.string(), z.unknown())) }), rawRequest).input;
     const userMessage = z.object({ role: z.literal("user"), content: z.array(z.object({ text: z.string() })) });
