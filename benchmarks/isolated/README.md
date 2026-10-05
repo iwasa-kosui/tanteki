@@ -17,13 +17,15 @@
 | 生成中のツール | 共通のツール | 共通のツール |
 | 完了後の採点 | 別コンテナ | 別コンテナ |
 
-Codex自身のスキル一覧と解決済み設定を取得し、期待と違えばモデルを呼ばずに停止する。組み込みスキルは両条件とも無効化する。ユーザーのHOME、リポジトリ、AGENTS.md、認証情報、他の試行、隠した採点基準はマウントしない。
+Codex版では、Codex自身のスキル一覧と解決済み設定を取得し、期待と違えばモデルを呼ばずに停止する。組み込みスキルは両条件とも無効化する。ユーザーのHOME、リポジトリ、AGENTS.md、認証情報、他の試行、隠した採点基準はマウントしない。
 
-「同じプロンプト」はユーザー入力の完全一致を指す。スキルありではCodexがスキルの発見情報を追加するため、モデルに届く全コンテキストは異なる。実際の初回APIリクエストも保存し、スキル一覧、メッセージID、セッションのメタデータ、キャッシュキー以外の差があればペアを無効にする。日付などの環境情報が途中で変わった場合も無効になる。
+「同じプロンプト」はユーザー入力の完全一致を指す。スキルありではCodexがスキルの発見情報を追加するため、モデルに届く全コンテキストは異なる。Codex版では、実際の初回APIリクエストも保存し、スキル一覧、メッセージID、セッションのメタデータ、キャッシュキー以外の差があればペアを無効にする。日付などの環境情報が途中で変わった場合も無効になる。
 
-コンテナは外部ネットワークなし、ルート領域は読み取り専用で動かす。CodexとそのコマンドはUID 1000で実行する。モデル通信は標準入出力を介してホストから固定のResponses APIへ中継する。APIキーはホストだけが持ち、過去の会話IDの使用やモデルの変更を拒否する。画像・Web・外部サービスへのアクセスを伴う課題は、この方式の対象外。
+コンテナは外部ネットワークなし、ルート領域は読み取り専用で動かす。CodexとそのコマンドはUID 1000で実行する。Codex版のモデル通信は、標準入出力を介してホストから固定のResponses APIへ中継する。APIキーはホストだけが持ち、過去の会話IDの使用やモデルの変更を拒否する。画像・Web・外部サービスへのアクセスを伴う課題は、この方式の対象外。
 
 ## 実行
+
+以下はCodex版の手順である。Claude Codeで実行する場合は[Claude Codeでの実行](#claude-codeでの実行)を参照する。
 
 Node.js 24以上とDockerを用意し、リポジトリで`npm ci`を実行する。ホストのCodex設定やログイン状態は使わない。イメージのビルドにはネットワークが必要。コンテナ内はNode.js 24でTSを直接実行する。
 
@@ -107,6 +109,81 @@ npx tsx benchmarks/isolated/smoke.ts \
 
 結合テストは、異なるコンテナID、同一入力、スキルなしでのtextlint不在、ホスト環境変数の不在、入力の読み取り専用、スキルありでの本文取得とlint実行を確認する。スキルなし側へ意図的にスキルを混入させ、モデル呼び出し前に拒否することも確認する。その後、別の採点、API失敗時のコンテナ削除、確定結果の変更検知も確認する。模擬応答によるテストなので、文章品質やスキルの自然な発火率は測らない。
 
+## Claude Codeでの実行
+
+`--provider claude`を指定すると、Claude Code 2.1.285をコンテナ内で`claude -p`として動かす。パッケージは`@anthropic-ai/claude-code`で、`Claude.Dockerfile`でインストールする。コンテナ隔離はCodex版と同じで、`--network none`、読み取り専用のルート領域、tmpfsのHOMEと作業領域、`--cap-drop ALL`、UID 1000、資源制限を使う。
+
+結果はprotocol `tanteki-isolated-claude-v1`で記録する。Codex版の結果はprotocol `tanteki-isolated-v1`で記録されるため、両者は混ざらない。manifestには`provider: "claude"`が入る。
+
+### 通信と認証
+
+- `ANTHROPIC_API_KEY`はホストだけが持つ。コンテナにはダミーキーと`ANTHROPIC_BASE_URL=http://127.0.0.1:19876`だけを渡す
+- コンテナ内のrelayは`POST /v1/messages`だけをホストへ中継する。`HEAD /api/hello`には200、`POST /v1/messages/count_tokens`には404をコンテナ内で返す。それ以外は403を返し、違反として記録する
+- ホストは`https://api.anthropic.com`へ`x-api-key`を付けて送り、`anthropic-version`と`anthropic-beta`を転送する
+- リダイレクトは禁止する。リクエストは7秒間隔で直列化する。upstreamが失敗した時点で実行を止め、再送しない
+
+### 外部通信の停止
+
+次の環境変数で、モデル通信以外の外部通信を止める。
+
+- `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`
+- `DISABLE_UPDATES`
+- `DISABLE_TELEMETRY`
+- `DISABLE_ERROR_REPORTING`
+- `DISABLE_GROWTHBOOK`
+
+同梱スキルは`CLAUDE_CODE_DISABLE_BUNDLED_SKILLS=1`で無効にする。コミットやPRへのAttribution自動追記は、`--settings '{"attribution":{"commit":"","pr":""}}'`で抑止する。
+
+### 起動条件
+
+- 共通の引数は`--output-format stream-json --verbose`、`--system-prompt`、`--json-schema`、`--setting-sources user`、`--strict-mcp-config`、`--no-session-persistence`、`--permission-mode dontAsk`。HOMEは空なので、`--setting-sources user`で読む設定は存在しない
+- authorに許可するツールは`Bash,Edit,Read,Skill,Write`。構造化出力のStructuredOutputも使う。judgeにはツールを許可しない
+- 両条件で引数は同一にする。スキルの有無は、`/home/agent/.claude/skills/tanteki`を配置するかどうかだけで変える
+- `--bare`は使わない。2.1.285では`--bare`を指定するとSkillsを自動発見しないため
+
+### 検証
+
+- initイベントのskills、tools、mcp_servers、plugins、apiKeySource、claude_code_version、model、permissionMode、cwdを事前検証する。通るまでrelayはモデル通信を中継しない
+- 各リクエストで、model、stream、`output_config.effort`、tools、systemの末尾の指示、1回目のprompt、許可していないsystem-reminderの不在を検査する
+- 1回目のリクエストを正規化して、両条件で一致させる。正規化では`metadata.user_id`、日付、OS Version、スキル一覧のtanteki行を除く。正規化後の値はenvironmentHashに含める
+- lintの実行は、Bashのtool_useから観測する。`lint.mjs`は指摘があるとexit 1になるが、これも実行として数える
+- スキル本文の読込は、後続リクエストに含まれるSKILL.mdの本文から観測する
+
+### 手順
+
+```sh
+npm ci
+
+# 出力先は毎回新しいディレクトリを指定する。
+npm run benchmark -- build --provider claude --out .cache/claude-build
+
+# 動作検証。APIキーは不要で、応答は模擬する。
+npx tsx benchmarks/isolated/claude-smoke.ts \
+  .cache/claude-build/runtime-lock.json .cache/claude-smoke
+
+# ANTHROPIC_API_KEYをホストの環境変数に設定して実行する。
+# この生成はAPIの利用料金を消費する。
+npm run benchmark -- generate \
+  --lock .cache/claude-build/runtime-lock.json \
+  --model claude-sonnet-5-5 --out .cache/claude-generation
+```
+
+providerはlockから決まる。`--provider claude`をgenerateに付けると、lockと一致しているかの表明になるが、省略できる。`--effort`にはlow、medium、high、xhigh、maxを指定できる。続く`grade`と`report`は、Codex版と同じコマンドを使う。
+
+### macOSでの注意
+
+Dockerが必要で、たとえばcolimaを使う。colimaはmacOSの既定の`TMPDIR`をbindできない。tsxのIPCソケットにはパス長の制限があるため、`TMPDIR=$HOME/.tmp-bench`のように、HOME配下の短いパスを指定する。
+
+### 未検証事項
+
+- 実APIでのモデル名とeffortの受理は、模擬応答でしか確認していない
+- `count_tokens`が404のときのClaude Codeの推定動作も、模擬応答でしか確認していない
+- systemの先頭にClaude Codeが付ける`x-anthropic-billing-header`は、両条件で同じ値なので除かずに残している
+
+### CI
+
+`isolated-benchmark-claude`ジョブで、buildとsmokeを実行する。APIキーは不要。
+
 ## 実装の見取り図
 
 新しいベンチマークはTypeScriptで実装する。Zodで外部入力を検証し、workerの失敗はneverthrowのResultで返す。HTMLのMarkdown描画には既存の描画関数を共用する。
@@ -119,7 +196,14 @@ npx tsx benchmarks/isolated/smoke.ts \
 | `codex-session.ts` | スキル一覧と設定の検証、ターンの実行 |
 | `codex-client.ts` | CodexとのJSON-RPC通信 |
 | `worker-environment.ts` | 空の環境の確認、設定作成、プロセス起動 |
-| `model-relay.ts` | コンテナ内HTTPと標準入出力の中継 |
-| `docker.ts` | ホスト側のコンテナ管理とAPI通信 |
+| `model-relay.ts` | コンテナ内HTTPと標準入出力の中継。Claude版にも対応する |
+| `docker.ts` | ホスト側のコンテナ管理とAPI通信。Claude版にも対応する |
 | `protocol.ts` | 入力、環境、ペアの一致検査 |
 | `cli.ts` | build、generate、grade、reportの進行 |
+| `provider.ts` | providerとprotocolの対応表、providerごとに許すeffortの範囲 |
+| `Claude.Dockerfile` | Claude Codeを固定した版でインストールする評価用イメージ |
+| `claude-config.ts` | Claude Codeの環境変数・起動引数・設定の組み立て。initイベントの事前検証`validateClaudePreflight`、リクエストの検査`checkAnthropicRequest`、両条件の比較用の正規化`comparableAnthropicRequest`も担う |
+| `claude-environment.ts` | 空のHOMEとworkspaceの確認、禁止パスの検査、スキルの配置、UID 1000でのClaude Code起動 |
+| `claude-session.ts` | Claude Codeのstream-jsonを読み、initとresultから構造化出力を取り出す |
+| `claude-worker.ts` | コンテナ内のClaude版worker。initを検証してから、relayの中継を有効にする |
+| `claude-smoke.ts` | 実際のDockerとClaude Codeに模擬のAnthropic応答をつなぐ結合検証 |

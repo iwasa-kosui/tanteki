@@ -36,3 +36,21 @@ jobs:
         with:
           name: isolated-benchmark-diagnostics
           path: .cache/benchmark-smoke
+
+  isolated-benchmark-claude:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run benchmark -- build --provider claude --out .cache/benchmark-claude-build
+      - run: npx tsx benchmarks/isolated/claude-smoke.ts .cache/benchmark-claude-build/runtime-lock.json .cache/benchmark-claude-smoke
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: isolated-benchmark-claude-diagnostics
+          path: .cache/benchmark-claude-smoke

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { armSchema } from "./benchmark-case.ts";
+import { protocolSchema } from "./provider.ts";
 
 const verdictSchema = z.strictObject({ pass: z.boolean(), evidence: z.string().min(1) });
 const candidateSchema = z.strictObject({ facts: verdictSchema, grounding: verdictSchema, role: verdictSchema, clarity: verdictSchema, economy: verdictSchema });
@@ -12,6 +13,6 @@ const pairSchema = z.discriminatedUnion("status", [
   z.object({ status: z.enum(["invalid_environment", "execution_failed"]), error: z.string() })
 ]);
 export type GradedPair = z.infer<typeof pairSchema>;
-const schema = z.object({ protocol: z.literal("tanteki-isolated-v1"), runFingerprint: z.string(), model: z.string(), effort: z.string(), instructionsHash: z.string(), createdAt: z.string(), lint: z.record(z.string(), lintSchema), pairs: z.record(z.string(), pairSchema), sealed: z.boolean(), fingerprint: z.string().optional() });
+const schema = z.object({ protocol: protocolSchema, runFingerprint: z.string(), model: z.string(), effort: z.string(), instructionsHash: z.string(), createdAt: z.string(), lint: z.record(z.string(), lintSchema), pairs: z.record(z.string(), pairSchema), sealed: z.boolean(), fingerprint: z.string().optional() });
 export type Evaluation = z.infer<typeof schema>;
 export const Evaluation = { schema, judgmentSchema, lintSchema } as const;

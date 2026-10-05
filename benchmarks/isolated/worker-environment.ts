@@ -15,12 +15,12 @@ const agentEnvironment = {
 const childOptions = { uid: 1000, gid: 1000, cwd: "/workspace", env: agentEnvironment };
 const forbiddenRoots = ["/etc/codex", "/.agents", "/.codex", "/AGENTS.md", "/AGENTS.override.md", "/workspace/AGENTS.md"];
 
-async function exists(path: string) {
+export async function exists(path: string) {
   try { await access(path); return true; }
   catch (error) { if (error instanceof Error && "code" in error && error.code === "ENOENT") return false; throw error; }
 }
 
-function runSetup(script: string, args: string[] = [], input?: string) {
+export function runSetup(script: string, args: string[] = [], input?: string) {
   const result = spawnSync(process.execPath, ["-e", script, ...args], { ...childOptions, input, encoding: "utf8", maxBuffer: 1024 * 1024 });
   invariant(!result.error && result.status === 0, `Agent setup failed: ${result.error?.message ?? result.stderr}`);
 }

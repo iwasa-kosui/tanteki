@@ -3,6 +3,7 @@ import { lstat, readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { z } from "zod";
 import { decode } from "./validation.ts";
+import { protocolOf, type Provider } from "./provider.ts";
 import { NativeEvidence, type SkillCatalog } from "./native-evidence.ts";
 import type { Job } from "./job.ts";
 import type { BenchmarkCase } from "./benchmark-case.ts";
@@ -166,9 +167,9 @@ export function comparableRequest(raw: unknown, job: Job, withSkill: boolean) {
   return { ...settings, input: messages };
 }
 
-export function publicJob(c: Pick<BenchmarkCase, "prompt">, settings: Pick<Settings, "model" | "effort">): Job {
+export function publicJob(c: Pick<BenchmarkCase, "prompt">, settings: Pick<Settings, "model" | "effort">, provider: Provider = "codex"): Job {
   // Never spread a case: criteria, expectedBody and condition labels stay outside.
-  return { protocol, kind: "author", prompt: c.prompt, instructions: authorInstructions, schema: authorSchema, model: settings.model, effort: settings.effort };
+  return { protocol: protocolOf(provider), kind: "author", prompt: c.prompt, instructions: authorInstructions, schema: authorSchema, model: settings.model, effort: settings.effort };
 }
 
 export function validatePreflight(raw: unknown, job: Job, bundle: Inventory | null) {

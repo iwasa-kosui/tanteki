@@ -1,11 +1,12 @@
 import { z } from "zod";
 import { schemaResult, parseJSON } from "./validation.ts";
+import { effortSchema, protocolSchema } from "./provider.ts";
 
 const schema = z.strictObject({
-  protocol: z.literal("tanteki-isolated-v1"), kind: z.enum(["author", "judge"]),
+  protocol: protocolSchema, kind: z.enum(["author", "judge"]),
   prompt: z.string().min(1), instructions: z.string().min(1),
   schema: z.looseObject({ type: z.literal("object"), required: z.array(z.string()) }),
-  model: z.string().min(1), effort: z.enum(["minimal", "low", "medium", "high", "xhigh"])
+  model: z.string().min(1), effort: effortSchema
 });
 export type Job = Readonly<z.infer<typeof schema>>;
 export const Job = { schema, parse: schemaResult(schema), fromJSON: (text: string) => parseJSON(text).andThen(schemaResult(schema)) } as const;

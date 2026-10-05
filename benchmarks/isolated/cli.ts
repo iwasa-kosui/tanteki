@@ -2,8 +2,9 @@
 import { readFile, writeFile, mkdir, cp, rm } from "node:fs/promises";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { protocol, invariant, digest, sha256, inventory, publicJob, pairedRecords } from "./protocol.ts";
-import { docker, command, temporaryDirectory, exportBundle, apiTransport, runModel, runLint } from "./docker.ts";
+import { invariant, digest, sha256, inventory, publicJob, pairedRecords } from "./protocol.ts";
+import { docker, command, temporaryDirectory, exportBundle, apiTransport, anthropicTransport, runModel, runLint } from "./docker.ts";
+import { efforts, protocolOf, providerOf, type Provider } from "./provider.ts";
 import { makePlan } from "./plan.ts";
 import { writeReport } from "./report.ts";
 import { z } from "zod";
@@ -23,8 +24,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../..");
 const readJSON = async (path: string): Promise<unknown> => JSON.parse(await readFile(path, "utf8"));
 const save = (path: string, value: unknown) => writeFile(path, JSON.stringify(value, null, 2) + "\n");
-const workerFiles = ["protocol.ts", "worker.ts", "worker-environment.ts", "model-relay.ts", "codex-client.ts", "codex-session.ts", "turn-state.ts", "turn-event.ts", "worker-message.ts", "native-evidence.ts", "job.ts", "validation.ts"];
-const runtimeFiles = ["Dockerfile", "Bundle.Dockerfile", "package.json", "package-lock.json", ...workerFiles, "lint-worker.ts", "docker.ts", "cli.ts", "report.ts", "benchmark-case.ts", "execution.ts", "manifest.ts", "evaluation.ts", "runtime-lock.ts", "options.ts", "plan.ts", "observations.ts", "../readable-report.mjs", "../comparison-validity.mjs", "../invalidated-runs.json", "../comparison.css", "../../package-lock.json"];
+const workerFiles = ["protocol.ts", "worker.ts", "worker-environment.ts", "model-relay.ts", "codex-client.ts", "codex-session.ts", "turn-state.ts", "turn-event.ts", "worker-message.ts", "native-evidence.ts", "job.ts", "validation.ts", "claude-worker.ts", "claude-environment.ts", "claude-session.ts", "claude-config.ts", "provider.ts"];
+const runtimeFiles = ["Dockerfile", "Claude.Dockerfile", "Bundle.Dockerfile", "package.json", "package-lock.json", ...workerFiles, "lint-worker.ts", "docker.ts", "cli.ts", "report.ts", "benchmark-case.ts", "execution.ts", "manifest.ts", "evaluation.ts", "runtime-lock.ts", "options.ts", "plan.ts", "observations.ts", "../readable-report.mjs", "../comparison-validity.mjs", "../invalidated-runs.json", "../comparison.css", "../../package-lock.json"];
 
 async function runtimeSources(): Promise<Record<string,string>> { return Object.fromEntries(await Promise.all(runtimeFiles.map(async (name) => [name, sha256(await readFile(join(here, name)))]))); }
 
@@ -40,19 +41,22 @@ export async function build(o: BuildOptions) {
     const skillSource = await inventory(source);
     const runtime = join(staging, "runtime"), bundle = join(staging, "bundle");
     await mkdir(runtime); await mkdir(bundle);
-    for (const name of ["Dockerfile", "package.json", "package-lock.json", ...workerFiles]) await cp(join(here, name), join(runtime, name));
+    const claude = o.provider === "claude";
+    await cp(join(here, claude ? "Claude.Dockerfile" : "Dockerfile"), join(runtime, "Dockerfile"));
+    for (const name of ["package.json", "package-lock.json", ...workerFiles]) await cp(join(here, name), join(runtime, name));
     await cp(source, join(bundle, "skill"), { recursive: true });
     for (const [sourceName, target] of [["Bundle.Dockerfile", "Dockerfile"], ...["package.json", "package-lock.json", "lint-worker.ts", "evaluation.ts", "benchmark-case.ts", ...workerFiles].map((name) => [name, name])]) await cp(join(here, sourceName), join(bundle, target));
-    console.log("Building fixed Codex runtime (no skill or grading data)…");
-    await docker(["build", "--build-arg", `CODEX_VERSION=${o.codexVersion}`, "--iidfile", join(staging, "runtime.id"), runtime], { timeout: 600000 });
+    console.log(`Building fixed ${claude ? "Claude Code" : "Codex"} runtime (no skill or grading data)…`);
+    await docker(["build", "--build-arg", claude ? `CLAUDE_CODE_VERSION=${o.claudeVersion}` : `CODEX_VERSION=${o.codexVersion}`, "--iidfile", join(staging, "runtime.id"), runtime], { timeout: 600000 });
     console.log("Building the offline skill / evaluator bundle…");
     await docker(["build", "--iidfile", join(staging, "bundle.id"), bundle], { timeout: 600000 });
     const runtimeImage = (await readFile(join(staging, "runtime.id"), "utf8")).trim();
     const bundleImage = (await readFile(join(staging, "bundle.id"), "utf8")).trim();
     const bundleInventory = decode(inventorySchema, JSON.parse(await docker(["run", "--rm", "--network", "none", bundleImage, "inventory"])));
-    const actualVersion = (await docker(["run", "--rm", "--network", "none", "--entrypoint", "codex", runtimeImage, "--version"])).trim();
-    invariant(actualVersion === `codex-cli ${o.codexVersion}`, "Installed Codex version differs");
-    const unsigned = { protocol, createdAt: new Date().toISOString(), codexVersion: o.codexVersion, runtimeImage, bundleImage, runtimeSources: await runtimeSources(), skillSource, bundleInventory, sourceRevision: (await command("git", ["-C", root, "rev-parse", "HEAD"])).trim() };
+    const actualVersion = (await docker(["run", "--rm", "--network", "none", "--entrypoint", claude ? "claude" : "codex", runtimeImage, "--version"])).trim();
+    if (claude) invariant(actualVersion === `${o.claudeVersion} (Claude Code)`, "Installed Claude Code version differs");
+    else invariant(actualVersion === `codex-cli ${o.codexVersion}`, "Installed Codex version differs");
+    const unsigned = { protocol: protocolOf(o.provider), createdAt: new Date().toISOString(), ...(claude ? { claudeVersion: o.claudeVersion } : { codexVersion: o.codexVersion }), runtimeImage, bundleImage, runtimeSources: await runtimeSources(), skillSource, bundleInventory, sourceRevision: (await command("git", ["-C", root, "rev-parse", "HEAD"])).trim() };
     const lock = decode(RuntimeLock.schema, { ...unsigned, fingerprint: digest(unsigned) });
     await save(join(out, "runtime-lock.json"), lock);
     console.log(join(out, "runtime-lock.json"));
@@ -63,14 +67,23 @@ export async function build(o: BuildOptions) {
 export async function loadLock(path: string) {
   const lock = decode(RuntimeLock.schema, await readJSON(path));
   const { fingerprint, ...unsigned } = lock;
-  invariant(fingerprint === digest(unsigned) && lock.protocol === protocol, "Invalid runtime lock");
+  invariant(fingerprint === digest(unsigned), "Invalid runtime lock");
   for (const image of [lock.runtimeImage, lock.bundleImage]) invariant(/^sha256:[0-9a-f]{64}$/.test(image), "Images must be pinned by content ID");
   invariant(digest(lock.runtimeSources) === digest(await runtimeSources()), "Harness changed since build; build a new runtime lock");
   return lock;
 }
 
+// The lock decides the provider; an explicit --provider must agree with it.
+function chooseProvider(lockProtocol: Parameters<typeof providerOf>[0], requested: Provider | undefined, effort: string): Provider {
+  const provider = providerOf(lockProtocol);
+  invariant(!requested || requested === provider, `--provider ${requested} does not match the ${provider} runtime lock`);
+  invariant((efforts[provider] as readonly string[]).includes(effort), `--effort ${effort} is not valid for ${provider} (${efforts[provider].join(", ")})`);
+  return provider;
+}
+
 export async function prepare(o: GenerateOptions) {
   const lock = await loadLock(o.lock);
+  const provider = chooseProvider(lock.protocol, o.provider, o.effort);
   let cases = decode(BenchmarkCase.suiteSchema, await readJSON(o.casesFile ?? join(root, "benchmarks/cases.json")));
   if (o.caseIds) {
     const ids = o.caseIds.split(",");
@@ -79,25 +92,25 @@ export async function prepare(o: GenerateOptions) {
   }
   const settings = { model: o.model, effort: o.effort, repeats: o.repeats, seed: o.seed, timeout: o.timeout, maxCalls: o.maxCalls };
   const plan = decode(z.array(plannedExecutionSchema), makePlan(cases, settings.repeats, settings.seed));
-  return { lock, cases, settings, plan };
+  return { lock, provider, cases, settings, plan };
 }
 
 export async function generate(o: GenerateOptions, transport?: Transport, signal?: AbortSignal) {
   const prepared = await prepare(o);
   if (o.dryRun) {
-    const result = { protocol, settings: prepared.settings, plan: prepared.plan, inputs: prepared.cases.map((c) => ({ id: c.id, promptHash: sha256(c.prompt), jobHash: digest(publicJob(c, prepared.settings)) })) };
+    const result = { protocol: prepared.lock.protocol, settings: prepared.settings, plan: prepared.plan, inputs: prepared.cases.map((c) => ({ id: c.id, promptHash: sha256(c.prompt), jobHash: digest(publicJob(c, prepared.settings, prepared.provider)) })) };
     console.log(JSON.stringify(result, null, 2));
     return result;
   }
-  transport ??= apiTransport(process.env.OPENAI_API_KEY);
-  const { lock, cases, settings, plan } = prepared;
+  const { lock, provider, cases, settings, plan } = prepared;
+  transport ??= provider === "claude" ? anthropicTransport(process.env.ANTHROPIC_API_KEY) : apiTransport(process.env.OPENAI_API_KEY);
   invariant(o.out, "--out is required");
   const out = resolve(o.out);
   await mkdir(dirname(out), { recursive: true });
   await mkdir(out);
   await mkdir(join(out, "private"));
   await mkdir(join(out, "records"));
-  const initial = { protocol, createdAt: new Date().toISOString(), runtimeLockHash: digest(lock), casesHash: digest(cases), settings, plan, sealed: false, evidence: {} };
+  const initial = { protocol: lock.protocol, ...(provider === "claude" ? { provider } : {}), createdAt: new Date().toISOString(), runtimeLockHash: digest(lock), casesHash: digest(cases), settings, plan, sealed: false, evidence: {} };
   await save(join(out, "runtime-lock.json"), lock);
   await save(join(out, "private/cases.json"), cases);
   await save(join(out, "manifest.json"), initial);
@@ -109,7 +122,7 @@ export async function generate(o: GenerateOptions, transport?: Transport, signal
       const c = cases.find((c) => c.id === planned.caseId);
       invariant(c, "Missing planned case");
       const withSkill = planned.arm === "with_skill";
-      const result = await runModel({ image: lock.runtimeImage, bundle: withSkill ? lock.bundleInventory : null, bundlePath: withSkill ? bundle.path : null, job: publicJob(c, settings), directory: join(out, "calls", planned.id), timeout: settings.timeout, maxCalls: settings.maxCalls, transport, responseSchema: AuthorResponse.schema, signal });
+      const result = await runModel({ image: lock.runtimeImage, bundle: withSkill ? lock.bundleInventory : null, bundlePath: withSkill ? bundle.path : null, job: publicJob(c, settings, provider), directory: join(out, "calls", planned.id), timeout: settings.timeout, maxCalls: settings.maxCalls, transport, responseSchema: AuthorResponse.schema, signal, provider, claudeVersion: lock.claudeVersion });
       const record = decode(Execution.schema, { ...planned, ...result });
       records.push(record);
       await save(join(out, "records", `${planned.id}.json`), record);
@@ -135,8 +148,9 @@ export async function readRun(path: string) {
   const run = resolve(path);
   const manifest = decode(Manifest.schema, await readJSON(join(run, "manifest.json")));
   const { fingerprint, ...unsigned } = manifest;
-  invariant(manifest.protocol === protocol && manifest.sealed && fingerprint === digest(unsigned), "Generation is unsealed or manifest changed");
+  invariant(manifest.sealed && fingerprint === digest(unsigned), "Generation is unsealed or manifest changed");
   const lock = await loadLock(join(run, "runtime-lock.json"));
+  invariant(lock.protocol === manifest.protocol && (manifest.provider ?? "codex") === providerOf(manifest.protocol), "Generation and runtime lock use different protocols");
   const cases = decode(BenchmarkCase.suiteSchema, await readJSON(join(run, "private/cases.json")));
   invariant(digest(cases) === manifest.casesHash && digest(lock) === manifest.runtimeLockHash, "Run inputs changed");
   for (const directory of ["records", "calls"] as const) invariant((await inventory(join(run, directory))).digest === manifest.evidence[directory], `Frozen ${directory} changed`);
@@ -150,14 +164,15 @@ export async function readRun(path: string) {
 
 export async function grade(o: GradeOptions, transport?: Transport, signal?: AbortSignal) {
   const data = await readRun(o.run);
-  transport ??= apiTransport(process.env.OPENAI_API_KEY);
   const { manifest, lock, cases, records, pairs } = data;
+  const provider = chooseProvider(manifest.protocol, o.provider, o.effort);
+  transport ??= provider === "claude" ? anthropicTransport(process.env.ANTHROPIC_API_KEY) : apiTransport(process.env.OPENAI_API_KEY);
   invariant(o.out, "--out is required");
   const out = resolve(o.out);
   await mkdir(dirname(out), { recursive: true });
   await mkdir(out);
   const instructions = await readFile(join(root, "benchmarks/judge-instructions.txt"), "utf8");
-  const evaluation: Evaluation = { protocol, runFingerprint: manifest.fingerprint, model: o.model, effort: o.effort, instructionsHash: sha256(instructions), createdAt: new Date().toISOString(), lint: {}, pairs: {}, sealed: false };
+  const evaluation: Evaluation = { protocol: manifest.protocol, runFingerprint: manifest.fingerprint, model: o.model, effort: o.effort, instructionsHash: sha256(instructions), createdAt: new Date().toISOString(), lint: {}, pairs: {}, sealed: false };
   await writeFile(join(out, "judge-instructions.txt"), instructions);
   for (const pair of pairs) {
     signal?.throwIfAborted();
@@ -172,8 +187,8 @@ export async function grade(o: GradeOptions, transport?: Transport, signal?: Abo
       // Hide condition labels and tool logs; candidate wording itself is unmodified.
       const candidates = Object.fromEntries(Object.entries(mapping).map(([label, arm]) => [label, pair[arm === "without_skill" ? 0 : 1].response]));
       const prompt = `原依頼と資料:\n${c.prompt}\n\n判定基準:\n${JSON.stringify(c.criteria)}\n\n候補の本文・注記（A/B）:\n${JSON.stringify(candidates)}`;
-      const job = decode(Job.schema, { protocol, kind: "judge", prompt, instructions, schema: z.toJSONSchema(Evaluation.judgmentSchema), model: o.model, effort: o.effort });
-      const result = await runModel({ image: lock.runtimeImage, bundle: null, bundlePath: null, job, directory: join(out, "calls", id), timeout: o.timeout, maxCalls: 1, transport, responseSchema: Evaluation.judgmentSchema, signal });
+      const job = decode(Job.schema, { protocol: manifest.protocol, kind: "judge", prompt, instructions, schema: z.toJSONSchema(Evaluation.judgmentSchema), model: o.model, effort: o.effort });
+      const result = await runModel({ image: lock.runtimeImage, bundle: null, bundlePath: null, job, directory: join(out, "calls", id), timeout: o.timeout, maxCalls: 1, transport, responseSchema: Evaluation.judgmentSchema, signal, provider, claudeVersion: lock.claudeVersion });
       evaluation.pairs[id] = result.status === "valid" ? { status: "valid", mapping, response: result.response } : { status: result.status, error: result.error };
     } catch (error) { evaluation.pairs[id] = { status: "execution_failed", error: messageOf(error) }; }
     await save(join(out, "evaluation.json"), evaluation);
@@ -205,11 +220,14 @@ export async function main(argv: string[]) {
   const o = options(argv);
   if (o.action === "help") console.log(`Usage:
   npm run benchmark -- build --out BUILD_DIR [--codex-version 0.155.1]
-  npm run benchmark -- generate --lock BUILD_DIR/runtime-lock.json --out RUN_DIR --model MODEL [--dry-run]
-  npm run benchmark -- grade --run RUN_DIR --out GRADE_DIR --model MODEL
+  npm run benchmark -- build --provider claude --out BUILD_DIR [--claude-version 2.1.285]
+  npm run benchmark -- generate --lock BUILD_DIR/runtime-lock.json --out RUN_DIR --model MODEL [--provider codex|claude] [--effort E] [--dry-run]
+  npm run benchmark -- grade --run RUN_DIR --out GRADE_DIR --model MODEL [--provider codex|claude] [--effort E]
   npm run benchmark -- report --run RUN_DIR [--evaluation GRADE_DIR] [--out REPORT_DIR]
 
-Generation and grading are separate. Set OPENAI_API_KEY on the host for model calls.
+The provider comes from the runtime lock; --provider only asserts it. --model is always required
+(Claude example: claude-sonnet-5-5). --effort: codex minimal|low|medium|high|xhigh, claude low|medium|high|xhigh|max.
+Generation and grading are separate. Set OPENAI_API_KEY (codex) or ANTHROPIC_API_KEY (claude) on the host for model calls.
 See benchmarks/isolated/README.md. Old results use npm run benchmark:legacy.`);
   else {
     const controller = new AbortController();
